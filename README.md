@@ -1,4 +1,5 @@
-## Carpool is a platform which provides carpool information services to students in Tongji university.
+# Carpool
+Carpool is a platform which provides carpool information services to students in Tongji university.
 
 ### Why we make this
 As we all know, our campus' location is relatively remote. It's located in Jiading and usually it will take a tremendous amount of time and effort to reach other places in Shanghai. For instance, Hongqiao International Airport is a place where a lot of students will go when they go home. 
