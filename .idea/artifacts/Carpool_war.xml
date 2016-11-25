@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="Carpool:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="Carpool.war">
-      <element id="artifact" artifact-name="Carpool:war exploded" />
-    </root>
-  </artifact>
-</component>
