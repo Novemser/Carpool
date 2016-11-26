@@ -1,7 +1,9 @@
 package com.carpool.model;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.Collection;
+import java.util.Date;
 
 /**
  * Created by qi on 2016/11/26.
@@ -10,6 +12,7 @@ import java.util.Collection;
 @Table(name = "journey", schema = "carpool")
 public class JourneyEntity {
     private int id;
+    private Timestamp startTime;
     private String startPoint;
     private String endPoint;
     private int peerNums;
@@ -54,6 +57,17 @@ public class JourneyEntity {
 
     public void setPeerNums(int peerNums) {
         this.peerNums = peerNums;
+    }
+
+
+    @Basic
+    @Column(name = "startTime", nullable = false)
+    public Timestamp getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Timestamp startTime) {
+        this.startTime = startTime;
     }
 
     @Override
