@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
 
-    <persistence-unit name="CarPoolPersistenceUnit"  transaction-type="RESOURCE_LOCAL">
+    <persistence-unit name="defaultPersistenceUnit"  transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <class>com.carpool.domain.ChatRecordEntity</class>
         <class>com.carpool.domain.CommentEntity</class>
-        <class>com.carpool.domain.PaymentRecordEntity</class>
-        <class>com.carpool.domain.RoomEntity</class>
-        <class>com.carpool.domain.UserEntity</class>
-        <class>com.carpool.domain.JourneyEntity</class>
-        <class>com.carpool.domain.UserParticipateRoomEntity</class>
         <properties>
             <!-- 使用MySQL方言 -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
@@ -32,7 +26,7 @@
             <property name="hibernate.format_sql" value="true"/>
             <property name="hibernate.use_sql_comments" value="false"/>
             <!-- 自动输出schema创建DDL语句 -->
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
 
             <!-- 数据库连接超时后自动重连 -->
             <property name="hibernate.connection.autoReconnect" value="true"/>
