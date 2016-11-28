@@ -25,7 +25,7 @@ import java.util.List;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"/dispatcher-servlet.xml"})
+@ContextConfiguration("file:src/main/webapp/WEB-INF/dispatcher-servlet.xml")
 public class CommentRepositoryTest {
 
 
