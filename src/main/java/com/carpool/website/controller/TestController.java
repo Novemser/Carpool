@@ -1,6 +1,6 @@
 package com.carpool.controller;
 
-import com.carpool.repository.UserEntityRepository;
+import com.carpool.website.dao.UserEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

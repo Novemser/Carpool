@@ -2,6 +2,7 @@ package com.carpool.model;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Created by qi on 2016/11/26.
@@ -10,7 +11,7 @@ import java.sql.Timestamp;
 @Table(name = "chatrecord", schema = "carpool")
 public class ChatRecordEntity {
     private int id;
-    private Timestamp time;
+    private Date time;
     private String comment;
     private UserEntity sender;
     private RoomEntity room;
@@ -27,11 +28,11 @@ public class ChatRecordEntity {
 
     @Basic
     @Column(name = "time", nullable = false)
-    public Timestamp getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(Timestamp time) {
+    public void setTime(Date time) {
         this.time = time;
     }
 

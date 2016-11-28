@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Collection;
+import java.util.Date;
 
 /**
  * Created by qi on 2016/11/26.
@@ -18,6 +19,7 @@ public class RoomEntity implements Serializable{
     private int numberLimit;
     private int currentNums;
     private Timestamp createTime;
+    private Date startTime;
     private int state;
     private Collection<ChatRecordEntity> chatRecords;
     private UserEntity host;
@@ -93,6 +95,16 @@ public class RoomEntity implements Serializable{
 
     public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
+    }
+
+    @Basic
+    @Column(name = "startTime", nullable = false)
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startime) {
+        this.startTime = startime;
     }
 
     @Basic

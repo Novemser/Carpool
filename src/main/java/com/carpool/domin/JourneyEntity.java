@@ -1,6 +1,7 @@
 package com.carpool.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Date;
@@ -10,9 +11,9 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "journey", schema = "carpool")
-public class JourneyEntity {
+public class JourneyEntity implements Serializable{
     private int id;
-    private Timestamp startTime;
+    private Date startTime;
     private String startPoint;
     private String endPoint;
     private int peerNums;
@@ -62,11 +63,11 @@ public class JourneyEntity {
 
     @Basic
     @Column(name = "startTime", nullable = false)
-    public Timestamp getStartTime() {
+    public Date getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Timestamp startTime) {
+    public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 

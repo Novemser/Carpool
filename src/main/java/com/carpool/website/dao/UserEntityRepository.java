@@ -1,6 +1,6 @@
 package com.carpool.repository;
 
-import com.carpool.model.UserEntity;
+import com.carpool.domin.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

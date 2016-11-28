@@ -1,6 +1,7 @@
 package com.carpool.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by qi on 2016/11/26.
@@ -11,6 +12,7 @@ public class CommentEntity {
     private int id;
     private String comment;
     private double credit;
+    private Date commentTime;
     private UserEntity sourceUser;
     private UserEntity targetUser;
     private JourneyEntity journey;
@@ -26,7 +28,7 @@ public class CommentEntity {
     }
 
     @Basic
-    @Column(name = "comment", nullable = false, length = -1)
+    @Column(name = "comment", nullable = true, length = -1)
     public String getComment() {
         return comment;
     }
@@ -43,6 +45,16 @@ public class CommentEntity {
 
     public void setCredit(double credit) {
         this.credit = credit;
+    }
+
+    @Basic
+    @Column(name = "commentTime", nullable = false)
+    public Date getCommentTime() {
+        return (commentTime==null)?new Date():commentTime;
+    }
+
+    public void setCommentTime(Date commentTime) {
+        this.commentTime = commentTime;
     }
 
     @Override
@@ -70,7 +82,7 @@ public class CommentEntity {
         return result;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "sourceUserid", referencedColumnName = "id")
     public UserEntity getSourceUser() {
         return sourceUser;
@@ -80,7 +92,7 @@ public class CommentEntity {
         this.sourceUser =  sourceUserd;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "targetUserid", referencedColumnName = "id")
     public UserEntity getTargetUser() {
         return targetUser;
@@ -90,7 +102,7 @@ public class CommentEntity {
         this.targetUser = targetUser;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "journeyid", referencedColumnName = "id", nullable = false)
     public JourneyEntity getJourney() {
         return journey;
