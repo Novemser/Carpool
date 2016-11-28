@@ -23,7 +23,7 @@
           p:suffix=".jsp"></bean>
 
 
-    <jpa:repositories base-package="com.carpool.repository"></jpa:repositories>
+    <jpa:repositories base-package="com.carpool.website.dao"></jpa:repositories>
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="CarPoolPersistenceUnit"/>
     </bean>

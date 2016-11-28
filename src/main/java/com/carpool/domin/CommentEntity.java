@@ -1,4 +1,4 @@
-package com.carpool.model;
+package com.carpool.domin;
 
 import javax.persistence.*;
 import java.util.Date;

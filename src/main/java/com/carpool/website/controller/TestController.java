@@ -1,4 +1,4 @@
-package com.carpool.controller;
+package com.carpool.website.controller;
 
 import com.carpool.website.dao.UserEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;

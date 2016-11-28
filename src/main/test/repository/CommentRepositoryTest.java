@@ -1,12 +1,12 @@
 package repository;
 
-import com.carpool.model.CommentEntity;
-import com.carpool.model.JourneyEntity;
-import com.carpool.repository.CommentEntityRepository;
-import com.carpool.repository.JourneyEntityRepository;
-import com.carpool.repository.UserEntityRepository;
+import com.carpool.domin.CommentEntity;
+import com.carpool.domin.JourneyEntity;
+import com.carpool.domin.UserEntity;
+import com.carpool.website.dao.CommentEntityRepository;
+import com.carpool.website.dao.JourneyEntityRepository;
+import com.carpool.website.dao.UserEntityRepository;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +18,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,38 +26,72 @@ import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"/dispatcher-servlet.xml"})
-public class repositoryTest{
+public class CommentRepositoryTest {
 
 
     @Resource
     private JourneyEntityRepository journeyEntityRepository;
     @Autowired
-    private CommentEntityRepository repository;
+    private CommentEntityRepository commentEntityRepository;
+    @Autowired
+    private UserEntityRepository userEntityRepository;
 
-    @Before
-    public void setUp() {
-        //mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
+    @Test
+    public void testSaveComment()
+    {
+        UserEntity sourceUser  = userEntityRepository.findOne("1452778");
+        JourneyEntity journeyEntity =  journeyEntityRepository.findOne(2);
+        UserEntity targetEntity = userEntityRepository.findOne("1452779");
+        CommentEntity commentEntity = new CommentEntity();
+        commentEntity.setCredit(5);
+        commentEntity.setJourney(journeyEntity);
+        commentEntity.setSourceUser(sourceUser);
+        commentEntity.setTargetUser(targetEntity);
+        commentEntityRepository.save(commentEntity);
+        Assert.assertNotNull(commentEntityRepository.findOne(1));
     }
 
     @Test
-    public void test()
+    public void testCreaditsQuery()
     {
-        List<JourneyEntity> journeyEntities = journeyEntityRepository.findByStartTimeBetween(new Date(),new Date());
-        Assert.assertTrue(journeyEntities.size()==0);
+        Assert.assertEquals(0,commentEntityRepository.countIdBySourceUserId("1452779"));
+
+        Assert.assertEquals(2,commentEntityRepository.countIdByTargetUserId("1452779"));
+
+        Assert.assertEquals(new Double(10),commentEntityRepository.sumOfCreditByUserId("1452779"));
+
+        Assert.assertTrue(commentEntityRepository.sumOfCreditByUserId("1452778")==null);
     }
 
+
     @Test
-    public void test1()
+    public void testPageComment()
     {
-    //    Assert.assertTrue(repository.countIdBySourceUserId("12")==0);
-  /*      Sort sort = new Sort(Sort.Direction.DESC, "id");
-        int page = 0; int size = 10;
+        Sort sort = new Sort(Sort.Direction.DESC, "commentTime");
+        int page = 0; int size = 1;
         Pageable pageable = new PageRequest(page, size, sort);
-       Page<CommentEntity> commentEntityPage =repository.findBySourceUserId("1",pageable);
-       Assert.assertTrue(commentEntityPage.getTotalElements()==0);
-    */
-        repository.sumOfCreditByUserId("123");
+        Page<CommentEntity>commentEntities = commentEntityRepository.findBySourceUserId("1452778",pageable);
+        Assert.assertEquals(2,commentEntities.getTotalPages());
 
+        commentEntities = commentEntityRepository.findByTargetUserId("1452779",pageable);
+        Assert.assertEquals(2,commentEntities.getTotalPages());
     }
+
+    @Test
+    public void testCommentsByJouery()
+    {
+        List<CommentEntity>commentEntities
+                = commentEntityRepository.findByJourneyId(2);
+        Assert.assertEquals(2,commentEntities.size());
+    }
+
+    @Test
+    public  void  testCountNumsOfCommentToOne()
+    {
+        int nums = commentEntityRepository.getNumsOfCommentOneToAnotherInJour("" +
+                "1452778","1452779",2);
+        Assert.assertEquals(2,nums);
+    }
+
 
 }

@@ -1,8 +1,7 @@
-package com.carpool.model;
+package com.carpool.domin;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Date;
 

@@ -1,7 +1,6 @@
-package com.carpool.model;
+package com.carpool.domin;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.util.Date;
 
 /**

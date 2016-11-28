@@ -1,4 +1,4 @@
-package com.carpool.repository;
+package com.carpool.website.dao;
 
 import com.carpool.domin.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

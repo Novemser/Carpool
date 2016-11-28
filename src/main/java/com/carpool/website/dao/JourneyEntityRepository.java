@@ -1,4 +1,4 @@
-package com.carpool.repository;
+package com.carpool.website.dao;
 
 import com.carpool.domin.JourneyEntity;
 import com.carpool.domin.RoomEntity;
