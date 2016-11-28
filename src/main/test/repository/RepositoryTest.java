@@ -14,17 +14,18 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"/dispatcher-servlet.xml"})
+@ContextConfiguration(locations = "file:src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml")
 public class RepositoryTest {
 
     @Autowired
     private JourneyEntityRepository journeyEntityRepository;
+
     @Autowired
     private CommentEntityRepository repository;
 
     @Before
     public void setUp() {
-        //mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
+//        mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
     }
 
     @Test
