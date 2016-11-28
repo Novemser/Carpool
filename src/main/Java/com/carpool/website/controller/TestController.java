@@ -1,6 +1,6 @@
-package com.carpool.controller;
+package com.carpool.website.controller;
 
-import com.carpool.repository.UserEntityRepository;
+import com.carpool.website.dao.UserEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +14,7 @@ public class TestController {
 
     @Autowired
     UserEntityRepository repository;
+
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public String home()
     {

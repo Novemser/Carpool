@@ -1,6 +1,6 @@
-package com.carpool.repository;
+package com.carpool.website.dao;
 
-import com.carpool.model.UserEntity;
+import com.carpool.domain.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

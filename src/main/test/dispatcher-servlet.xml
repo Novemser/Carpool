@@ -9,21 +9,21 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
             http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
             http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
-            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
-">
+            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <context:component-scan base-package="com.carpool.controller"></context:component-scan>
+    <context:component-scan base-package="com.carpool"/>
 
-    <mvc:annotation-driven></mvc:annotation-driven>
-    <mvc:default-servlet-handler></mvc:default-servlet-handler>
+    <mvc:annotation-driven/>
+
+    <mvc:default-servlet-handler/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
           p:viewClass="org.springframework.web.servlet.view.JstlView"
           p:prefix="/WEB-INF/views/"
-          p:suffix=".jsp"></bean>
+          p:suffix=".jsp"/>
 
 
-    <jpa:repositories base-package="com.carpool.repository"></jpa:repositories>
+    <jpa:repositories base-package="com.carpool.website.dao"/>
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="CarPoolPersistenceUnit"/>
     </bean>
@@ -31,7 +31,8 @@
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
-    <tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
 
 </beans>

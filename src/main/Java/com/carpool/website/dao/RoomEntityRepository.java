@@ -1,4 +1,4 @@
-package com.carpool.repository;
+package com.carpool.website.dao;
 
 /**
  * Created by qi on 2016/11/27.

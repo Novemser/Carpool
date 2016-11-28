@@ -1,9 +1,8 @@
-package com.carpool.model;
+package com.carpool.domain;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Collection;
-import java.util.Date;
 
 /**
  * Created by qi on 2016/11/26.

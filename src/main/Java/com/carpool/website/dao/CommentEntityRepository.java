@@ -1,6 +1,6 @@
-package com.carpool.repository;
+package com.carpool.website.dao;
 
-import com.carpool.model.CommentEntity;
+import com.carpool.domain.CommentEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
