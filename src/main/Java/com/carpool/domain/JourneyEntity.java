@@ -8,7 +8,7 @@ import java.util.Collection;
  * Created by qi on 2016/11/26.
  */
 @Entity
-@Table(name = "journey", schema = "carpool")
+@Table(name = "journey", schema = "carpool", catalog = "")
 public class JourneyEntity {
     private int id;
     private Timestamp startTime;
