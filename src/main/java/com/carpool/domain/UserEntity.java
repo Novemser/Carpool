@@ -26,7 +26,7 @@ public class UserEntity implements Serializable{
     private Collection<PaymentRecordEntity> paymentSendRecords;
     private Collection<RoomEntity> ownRoom;
     private Collection<RoomEntity> hasPaysRoom;
-    private Collection<UserParticipateRoomEntity> userParticipateRooms;
+    private Collection<UserEntity> userParticipateRooms;
 
     @Id
     @Column(name = "id", nullable = false, length = 10)
@@ -221,12 +221,16 @@ public class UserEntity implements Serializable{
         this.hasPaysRoom = hasPaysRoom;
 
     }
-    @OneToMany(mappedBy = "participateUser")
-    public Collection<UserParticipateRoomEntity> getUserParticipateRooms() {
+
+    @ManyToMany
+    @JoinTable(name = "user_rooms",
+    joinColumns = {@JoinColumn(name = "uid")},
+    inverseJoinColumns = {@JoinColumn(name = "rid")})
+    public Collection<UserEntity> getUserParticipateRooms() {
         return userParticipateRooms;
     }
 
-    public void setUserParticipateRooms(Collection<UserParticipateRoomEntity> userParticipateRooms) {
+    public void setUserParticipateRooms(Collection<UserEntity> userParticipateRooms) {
         this.userParticipateRooms = userParticipateRooms;
     }
 }
