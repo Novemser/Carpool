@@ -24,6 +24,7 @@
 
 
     <jpa:repositories base-package="com.carpool.website.dao"></jpa:repositories>
+
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="CarPoolPersistenceUnit"/>
     </bean>

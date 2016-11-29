@@ -13,7 +13,7 @@ import org.springframework.data.repository.query.Param;
  */
 public interface JourneyEntityRepository  extends JpaRepository<JourneyEntity,Integer>{
 
-     //得到自己发起的（是房主）的出行数
+     //得到自己发起的(是房主)的出行数
     int countIdByRoomHostId(String id);
 
     //得到自己参与的行程（非房主）数
