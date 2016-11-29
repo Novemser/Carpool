@@ -7,7 +7,7 @@ import java.io.Serializable;
  * Created by qi on 2016/11/26.
  */
 @Entity
-@Table(name = "user_participate_room", schema = "carpool")
+@Table
 public class UserParticipateRoomEntity implements Serializable{
 
 

@@ -15,13 +15,13 @@
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
             <!-- 数据库连接的URL地址 -->
             <property name="hibernate.connection.url"
-                      value="jdbc:mysql://localhost:3306/carpool"/>
+                      value="jdbc:mysql://localhost:3306/car"/>
             <!-- 数据库连接的驱动 -->
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
             <!-- 数据库连接的用户名 -->
-            <property name="hibernate.connection.username" value="carpool"/>
+            <property name="hibernate.connection.username" value="car"/>
             <!-- 数据库连接的密码 -->
-            <property name="hibernate.connection.password" value="carpool"/>
+            <property name="hibernate.connection.password" value="car"/>
             <!-- 显示SQL语句 -->
             <property name="hibernate.show_sql" value="true"/>
 

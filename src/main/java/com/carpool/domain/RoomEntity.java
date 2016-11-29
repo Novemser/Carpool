@@ -10,7 +10,7 @@ import java.util.Date;
  * Created by qi on 2016/11/26.
  */
 @Entity
-@Table(name = "room", schema = "carpool")
+@Table
 public class RoomEntity implements Serializable{
     private int id;
     private String roomname;
