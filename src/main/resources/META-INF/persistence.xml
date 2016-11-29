@@ -3,13 +3,13 @@
 
     <persistence-unit name="CarPoolPersistenceUnit"  transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <class>com.carpool.domin.ChatRecordEntity</class>
-        <class>com.carpool.domin.CommentEntity</class>
-        <class>com.carpool.domin.PaymentRecordEntity</class>
-        <class>com.carpool.domin.RoomEntity</class>
-        <class>com.carpool.domin.UserEntity</class>
-        <class>com.carpool.domin.JourneyEntity</class>
-        <class>com.carpool.domin.UserParticipateRoomEntity</class>
+        <class>com.carpool.domain.ChatRecordEntity</class>
+        <class>com.carpool.domain.CommentEntity</class>
+        <class>com.carpool.domain.PaymentRecordEntity</class>
+        <class>com.carpool.domain.RoomEntity</class>
+        <class>com.carpool.domain.UserEntity</class>
+        <class>com.carpool.domain.JourneyEntity</class>
+        <class>com.carpool.domain.UserParticipateRoomEntity</class>
         <properties>
             <!-- 使用MySQL方言 -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>

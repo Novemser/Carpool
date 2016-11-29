@@ -1,6 +1,6 @@
 package com.carpool.website.dao;
 
-import com.carpool.domin.CommentEntity;
+import com.carpool.domain.CommentEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
