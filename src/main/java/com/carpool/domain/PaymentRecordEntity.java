@@ -4,18 +4,17 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Project: Carpool
- * Package: com.carpool.domain
- * Author:  Novemser
- * 2016/11/29
+ * Created by qi on 2016/11/26.
  */
 @Entity
-@Table(name = "paymentrecord", schema = "carpool", catalog = "")
-public class PaymentrecordEntity {
+@Table
+public class PaymentRecordEntity {
     private int id;
     private byte state;
     private double payments;
     private Timestamp time;
+    private UserEntity targetUser;
+    private UserEntity sourceUser;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -62,7 +61,7 @@ public class PaymentrecordEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        PaymentrecordEntity that = (PaymentrecordEntity) o;
+        PaymentRecordEntity that = (PaymentRecordEntity) o;
 
         if (id != that.id) return false;
         if (state != that.state) return false;
@@ -82,5 +81,25 @@ public class PaymentrecordEntity {
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (time != null ? time.hashCode() : 0);
         return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "targetUserid", referencedColumnName = "id")
+    public UserEntity getTargetUser() {
+        return targetUser;
+    }
+
+    public void setTargetUser(UserEntity targetUser) {
+        this.targetUser = targetUser;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "sourceUserid", referencedColumnName = "id")
+    public UserEntity getSourceUser() {
+        return sourceUser;
+    }
+
+    public void setSourceUser(UserEntity sourceUser) {
+        this.sourceUser = sourceUser;
     }
 }

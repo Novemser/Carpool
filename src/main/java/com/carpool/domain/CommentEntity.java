@@ -1,21 +1,21 @@
 package com.carpool.domain;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
- * Project: Carpool
- * Package: com.carpool.domain
- * Author:  Novemser
- * 2016/11/29
+ * Created by qi on 2016/11/26.
  */
 @Entity
-@Table(name = "comment", schema = "carpool", catalog = "")
+@Table
 public class CommentEntity {
     private int id;
     private String comment;
     private double credit;
-    private Timestamp commentTime;
+    private Date commentTime;
+    private UserEntity sourceUser;
+    private UserEntity targetUser;
+    private JourneyEntity journey;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -49,11 +49,11 @@ public class CommentEntity {
 
     @Basic
     @Column(name = "commentTime", nullable = false)
-    public Timestamp getCommentTime() {
-        return commentTime;
+    public Date getCommentTime() {
+        return (commentTime==null)?new Date():commentTime;
     }
 
-    public void setCommentTime(Timestamp commentTime) {
+    public void setCommentTime(Date commentTime) {
         this.commentTime = commentTime;
     }
 
@@ -67,7 +67,6 @@ public class CommentEntity {
         if (id != that.id) return false;
         if (Double.compare(that.credit, credit) != 0) return false;
         if (comment != null ? !comment.equals(that.comment) : that.comment != null) return false;
-        if (commentTime != null ? !commentTime.equals(that.commentTime) : that.commentTime != null) return false;
 
         return true;
     }
@@ -80,7 +79,36 @@ public class CommentEntity {
         result = 31 * result + (comment != null ? comment.hashCode() : 0);
         temp = Double.doubleToLongBits(credit);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (commentTime != null ? commentTime.hashCode() : 0);
         return result;
+    }
+
+    @ManyToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "sourceUserid", referencedColumnName = "id")
+    public UserEntity getSourceUser() {
+        return sourceUser;
+    }
+
+    public void setSourceUser(UserEntity sourceUserd) {
+        this.sourceUser =  sourceUserd;
+    }
+
+    @ManyToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "targetUserid", referencedColumnName = "id")
+    public UserEntity getTargetUser() {
+        return targetUser;
+    }
+
+    public void setTargetUser(UserEntity targetUser) {
+        this.targetUser = targetUser;
+    }
+
+    @ManyToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "journeyid", referencedColumnName = "id", nullable = false)
+    public JourneyEntity getJourney() {
+        return journey;
+    }
+
+    public void setJourney(JourneyEntity journey) {
+        this.journey = journey;
     }
 }

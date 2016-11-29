@@ -3,13 +3,6 @@
 
     <persistence-unit name="CarpoolPersistenceUnit"  transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <class>com.carpool.domain.ChatrecordEntity</class>
-        <class>com.carpool.domain.CommentEntity</class>
-        <class>com.carpool.domain.JourneyEntity</class>
-        <class>com.carpool.domain.PaymentrecordEntity</class>
-        <class>com.carpool.domain.RoomEntity</class>
-        <class>com.carpool.domain.UserEntity</class>
-        <class>com.carpool.domain.UserParticipateRoomEntity</class>
         <properties>
             <!-- 使用MySQL方言 -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
@@ -19,9 +12,9 @@
             <!-- 数据库连接的驱动 -->
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
             <!-- 数据库连接的用户名 -->
-            <property name="hibernate.connection.username"/>
+            <property name="hibernate.connection.username" value="root"/>
             <!-- 数据库连接的密码 -->
-            <property name="hibernate.connection.password"/>
+            <property name="hibernate.connection.password" value="1234"/>
             <!-- 显示SQL语句 -->
             <property name="hibernate.show_sql" value="true"/>
 
@@ -30,7 +23,7 @@
 
             <!-- 在显示SQL语句时格式化语句 -->
             <property name="hibernate.format_sql" value="true"/>
-            <property name="hibernate.use_sql_comments" value="false"/>
+            <property name="hibernate.use_sql_comments" value="true"/>
             <!-- 自动输出schema创建DDL语句 -->
             <property name="hibernate.hbm2ddl.auto" value="update"/>
 

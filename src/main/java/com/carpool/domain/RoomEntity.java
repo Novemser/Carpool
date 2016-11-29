@@ -1,17 +1,17 @@
 package com.carpool.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Collection;
+import java.util.Date;
 
 /**
- * Project: Carpool
- * Package: com.carpool.domain
- * Author:  Novemser
- * 2016/11/29
+ * Created by qi on 2016/11/26.
  */
 @Entity
-@Table(name = "room", schema = "carpool", catalog = "")
-public class RoomEntity {
+@Table
+public class RoomEntity implements Serializable{
     private int id;
     private String roomname;
     private String startPoint;
@@ -19,8 +19,13 @@ public class RoomEntity {
     private int numberLimit;
     private int currentNums;
     private Timestamp createTime;
+    private Date startTime;
     private int state;
-    private Timestamp startTime;
+    private Collection<ChatRecordEntity> chatRecords;
+    private UserEntity host;
+    private UserEntity payer;
+    private JourneyEntity journey;
+    private Collection<UserParticipateRoomEntity> userParticipate;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -93,6 +98,16 @@ public class RoomEntity {
     }
 
     @Basic
+    @Column(name = "startTime", nullable = false)
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startime) {
+        this.startTime = startime;
+    }
+
+    @Basic
     @Column(name = "state", nullable = false)
     public int getState() {
         return state;
@@ -100,16 +115,6 @@ public class RoomEntity {
 
     public void setState(int state) {
         this.state = state;
-    }
-
-    @Basic
-    @Column(name = "startTime", nullable = false)
-    public Timestamp getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Timestamp startTime) {
-        this.startTime = startTime;
     }
 
     @Override
@@ -127,7 +132,6 @@ public class RoomEntity {
         if (startPoint != null ? !startPoint.equals(that.startPoint) : that.startPoint != null) return false;
         if (endPoint != null ? !endPoint.equals(that.endPoint) : that.endPoint != null) return false;
         if (createTime != null ? !createTime.equals(that.createTime) : that.createTime != null) return false;
-        if (startTime != null ? !startTime.equals(that.startTime) : that.startTime != null) return false;
 
         return true;
     }
@@ -142,7 +146,52 @@ public class RoomEntity {
         result = 31 * result + currentNums;
         result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
         result = 31 * result + state;
-        result = 31 * result + (startTime != null ? startTime.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "room")
+    public Collection<ChatRecordEntity> getChatRecords() {
+        return chatRecords;
+    }
+
+    public void setChatRecords(Collection<ChatRecordEntity> chatRecords) {
+        this.chatRecords = chatRecords;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "host", referencedColumnName = "id")
+    public UserEntity getHost() {
+        return host;
+    }
+
+    public void setHost(UserEntity host) {
+        this.host = host;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "payuserId", referencedColumnName = "id")
+    public UserEntity getPayer() {
+        return payer;
+    }
+
+    public void setPayer(UserEntity payer) {
+        this.payer = payer;
+    }
+
+    @OneToOne(mappedBy = "room")
+    public JourneyEntity getJourney() {
+        return  journey;
+    }
+    public void setJourney(JourneyEntity journey) {
+        this.journey = journey;
+    }
+
+    @OneToMany(mappedBy = "room")
+    public Collection<UserParticipateRoomEntity> getUserParticipate() {
+        return userParticipate;
+    }
+
+    public void setUserParticipate(Collection<UserParticipateRoomEntity> userParticipate) {
+        this.userParticipate = userParticipate;
     }
 }

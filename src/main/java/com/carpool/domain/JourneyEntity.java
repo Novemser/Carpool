@@ -1,22 +1,23 @@
 package com.carpool.domain;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.Date;
 
 /**
- * Project: Carpool
- * Package: com.carpool.domain
- * Author:  Novemser
- * 2016/11/29
+ * Created by qi on 2016/11/26.
  */
 @Entity
-@Table(name = "journey", schema = "carpool", catalog = "")
-public class JourneyEntity {
+@Table(name = "journey", schema = "carpool")
+public class JourneyEntity implements Serializable{
     private int id;
+    private Date startTime;
     private String startPoint;
     private String endPoint;
     private int peerNums;
-    private Timestamp startTime;
+    private Collection<CommentEntity> comments;
+    private RoomEntity room;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -58,13 +59,14 @@ public class JourneyEntity {
         this.peerNums = peerNums;
     }
 
+
     @Basic
     @Column(name = "startTime", nullable = false)
-    public Timestamp getStartTime() {
+    public Date getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Timestamp startTime) {
+    public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 
@@ -79,7 +81,6 @@ public class JourneyEntity {
         if (peerNums != that.peerNums) return false;
         if (startPoint != null ? !startPoint.equals(that.startPoint) : that.startPoint != null) return false;
         if (endPoint != null ? !endPoint.equals(that.endPoint) : that.endPoint != null) return false;
-        if (startTime != null ? !startTime.equals(that.startTime) : that.startTime != null) return false;
 
         return true;
     }
@@ -90,7 +91,25 @@ public class JourneyEntity {
         result = 31 * result + (startPoint != null ? startPoint.hashCode() : 0);
         result = 31 * result + (endPoint != null ? endPoint.hashCode() : 0);
         result = 31 * result + peerNums;
-        result = 31 * result + (startTime != null ? startTime.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "journey")
+    public Collection<CommentEntity> getComments() {
+        return comments;
+    }
+
+    public void setComments(Collection<CommentEntity> comments) {
+        this.comments = comments;
+    }
+
+    @OneToOne
+    @JoinColumn(name = "roomid", referencedColumnName = "id", nullable = false)
+    public RoomEntity getRoom() {
+        return room;
+    }
+
+    public void setRoom(RoomEntity room) {
+        this.room = room;
     }
 }

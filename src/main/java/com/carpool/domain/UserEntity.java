@@ -1,16 +1,15 @@
 package com.carpool.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Collection;
 
 /**
- * Project: Carpool
- * Package: com.carpool.domain
- * Author:  Novemser
- * 2016/11/29
+ * Created by qi on 2016/11/26.
  */
 @Entity
-@Table(name = "user", schema = "carpool", catalog = "")
-public class UserEntity {
+@Table
+public class UserEntity implements Serializable{
     private String id;
     private String username;
     private String password;
@@ -20,6 +19,14 @@ public class UserEntity {
     private int coins;
     private String qqAccount;
     private String wechatAccount;
+    private Collection<ChatRecordEntity> sendedChatRecord;
+    private Collection<CommentEntity> commentsRecieved;
+    private Collection<CommentEntity> commentsSended;
+    private Collection<PaymentRecordEntity> paymentRecievedRecords;
+    private Collection<PaymentRecordEntity> paymentSendRecords;
+    private Collection<RoomEntity> ownRoom;
+    private Collection<RoomEntity> hasPaysRoom;
+    private Collection<UserParticipateRoomEntity> userParticipateRooms;
 
     @Id
     @Column(name = "id", nullable = false, length = 10)
@@ -147,5 +154,79 @@ public class UserEntity {
         result = 31 * result + (qqAccount != null ? qqAccount.hashCode() : 0);
         result = 31 * result + (wechatAccount != null ? wechatAccount.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "sender")
+    public Collection<ChatRecordEntity> getSendedChatRecord() {
+        return sendedChatRecord;
+    }
+
+    public void setSendedChatRecord(Collection<ChatRecordEntity> chatrecordsById) {
+        this.sendedChatRecord = chatrecordsById;
+    }
+
+
+    @OneToMany(mappedBy = "targetUser")
+    public Collection<CommentEntity> getCommentsRecieved() {
+        return commentsRecieved;
+    }
+
+    public void setCommentsRecieved(Collection<CommentEntity> commentsById) {
+        this.commentsRecieved = commentsById;
+    }
+
+    @OneToMany(mappedBy = "sourceUser")
+    public Collection<CommentEntity> getCommentsSended()
+    {
+        return commentsSended;
+    }
+    private void setCommentsSended(Collection<CommentEntity> commentsSended)
+    {
+        this.commentsSended = commentsSended;
+    }
+
+    @OneToMany(mappedBy = "targetUser")
+    public Collection<PaymentRecordEntity> getPaymentRecievedRecords() {
+        return paymentRecievedRecords;
+    }
+
+    public void setPaymentRecievedRecords(Collection<PaymentRecordEntity> paymentrecordsById) {
+        this.paymentRecievedRecords = paymentrecordsById;
+    }
+
+    @OneToMany(mappedBy = "sourceUser")
+    public Collection<PaymentRecordEntity> getPaymentSendRecords() {
+        return paymentSendRecords;
+    }
+
+    public void setPaymentSendRecords(Collection<PaymentRecordEntity> paymentrecordsById_0) {
+        this.paymentSendRecords = paymentrecordsById_0;
+    }
+
+    @OneToMany(mappedBy = "host")
+    public Collection<RoomEntity> getOwnRoom() {
+        return ownRoom;
+    }
+
+    public void setOwnRoom(Collection<RoomEntity> roomsById) {
+        this.ownRoom = roomsById;
+    }
+
+    @OneToMany(mappedBy = "payer")
+    public Collection<RoomEntity> getHasPaysRoom() {
+        return hasPaysRoom;
+    }
+
+    public void setHasPaysRoom(Collection<RoomEntity> hasPaysRoom) {
+        this.hasPaysRoom = hasPaysRoom;
+
+    }
+    @OneToMany(mappedBy = "participateUser")
+    public Collection<UserParticipateRoomEntity> getUserParticipateRooms() {
+        return userParticipateRooms;
+    }
+
+    public void setUserParticipateRooms(Collection<UserParticipateRoomEntity> userParticipateRooms) {
+        this.userParticipateRooms = userParticipateRooms;
     }
 }

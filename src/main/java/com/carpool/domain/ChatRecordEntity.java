@@ -1,20 +1,19 @@
 package com.carpool.domain;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
- * Project: Carpool
- * Package: com.carpool.domain
- * Author:  Novemser
- * 2016/11/29
+ * Created by qi on 2016/11/26.
  */
 @Entity
-@Table(name = "chatrecord", schema = "carpool", catalog = "")
-public class ChatrecordEntity {
+@Table
+public class ChatRecordEntity {
     private int id;
-    private Timestamp time;
+    private Date time;
     private String comment;
+    private UserEntity sender;
+    private RoomEntity room;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -28,11 +27,11 @@ public class ChatrecordEntity {
 
     @Basic
     @Column(name = "time", nullable = false)
-    public Timestamp getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(Timestamp time) {
+    public void setTime(Date time) {
         this.time = time;
     }
 
@@ -51,7 +50,7 @@ public class ChatrecordEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ChatrecordEntity that = (ChatrecordEntity) o;
+        ChatRecordEntity that = (ChatRecordEntity) o;
 
         if (id != that.id) return false;
         if (time != null ? !time.equals(that.time) : that.time != null) return false;
@@ -67,4 +66,27 @@ public class ChatrecordEntity {
         result = 31 * result + (comment != null ? comment.hashCode() : 0);
         return result;
     }
+
+    @ManyToOne
+    @JoinColumn(name = "senderid", referencedColumnName = "id")
+    public UserEntity getSender() {
+        return sender;
+    }
+
+    public void setSender(UserEntity sourceUser) {
+        this.sender = sourceUser;
+    }
+
+
+
+    @ManyToOne
+    @JoinColumn(name = "roomid", referencedColumnName = "id")
+    public RoomEntity getRoom() {
+        return room;
+    }
+
+    public void setRoom(RoomEntity room) {
+        this.room = room;
+    }
+
 }
