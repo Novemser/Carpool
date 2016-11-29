@@ -1,6 +1,6 @@
 package com.carpool.website.dao;
 
-import com.carpool.domin.RoomEntity;
+import com.carpool.domain.RoomEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

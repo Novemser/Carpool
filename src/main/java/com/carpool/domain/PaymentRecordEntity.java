@@ -1,4 +1,4 @@
-package com.carpool.domin;
+package com.carpool.domain;
 
 import javax.persistence.*;
 import java.sql.Timestamp;

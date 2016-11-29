@@ -1,8 +1,8 @@
 package repository;
 
-import com.carpool.domin.CommentEntity;
-import com.carpool.domin.JourneyEntity;
-import com.carpool.domin.UserEntity;
+import com.carpool.domain.CommentEntity;
+import com.carpool.domain.JourneyEntity;
+import com.carpool.domain.UserEntity;
 import com.carpool.website.dao.CommentEntityRepository;
 import com.carpool.website.dao.JourneyEntityRepository;
 import com.carpool.website.dao.UserEntityRepository;
