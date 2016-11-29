@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: 2016-11-26 09:00:02
+-- Generation Time: 2016-11-29 03:45:18
 -- 服务器版本： 5.7.16
 -- PHP Version: 5.6.28
 
@@ -45,9 +45,18 @@ CREATE TABLE `comment` (
   `sourceUserid` varchar(10) DEFAULT NULL,
   `targetUserid` varchar(10) DEFAULT NULL,
   `journeyid` int(10) NOT NULL,
-  `comment` text NOT NULL,
-  `credit` float NOT NULL
+  `comment` text,
+  `credit` float NOT NULL,
+  `commentTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `comment`
+--
+
+INSERT INTO `comment` (`id`, `sourceUserid`, `targetUserid`, `journeyid`, `comment`, `credit`, `commentTime`) VALUES
+(1, '1452778', '1452779', 2, NULL, 5, '2016-11-27 16:04:56'),
+(4, '1452778', '1452779', 2, NULL, 5, '2016-11-27 16:34:29');
 
 -- --------------------------------------------------------
 
@@ -60,8 +69,17 @@ CREATE TABLE `journey` (
   `startPoint` varchar(20) NOT NULL,
   `endPoint` varchar(20) NOT NULL,
   `roomid` int(10) NOT NULL,
-  `peerNums` int(5) NOT NULL
+  `peerNums` int(5) NOT NULL,
+  `startTime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `journey`
+--
+
+INSERT INTO `journey` (`id`, `startPoint`, `endPoint`, `roomid`, `peerNums`, `startTime`) VALUES
+(1, '同济大学', '虹桥火车站', 1, 1, '2016-11-27 14:34:54'),
+(2, '虹桥火车站', '同济大学', 2, 2, '2016-11-30 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -94,8 +112,17 @@ CREATE TABLE `room` (
   `numberLimit` int(5) NOT NULL,
   `currentNums` int(5) NOT NULL,
   `createTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `state` int(5) NOT NULL DEFAULT '0'
+  `state` int(5) NOT NULL DEFAULT '0',
+  `startTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `room`
+--
+
+INSERT INTO `room` (`id`, `roomname`, `host`, `startPoint`, `endPoint`, `payuserId`, `numberLimit`, `currentNums`, `createTime`, `state`, `startTime`) VALUES
+(1, 'lyx‘s room', '1452779', '同济大学', '虹桥火车站', NULL, 5, 1, '2016-11-27 14:17:01', 0, '2016-11-27 14:34:54'),
+(2, '出行', '1452779', '虹桥火车站', '同济大学', NULL, 4, 2, '2016-11-27 15:09:55', 0, '2016-11-30 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -120,7 +147,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `gender`, `credit`, `alipay`, `coins`, `QQ_account`, `wechat_account`) VALUES
-('', '', '', 0, 0, NULL, 0, '', '');
+('', '', '', 0, 0, NULL, 0, '', ''),
+('1452778', '宇侠', 'lyx', 0, 0, NULL, 0, '', ''),
+('1452779', '罗宇侠', '1452779', 0, 0, NULL, 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -132,6 +161,13 @@ CREATE TABLE `user_participate_room` (
   `userid` varchar(10) NOT NULL,
   `roomid` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `user_participate_room`
+--
+
+INSERT INTO `user_participate_room` (`userid`, `roomid`) VALUES
+('1452778', 2);
 
 --
 -- Indexes for dumped tables
@@ -200,10 +236,15 @@ ALTER TABLE `user_participate_room`
 ALTER TABLE `chatrecord`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 --
+-- 使用表AUTO_INCREMENT `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
 -- 使用表AUTO_INCREMENT `journey`
 --
 ALTER TABLE `journey`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- 使用表AUTO_INCREMENT `paymentrecord`
 --
@@ -213,7 +254,7 @@ ALTER TABLE `paymentrecord`
 -- 使用表AUTO_INCREMENT `room`
 --
 ALTER TABLE `room`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- 限制导出的表
 --

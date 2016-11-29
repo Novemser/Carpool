@@ -1,19 +1,21 @@
 package com.carpool.domain;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 /**
- * Created by qi on 2016/11/26.
+ * Project: Carpool
+ * Package: com.carpool.domain
+ * Author:  Novemser
+ * 2016/11/29
  */
 @Entity
-@Table(name = "comment", schema = "carpool")
+@Table(name = "comment", schema = "carpool", catalog = "")
 public class CommentEntity {
     private int id;
     private String comment;
     private double credit;
-    private UserEntity sourceUser;
-    private UserEntity targetUser;
-    private JourneyEntity journey;
+    private Timestamp commentTime;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -26,7 +28,7 @@ public class CommentEntity {
     }
 
     @Basic
-    @Column(name = "comment", nullable = false, length = -1)
+    @Column(name = "comment", nullable = true, length = -1)
     public String getComment() {
         return comment;
     }
@@ -45,6 +47,16 @@ public class CommentEntity {
         this.credit = credit;
     }
 
+    @Basic
+    @Column(name = "commentTime", nullable = false)
+    public Timestamp getCommentTime() {
+        return commentTime;
+    }
+
+    public void setCommentTime(Timestamp commentTime) {
+        this.commentTime = commentTime;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -55,6 +67,7 @@ public class CommentEntity {
         if (id != that.id) return false;
         if (Double.compare(that.credit, credit) != 0) return false;
         if (comment != null ? !comment.equals(that.comment) : that.comment != null) return false;
+        if (commentTime != null ? !commentTime.equals(that.commentTime) : that.commentTime != null) return false;
 
         return true;
     }
@@ -67,36 +80,7 @@ public class CommentEntity {
         result = 31 * result + (comment != null ? comment.hashCode() : 0);
         temp = Double.doubleToLongBits(credit);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (commentTime != null ? commentTime.hashCode() : 0);
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "sourceUserid", referencedColumnName = "id")
-    public UserEntity getSourceUser() {
-        return sourceUser;
-    }
-
-    public void setSourceUser(UserEntity sourceUserd) {
-        this.sourceUser =  sourceUserd;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "targetUserid", referencedColumnName = "id")
-    public UserEntity getTargetUser() {
-        return targetUser;
-    }
-
-    public void setTargetUser(UserEntity targetUser) {
-        this.targetUser = targetUser;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "journeyid", referencedColumnName = "id", nullable = false)
-    public JourneyEntity getJourney() {
-        return journey;
-    }
-
-    public void setJourney(JourneyEntity journey) {
-        this.journey = journey;
     }
 }

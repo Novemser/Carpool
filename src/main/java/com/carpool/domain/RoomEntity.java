@@ -1,16 +1,17 @@
 package com.carpool.domain;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.Collection;
 
 /**
- * Created by qi on 2016/11/26.
+ * Project: Carpool
+ * Package: com.carpool.domain
+ * Author:  Novemser
+ * 2016/11/29
  */
 @Entity
-@Table(name = "room", schema = "carpool")
-public class RoomEntity implements Serializable{
+@Table(name = "room", schema = "carpool", catalog = "")
+public class RoomEntity {
     private int id;
     private String roomname;
     private String startPoint;
@@ -19,11 +20,7 @@ public class RoomEntity implements Serializable{
     private int currentNums;
     private Timestamp createTime;
     private int state;
-    private Collection<ChatRecordEntity> chatRecords;
-    private UserEntity host;
-    private UserEntity payer;
-    private JourneyEntity journey;
-    private Collection<UserParticipateRoomEntity> userParticipate;
+    private Timestamp startTime;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -105,6 +102,16 @@ public class RoomEntity implements Serializable{
         this.state = state;
     }
 
+    @Basic
+    @Column(name = "startTime", nullable = false)
+    public Timestamp getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Timestamp startTime) {
+        this.startTime = startTime;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -120,6 +127,7 @@ public class RoomEntity implements Serializable{
         if (startPoint != null ? !startPoint.equals(that.startPoint) : that.startPoint != null) return false;
         if (endPoint != null ? !endPoint.equals(that.endPoint) : that.endPoint != null) return false;
         if (createTime != null ? !createTime.equals(that.createTime) : that.createTime != null) return false;
+        if (startTime != null ? !startTime.equals(that.startTime) : that.startTime != null) return false;
 
         return true;
     }
@@ -134,52 +142,7 @@ public class RoomEntity implements Serializable{
         result = 31 * result + currentNums;
         result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
         result = 31 * result + state;
+        result = 31 * result + (startTime != null ? startTime.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "room")
-    public Collection<ChatRecordEntity> getChatRecords() {
-        return chatRecords;
-    }
-
-    public void setChatRecords(Collection<ChatRecordEntity> chatRecords) {
-        this.chatRecords = chatRecords;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "host", referencedColumnName = "id")
-    public UserEntity getHost() {
-        return host;
-    }
-
-    public void setHost(UserEntity host) {
-        this.host = host;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "payuserId", referencedColumnName = "id")
-    public UserEntity getPayer() {
-        return payer;
-    }
-
-    public void setPayer(UserEntity payer) {
-        this.payer = payer;
-    }
-
-    @OneToOne(mappedBy = "room")
-    public JourneyEntity getJourney() {
-        return  journey;
-    }
-    public void setJourney(JourneyEntity journey) {
-        this.journey = journey;
-    }
-
-    @OneToMany(mappedBy = "room")
-    public Collection<UserParticipateRoomEntity> getUserParticipate() {
-        return userParticipate;
-    }
-
-    public void setUserParticipate(Collection<UserParticipateRoomEntity> userParticipate) {
-        this.userParticipate = userParticipate;
     }
 }

@@ -4,16 +4,17 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by qi on 2016/11/26.
+ * Project: Carpool
+ * Package: com.carpool.domain
+ * Author:  Novemser
+ * 2016/11/29
  */
 @Entity
-@Table(name = "chatrecord", schema = "carpool")
-public class ChatRecordEntity {
+@Table(name = "chatrecord", schema = "carpool", catalog = "")
+public class ChatrecordEntity {
     private int id;
     private Timestamp time;
     private String comment;
-    private UserEntity sender;
-    private RoomEntity room;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -50,7 +51,7 @@ public class ChatRecordEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ChatRecordEntity that = (ChatRecordEntity) o;
+        ChatrecordEntity that = (ChatrecordEntity) o;
 
         if (id != that.id) return false;
         if (time != null ? !time.equals(that.time) : that.time != null) return false;
@@ -66,27 +67,4 @@ public class ChatRecordEntity {
         result = 31 * result + (comment != null ? comment.hashCode() : 0);
         return result;
     }
-
-    @ManyToOne
-    @JoinColumn(name = "senderid", referencedColumnName = "id")
-    public UserEntity getSender() {
-        return sender;
-    }
-
-    public void setSender(UserEntity sourceUser) {
-        this.sender = sourceUser;
-    }
-
-
-
-    @ManyToOne
-    @JoinColumn(name = "roomid", referencedColumnName = "id")
-    public RoomEntity getRoom() {
-        return room;
-    }
-
-    public void setRoom(RoomEntity room) {
-        this.room = room;
-    }
-
 }
