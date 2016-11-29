@@ -7,7 +7,7 @@ import java.sql.Timestamp;
  * Created by qi on 2016/11/26.
  */
 @Entity
-@Table(name = "paymentrecord", schema = "carpool")
+@Table
 public class PaymentRecordEntity {
     private int id;
     private byte state;

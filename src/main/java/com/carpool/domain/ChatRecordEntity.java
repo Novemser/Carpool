@@ -7,11 +7,11 @@ import java.util.Date;
  * Created by qi on 2016/11/26.
  */
 @Entity
-@Table(name = "chatrecord", schema = "carpool")
+@Table
 public class ChatRecordEntity {
     private int id;
-    private Date time;
-    private String comment;
+    private Date commentime;
+    private String commenttext;
     private UserEntity sender;
     private RoomEntity room;
 
@@ -26,23 +26,23 @@ public class ChatRecordEntity {
     }
 
     @Basic
-    @Column(name = "time", nullable = false)
-    public Date getTime() {
-        return time;
+    @Column(name = "commenttime", nullable = false)
+    public Date getCommentime() {
+        return commentime;
     }
 
-    public void setTime(Date time) {
-        this.time = time;
+    public void setCommentime(Date commentTime) {
+        this.commentime = commentTime;
     }
 
     @Basic
-    @Column(name = "comment", nullable = false, length = -1)
-    public String getComment() {
-        return comment;
+    @Column(name = "commenttext", nullable = false)
+    public String getCommenttext() {
+        return commenttext;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setCommenttext(String commentText) {
+        this.commenttext = commentText;
     }
 
     @Override
@@ -53,8 +53,8 @@ public class ChatRecordEntity {
         ChatRecordEntity that = (ChatRecordEntity) o;
 
         if (id != that.id) return false;
-        if (time != null ? !time.equals(that.time) : that.time != null) return false;
-        if (comment != null ? !comment.equals(that.comment) : that.comment != null) return false;
+        if (commentime != null ? !commentime.equals(that.commentime) : that.commentime != null) return false;
+        if (commenttext != null ? !commenttext.equals(that.commenttext) : that.commenttext != null) return false;
 
         return true;
     }
@@ -62,8 +62,8 @@ public class ChatRecordEntity {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + (time != null ? time.hashCode() : 0);
-        result = 31 * result + (comment != null ? comment.hashCode() : 0);
+        result = 31 * result + (commentime != null ? commentime.hashCode() : 0);
+        result = 31 * result + (commenttext != null ? commenttext.hashCode() : 0);
         return result;
     }
 
