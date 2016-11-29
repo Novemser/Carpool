@@ -1,6 +1,9 @@
 package repository;
 
 
+import com.carpool.domain.CommentEntity;
+import com.carpool.domain.JourneyEntity;
+import com.carpool.domain.UserEntity;
 import com.carpool.website.dao.CommentEntityRepository;
 import com.carpool.website.dao.JourneyEntityRepository;
 import com.carpool.website.dao.UserEntityRepository;
@@ -8,11 +11,13 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -21,7 +26,7 @@ import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/dispatcher-servlet.xml")
-public class CommentRepositoryTest {
+public class RepositoryTest {
 
 
     @Autowired
@@ -66,7 +71,7 @@ public class CommentRepositoryTest {
         Sort sort = new Sort(Sort.Direction.DESC, "commentTime");
         int page = 0; int size = 1;
         Pageable pageable = new PageRequest(page, size, sort);
-        Page<CommentEntity>commentEntities = commentEntityRepository.findBySourceUserId("1452778",pageable);
+        Page<CommentEntity> commentEntities = commentEntityRepository.findBySourceUserId("1452778",pageable);
         Assert.assertEquals(2,commentEntities.getTotalPages());
 
         commentEntities = commentEntityRepository.findByTargetUserId("1452779",pageable);

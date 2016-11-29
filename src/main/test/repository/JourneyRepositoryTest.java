@@ -1,5 +1,8 @@
 package repository;
 
+import com.carpool.domain.JourneyEntity;
+import com.carpool.domain.RoomEntity;
+import com.carpool.domain.UserEntity;
 import com.carpool.website.dao.JourneyEntityRepository;
 import com.carpool.website.dao.RoomEntityRepository;
 import com.carpool.website.dao.UserEntityRepository;
@@ -19,7 +22,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"/dispatcher-servlet.xml"})
+@ContextConfiguration("file:src/main/webapp/WEB-INF/dispatcher-servlet.xml")
 public class JourneyRepositoryTest {
 
     @Autowired
