@@ -9,7 +9,7 @@ import java.util.Date;
  * Created by qi on 2016/11/26.
  */
 @Entity
-@Table(name = "journey", schema = "carpool")
+@Table
 public class JourneyEntity implements Serializable{
     private int id;
     private Date startTime;

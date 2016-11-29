@@ -10,7 +10,7 @@ import java.util.Date;
 @Table
 public class CommentEntity {
     private int id;
-    private String comment;
+    private String commentText;
     private double credit;
     private Date commentTime;
     private UserEntity sourceUser;
@@ -28,13 +28,13 @@ public class CommentEntity {
     }
 
     @Basic
-    @Column(name = "comment", nullable = true, length = -1)
-    public String getComment() {
-        return comment;
+    @Column(name = "commentText",nullable = false)
+    public String getCommentText() {
+        return commentText;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setCommentText(String commentText) {
+        this.commentText = commentText;
     }
 
     @Basic
@@ -66,7 +66,7 @@ public class CommentEntity {
 
         if (id != that.id) return false;
         if (Double.compare(that.credit, credit) != 0) return false;
-        if (comment != null ? !comment.equals(that.comment) : that.comment != null) return false;
+        if (commentText != null ? !commentText.equals(that.commentText) : that.commentText != null) return false;
 
         return true;
     }
@@ -76,7 +76,7 @@ public class CommentEntity {
         int result;
         long temp;
         result = id;
-        result = 31 * result + (comment != null ? comment.hashCode() : 0);
+        result = 31 * result + (commentText != null ? commentText.hashCode() : 0);
         temp = Double.doubleToLongBits(credit);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;

@@ -9,6 +9,8 @@ import java.io.Serializable;
 @Entity
 @Table
 public class UserParticipateRoomEntity implements Serializable{
+
+
     private UserEntity participateUser;
 
     private RoomEntity room;
