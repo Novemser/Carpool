@@ -29,7 +29,7 @@ public class UserEntity implements Serializable{
     private Collection<RoomEntity> userParticipateRooms;
 
     @Id
-    @Column(name = "id", nullable = false, length = 10)
+    @Column(name = "id", nullable = false, length = 10, unique = true)
     public String getId() {
         return id;
     }

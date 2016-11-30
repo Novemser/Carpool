@@ -10,7 +10,7 @@ import java.util.Date;
 @Table
 public class ChatRecordEntity {
     private int id;
-    private Date commentime;
+    private Date commenttime;
     private String commenttext;
     private UserEntity sender;
     private RoomEntity room;
@@ -27,12 +27,12 @@ public class ChatRecordEntity {
 
     @Basic
     @Column(name = "commenttime", nullable = false)
-    public Date getCommentime() {
-        return commentime;
+    public Date getCommenttime() {
+        return commenttime;
     }
 
-    public void setCommentime(Date commentTime) {
-        this.commentime = commentTime;
+    public void setCommenttime(Date commentTime) {
+        this.commenttime = commentTime;
     }
 
     @Basic
@@ -53,7 +53,7 @@ public class ChatRecordEntity {
         ChatRecordEntity that = (ChatRecordEntity) o;
 
         if (id != that.id) return false;
-        if (commentime != null ? !commentime.equals(that.commentime) : that.commentime != null) return false;
+        if (commenttime != null ? !commenttime.equals(that.commenttime) : that.commenttime != null) return false;
         if (commenttext != null ? !commenttext.equals(that.commenttext) : that.commenttext != null) return false;
 
         return true;
@@ -62,7 +62,7 @@ public class ChatRecordEntity {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + (commentime != null ? commentime.hashCode() : 0);
+        result = 31 * result + (commenttime != null ? commenttime.hashCode() : 0);
         result = 31 * result + (commenttext != null ? commenttext.hashCode() : 0);
         return result;
     }

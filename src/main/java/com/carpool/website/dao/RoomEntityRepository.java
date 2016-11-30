@@ -18,8 +18,8 @@ import java.util.Date;
 
 public interface RoomEntityRepository extends JpaRepository<RoomEntity, Integer> {
 
-    Page<RoomEntity> findByStartPointAndEndPointAndStartTime(String startPoint, String endPoint,
-                                                             Date startTime, Pageable pageable);
+    Page<RoomEntity> findByStartPointAndEndPointAndStartTimeBetween(String startPoint, String endPoint,
+                                                             Date from, Date to, Pageable pageable);
 
     // 根据User找到何其在同一房间的用户
     @Query("select r from RoomEntity r " +

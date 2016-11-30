@@ -17,7 +17,6 @@
             <property name="hibernate.connection.password" value="a19951106"/>
             <!-- 显示SQL语句 -->
             <property name="hibernate.show_sql" value="true"/>
-
             <property name="hibernate.connection.useUnicode" value="true"/>
             <property name="hibernate.connection.characterEncoding" value="UTF-8"/>
 

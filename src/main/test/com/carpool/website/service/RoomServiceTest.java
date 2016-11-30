@@ -1,10 +1,12 @@
 package com.carpool.website.service;
 
+import com.carpool.domain.RoomEntity;
 import com.carpool.domain.UserEntity;
 import com.carpool.website.dao.UserEntityRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -27,7 +29,22 @@ public class RoomServiceTest {
     private UserEntityRepository userEntityRepository;
 
     @Test
-    public void createUser() throws Exception {
+    public void createUser2() throws Exception {
+        UserEntity user = new UserEntity();
+        user.setId("1452683");
+        user.setUsername("WSM");
+        user.setPassword("123");
+        user.setCoins(123);
+        user.setAlipay("444");
+        user.setCredit(412);
+        user.setGender((byte) 1);
+        user.setQqAccount("1343124");
+        user.setWechatAccount("555");
+        userEntityRepository.save(user);
+    }
+
+    @Test
+    public void createUser1() throws Exception {
         UserEntity user = new UserEntity();
         user.setId("1452681");
         user.setUsername("HGS");
@@ -45,13 +62,32 @@ public class RoomServiceTest {
     public void createRoom() throws Exception {
 
         roomService.createRoom(
-                "土豪你好",
+                "宝宝要回家",
                 "嘉定校区",
                 "虹桥机场",
-                4,
+                3,
                 new Date(),
                 "1452681"
         );
+    }
+
+    @Test
+    public void listRooms() throws Exception {
+
+        Page<RoomEntity> roomEntities =
+                roomService.listRoomsInDays(
+                        "嘉定校区",
+                        "虹桥机场",
+                        new Date(),
+                        1
+                );
+        int cnt = roomEntities.getNumberOfElements();
+        System.out.println("roomEntities num:" + cnt);
+    }
+
+    @Test
+    public void addUserToRoom() throws Exception {
+        roomService.addUserToRoom(3, "1452683");
     }
 
     @Test
