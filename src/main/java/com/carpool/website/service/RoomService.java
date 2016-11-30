@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 /**
@@ -20,7 +22,7 @@ import java.util.Date;
  * Author:  Novemser
  * 2016/11/29
  */
-@Component
+@Service
 public class RoomService {
 
     @Autowired
@@ -44,15 +46,26 @@ public class RoomService {
         entity.setCurrentNums(1);
         entity.setStartPoint(startPoint);
         entity.setStartTime(startTime);
+        entity.setState(RoomState.UNLOCKED);
 
         // 获取系统当前时间戳
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         entity.setCreateTime(timestamp);
 
         UserEntity userEntity = userEntityRepository.findOne(hostId);
+
         entity.setHost(userEntity);
+
+        Collection<UserEntity> userParticipate = entity.getUserParticipate();
+        if (null == userParticipate)
+            entity.setUserParticipate(new ArrayList<UserEntity>());
         // 这里把房主也要加到房间里?
         entity.getUserParticipate().add(userEntity);
+
+        if (null == userEntity.getUserParticipateRooms())
+            userEntity.setUserParticipateRooms(new ArrayList<RoomEntity>());
+
+        userEntity.getUserParticipateRooms().add(entity);
 
         roomEntityRepository.saveAndFlush(entity);
     }

@@ -189,7 +189,7 @@ public class RoomEntity implements Serializable {
         this.journey = journey;
     }
 
-    @ManyToMany(mappedBy = "userParticipateRooms")
+    @ManyToMany(mappedBy = "userParticipateRooms", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public Collection<UserEntity> getUserParticipate() {
         return userParticipate;
     }
