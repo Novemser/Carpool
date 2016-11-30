@@ -92,6 +92,7 @@ public class RoomService {
         user.getUserParticipateRooms().add(room);
     }
 
+    @SuppressWarnings("all")
     public Page<RoomEntity> listRoomsInDays(String startPoint, String endPoint,
                                             Date from, int offset) throws ParseException {
         // TODO:
