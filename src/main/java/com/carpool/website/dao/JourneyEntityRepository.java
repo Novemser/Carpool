@@ -17,8 +17,10 @@ public interface JourneyEntityRepository extends JpaRepository<JourneyEntity, In
     int countIdByRoomHostId(String id);
 
     //得到自己参与的行程（非房主）数
+ //   @Query("select  count (j) from JourneyEntity j where exists (select userParticipate.id from j.room.userParticipate userParticipate)" +
+  //          "and :id in (select userParticipate.participateUser.id from j.room.userParticipate userParticipate)")
     @Query("select  count (j) from JourneyEntity j where exists (select userParticipate.id from j.room.userParticipate userParticipate)" +
-            "and :id in (select userParticipate.participateUser.id from j.room.userParticipate userParticipate)")
+                      "and :id in (select userParticipate.id from j.room.userParticipate userParticipate)")
     int getTotalParticipateNumsByUserId(@Param("id") String id);
 
     //得到一次出行对应的房间
@@ -30,19 +32,25 @@ public interface JourneyEntityRepository extends JpaRepository<JourneyEntity, In
     Page<JourneyEntity> findByRoomHostId(@Param("id") String id, Pageable pageable);
 
     //分页找到得到某位用户参与的出行
+ //   @Query("select  j from JourneyEntity j where exists (select userParticipate.id from j.room.userParticipate userParticipate)" +
+  //          "and :id in (select userParticipate.participateUser.id from j.room.userParticipate userParticipate)")
     @Query("select  j from JourneyEntity j where exists (select userParticipate.id from j.room.userParticipate userParticipate)" +
-            "and :id in (select userParticipate.participateUser.id from j.room.userParticipate userParticipate)")
+                      "and :id in (select userParticipate.id from j.room.userParticipate userParticipate)")
     Page<JourneyEntity> findByParticipateId(@Param("id") String id, Pageable pageable);
 
 
     //分页得到某位用户的全部出行
+//    @Query("select  j from JourneyEntity j where exists (select userParticipate.id from j.room.userParticipate userParticipate)" +
+  //          "and :id in (select userParticipate.participateUser.id from j.room.userParticipate userParticipate) or j.room.host.id=:id")
     @Query("select  j from JourneyEntity j where exists (select userParticipate.id from j.room.userParticipate userParticipate)" +
-            "and :id in (select userParticipate.participateUser.id from j.room.userParticipate userParticipate) or j.room.host.id=:id")
+                      "and :id in (select userParticipate.id from j.room.userParticipate userParticipate) or j.room.host.id=:id")
     Page<JourneyEntity> getAllJourneyByByUSerId(@Param("id") String id, Pageable pageable);
 
     //得到用户的出行数，不管是不是房主
+  //  @Query("select  count (j.id) from JourneyEntity j where exists (select userParticipate.id from j.room.userParticipate userParticipate)" +
+ //           "and :id in (select userParticipate.participateUser.id from j.room.userParticipate userParticipate)")
     @Query("select  count (j.id) from JourneyEntity j where exists (select userParticipate.id from j.room.userParticipate userParticipate)" +
-            "and :id in (select userParticipate.participateUser.id from j.room.userParticipate userParticipate)")
+                       "and :id in (select userParticipate.id from j.room.userParticipate userParticipate)")
     int getJourneyNums(@Param("id") String id);
 
     //得到某条评论对应的出行
