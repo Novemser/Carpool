@@ -3,10 +3,8 @@ package com.carpool.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
-<<<<<<< HEAD
-import com.carpool.website.service.encryptionService;
-=======
->>>>>>> 00f58bd46ed2e60a728b2fa2241b55a5a8cf5576
+import com.carpool.website.service.EncryptionService;
+
 
 /**
  * Created by qi on 2016/11/26.
@@ -32,8 +30,6 @@ public class UserEntity implements Serializable{
     private Collection<RoomEntity> hasPaysRoom;
     private Collection<RoomEntity> userParticipateRooms;
 
-<<<<<<< HEAD
-
     public UserEntity() {
     }
 
@@ -49,7 +45,7 @@ public class UserEntity implements Serializable{
         this.wechatAccount = wechatAccount;
         //pw encryption
 
-        encryptionService enp = new encryptionService();
+        EncryptionService enp = new EncryptionService();
         try{
             this.password = enp.encipher(password) + enp.encipher(id);
         }catch(Exception e){
@@ -59,8 +55,6 @@ public class UserEntity implements Serializable{
 
     }
 
-=======
->>>>>>> 00f58bd46ed2e60a728b2fa2241b55a5a8cf5576
     @Id
     @Column(name = "id", nullable = false, length = 10)
     public String getId() {
@@ -88,16 +82,13 @@ public class UserEntity implements Serializable{
     }
 
     public void setPassword(String password) {
-<<<<<<< HEAD
-        encryptionService enp = new encryptionService();
+        EncryptionService enp = new EncryptionService();
         try{
             this.password = enp.encipher(password) + enp.encipher(id);
         }catch(Exception e){
             e.printStackTrace();
         }
-=======
-        this.password = password;
->>>>>>> 00f58bd46ed2e60a728b2fa2241b55a5a8cf5576
+
     }
 
     @Basic
@@ -275,8 +266,4 @@ public class UserEntity implements Serializable{
     public void setUserParticipateRooms(Collection<RoomEntity> userParticipateRooms) {
         this.userParticipateRooms = userParticipateRooms;
     }
-<<<<<<< HEAD
-    
-=======
->>>>>>> 00f58bd46ed2e60a728b2fa2241b55a5a8cf5576
 }
