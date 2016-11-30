@@ -24,6 +24,9 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <!--配置tiles3-->
+    <bean class="com.carpool.configuration.TilesConfig"/>
+
     <jpa:repositories base-package="com.carpool"/>
 
     <!-- 链接到persistence.xml -->
