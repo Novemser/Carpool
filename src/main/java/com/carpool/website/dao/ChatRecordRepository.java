@@ -4,6 +4,7 @@ import com.carpool.domain.ChatRecordEntity;
 import com.carpool.domain.RoomEntity;
 import com.carpool.domain.UserEntity;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -13,7 +14,7 @@ import org.springframework.data.jpa.repository.Query;
 public interface ChatRecordRepository extends JpaRepository<ChatRecordRepository,Integer>{
 
     ChatRecordEntity findById(int id);
-    Page<ChatRecordEntity> findByCommenttime(String comenttime);
+    Page<ChatRecordEntity> findByCommenttime(String comenttime, Pageable pageable);
 
 
     @Query("select comment.commenttext from ChatRecordEntity comment where comment.id=?1")
@@ -21,7 +22,7 @@ public interface ChatRecordRepository extends JpaRepository<ChatRecordRepository
 
     //通过评论内容找到评论
     @Query("select comment from ChatRecordEntity  comment where comment.commenttext like \"%\" + ?1 + \"%\" ")
-    Page<ChatRecordEntity> getChatByText(String text);
+    Page<ChatRecordEntity> getChatByText(String text, Pageable pageable);
 
     @Query("select comment.room from ChatRecordEntity comment where comment.id=?1")
     RoomEntity getRoomById(int id);
@@ -30,10 +31,10 @@ public interface ChatRecordRepository extends JpaRepository<ChatRecordRepository
     UserEntity getSenderById(int id);
 
     @Query("select comment from ChatRecordEntity comment where  comment.room.id=?1")
-    Page<ChatRecordEntity> getAllChatOfRoom(int id);
+    Page<ChatRecordEntity> getAllChatOfRoom(int id, Pageable pageable);
 
     @Query("select comment from ChatRecordEntity  comment where comment.sender.id=?1")
-    Page<ChatRecordEntity> getAllChatOfUser(String id);
+    Page<ChatRecordEntity> getAllChatOfUser(String id, Pageable pageable);
 
     @Query("delete from ChatRecordEntity comment where comment.id=?1")
     int deleteChatRecordById(int id);
