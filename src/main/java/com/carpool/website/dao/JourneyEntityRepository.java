@@ -26,7 +26,7 @@ public interface JourneyEntityRepository extends JpaRepository<JourneyEntity, In
     RoomEntity findRoomById(@Param("id") Integer id);
 
     //分页得到自己是房主的出行
-    @Query("from JourneyEntity as j  where j.room.host.id=:id")
+    @Query("from JourneyEntity as j where j.room.host.id=:id")
     Page<JourneyEntity> findByRoomHostId(@Param("id") String id, Pageable pageable);
 
     //分页找到得到某位用户参与的出行

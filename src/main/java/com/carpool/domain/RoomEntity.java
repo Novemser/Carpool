@@ -11,7 +11,7 @@ import java.util.Date;
  */
 @Entity
 @Table
-public class RoomEntity implements Serializable{
+public class RoomEntity implements Serializable {
     private int id;
     private String roomname;
     private String startPoint;
@@ -20,7 +20,7 @@ public class RoomEntity implements Serializable{
     private int currentNums;
     private Timestamp createTime;
     private Date startTime;
-    private int state;
+    private RoomState state;
     private Collection<ChatRecordEntity> chatRecords;
     private UserEntity host;
     private UserEntity payer;
@@ -29,6 +29,7 @@ public class RoomEntity implements Serializable{
 
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() {
         return id;
     }
@@ -109,11 +110,12 @@ public class RoomEntity implements Serializable{
 
     @Basic
     @Column(name = "state", nullable = false)
-    public int getState() {
+    @Enumerated(EnumType.STRING)
+    public RoomState getState() {
         return state;
     }
 
-    public void setState(int state) {
+    public void setState(RoomState state) {
         this.state = state;
     }
 
@@ -145,7 +147,7 @@ public class RoomEntity implements Serializable{
         result = 31 * result + numberLimit;
         result = 31 * result + currentNums;
         result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
-        result = 31 * result + state;
+        result = 31 * result + (state != null ? state.hashCode() : 0);
         return result;
     }
 
@@ -180,8 +182,9 @@ public class RoomEntity implements Serializable{
 
     @OneToOne(mappedBy = "room")
     public JourneyEntity getJourney() {
-        return  journey;
+        return journey;
     }
+
     public void setJourney(JourneyEntity journey) {
         this.journey = journey;
     }

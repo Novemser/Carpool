@@ -28,7 +28,6 @@ import java.util.List;
 @ContextConfiguration("file:src/main/webapp/WEB-INF/dispatcher-servlet.xml")
 public class RepositoryTest {
 
-
     @Autowired
     private JourneyEntityRepository journeyEntityRepository;
 
