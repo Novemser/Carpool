@@ -18,8 +18,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
