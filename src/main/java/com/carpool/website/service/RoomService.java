@@ -1,15 +1,7 @@
 package com.carpool.website.service;
 
 import com.carpool.domain.RoomEntity;
-<<<<<<< HEAD
-import com.carpool.website.dao.RoomEntityRepository;
-import com.carpool.website.dao.UserEntityRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Component;
 
-import java.sql.Timestamp;
-=======
 import com.carpool.domain.RoomState;
 import com.carpool.domain.UserEntity;
 import com.carpool.website.dao.RoomEntityRepository;
@@ -24,7 +16,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
->>>>>>> 00f58bd46ed2e60a728b2fa2241b55a5a8cf5576
 
 /**
  * Project: Carpool
@@ -32,27 +23,16 @@ import java.util.Date;
  * Author:  Novemser
  * 2016/11/29
  */
-<<<<<<< HEAD
-@Component
-@ComponentScan
-public class RoomService {
-=======
+
 @Service
 public class RoomService {
 
->>>>>>> 00f58bd46ed2e60a728b2fa2241b55a5a8cf5576
     @Autowired
     private RoomEntityRepository roomEntityRepository;
     @Autowired
     private UserEntityRepository userEntityRepository;
 
-<<<<<<< HEAD
 
-    public void createRoome(Timestamp timeStamp) {
-        RoomEntity entity = new RoomEntity();
-        entity.setCreateTime(timeStamp);
-        roomEntityRepository.save(entity);
-=======
     public void createRoom(String roomname,
                            String startPoint,
                            String endPoint,
@@ -153,6 +133,5 @@ public class RoomService {
             return;
         }
         roomEntityRepository.updateState(locked, roomId);
->>>>>>> 00f58bd46ed2e60a728b2fa2241b55a5a8cf5576
     }
 }
