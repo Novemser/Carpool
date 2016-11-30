@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 /**
  * Created by deado on 2016/11/30.
  */
-public interface ChatRecordRepository extends JpaRepository<ChatRecordRepository,Integer>{
+public interface ChatRecordRepository extends JpaRepository<ChatRecordEntity,Integer>{
 
     ChatRecordEntity findById(int id);
     Page<ChatRecordEntity> findByCommenttime(String comenttime, Pageable pageable);
