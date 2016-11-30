@@ -11,7 +11,11 @@ import java.util.Date;
  */
 @Entity
 @Table
+<<<<<<< HEAD
 public class RoomEntity implements Serializable{
+=======
+public class RoomEntity implements Serializable {
+>>>>>>> 00f58bd46ed2e60a728b2fa2241b55a5a8cf5576
     private int id;
     private String roomname;
     private String startPoint;
@@ -20,7 +24,11 @@ public class RoomEntity implements Serializable{
     private int currentNums;
     private Timestamp createTime;
     private Date startTime;
+<<<<<<< HEAD
     private int state;
+=======
+    private RoomState state;
+>>>>>>> 00f58bd46ed2e60a728b2fa2241b55a5a8cf5576
     private Collection<ChatRecordEntity> chatRecords;
     private UserEntity host;
     private UserEntity payer;
@@ -29,6 +37,10 @@ public class RoomEntity implements Serializable{
 
     @Id
     @Column(name = "id", nullable = false)
+<<<<<<< HEAD
+=======
+    @GeneratedValue(strategy = GenerationType.AUTO)
+>>>>>>> 00f58bd46ed2e60a728b2fa2241b55a5a8cf5576
     public int getId() {
         return id;
     }
@@ -109,11 +121,20 @@ public class RoomEntity implements Serializable{
 
     @Basic
     @Column(name = "state", nullable = false)
+<<<<<<< HEAD
     public int getState() {
         return state;
     }
 
     public void setState(int state) {
+=======
+    @Enumerated(EnumType.STRING)
+    public RoomState getState() {
+        return state;
+    }
+
+    public void setState(RoomState state) {
+>>>>>>> 00f58bd46ed2e60a728b2fa2241b55a5a8cf5576
         this.state = state;
     }
 
@@ -145,7 +166,11 @@ public class RoomEntity implements Serializable{
         result = 31 * result + numberLimit;
         result = 31 * result + currentNums;
         result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
+<<<<<<< HEAD
         result = 31 * result + state;
+=======
+        result = 31 * result + (state != null ? state.hashCode() : 0);
+>>>>>>> 00f58bd46ed2e60a728b2fa2241b55a5a8cf5576
         return result;
     }
 
@@ -180,13 +205,23 @@ public class RoomEntity implements Serializable{
 
     @OneToOne(mappedBy = "room")
     public JourneyEntity getJourney() {
+<<<<<<< HEAD
         return  journey;
     }
+=======
+        return journey;
+    }
+
+>>>>>>> 00f58bd46ed2e60a728b2fa2241b55a5a8cf5576
     public void setJourney(JourneyEntity journey) {
         this.journey = journey;
     }
 
+<<<<<<< HEAD
     @ManyToMany(mappedBy = "userParticipateRooms")
+=======
+    @ManyToMany(mappedBy = "userParticipateRooms", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+>>>>>>> 00f58bd46ed2e60a728b2fa2241b55a5a8cf5576
     public Collection<UserEntity> getUserParticipate() {
         return userParticipate;
     }

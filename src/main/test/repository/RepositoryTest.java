@@ -27,8 +27,11 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/dispatcher-servlet.xml")
 public class RepositoryTest {
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 00f58bd46ed2e60a728b2fa2241b55a5a8cf5576
     @Autowired
     private JourneyEntityRepository journeyEntityRepository;
 

@@ -22,7 +22,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
+<<<<<<< HEAD
 @ContextConfiguration("file:src/main/webapp/WEB-INF/dispatcher-servlet.xml")
+=======
+@ContextConfiguration({"file:src/main/webapp/WEB-INF/dispatcher-servlet.xml"})
+>>>>>>> 00f58bd46ed2e60a728b2fa2241b55a5a8cf5576
 public class JourneyRepositoryTest {
 
     @Autowired
@@ -143,3 +147,7 @@ public class JourneyRepositoryTest {
     }
 
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 00f58bd46ed2e60a728b2fa2241b55a5a8cf5576

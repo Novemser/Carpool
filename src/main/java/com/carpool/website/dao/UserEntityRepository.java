@@ -1,22 +1,35 @@
 package com.carpool.website.dao;
 
 import com.carpool.domain.UserEntity;
+<<<<<<< HEAD
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+=======
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+>>>>>>> 00f58bd46ed2e60a728b2fa2241b55a5a8cf5576
 
 /**
  * Created by qi on 2016/11/26.
  */
 
+<<<<<<< HEAD
 @Repository
 public interface UserEntityRepository extends JpaRepository<UserEntity, String> {
     public UserEntity findById(String id);
     public Page<UserEntity> findByUsername(String username, Pageable pageable);
     public Page<UserEntity> findByQqAcount(String acount, Pageable pageable);
     public Page<UserEntity> findByWechatAccount(String acount, Pageable pageable);
+=======
+public interface UserEntityRepository extends JpaRepository<UserEntity, String> {
+    public UserEntity findById(String id);
+//    public Page<UserEntity> findByUsername(String username);
+//    public Page<UserEntity> findByQqAcount(String acount);
+//    public Page<UserEntity> findByWechatAccount(String acount);
+>>>>>>> 00f58bd46ed2e60a728b2fa2241b55a5a8cf5576
     public Integer          countIdByGender(byte gender);
 
     @Query("select user.coins from UserEntity user where user.id=?1")

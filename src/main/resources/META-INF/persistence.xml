@@ -12,9 +12,15 @@
             <!-- 数据库连接的驱动 -->
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
             <!-- 数据库连接的用户名 -->
+<<<<<<< HEAD
             <property name="hibernate.connection.username" value="root"/>
             <!-- 数据库连接的密码 -->
             <property name="hibernate.connection.password" value="qiangwudi"/>
+=======
+            <property name="hibernate.connection.username" value="Nova"/>
+            <!-- 数据库连接的密码 -->
+            <property name="hibernate.connection.password" value="a19951106"/>
+>>>>>>> 00f58bd46ed2e60a728b2fa2241b55a5a8cf5576
             <!-- 显示SQL语句 -->
             <property name="hibernate.show_sql" value="true"/>
 

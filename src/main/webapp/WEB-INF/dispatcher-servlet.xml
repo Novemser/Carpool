@@ -7,6 +7,10 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
     <!--扫描包中的注解-->
     <context:component-scan base-package="com.carpool.website.controller"/>
+<<<<<<< HEAD
+=======
+    <context:component-scan base-package="com.carpool.website.service"/>
+>>>>>>> 00f58bd46ed2e60a728b2fa2241b55a5a8cf5576
 
     <!-- 静态资源(js、image等)的访问 -->
     <mvc:default-servlet-handler/>
