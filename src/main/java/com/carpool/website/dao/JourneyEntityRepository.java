@@ -17,10 +17,12 @@ public interface JourneyEntityRepository extends JpaRepository<JourneyEntity, In
     int countIdByRoomHostId(String id);
 
     //得到自己参与的行程（非房主）数
+
  //   @Query("select  count (j) from JourneyEntity j where exists (select userParticipate.id from j.room.userParticipate userParticipate)" +
   //          "and :id in (select userParticipate.participateUser.id from j.room.userParticipate userParticipate)")
     @Query("select  count (j) from JourneyEntity j where exists (select userParticipate.id from j.room.userParticipate userParticipate)" +
                       "and :id in (select userParticipate.id from j.room.userParticipate userParticipate)")
+
     int getTotalParticipateNumsByUserId(@Param("id") String id);
 
     //得到一次出行对应的房间
@@ -28,6 +30,7 @@ public interface JourneyEntityRepository extends JpaRepository<JourneyEntity, In
     RoomEntity findRoomById(@Param("id") Integer id);
 
     //分页得到自己是房主的出行
+
     @Query("from JourneyEntity as j where j.room.host.id=:id")
     Page<JourneyEntity> findByRoomHostId(@Param("id") String id, Pageable pageable);
 
@@ -36,10 +39,12 @@ public interface JourneyEntityRepository extends JpaRepository<JourneyEntity, In
   //          "and :id in (select userParticipate.participateUser.id from j.room.userParticipate userParticipate)")
     @Query("select  j from JourneyEntity j where exists (select userParticipate.id from j.room.userParticipate userParticipate)" +
                       "and :id in (select userParticipate.id from j.room.userParticipate userParticipate)")
+
     Page<JourneyEntity> findByParticipateId(@Param("id") String id, Pageable pageable);
 
 
     //分页得到某位用户的全部出行
+
 //    @Query("select  j from JourneyEntity j where exists (select userParticipate.id from j.room.userParticipate userParticipate)" +
   //          "and :id in (select userParticipate.participateUser.id from j.room.userParticipate userParticipate) or j.room.host.id=:id")
     @Query("select  j from JourneyEntity j where exists (select userParticipate.id from j.room.userParticipate userParticipate)" +
@@ -51,6 +56,7 @@ public interface JourneyEntityRepository extends JpaRepository<JourneyEntity, In
  //           "and :id in (select userParticipate.participateUser.id from j.room.userParticipate userParticipate)")
     @Query("select  count (j.id) from JourneyEntity j where exists (select userParticipate.id from j.room.userParticipate userParticipate)" +
                        "and :id in (select userParticipate.id from j.room.userParticipate userParticipate)")
+
     int getJourneyNums(@Param("id") String id);
 
     //得到某条评论对应的出行

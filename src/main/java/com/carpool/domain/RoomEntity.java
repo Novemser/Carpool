@@ -11,7 +11,8 @@ import java.util.Date;
  */
 @Entity
 @Table
-public class RoomEntity implements Serializable {
+public class RoomEntity implements Serializable{
+
     private int id;
     private String roomname;
     private String startPoint;
@@ -21,6 +22,7 @@ public class RoomEntity implements Serializable {
     private Timestamp createTime;
     private Date startTime;
     private RoomState state;
+
     private Collection<ChatRecordEntity> chatRecords;
     private UserEntity host;
     private UserEntity payer;
@@ -110,6 +112,7 @@ public class RoomEntity implements Serializable {
 
     @Basic
     @Column(name = "state", nullable = false)
+
     @Enumerated(EnumType.STRING)
     public RoomState getState() {
         return state;
@@ -182,12 +185,14 @@ public class RoomEntity implements Serializable {
 
     @OneToOne(mappedBy = "room")
     public JourneyEntity getJourney() {
-        return journey;
+        return  journey;
     }
+
 
     public void setJourney(JourneyEntity journey) {
         this.journey = journey;
     }
+
 
     @ManyToMany(mappedBy = "userParticipateRooms", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public Collection<UserEntity> getUserParticipate() {
@@ -197,4 +202,6 @@ public class RoomEntity implements Serializable {
     public void setUserParticipate(Collection<UserEntity> userParticipate) {
         this.userParticipate = userParticipate;
     }
+
+
 }

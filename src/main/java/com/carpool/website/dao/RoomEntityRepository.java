@@ -1,6 +1,7 @@
 package com.carpool.website.dao;
 
 import com.carpool.domain.RoomEntity;
+
 import com.carpool.domain.RoomState;
 import com.carpool.domain.UserEntity;
 import org.springframework.data.domain.Page;
@@ -20,6 +21,8 @@ public interface RoomEntityRepository extends JpaRepository<RoomEntity, Integer>
 
     Page<RoomEntity> findByStartPointAndEndPointAndStartTimeBetween(String startPoint, String endPoint,
                                                              Date from, Date to, Pageable pageable);
+
+    RoomEntity findByRoomname(String name);
 
     // 根据User找到何其在同一房间的用户
     @Query("select r from RoomEntity r " +

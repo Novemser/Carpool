@@ -3,6 +3,8 @@ package com.carpool.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
+import com.carpool.website.service.EncryptionService;
+
 
 /**
  * Created by qi on 2016/11/26.
@@ -28,6 +30,31 @@ public class UserEntity implements Serializable{
     private Collection<RoomEntity> hasPaysRoom;
     private Collection<RoomEntity> userParticipateRooms;
 
+    public UserEntity() {
+    }
+
+    public UserEntity(String id, String username, String password, byte gender, double credit, String alipay,
+                      int coins, String qqAccount, String wechatAccount) {
+        this.id = id;
+        this.username = username;
+        this.gender = gender;
+        this.credit = credit;
+        this.alipay = alipay;
+        this.coins = coins;
+        this.qqAccount = qqAccount;
+        this.wechatAccount = wechatAccount;
+        //pw encryption
+
+        EncryptionService enp = new EncryptionService();
+        try{
+            this.password = enp.encipher(password) + enp.encipher(id);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+
+    }
+
     @Id
     @Column(name = "id", nullable = false, length = 10, unique = true)
     public String getId() {
@@ -49,13 +76,19 @@ public class UserEntity implements Serializable{
     }
 
     @Basic
-    @Column(name = "password", nullable = false, length = 10)
+    @Column(name = "password", nullable = false, length = 225)
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        EncryptionService enp = new EncryptionService();
+        try{
+            this.password = enp.encipher(password) + enp.encipher(id);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     @Basic

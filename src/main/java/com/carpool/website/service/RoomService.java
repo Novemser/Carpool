@@ -1,6 +1,7 @@
 package com.carpool.website.service;
 
 import com.carpool.domain.RoomEntity;
+
 import com.carpool.domain.RoomState;
 import com.carpool.domain.UserEntity;
 import com.carpool.exception.RoomNullException;
@@ -26,6 +27,7 @@ import java.util.Date;
  * Author:  Novemser
  * 2016/11/29
  */
+
 @Service
 public class RoomService {
 
