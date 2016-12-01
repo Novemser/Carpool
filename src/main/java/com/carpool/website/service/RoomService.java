@@ -106,7 +106,7 @@ public class RoomService {
                 from, to, p);
     }
 
-    public Collection<RoomEntity> findAllRoom() {
+    public Collection<RoomEntity> findAllRooms() {
         return roomEntityRepository.findAll();
     }
 

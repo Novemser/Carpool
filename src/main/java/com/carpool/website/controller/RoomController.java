@@ -4,8 +4,10 @@ import com.carpool.website.model.Room;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
 
@@ -33,5 +35,10 @@ public class RoomController {
         }
         modelMap.addAttribute("roomSucceed", "添加房间成功！");
         return "redirect:addRoomSucceed";
+    }
+
+    @GetMapping("/test")
+    public @ResponseBody String getTestString() {
+        return "这是一个测试";
     }
 }
