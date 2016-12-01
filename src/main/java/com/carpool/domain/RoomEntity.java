@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Collection;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * Created by qi on 2016/11/26.
@@ -202,4 +202,6 @@ public class RoomEntity implements Serializable{
     public void setUserParticipate(Collection<UserEntity> userParticipate) {
         this.userParticipate = userParticipate;
     }
+
+
 }

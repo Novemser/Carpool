@@ -76,7 +76,7 @@ public class UserEntity implements Serializable{
     }
 
     @Basic
-    @Column(name = "password", nullable = false, length = 10)
+    @Column(name = "password", nullable = false, length = 225)
     public String getPassword() {
         return password;
     }

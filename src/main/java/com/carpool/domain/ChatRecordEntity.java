@@ -1,7 +1,7 @@
 package com.carpool.domain;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * Created by qi on 2016/11/26.

@@ -49,7 +49,7 @@ public class RoomServiceTest {
                 "嘉定校区",
                 "虹桥机场",
                 4,
-                new Date(),
+                new java.sql.Date(2016,12,25),
                 "1452681"
         );
     }

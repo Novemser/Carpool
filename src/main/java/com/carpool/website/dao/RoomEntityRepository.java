@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * Created by Novemser on 2016/11/27.
@@ -22,6 +22,7 @@ public interface RoomEntityRepository extends JpaRepository<RoomEntity, Integer>
     Page<RoomEntity> findByStartPointAndEndPointAndStartTime(String startPoint, String endPoint,
 
                                                              Date startTime, Pageable pageable);
+    RoomEntity findByRoomname(String name);
 
     // 根据User找到何其在同一房间的用户
     @Query("select r from RoomEntity r " +
