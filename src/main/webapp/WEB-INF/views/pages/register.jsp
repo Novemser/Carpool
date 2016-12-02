@@ -34,7 +34,7 @@
         <div class="login form">
             <div class="group">
                 <div class="group-ipt student_id">
-                    <input type="student_id" name="student_id" id="student_id" class="ipt" placeholder="请输入你的学号" required>
+                    <input type="number" name="student_id" id="student_id" class="ipt" placeholder="请输入你的学号" required>
                 </div>
                 <div class="group-ipt user">
                     <input type="text" name="user" id="user" class="ipt" placeholder="起一个用户名" required>
