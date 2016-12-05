@@ -111,7 +111,7 @@ CREATE TABLE `room` (
   `payuserId` varchar(10) DEFAULT NULL,
   `numberLimit` int(5) NOT NULL,
   `currentNums` int(5) NOT NULL,
-  `createTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `startDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `state` int(5) NOT NULL DEFAULT '0',
   `startTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -120,7 +120,7 @@ CREATE TABLE `room` (
 -- 转存表中的数据 `room`
 --
 
-INSERT INTO `room` (`id`, `roomname`, `host`, `startPoint`, `endPoint`, `payuserId`, `numberLimit`, `currentNums`, `createTime`, `state`, `startTime`) VALUES
+INSERT INTO `room` (`id`, `roomname`, `host`, `startPoint`, `endPoint`, `payuserId`, `numberLimit`, `currentNums`, `startDate`, `state`, `startTime`) VALUES
 (1, 'lyx‘s room', '1452779', '同济大学', '虹桥火车站', NULL, 5, 1, '2016-11-27 14:17:01', 0, '2016-11-27 14:34:54'),
 (2, '出行', '1452779', '虹桥火车站', '同济大学', NULL, 4, 2, '2016-11-27 15:09:55', 0, '2016-11-30 00:00:00');
 

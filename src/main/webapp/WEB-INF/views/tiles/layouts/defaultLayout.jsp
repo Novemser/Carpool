@@ -7,15 +7,52 @@
   Time: 14:07
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=utf-8" language="java" %>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title><tiles:getAsString name="title" /></title>
-    <link href="<c:url value='/static/css/bootstrap.css' />"  rel="stylesheet"/>
-    <link href="<c:url value='/static/css/custom.css' />" rel="stylesheet"/>
-</head>
-<body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/bootstrap-reset.css" rel="stylesheet">
+    <!--external css-->
+    <link href="/static/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="/static/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="/static/css/owl.carousel.css" type="text/css">
+    <!-- Custom styles for this template -->
+    <link href="/static/css/style.css" rel="stylesheet">
+    <link href="/static/css/style-responsive.css" rel="stylesheet" />
+    <link href="/static/carList/styles/font-awesome.css"/>
 
+</head>
+<body class="container">
+    <tiles:insertAttribute name="header"/>
+
+    <tiles:insertAttribute name="menu"/>
+    <section id="main-content">
+        <section class="wrapper">
+            <tiles:insertAttribute name="body"/>
+        </section>
+    </section>
+
+    <tiles:insertAttribute name="footer"/>
+
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/jquery-1.8.3.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/jquery.scrollTo.min.js"></script>
+    <script src="/static/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="/static/js/jquery.sparkline.js" type="text/javascript"></script>
+    <script src="/static/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
+    <script src="/static/js/owl.carousel.js" ></script>
+    <script src="/static/js/jquery.customSelect.min.js" ></script>
+
+    <!--common script for all pages-->
+    <script src="/static/js/common-scripts.js"></script>
+
+    <!--script for this page-->
+    <script src="/static/js/sparkline-chart.js"></script>
+    <script src="/static/js/easy-pie-chart.js"></script>
 </body>
 </html>

@@ -1,9 +1,10 @@
 package com.carpool.domain;
 
+import com.carpool.website.service.EncryptionService;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
-import com.carpool.website.service.EncryptionService;
 
 
 /**
@@ -19,6 +20,17 @@ public class UserEntity implements Serializable{
     private double credit;
     private String alipay;
     private int coins;
+
+    @Column
+    public int getCarpoolingCount() {
+        return carpoolingCount;
+    }
+
+    public void setCarpoolingCount(int carpoolingCount) {
+        this.carpoolingCount = carpoolingCount;
+    }
+
+    private int carpoolingCount;
     private String qqAccount;
     private String wechatAccount;
     private Collection<ChatRecordEntity> sendedChatRecord;

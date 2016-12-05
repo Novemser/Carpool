@@ -21,6 +21,15 @@ import javax.validation.Valid;
 @RequestMapping("/room")
 public class RoomController {
 
+    @RequestMapping(value = "/select", method = RequestMethod.GET)
+    public String selectMethod(ModelMap modelMap) {
+        if (!modelMap.containsKey("room")) {
+            Room room = new Room();
+            modelMap.addAttribute("room", room);
+        }
+        return "pages/selectRoomType";
+    }
+
     @RequestMapping(value = "/add",method = RequestMethod.GET)
     public String addRoom(ModelMap modelMap) {
         Room room = new Room();
@@ -31,11 +40,20 @@ public class RoomController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String saveNewRoom(@Valid Room room, BindingResult bindingResult, ModelMap modelMap) {
         if (bindingResult.hasErrors()) {
-            return "addRoom";
+            modelMap.addAttribute("room", room);
+            return "pages/selectRoomType";
         }
         modelMap.addAttribute("roomSucceed", "添加房间成功！");
         return "redirect:addRoomSucceed";
     }
+
+//    @InitBinder
+//    public void initBinder(WebDataBinder binder) {
+//        System.out.println("Call init binder");
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//        dateFormat.setLenient(true);
+//        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+//    }
 
     @GetMapping("/test")
     public @ResponseBody String getTestString() {

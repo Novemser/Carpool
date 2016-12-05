@@ -5,8 +5,6 @@ import com.carpool.domain.UserEntity;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
-import java.util.Date;
 
 /**
  * Project: Carpool
@@ -29,10 +27,10 @@ public class Room implements Serializable {
     private int numberLimit;
 
     private int currentNums;
-
-    private Timestamp createTime;
-
-    private Date startTime;
+    @NotEmpty
+    private String startDate;
+    @NotEmpty
+    private String startTime;
 
     private RoomState state;
 
@@ -88,19 +86,19 @@ public class Room implements Serializable {
         this.currentNums = currentNums;
     }
 
-    public Timestamp getCreateTime() {
-        return createTime;
+    public String getStartDate() {
+        return startDate;
     }
 
-    public void setCreateTime(Timestamp createTime) {
-        this.createTime = createTime;
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
     }
 
-    public Date getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
