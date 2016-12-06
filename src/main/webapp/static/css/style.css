@@ -277,11 +277,11 @@ ul.sidebar-menu li a i {
 }
 
 ul.sidebar-menu li a:hover i, ul.sidebar-menu li a:focus i {
-    color: #FF6C60;
+    color: #42b2c4;
 }
 
 ul.sidebar-menu li.active a i {
-    color: #FF6C60;
+    color: #42b2c4;
 }
 
 
@@ -378,7 +378,7 @@ a.logo:hover, a.logo:focus {
 }
 
 a.logo span {
-    color: #FF6C60;
+    color: #42b2c4;
 }
 
 
@@ -645,7 +645,7 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
     margin-top: 0;
     opacity: 0;
     position: absolute;
-    left: 7px;
+    right: 22px;
     top: -18px;
     transition: all 0.25s ease 0s;
     width: 0;

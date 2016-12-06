@@ -28,6 +28,8 @@
 <body class="container">
     <tiles:insertAttribute name="header"/>
 
+    <tiles:insertAttribute name="footer"/>
+
     <tiles:insertAttribute name="menu"/>
     <section id="main-content">
         <section class="wrapper">
@@ -35,7 +37,6 @@
         </section>
     </section>
 
-    <tiles:insertAttribute name="footer"/>
 
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="/static/js/jquery.js"></script>
