@@ -12,7 +12,7 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu">
             <li class="active">
-                <a class="" href="/home">
+                <a class="" href="/home/main">
                     <i class="icon-home"></i>
                     <span>主页</span>
                 </a>
@@ -32,7 +32,7 @@
                 <%--</ul>--%>
             <%--</li>--%>
             <li>
-                <a class="" href="">
+                <a class="" href="/room/select">
                     <i class="icon-search"></i>
                     <span>约车 </span>
                 </a>

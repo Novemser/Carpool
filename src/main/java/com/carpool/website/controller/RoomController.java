@@ -27,7 +27,7 @@ public class RoomController {
             Room room = new Room();
             modelMap.addAttribute("room", room);
         }
-        return "pages/selectRoomType";
+        return "room/select";
     }
 
     @RequestMapping(value = "/add",method = RequestMethod.GET)

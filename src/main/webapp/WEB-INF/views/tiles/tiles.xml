@@ -16,7 +16,18 @@
     <!-- Home Page -->
     <definition name="home" extends="base-definition">
         <put-attribute name="title" value="个人主页" />
-        <put-attribute name="body" value="/WEB-INF/views/index.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/main.jsp" />
+    </definition>
+
+    <!-- Main Page -->
+    <definition name="main" extends="base-definition">
+        <put-attribute name="title" value="约车" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/main.jsp" />
+    </definition>
+
+    <definition name="room/select" extends="base-definition">
+        <put-attribute name="title" value="房间选择"/>
+        <put-attribute name="body" value="/WEB-INF/views/pages/selectRoomType.jsp"/>
     </definition>
 
     <!--&lt;!&ndash; Product Page &ndash;&gt;-->

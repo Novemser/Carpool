@@ -11,15 +11,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
-<head>
+<%--<head>--%>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <link rel="stylesheet" href="<c:url value="/static/style/cityselect.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/static/style/frozen.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/static/style/car.css"/>">
-    <script src="<c:url value="/static/js/jquery_car.min.js"/>"></script>
-    <title>房间选择</title>
-</head>
+    <%--<script src="<c:url value="/static/js/jquery_car.min.js"/>"></script>--%>
+    <%--<title>房间选择</title>--%>
+<%--</head>--%>
 <body onload="createCode();createCode2();">
 <div class="centerMain">
     <form:form class="form1 clearfix" modelAttribute="room" action="/room/add" method="post" name="form1">

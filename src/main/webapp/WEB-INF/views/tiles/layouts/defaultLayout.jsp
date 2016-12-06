@@ -10,50 +10,54 @@
 <%@ page contentType="text/html;charset=utf-8" language="java" %>
 <html>
 <head>
-    <title><tiles:getAsString name="title" /></title>
+    <title><tiles:getAsString name="title"/></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap core CSS -->
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/css/bootstrap-reset.css" rel="stylesheet">
     <!--external css-->
-    <link href="/static/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <link href="/static/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="/static/assets/font-awesome/css/font-awesome.css" rel="stylesheet"/>
+    <link href="/static/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css"
+          media="screen"/>
     <link rel="stylesheet" href="/static/css/owl.carousel.css" type="text/css">
     <!-- Custom styles for this template -->
     <link href="/static/css/style.css" rel="stylesheet">
-    <link href="/static/css/style-responsive.css" rel="stylesheet" />
-    <link href="/static/carList/styles/font-awesome.css"/>
+    <link href="/static/css/style-responsive.css" rel="stylesheet"/>
+    <link href="/static/css/font-awesome.min.css" rel="stylesheet"/>
 
 </head>
-<body class="container">
+<body>
+<section id="container">
     <tiles:insertAttribute name="header"/>
 
     <tiles:insertAttribute name="footer"/>
 
     <tiles:insertAttribute name="menu"/>
+
     <section id="main-content">
         <section class="wrapper">
             <tiles:insertAttribute name="body"/>
         </section>
     </section>
+</section>
 
 
-    <!-- js placed at the end of the document so the pages load faster -->
-    <script src="/static/js/jquery.js"></script>
-    <script src="/static/js/jquery-1.8.3.min.js"></script>
-    <script src="/static/js/bootstrap.min.js"></script>
-    <script src="/static/js/jquery.scrollTo.min.js"></script>
-    <script src="/static/js/jquery.nicescroll.js" type="text/javascript"></script>
-    <script src="/static/js/jquery.sparkline.js" type="text/javascript"></script>
-    <script src="/static/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
-    <script src="/static/js/owl.carousel.js" ></script>
-    <script src="/static/js/jquery.customSelect.min.js" ></script>
+<!-- js placed at the end of the document so the pages load faster -->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/jquery-1.8.3.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/jquery.scrollTo.min.js"></script>
+<script src="/static/js/jquery.nicescroll.js" type="text/javascript"></script>
+<script src="/static/js/jquery.sparkline.js" type="text/javascript"></script>
+<script src="/static/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
+<script src="/static/js/owl.carousel.js"></script>
+<script src="/static/js/jquery.customSelect.min.js"></script>
 
-    <!--common script for all pages-->
-    <script src="/static/js/common-scripts.js"></script>
+<!--common script for all pages-->
+<script src="/static/js/common-scripts.js"></script>
 
-    <!--script for this page-->
-    <script src="/static/js/sparkline-chart.js"></script>
-    <script src="/static/js/easy-pie-chart.js"></script>
+<!--script for this page-->
+<script src="/static/js/sparkline-chart.js"></script>
+<script src="/static/js/easy-pie-chart.js"></script>
 </body>
 </html>
