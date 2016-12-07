@@ -25,7 +25,7 @@
         <put-attribute name="body" value="/WEB-INF/views/pages/main.jsp" />
     </definition>
 
-    <definition name="room/select" extends="base-definition">
+    <definition name="home/select" extends="base-definition">
         <put-attribute name="title" value="房间选择"/>
         <put-attribute name="body" value="/WEB-INF/views/pages/selectRoomType.jsp"/>
     </definition>

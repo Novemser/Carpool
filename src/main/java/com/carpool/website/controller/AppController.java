@@ -21,8 +21,8 @@ import java.util.List;
 public class AppController {
 
     @RequestMapping(method = RequestMethod.GET)
-    public String homePage() {
-        return "home";
+    public String homePage(ModelMap modelMap) {
+        return mainPage(modelMap);
     }
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
@@ -41,5 +41,14 @@ public class AppController {
         }
         modelMap.addAttribute("rooms", rooms);
         return "main";
+    }
+
+    @RequestMapping(value = "/select", method = RequestMethod.GET)
+    public String selectRoom(ModelMap modelMap) {
+        if (!modelMap.containsKey("room")) {
+            Room room = new Room();
+            modelMap.addAttribute("room", room);
+        }
+        return "home/select";
     }
 }

@@ -31,7 +31,6 @@ img{border:0 none;max-width:100%;}
 }
 /*********乘客页面**************/
 .top{
-	position: fixed;
 	left: 0;
 	top: 0;
 	height:44px;

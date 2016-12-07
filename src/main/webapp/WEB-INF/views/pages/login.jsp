@@ -67,9 +67,8 @@
 
 <script src='<c:url value="/static/js/particles.js"/>' type="text/javascript"></script>
 <script src='<c:url value="/static/js/background.js"/>' type="text/javascript"></script>
-<script src='<c:url value="/static/js/jquery_login.min.js"/>' type="text/javascript"></script>
+<script src='<c:url value="/static/js/jquery-3.1.1.min.js"/>' type="text/javascript"></script>
 <script src='<c:url value="/static/js/layer/layer.js"/>' type="text/javascript"></script>
-<script src='<c:url value="/static/js/index.js"/>' type="text/javascript"></script>
 <script>
     $('.imgcode').hover(function(){
         layer.tips("看不清？点击更换", '.verify', {

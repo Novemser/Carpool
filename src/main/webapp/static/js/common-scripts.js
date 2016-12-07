@@ -125,3 +125,38 @@ var Script = function () {
 
 
 }();
+/**
+ * 选择拼车还是找车
+ */
+$(function () {
+    $('.tab').click(function () {
+        $(this).addClass('tabActive').siblings().removeClass('tabActive');
+        var index = $(this).index();
+        $('.centerMain').children().eq(index).show().siblings().hide();
+    })
+});
+/**********交换城市*********/
+$(function () {
+    $('.circle').click(function () {
+        var x = document.getElementById('from1').value;
+        var y = document.getElementById('to1').value;
+        document.getElementById('from1').value = y;
+        document.getElementById('to1').value = x;
+    });
+
+    // driver
+
+    $('.circle-driver').click(function () {
+        var x = document.getElementById('from1-driver').value;
+        var y = document.getElementById('to1-driver').value;
+        document.getElementById('from1-driver').value = y;
+        document.getElementById('to1-driver').value = x;
+
+        var a = document.getElementById('gs-rk').value;
+        var b = document.getElementById('gs-ck').value;
+
+        document.getElementById('gs-rk').value = b;
+        document.getElementById('gs-ck').value = a;
+    });
+
+});

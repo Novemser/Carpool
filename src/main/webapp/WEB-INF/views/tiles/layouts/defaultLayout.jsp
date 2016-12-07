@@ -17,8 +17,6 @@
     <link href="/static/css/bootstrap-reset.css" rel="stylesheet">
     <!--external css-->
     <link href="/static/assets/font-awesome/css/font-awesome.css" rel="stylesheet"/>
-    <link href="/static/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css"
-          media="screen"/>
     <link rel="stylesheet" href="/static/css/owl.carousel.css" type="text/css">
     <!-- Custom styles for this template -->
     <link href="/static/css/style.css" rel="stylesheet">
@@ -49,7 +47,6 @@
 <script src="/static/js/jquery.scrollTo.min.js"></script>
 <script src="/static/js/jquery.nicescroll.js" type="text/javascript"></script>
 <script src="/static/js/jquery.sparkline.js" type="text/javascript"></script>
-<script src="/static/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
 <script src="/static/js/owl.carousel.js"></script>
 <script src="/static/js/jquery.customSelect.min.js"></script>
 
@@ -57,7 +54,7 @@
 <script src="/static/js/common-scripts.js"></script>
 
 <!--script for this page-->
-<script src="/static/js/sparkline-chart.js"></script>
-<script src="/static/js/easy-pie-chart.js"></script>
+<%--<script src="/static/js/sparkline-chart.js"></script>--%>
+<%--<script src="/static/js/easy-pie-chart.js"></script>--%>
 </body>
 </html>
