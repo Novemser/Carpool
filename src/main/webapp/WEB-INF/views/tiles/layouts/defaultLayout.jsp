@@ -22,6 +22,8 @@
     <link href="/static/css/style.css" rel="stylesheet">
     <link href="/static/css/style-responsive.css" rel="stylesheet"/>
     <link href="/static/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/static/css/mdb.css" rel="stylesheet"/>
+    <script src="/static/js/jquery-3.1.1.min.js"></script>
 
 </head>
 <body>
@@ -41,8 +43,7 @@
 
 
 <!-- js placed at the end of the document so the pages load faster -->
-<script src="/static/js/jquery.js"></script>
-<script src="/static/js/jquery-1.8.3.min.js"></script>
+<%--<script src="/static/js/jquery.js"></script>--%>
 <script src="/static/js/bootstrap.min.js"></script>
 <script src="/static/js/jquery.scrollTo.min.js"></script>
 <script src="/static/js/jquery.nicescroll.js" type="text/javascript"></script>

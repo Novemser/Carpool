@@ -1,7 +1,6 @@
 package com.carpool.website.service;
 
 import com.carpool.domain.RoomEntity;
-
 import com.carpool.domain.RoomState;
 import com.carpool.domain.UserEntity;
 import com.carpool.exception.RoomNullException;
@@ -18,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.text.ParseException;
-import java.util.Collection;
 import java.util.Date;
 
 /**
@@ -81,6 +79,10 @@ public class RoomService {
         return roomEntityRepository.findUserRooms(userEntity, p);
     }
 
+    public RoomEntity findById(int id) {
+        return roomEntityRepository.findOne(id);
+    }
+
     @Transactional
     public void addUserToRoom(int roomId, String userId) throws Exception {
         UserEntity user = userEntityRepository.findOne(userId);
@@ -108,8 +110,9 @@ public class RoomService {
                 from, to, p);
     }
 
-    public Collection<RoomEntity> findAllRooms() {
-        return roomEntityRepository.findAll();
+    public Page<RoomEntity> findRoom(int page, int size) {
+        PageRequest pageRequest = new PageRequest(page, size);
+        return roomEntityRepository.findAll(pageRequest);
     }
 
 //    public Page<RoomEntity> listAvailableRooms(String startPoint, String endPoint,

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Novemser
@@ -8,46 +9,39 @@
 <%@ page contentType="text/html;charset=utf-8" language="java" %>
 
 <aside>
-    <div id="sidebar" class="nav-collapse " tabindex="5000" style="overflow-x: auto; overflow-y: visible; outline: none;">
+    <div id="sidebar" class="nav-collapse " tabindex="5000"
+         style="overflow-x: auto; overflow-y: visible; outline: none;">
+        <c:set var="state" scope="session" value="${pageContext.request.getParameter('id')}"/>
+        <c:if test="${state == null||state.equals('')}">
+            ${state = 1}
+        </c:if>
+
         <!-- sidebar menu start-->
         <ul class="sidebar-menu">
-            <li class="active">
-                <a class="" href="/home/main">
+            <li class="menu-item-main">
+                <a href="/home/main?id=1">
                     <i class="icon-home"></i>
-                    <span>主页</span>
+                    <span>主页 </span>
                 </a>
             </li>
-            <%--<li class="sub-menu">--%>
-                <%--<a href="javascript:;" class="">--%>
-                    <%--<i class="icon-book"></i>--%>
-                    <%--<span>UI Elements</span>--%>
-                    <%--<span class="arrow"></span>--%>
-                <%--</a>--%>
-                <%--<ul class="sub">--%>
-                    <%--<li><a class="" href="general.html">General</a></li>--%>
-                    <%--<li><a class="" href="buttons.html">Buttons</a></li>--%>
-                    <%--<li><a class="" href="widget.html">Widget</a></li>--%>
-                    <%--<li><a class="" href="slider.html">Slider</a></li>--%>
-                    <%--<li><a class="" href="font_awesome.html">Font Awesome</a></li>--%>
-                <%--</ul>--%>
-            <%--</li>--%>
-            <li>
-                <a class="" href="/room/select">
+
+            <li class="menu-item-select">
+                <a href="/room/select?id=2">
                     <i class="icon-search"></i>
                     <span>约车 </span>
                 </a>
             </li>
 
-            <li>
-                <a class="" href="">
+            <li class="menu-item-person">
+                <a href="">
                     <i class="icon-user"></i>
                     <span>个人中心 </span>
                     <span class="label label-danger pull-right mail-info">2</span>
                 </a>
             </li>
 
-            <li>
-                <a class="" href="/login">
+            <li class="menu-item-logout">
+                <a href="/login">
                     <i class="icon-key"></i>
                     <span>退出登录</span>
                 </a>
@@ -56,3 +50,22 @@
         <!-- sidebar menu end-->
     </div>
 </aside>
+<script type="text/javascript" language="JavaScript">
+
+    $(document).ready(function () {
+        switch (${state}) {
+            case 1:
+                $(".menu-item-main").addClass('active');
+                break;
+            case 2:
+                $(".menu-item-select").addClass('active');
+                break;
+            case 3:
+                $(".menu-item-person").addClass('active');
+                break;
+            case 4:
+                $(".menu-item-logout").addClass('active');
+                break;
+        }
+    });
+</script>

@@ -1,8 +1,11 @@
 package com.carpool.website.controller.exception;
 
+import com.carpool.exception.ResourceNotFoundException;
 import com.carpool.exception.UserNullException;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -13,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @ControllerAdvice
 public class GlobalExceptionController {
+
     @ExceptionHandler(UserNullException.class)
     public ModelAndView handleNullUserException(UserNullException e) {
         ModelAndView model = new ModelAndView();
@@ -20,4 +24,12 @@ public class GlobalExceptionController {
         model.addObject("errMsg", e.getErrMsg());
         return model;
     }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String handleResourceNotFoundException() {
+        System.out.println("Not found!!");
+        return "pages/404";
+    }
+
 }

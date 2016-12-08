@@ -11,15 +11,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<%--<head>--%>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
-    <link rel="stylesheet" href="<c:url value="/static/style/cityselect.css"/>">
-    <link rel="stylesheet" type="text/css" href="<c:url value="/static/style/frozen.css"/>">
-    <link rel="stylesheet" type="text/css" href="<c:url value="/static/style/car.css"/>">
-    <script src="<c:url value="/static/js/jquery_car.min.js"/>"></script>
-    <%--<title>房间选择</title>--%>
-<%--</head>--%>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+<link rel="stylesheet" href="<c:url value="/static/style/cityselect.css"/>">
+<link rel="stylesheet" type="text/css" href="<c:url value="/static/style/frozen.css"/>">
+<link rel="stylesheet" type="text/css" href="<c:url value="/static/style/car.css"/>">
 <body>
 <div class="top">
     <div id="showTitle" class="fl tab tabActive">创建新组</div>
@@ -27,7 +23,7 @@
 </div>
 
 <div class="centerMain">
-    <form:form class="form1 clearfix" modelAttribute="room" action="/room/add" method="post" name="form1">
+    <form:form class="form1 clearfix" modelAttribute="room" action="/room/add?id=2" method="post" name="form1">
         <div id="roomTitle" class="ui-form">
             <div class="ui-form-item ui-border-b">
                 <label>房间名称</label>
@@ -76,7 +72,7 @@
                 <label for="from1date">出发日期</label>
                 <form:input path="startDate" id="from1date" type="date"/>
             </div>
-            <div  style="padding-left: 15px;">
+            <div style="padding-left: 15px;">
                 <form:errors path="startDate" class="has-error help-inline"/>
             </div>
             <div class="ui-form-item ui-border-b">
@@ -149,7 +145,7 @@
                 <label for="from1date">出发日期</label>
                 <form:input path="startDate" id="from1date" type="date"/>
             </div>
-            <div  style="padding-left: 15px;">
+            <div style="padding-left: 15px;">
                 <form:errors path="startDate" class="has-error help-inline"/>
             </div>
             <div class="ui-form-item ui-border-b">

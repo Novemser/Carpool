@@ -25,9 +25,19 @@
         <put-attribute name="body" value="/WEB-INF/views/pages/main.jsp" />
     </definition>
 
-    <definition name="home/select" extends="base-definition">
+    <definition name="home.select" extends="base-definition">
         <put-attribute name="title" value="房间选择"/>
         <put-attribute name="body" value="/WEB-INF/views/pages/selectRoomType.jsp"/>
+    </definition>
+
+    <definition name="room.detail" extends="base-definition">
+        <put-attribute name="title" value="房间信息"/>
+        <put-attribute name="body" value="/WEB-INF/views/pages/roomDetail.jsp"/>
+    </definition>
+
+    <definition name="room.addSucceed" extends="base-definition">
+        <put-attribute name="title" value="添加新房间成功"/>
+        <put-attribute name="body" value="/WEB-INF/views/pages/addRoomSucceed.jsp"/>
     </definition>
 
     <!--&lt;!&ndash; Product Page &ndash;&gt;-->

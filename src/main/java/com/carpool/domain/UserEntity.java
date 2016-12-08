@@ -22,15 +22,15 @@ public class UserEntity implements Serializable{
     private int coins;
 
     @Column
-    public int getCarpoolingCount() {
+    public Integer getCarpoolingCount() {
         return carpoolingCount;
     }
 
-    public void setCarpoolingCount(int carpoolingCount) {
+    public void setCarpoolingCount(Integer carpoolingCount) {
         this.carpoolingCount = carpoolingCount;
     }
 
-    private int carpoolingCount;
+    private Integer carpoolingCount;
     private String qqAccount;
     private String wechatAccount;
     private Collection<ChatRecordEntity> sendedChatRecord;
