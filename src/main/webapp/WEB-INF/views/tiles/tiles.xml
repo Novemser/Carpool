@@ -40,6 +40,8 @@
         <put-attribute name="body" value="/WEB-INF/views/pages/addRoomSucceed.jsp"/>
     </definition>
 
+
+
     <!--&lt;!&ndash; Product Page &ndash;&gt;-->
     <!--<definition name="products" extends="base-definition">-->
         <!--<put-attribute name="title" value="Products" />-->

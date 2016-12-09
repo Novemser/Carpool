@@ -9,12 +9,31 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link type="text/css" rel="stylesheet" href="/static/css/room-list.css"/>
+<link href="/static/css/mdb.css" rel="stylesheet"/>
+<style type="text/css">
+    div .fa span{
+        color: slategray;
+        margin-right: 8px;
+    }
+</style>
 <!--custom chart start-->
 <div class="border-head">
     <div class="row">
         <h3 class="col-lg-3">当前车池</h3>
+        <div class="text text-center" style="padding-bottom: 8px">
+            <i class="fa fa-flag" aria-hidden="true" style="color: lightcoral;">
+                <span >已完成  </span>
+            </i>
+            <i class="fa fa-flag" aria-hidden="true" style="color: gold;">
+                <span >在途中  </span>
+            </i>
+            <i class="fa fa-flag" aria-hidden="true" style="color: lightgreen">
+                <span >开放  </span>
+            </i>
+        </div>
     </div>
 </div>
+
 <spring:url value="" var="next">
     <spring:param name="roomPage.page" value="${roomPage.number + 1}"/>
     <spring:param name="roomPage.size" value="${roomPage.size}"/>
@@ -24,7 +43,8 @@
         <div class="col-lg-4 col-md-6 col-sm-12">
             <section class="z-depth-1 hoverable panel" style="padding: 15px;">
                 <a href="<c:url value="/room/detail?roomId=${li.id}"/>">
-                    <div class="row"><div class="text room-title text-center col-lg-11 col-md-11 col-sm-11 col-xs-11">土豪你好</div>
+                    <div class="row">
+                        <div class="text room-title text-center col-lg-11 col-md-11 col-sm-11 col-xs-11">土豪你好</div>
                         <i class="fa fa-flag" aria-hidden="true" style="color: lightgreen"></i></div>
                     <dl class="dl-horizontal">
                         <dt>时间</dt>

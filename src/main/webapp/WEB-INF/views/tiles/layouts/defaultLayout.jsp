@@ -22,7 +22,6 @@
     <link href="/static/css/style.css" rel="stylesheet">
     <link href="/static/css/style-responsive.css" rel="stylesheet"/>
     <link href="/static/css/font-awesome.min.css" rel="stylesheet"/>
-    <link href="/static/css/mdb.css" rel="stylesheet"/>
     <script src="/static/js/jquery-3.1.1.min.js"></script>
 
 </head>
