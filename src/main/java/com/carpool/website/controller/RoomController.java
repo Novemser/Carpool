@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -39,9 +41,10 @@ public class RoomController {
     }
 
     @RequestMapping(value = "/detail")
-    public String showDetail(@PathVariable int roomId, ModelMap modelMap) {
+    public String showDetail(@RequestParam int roomId, ModelMap modelMap) {
         RoomEntity entity = roomService.findById(roomId);
         modelMap.addAttribute("room", entity);
+
         return "room.detail";
     }
 

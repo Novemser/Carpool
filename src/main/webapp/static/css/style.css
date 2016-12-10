@@ -2249,9 +2249,9 @@ ul.inbox-pagination li {
 
 
 .error-wrapper h1 {
-    font-size: 90px;
+    font-size: 80px;
     font-weight: 300;
-    margin: -50px 0 0 0;
+    margin: -50px 20px 20px 20px;
 }
 
 .error-wrapper h2 {
