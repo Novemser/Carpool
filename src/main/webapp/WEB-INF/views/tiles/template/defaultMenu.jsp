@@ -25,11 +25,16 @@
                 </a>
             </li>
 
-            <li class="menu-item-select">
-                <a href="/room/select?id=2">
+            <li class="menu-item-select sub-menu">
+                <a href="javascript:;">
                     <i class="icon-search"></i>
-                    <span>约车 </span>
+                    <span>约车</span>
+                    <span class="arrow"></span>
                 </a>
+                <ul class="sub">
+                    <li><a href="/room/create?id=2">新建房间</a></li>
+                    <li><a href="/room/create?id=2">加入房间</a></li>
+                </ul>
             </li>
 
             <li class="menu-item-person">

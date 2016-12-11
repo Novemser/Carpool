@@ -1,3 +1,4 @@
+<%@ page import="com.carpool.domain.RoomState" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
@@ -10,25 +11,28 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link type="text/css" rel="stylesheet" href="/static/css/room-list.css"/>
 <link href="/static/css/mdb.css" rel="stylesheet"/>
-<style type="text/css">
-    div .fa span{
-        color: slategray;
-        margin-right: 8px;
-    }
-</style>
+<%--<style type="text/css">--%>
+    <%--div .fa span {--%>
+        <%--color: slategray;--%>
+        <%--margin-right: 8px;--%>
+    <%--}--%>
+<%--</style>--%>
 <!--custom chart start-->
 <div class="border-head">
     <div class="row">
         <h3 class="col-lg-3">当前车池</h3>
         <div class="text text-center" style="padding-bottom: 8px">
-            <i class="fa fa-flag" aria-hidden="true" style="color: lightcoral;">
-                <span >已完成  </span>
+            <i class="flag-finished fa fa-flag" aria-hidden="true" >
+                <span>已完成  </span>
             </i>
-            <i class="fa fa-flag" aria-hidden="true" style="color: gold;">
-                <span >在途中  </span>
+            <i class="flag-started fa fa-flag" aria-hidden="true">
+                <span>在途中  </span>
             </i>
-            <i class="fa fa-flag" aria-hidden="true" style="color: lightgreen">
-                <span >开放  </span>
+            <i class="flag-unlocked fa fa-flag" aria-hidden="true">
+                <span>开放  </span>
+            </i>
+            <i class="flag-locked fa fa-lock" aria-hidden="true">
+                <span>锁定 </span>
             </i>
         </div>
     </div>
@@ -38,14 +42,30 @@
     <spring:param name="roomPage.page" value="${roomPage.number + 1}"/>
     <spring:param name="roomPage.size" value="${roomPage.size}"/>
 </spring:url>
+<%@include file="../template/roomState.jsp"%>
 <div class="row">
     <c:forEach items="${roomPage.content}" var="li">
         <div class="col-lg-4 col-md-6 col-sm-12">
             <section class="z-depth-1 hoverable panel" style="padding: 15px;">
                 <a href="<c:url value="/room/detail?roomId=${li.id}"/>">
                     <div class="row">
-                        <div class="text room-title text-center col-lg-11 col-md-11 col-sm-11 col-xs-11">土豪你好</div>
-                        <i class="fa fa-flag" aria-hidden="true" style="color: lightgreen"></i></div>
+                        <div class="text room-title text-center col-lg-11 col-md-11 col-sm-11 col-xs-11">${li.roomname}</div>
+                        <c:set var="state" value="${li.state}"/>
+                        <c:choose>
+                            <c:when test="${state==ROOM_STATE_UNLOCKED}">
+                                <i class="flag-unlocked fa fa-flag" aria-hidden="true"></i>
+                            </c:when>
+                            <c:when test="${state==ROOM_STATE_LOCKED}">
+                                <i class="flag-locked fa fa-lock" aria-hidden="true"></i>
+                            </c:when>
+                            <c:when test="${state==ROOM_STATE_END}">
+                                <i class="flag-finished fa fa-flag" aria-hidden="true"></i>
+                            </c:when>
+                            <c:when test="${state==ROOM_STATE_STARTED}">
+                                <i class="flag-started fa fa-flag" aria-hidden="true"></i>
+                            </c:when>
+                        </c:choose>
+                        </div>
                     <dl class="dl-horizontal">
                         <dt>时间</dt>
                         <dd>${li.startTime}</dd>
@@ -70,6 +90,31 @@
         </div>
     </c:forEach>
 </div>
-<script type="javascript" language="javascript">
-
-</script>
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li>
+            <a href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li>
+            <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+<style type="text/css">
+    .pagination {
+        float: right !important;
+        display: inline-block;
+        padding-left: 0;
+        margin: 20px 0;
+        border-radius: 4px;
+    }
+</style>

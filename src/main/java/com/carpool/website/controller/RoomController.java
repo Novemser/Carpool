@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -31,7 +29,7 @@ public class RoomController {
         this.roomService = roomService;
     }
 
-    @RequestMapping(value = "/select", method = RequestMethod.GET)
+    @GetMapping("/select")
     public String selectMethod(ModelMap modelMap) {
         if (!modelMap.containsKey("room")) {
             Room room = new Room();
@@ -40,7 +38,7 @@ public class RoomController {
         return "home.select";
     }
 
-    @RequestMapping(value = "/detail")
+    @GetMapping("/detail")
     public String showDetail(@RequestParam int roomId, ModelMap modelMap) {
         RoomEntity entity = roomService.findById(roomId);
         modelMap.addAttribute("room", entity);
@@ -55,8 +53,15 @@ public class RoomController {
 //        return "addRoom";
 //    }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String saveNewRoom(@Valid Room room, BindingResult bindingResult, ModelMap modelMap, HttpServletRequest request) {
+    @GetMapping("/create")
+    public String saveNewRoom(ModelMap modelMap) {
+        Room room = new Room();
+        modelMap.addAttribute("room", room);
+        return "room.create";
+    }
+
+    @PostMapping("/create")
+    public String saveNewRoomPost(@Valid Room room, BindingResult bindingResult, ModelMap modelMap, HttpServletRequest request) {
         request.setAttribute("id", "2");
         modelMap.addAttribute("room", room);
 

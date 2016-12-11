@@ -11,10 +11,19 @@ Website: http://thevectorlab.net/
 body {
     color: #797979;
     background: #f1f2f7;
-    font-family: 'Open Sans', sans-serif;
-    padding: 0px !important;
-    margin: 0px !important;
-    font-size:13px;
+    font-family: Helvetica, "Hiragino Sans GB W3", arial, sans-serif;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-size: 1em;
+}
+
+dt {
+    font-size: large;
+    color: lightslategrey;
+}
+
+dd {
+    font-size: large;
 }
 
 ul li {
@@ -3560,9 +3569,9 @@ table.sliders tr td {
 
 .cke_top, .cke_bottom {
     background: #F5F5F5 !important;
-    background: -moz-linear-gradient(center top , #F5F5F5, #F5F5F5) repeat scroll 0 0 #F5F5F5 !important;
-    background: -webkit-linear-gradient(center top , #F5F5F5, #F5F5F5) repeat scroll 0 0 #F5F5F5 !important;
-    background: -o-linear-gradient(center top , #F5F5F5, #F5F5F5) repeat scroll 0 0 #F5F5F5 !important;
+    /*background: -moz-linear-gradient(center top , #F5F5F5, #F5F5F5) repeat scroll 0 0 #F5F5F5 !important;*/
+    /*background: -webkit-linear-gradient(center top , #F5F5F5, #F5F5F5) repeat scroll 0 0 #F5F5F5 !important;*/
+    /*background: -o-linear-gradient(center top , #F5F5F5, #F5F5F5) repeat scroll 0 0 #F5F5F5 !important;*/
     box-shadow: none;
     padding: 6px 8px 2px;
 }
@@ -3941,4 +3950,25 @@ span.customSelect.changed {
 }
 .customSelectInner {
     background:url(../img/customSelect-arrow.gif) no-repeat center right;
+}
+
+.flag-finished {
+    color: lightcoral;
+}
+
+.flag-started {
+    color: gold;
+}
+
+.flag-unlocked {
+    color: lightgreen;
+}
+
+.flag-locked {
+    color: #2e8ded;
+}
+
+div .fa span {
+    color: slategray;
+    margin-right: 8px;
 }

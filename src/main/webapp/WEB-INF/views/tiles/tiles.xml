@@ -26,8 +26,13 @@
     </definition>
 
     <definition name="home.select" extends="base-definition">
-        <put-attribute name="title" value="房间选择"/>
+        <put-attribute name="title" value="房间浏览"/>
         <put-attribute name="body" value="/WEB-INF/views/pages/selectRoomType.jsp"/>
+    </definition>
+
+    <definition name="room.create" extends="base-definition">
+        <put-attribute name="title" value="房间创建"/>
+        <put-attribute name="body" value="/WEB-INF/views/pages/createRoom.jsp"/>
     </definition>
 
     <definition name="room.detail" extends="base-definition">

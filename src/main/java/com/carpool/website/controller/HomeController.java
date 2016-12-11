@@ -2,7 +2,6 @@ package com.carpool.website.controller;
 
 import com.carpool.configuration.GlobalConstants;
 import com.carpool.domain.RoomEntity;
-import com.carpool.website.model.Room;
 import com.carpool.website.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -55,12 +54,12 @@ public class HomeController {
         return "main";
     }
 
-    @RequestMapping(value = "/select", method = RequestMethod.GET)
-    public String selectRoom(ModelMap modelMap) {
-        if (!modelMap.containsKey("room")) {
-            Room room = new Room();
-            modelMap.addAttribute("room", room);
-        }
-        return "home.select";
-    }
+//    @RequestMapping(value = "/select", method = RequestMethod.GET)
+//    public String selectRoom(ModelMap modelMap) {
+//        if (!modelMap.containsKey("room")) {
+//            Room room = new Room();
+//            modelMap.addAttribute("room", room);
+//        }
+//        return "home.select";
+//    }
 }

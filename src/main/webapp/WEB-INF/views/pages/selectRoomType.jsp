@@ -1,22 +1,26 @@
-<%@ page import="com.carpool.website.model.Room" %>
-<%@ page import="org.springframework.web.servlet.ModelAndView" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: Novemser
-  Date: 2016/12/5
-  Time: 12:50
+  Date: 2016/12/8
+  Time: 12:57
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<link href="/static/css/mdb.css" rel="stylesheet"/>
+<div class="border-head">
+    <div class="row">
+        <h3 class="col-lg-3">选择拼车房间</h3><q></q>
+    </div>
+</div>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 <link rel="stylesheet" href="<c:url value="/static/style/cityselect.css"/>">
 <link rel="stylesheet" type="text/css" href="<c:url value="/static/style/frozen.css"/>">
 <link rel="stylesheet" type="text/css" href="<c:url value="/static/style/car.css"/>">
-<body>
+
 <div class="top">
     <div id="showTitle" class="fl tab tabActive">创建新组</div>
     <div id="hideTitle" class="fl tab">加入旧组</div>
@@ -174,5 +178,3 @@
 </div>
 
 <div class="clear"></div>
-
-</body>
