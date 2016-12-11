@@ -51,22 +51,24 @@
         <put-attribute name="body" value="/WEB-INF/views/pages/addRoomSucceed.jsp"/>
     </definition>
 
-
     <definition name="room.search" extends="base-definition">
         <put-attribute name="title" value="搜索结果"/>
         <put-attribute name="body" value="/WEB-INF/views/pages/searchResult.jsp"/>
     </definition>
 
-    <!--&lt;!&ndash; Product Page &ndash;&gt;-->
-    <!--<definition name="products" extends="base-definition">-->
-        <!--<put-attribute name="title" value="Products" />-->
-        <!--<put-attribute name="body" value="/WEB-INF/views/pages/products.jsp" />-->
-    <!--</definition>-->
+    <definition name="user.profile" extends="base-definition">
+        <put-attribute name="title" value="个人中心"/>
+        <put-attribute name="body" value="/WEB-INF/views/pages/profile.jsp"/>
+    </definition>
 
-    <!--&lt;!&ndash; Contact-us Page &ndash;&gt;-->
-    <!--<definition name="contactus" extends="base-definition">-->
-        <!--<put-attribute name="title" value="Contact Us" />-->
-        <!--<put-attribute name="body" value="/WEB-INF/views/pages/contactus.jsp" />-->
-    <!--</definition>-->
+    <definition name="user.profile.edit" extends="base-definition">
+        <put-attribute name="title" value="修改信息"/>
+        <put-attribute name="body" value="/WEB-INF/views/pages/profileEdit.jsp"/>
+    </definition>
+
+    <definition name="user.profile.journey" extends="base-definition">
+        <put-attribute name="title" value="约车记录"/>
+        <put-attribute name="body" value="/WEB-INF/views/pages/profileJourney.jsp"/>
+    </definition>
 
 </tiles-definitions>
