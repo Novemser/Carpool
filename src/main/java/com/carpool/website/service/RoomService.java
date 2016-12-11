@@ -121,12 +121,6 @@ public class RoomService {
         return roomEntityRepository.findAll(pageRequest);
     }
 
-//    public Page<RoomEntity> listAvailableRooms(String startPoint, String endPoint,
-//                                               Date startTime) {
-//        Page<RoomEntity> roomEntities = listRoomsInDays(startPoint, endPoint, startTime);
-//        return roomEntities;
-//    }
-
     public void lockRoomById(int roomId) throws Exception {
         changeRoomState(roomId, RoomState.LOCKED);
     }

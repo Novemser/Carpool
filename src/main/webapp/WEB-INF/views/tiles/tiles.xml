@@ -52,32 +52,11 @@
     </definition>
 
 
-    <definition name="comment/receivedComments" extends="base-definition">
-        <put-attribute name="title" value="收到评论"></put-attribute>
-        <put-attribute name="body" value="/WEB-INF/views/pages/comment/receivedComments.jsp"></put-attribute>
-    </definition>
-
-    <definition name="comment/sendedComments" extends="base-definition">
-        <put-attribute name="title" value="发出评论"></put-attribute>
-        <put-attribute name="body" value="/WEB-INF/views/pages/comment/sendedComments.jsp"></put-attribute>
-    </definition>
-
-
-
-    <definition name="journey/journeys" extends="base-definition">
-        <put-attribute name="title" value="我的出行-我是房主"></put-attribute>
-        <put-attribute name="body" value="/WEB-INF/views/pages/journey/journeys.jsp">
-        </put-attribute>
-    </definition>
     <definition name="room.search" extends="base-definition">
         <put-attribute name="title" value="搜索结果"/>
         <put-attribute name="body" value="/WEB-INF/views/pages/searchResult.jsp"/>
     </definition>
 
-   <definition name="comment/lookOtherComments" extends="base-definition">
-       <put-attribute name="title" value="他的信誉评价"></put-attribute>
-       <put-attribute name="body" value="/WEB-INF/views/pages/comment/lookOtherComments.jsp"></put-attribute>
-   </definition>
     <!--&lt;!&ndash; Product Page &ndash;&gt;-->
     <!--<definition name="products" extends="base-definition">-->
         <!--<put-attribute name="title" value="Products" />-->

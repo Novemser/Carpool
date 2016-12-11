@@ -174,9 +174,10 @@
                     <input type="hidden" id="journerid" name="journey.id">
                     <input type="hidden" id="sourceuserid" name="sourceUser.id">
                     <input type="hidden" id="targetUserId" name="targetUser.id">
-                    <label for="star">给他评星:</label>
+                    <div class="form-group">
+                    <label for="star" class="col-lg-2 control-label">给他评星:</label>
                     <br>
-                    <div id="star">
+                    <div id="star" class="col-lg-10">
                         <input type="radio" id="start5" name="credit" value="5">
                         <label for="start5"><span></span></label>
 
@@ -192,11 +193,15 @@
                         <input type="radio" id="start1" name="credit" value="1">
                         <label for="start1"><span></span></label>
                     </div>
+                    </div>
                     <br>
-                    <label for="remark">给他评论:</label>
-                    <div id="remark">
-                            <textarea id="remarkContent" rows="4" name="commentText" placeholder="在这里输入评论" autofocus>
-                            </textarea>
+                    <div id="remark" class="form-group">
+                            <label for="remark"  class="col-lg-2 control-label">给他评论:</label>
+                            <div class="col-lg-10">
+                                <textarea name="commentText" id="remarkContent" class="form-control" cols="10" rows="5"placeholder="在这里输入评论"></textarea>
+                            </div>
+                      <!--      <textarea id="remarkContent" rows="4" name="commentText" placeholder="在这里输入评论" autofocus>
+                            </textarea>!-->
                     </div>
                 </div>
                 <div class="modal-footer" >

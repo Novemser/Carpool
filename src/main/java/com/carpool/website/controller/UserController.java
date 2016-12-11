@@ -1,6 +1,8 @@
 package com.carpool.website.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -21,5 +23,20 @@ public class UserController {
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register() {
         return "pages/register";
+    }
+
+    @GetMapping("/user")
+    public String profile() {
+        return "user.profile";
+    }
+
+    @GetMapping("/user/edit")
+    public String editProfile(ModelMap modelMap) {
+        return "user.profile.edit";
+    }
+
+    @GetMapping("/user/journey")
+    public String showJourney() {
+        return "user.profile.journey";
     }
 }

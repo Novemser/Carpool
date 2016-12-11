@@ -17,7 +17,6 @@ import java.io.Serializable;
 
 public class Room implements Serializable {
 
-
     private int id;
 
     @NotEmpty
@@ -27,9 +26,9 @@ public class Room implements Serializable {
     @NotEmpty
     private String endPoint;
     @Min(2)
-    private int numberLimit;
+    private Integer numberLimit;
 
-    private int currentNums;
+    private Integer currentNums;
 
     private String note;
 
@@ -79,11 +78,11 @@ public class Room implements Serializable {
         this.endPoint = endPoint;
     }
 
-    public int getNumberLimit() {
+    public Integer getNumberLimit() {
         return numberLimit;
     }
 
-    public void setNumberLimit(int numberLimit) {
+    public void setNumberLimit(Integer numberLimit) {
         this.numberLimit = numberLimit;
     }
 

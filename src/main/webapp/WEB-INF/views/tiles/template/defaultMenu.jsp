@@ -18,12 +18,13 @@
 
         <!-- sidebar menu start-->
         <ul class="sidebar-menu">
-            <li class="menu-item-main mymenu-item">
+            <li class="menu-item-main">
                 <a href="/home/main?id=1">
                     <i class="icon-home"></i>
                     <span>主页 </span>
                 </a>
             </li>
+
             <li class="menu-item-select sub-menu">
                 <a href="javascript:;">
                     <i class="icon-search"></i>
@@ -36,7 +37,7 @@
                 </ul>
             </li>
 
-            <li class="menu-item-person mymenu-item">
+            <li class="menu-item-person">
                 <a href="">
                     <i class="icon-user"></i>
                     <span>个人中心 </span>
@@ -44,32 +45,7 @@
                 </a>
             </li>
 
-
-            <li class="menu-item-select sub-menu">
-                <a href="javascript:;">
-                    <i class="icon-search"></i>
-                    <span>我的行程</span>
-                    <span class="arrow"></span>
-                </a>
-                <ul class="sub">
-                    <li><a href="/journey/getMyJourneyAsHost/1452779?id=4">我是房主</a> </li>
-                    <li><a href="/journey/getAllJourneys/1452779?id=4">全部出行</a> </li>
-                </ul>
-            </li>
-
-            <li class="menu-item-select sub-menu">
-                <a href="javascript:;">
-                    <i class="icon-comment"></i>
-                    <span>评论中心</span>
-                    <span class="arrow"></span>
-                </a>
-                <ul class="sub">
-                    <li><a href="/comment/getReceivedComment/1452779?id=5">收到评论</a> </li>
-                    <li><a href="/comment/getSendedComment/1452779?id=5">发出评论</a> </li>
-                </ul>
-            </li>
-
-            <li class="menu-item-logout mymenu-item">
+            <li class="menu-item-logout">
                 <a href="/login">
                     <i class="icon-key"></i>
                     <span>退出登录</span>
@@ -82,8 +58,7 @@
 <script type="text/javascript" language="JavaScript">
 
     $(document).ready(function () {
-        $(".mymenu-item").eq(${state-1}).addClass('active');
-   /*     switch (${state}) {
+        switch (${state}) {
             case 1:
                 $(".menu-item-main").addClass('active');
                 break;
@@ -96,6 +71,6 @@
             case 4:
                 $(".menu-item-logout").addClass('active');
                 break;
-        }*/
+        }
     });
 </script>
