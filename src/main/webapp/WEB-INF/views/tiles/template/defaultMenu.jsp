@@ -33,7 +33,7 @@
                 </a>
                 <ul class="sub">
                     <li><a href="/room/create?id=2">新建房间</a></li>
-                    <li><a href="/room/create?id=2">加入房间</a></li>
+                    <li><a href="/room/join?id=2">加入房间</a></li>
                 </ul>
             </li>
 

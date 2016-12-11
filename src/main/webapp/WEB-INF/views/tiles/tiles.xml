@@ -35,6 +35,12 @@
         <put-attribute name="body" value="/WEB-INF/views/pages/createRoom.jsp"/>
     </definition>
 
+    <definition name="room.join" extends="base-definition">
+        <put-attribute name="title" value="加入房间"/>
+        <put-attribute name="body" value="/WEB-INF/views/pages/joinRoom.jsp"/>
+    </definition>
+
+
     <definition name="room.detail" extends="base-definition">
         <put-attribute name="title" value="房间信息"/>
         <put-attribute name="body" value="/WEB-INF/views/pages/roomDetail.jsp"/>
@@ -46,6 +52,10 @@
     </definition>
 
 
+    <definition name="room.search" extends="base-definition">
+        <put-attribute name="title" value="搜索结果"/>
+        <put-attribute name="body" value="/WEB-INF/views/pages/searchResult.jsp"/>
+    </definition>
 
     <!--&lt;!&ndash; Product Page &ndash;&gt;-->
     <!--<definition name="products" extends="base-definition">-->

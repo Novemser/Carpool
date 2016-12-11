@@ -13,31 +13,11 @@
 <div class="row">
     <div class="col-lg-8 col-lg-offset-2">
         <section class="panel" style="margin-bottom: 100px">
-
-            <header class="panel-heading">
-                房间创建向导
-            </header>
-            <div class="stepy-tab">
-                <div>
-                    <ul id="default-titles" class="stepy-titles clearfix">
-                        <li id="default-title-0" class="current-step">
-                            <div>填写信息</div>
-                            <span>第一步</span></li>
-                        <li id="default-title-1" class="current-step">
-                            <div>阅读条款</div>
-                            <span>第二步</span></li>
-                        <li id="default-title-2" class="current-step">
-                            <div>确认提交</div>
-                            <span>第三步</span></li>
-                    </ul>
-                </div>
-            </div>
-
             <div class="panel-body">
-                <form:form class="form-horizontal" modelAttribute="room" id="create-room-form" method="post"
-                           action="/room/create?id=2">
+                <form:form class="form-horizontal" modelAttribute="roomSelection" id="create-room-form" method="post"
+                           action="/room/join?id=2">
                     <fieldset>
-                        <legend><span class="glyphicon glyphicon-home"></span>房间信息</legend>
+                        <legend><span class="glyphicon glyphicon-home"> </span>选择地点</legend>
                         <div class="form-group">
                             <div class="form-inner-group2">
                                 <div class="col-lg-5">
@@ -65,46 +45,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="form-inner-group">
-
-                                <div>
-                                    <form:input type="text" class="form-control" placeholder="房间名称" path="roomname"/>
-                                </div>
-                                <div>
-                                    <form:errors cssClass="handle-error" path="roomname"/>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="form-inner-group">
-
-                                <div>
-                                    <form:input type="text" class="form-control" placeholder="人数上限" path="numberLimit"/>
-                                </div>
-                                <div>
-                                    <form:errors cssClass="handle-error" path="numberLimit"/>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="form-inner-group">
-
-                                <div>
-                                    <form:input type="text" class="form-control" placeholder="备注" path="note"/>
-                                </div>
-                                <div>
-                                    <form:errors cssClass="handle-error" path="note"/>
-                                </div>
-                            </div>
-                        </div>
 
                     </fieldset>
 
                     <fieldset>
-                        <legend><span class="glyphicon glyphicon-time"></span>时间信息（逾期会自动删除本房间）</legend>
+                        <legend><span class="glyphicon glyphicon-time"> </span>选择时间</legend>
                         <div class="form-group">
                             <div class="form-inner-group">
 
@@ -132,7 +77,7 @@
                     </fieldset>
 
                     <fieldset>
-                        <legend><span class="glyphicon glyphicon-book"></span>服务条款</legend>
+                        <legend><span class="glyphicon glyphicon-book"> </span>服务条款</legend>
                         <div class="form-group">
                             <div class="form-inner-group">
 
@@ -154,7 +99,7 @@
                         </div>
                     </fieldset>
 
-                    <input class="finish btn btn-outline-warning" type="submit" value="确认无误并提交">
+                    <input class="finish btn btn-outline-warning" type="submit" value="开始查找">
                 </form:form>
             </div>
         </section>
