@@ -17,16 +17,18 @@
             <p>17717096283</p>
         </div>
 
-        <ul class="nav nav-pills nav-stacked">
-            <li class="active"><a href="/user"> <i class="icon-user"></i> 个人信息</a></li>
-            <li><a href="/user/journey"> <i class="icon-calendar"></i> 约车记录 <span class="label label-danger pull-right r-activity">9</span></a></li>
-            <li><a href="/user/edit"> <i class="icon-edit"></i> 编辑个人信息</a></li>
+        <ul id="profile-header-template" class="nav nav-pills nav-stacked">
+            <li><a href="/user?id=3"> <i class="icon-user"></i> 个人信息</a></li>
+            <li><a href="/user/journey?id=3"> <i class="icon-calendar"></i> 约车记录 <span class="label label-danger pull-right r-activity">9</span></a></li>
+            <li><a href="/user/edit?id=3"> <i class="icon-edit"></i> 编辑个人信息</a></li>
         </ul>
 
     </section>
 </aside>
 
-<c:set var="state" scope="session" value="${pageContext.request.requestURI}"/>
+<c:set var="state" scope="session" value="${pageContext.request.getAttribute('active')}"/>
 <script >
-    alert(${state});
+
+    $('#profile-header-template li:nth-child(${state})').addClass('active');
+
 </script>
