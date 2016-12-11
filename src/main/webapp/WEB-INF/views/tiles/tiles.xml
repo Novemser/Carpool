@@ -26,9 +26,20 @@
     </definition>
 
     <definition name="home.select" extends="base-definition">
-        <put-attribute name="title" value="房间选择"/>
+        <put-attribute name="title" value="房间浏览"/>
         <put-attribute name="body" value="/WEB-INF/views/pages/selectRoomType.jsp"/>
     </definition>
+
+    <definition name="room.create" extends="base-definition">
+        <put-attribute name="title" value="房间创建"/>
+        <put-attribute name="body" value="/WEB-INF/views/pages/createRoom.jsp"/>
+    </definition>
+
+    <definition name="room.join" extends="base-definition">
+        <put-attribute name="title" value="加入房间"/>
+        <put-attribute name="body" value="/WEB-INF/views/pages/joinRoom.jsp"/>
+    </definition>
+
 
     <definition name="room.detail" extends="base-definition">
         <put-attribute name="title" value="房间信息"/>
@@ -55,7 +66,12 @@
 
     <definition name="journey/journeys" extends="base-definition">
         <put-attribute name="title" value="我的出行-我是房主"></put-attribute>
-        <put-attribute name="body" value="/WEB-INF/views/pages/journey/journeys.jsp"></put-attribute>
+        <put-attribute name="body" value="/WEB-INF/views/pages/journey/journeys.jsp">
+        </put-attribute>
+    </definition>
+    <definition name="room.search" extends="base-definition">
+        <put-attribute name="title" value="搜索结果"/>
+        <put-attribute name="body" value="/WEB-INF/views/pages/searchResult.jsp"/>
     </definition>
 
    <definition name="comment/lookOtherComments" extends="base-definition">

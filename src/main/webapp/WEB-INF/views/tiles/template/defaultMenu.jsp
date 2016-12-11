@@ -24,12 +24,16 @@
                     <span>主页 </span>
                 </a>
             </li>
-
-            <li class="menu-item-select mymenu-item">
-                <a href="/room/select?id=2">
+            <li class="menu-item-select sub-menu">
+                <a href="javascript:;">
                     <i class="icon-search"></i>
-                    <span>约车 </span>
+                    <span>约车</span>
+                    <span class="arrow"></span>
                 </a>
+                <ul class="sub">
+                    <li><a href="/room/create?id=2">新建房间</a></li>
+                    <li><a href="/room/join?id=2">加入房间</a></li>
+                </ul>
             </li>
 
             <li class="menu-item-person mymenu-item">
@@ -41,24 +45,25 @@
             </li>
 
 
-            <li class="dropdown mymenu-item">
-
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="icon-flag"></i>  我的行程
-                    <span class="caret"></span>
+            <li class="menu-item-select sub-menu">
+                <a href="javascript:;">
+                    <i class="icon-search"></i>
+                    <span>我的行程</span>
+                    <span class="arrow"></span>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-right pull-right">
+                <ul class="sub">
                     <li><a href="/journey/getMyJourneyAsHost/1452779?id=4">我是房主</a> </li>
                     <li><a href="/journey/getAllJourneys/1452779?id=4">全部出行</a> </li>
                 </ul>
             </li>
-            <li class="dropdown mymenu-item">
 
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="icon-comment"></i> 评论中心
-                    <span class="caret"></span>
+            <li class="menu-item-select sub-menu">
+                <a href="javascript:;">
+                    <i class="icon-comment"></i>
+                    <span>评论中心</span>
+                    <span class="arrow"></span>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-right ">
+                <ul class="sub">
                     <li><a href="/comment/getReceivedComment/1452779?id=5">收到评论</a> </li>
                     <li><a href="/comment/getSendedComment/1452779?id=5">发出评论</a> </li>
                 </ul>

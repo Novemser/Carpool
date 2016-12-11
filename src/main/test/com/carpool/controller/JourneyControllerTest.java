@@ -47,7 +47,7 @@ public class JourneyControllerTest {
     }
     @Test
     public void test_getJourneyCommentDetail() throws Exception {
-        mockMvc.perform(get("/journey/getJourneyCommentDetail/2?userid=1452778")).andDo(print());
+        mockMvc.perform(get("/journey/getJourneyCommentDetail/3?userid=1452778")).andDo(print());
     }
 
     @Test
@@ -59,7 +59,7 @@ public class JourneyControllerTest {
     @Test
     public void test_getAllJourneys() throws Exception
     {
-        mockMvc.perform(get("/journey/getAllJourneys/1452779")).andDo(print())
+        mockMvc.perform(get("/journey/getAllJourneys/1452778")).andDo(print())
         .andExpect(view().name("journey/journeys"));
     }
 }

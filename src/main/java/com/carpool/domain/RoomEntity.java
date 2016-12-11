@@ -29,6 +29,17 @@ public class RoomEntity implements Serializable{
     private JourneyEntity journey;
     private Collection<UserEntity> userParticipate;
 
+    @Column(name = "roomnote")
+    public String getRoomNote() {
+        return roomNote;
+    }
+
+    public void setRoomNote(String roomNote) {
+        this.roomNote = roomNote;
+    }
+
+    private String roomNote;
+
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -82,7 +82,7 @@
             <div class="no-journey" style="padding: 50px; font-size: larger;">
                 <i class="icon-flickr">
                     <c:choose>
-                        <c:when test="${type}='我是房主'">
+                        <c:when test="${type=='我是房主'}">
                             你还没有成为过房主
                             <a href="/home/main">去开房</a>
                         </c:when>

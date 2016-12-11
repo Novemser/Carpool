@@ -107,7 +107,7 @@
 
                     <c:if test="${sendedComments.hasPrevious()}">
                         <li>
-                            <a class="btn" href="<c:url value='/comment/getSendedComment/${userid}?currentPage=${sendedComments.number-1}'></c:url>">
+                            <a  href="<c:url value='/comment/getSendedComment/${userid}?currentPage=${sendedComments.number-1}'></c:url>">
                                 上一页
                             </a>
                         </li>
@@ -117,7 +117,7 @@
                     </li>
                     <c:if test="${sendedComments.hasNext()}">
                         <li>
-                            <a class="btn" href="<c:url value='/comment/getSendedComment/${userid}?currentPage=${sendedComments.number+1}'></c:url>">
+                            <a href="<c:url value='/comment/getSendedComment/${userid}?currentPage=${sendedComments.number+1}'></c:url>">
                                 下一页
                             </a>
                         </li>

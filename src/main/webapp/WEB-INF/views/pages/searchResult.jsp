@@ -12,30 +12,14 @@
 <link type="text/css" rel="stylesheet" href="/static/css/room-list.css"/>
 <link href="/static/css/mdb.css" rel="stylesheet"/>
 <%--<style type="text/css">--%>
-    <%--div .fa span {--%>
-        <%--color: slategray;--%>
-        <%--margin-right: 8px;--%>
-    <%--}--%>
+<%--div .fa span {--%>
+<%--color: slategray;--%>
+<%--margin-right: 8px;--%>
+<%--}--%>
 <%--</style>--%>
 <!--custom chart start-->
 <div class="border-head">
     <div class="row">
-        <h3 class="col-lg-3">当前车池
-        <div class="pull-right">
-            <i class="fa fa-flag" aria-hidden="true" style="color: lightcoral;">
-                <span >已完成  </span>
-            </i>
-            <i class="fa fa-flag" aria-hidden="true" style="color: gold;">
-                <span >在途中  </span>
-            </i>
-            <i class="fa fa-flag" aria-hidden="true" style="color: lightgreen">
-                <span >开放  </span>
-            </i>
-        </div>
-        </h3>
-        <div class=" text text-center" style="padding-bottom: 8px">
-            <i class="fa fa-flag" aria-hidden="true" style="color: lightcoral;">
-                <span >已完成  </span>
         <h3 class="col-lg-3">当前车池</h3>
         <div class="text text-center" style="padding-bottom: 8px">
             <i class="flag-finished fa fa-flag" aria-hidden="true" >
@@ -81,7 +65,7 @@
                                 <i class="flag-started fa fa-flag" aria-hidden="true"></i>
                             </c:when>
                         </c:choose>
-                        </div>
+                    </div>
                     <dl class="dl-horizontal">
                         <dt>时间</dt>
                         <dd>${li.startTime}</dd>
@@ -110,7 +94,7 @@
     <ul class="pagination">
         <li>
             <a href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo</span>
+                <span aria-hidden="true">&laquo;</span>
             </a>
         </li>
         <li><a href="#">1</a></li>
