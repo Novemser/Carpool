@@ -38,13 +38,35 @@
             </li>
 
             <li class="menu-item-person">
-                <a href="">
+                <a href="/user?id=3">
                     <i class="icon-user"></i>
                     <span>个人中心 </span>
                     <span class="label label-danger pull-right mail-info">2</span>
                 </a>
             </li>
+            <li class="menu-item-select sub-menu">
+                <a href="javascript:;">
+                    <i class="icon-flag"></i>
+                    <span>我的出行</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub">
+                    <li><a href="/journey/getMyJourneyAsHost/1452779?id=4">我是房主</a> </li>
+                    <li><a href="/journey/getAllJourneys/1452779?id=4">全部出行</a> </li>
+                </ul>
+            </li>
 
+            <li class="menu-item-select sub-menu">
+                <a href="javascript:;">
+                    <i class="icon-comment"></i>
+                    <span>评论中心</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub">
+                    <li><a href="/comment/getReceivedComment/1452779?id=5">收到评论</a> </li>
+                    <li><a href="/comment/getSendedComment/1452779?id=5">发出评论</a> </li>
+                </ul>
+            </li>
             <li class="menu-item-logout">
                 <a href="/login">
                     <i class="icon-key"></i>
