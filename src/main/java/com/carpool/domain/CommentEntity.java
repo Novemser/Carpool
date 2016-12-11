@@ -19,6 +19,7 @@ public class CommentEntity {
 
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() {
         return id;
     }

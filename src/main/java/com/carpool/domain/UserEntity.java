@@ -20,6 +20,16 @@ public class UserEntity implements Serializable{
     private double credit;
     private String alipay;
     private int coins;
+    private Integer receivedComments;
+
+    @Column(nullable = false)
+    public Integer getReceivedComments() {
+        return receivedComments;
+    }
+
+    public void setReceivedComments(Integer receivedComments) {
+        this.receivedComments = receivedComments;
+    }
 
     @Column
     public Integer getCarpoolingCount() {

@@ -19,8 +19,20 @@
 <!--custom chart start-->
 <div class="border-head">
     <div class="row">
-        <h3 class="col-lg-3">当前车池</h3>
-        <div class="text text-center" style="padding-bottom: 8px">
+        <h3 class="col-lg-3">当前车池
+        <div class="pull-right">
+            <i class="fa fa-flag" aria-hidden="true" style="color: lightcoral;">
+                <span >已完成  </span>
+            </i>
+            <i class="fa fa-flag" aria-hidden="true" style="color: gold;">
+                <span >在途中  </span>
+            </i>
+            <i class="fa fa-flag" aria-hidden="true" style="color: lightgreen">
+                <span >开放  </span>
+            </i>
+        </div>
+        </h3>
+        <div class=" text text-center" style="padding-bottom: 8px">
             <i class="fa fa-flag" aria-hidden="true" style="color: lightcoral;">
                 <span >已完成  </span>
             </i>

@@ -194,7 +194,7 @@ public class RoomEntity implements Serializable{
     }
 
 
-    @ManyToMany(mappedBy = "userParticipateRooms", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "userParticipateRooms", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     public Collection<UserEntity> getUserParticipate() {
         return userParticipate;
     }
