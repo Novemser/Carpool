@@ -12,7 +12,7 @@
 
 <div class="row">
     <div class="col-lg-8 col-lg-offset-2">
-        <section class="panel" style="margin-bottom: 100px">
+        <section class="z-depth-1 panel" style="margin-bottom: 100px">
             <div class="panel-body">
                 <form:form class="form-horizontal" modelAttribute="roomSelection" id="create-room-form" method="post"
                            action="/room/join?id=2">

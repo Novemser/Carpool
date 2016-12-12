@@ -12,7 +12,7 @@
 
 <div class="row">
     <div class="col-lg-8 col-lg-offset-2">
-        <section class="panel" style="margin-bottom: 100px">
+        <section class="z-depth-1 panel" style="margin-bottom: 100px">
 
             <header class="panel-heading">
                 房间创建向导

@@ -1,4 +1,4 @@
-<%@ page import="com.carpool.domain.RoomState" %>
+
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
@@ -14,8 +14,8 @@
     <title><tiles:getAsString name="title"/></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap core CSS -->
-    <link href="/static/css/bootstrap.css" rel="stylesheet">
-    <link href="/static/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/bootstrap-theme.min.css" rel="stylesheet">
     <!--external css-->
     <link href="/static/assets/font-awesome/css/font-awesome.css" rel="stylesheet"/>
     <link rel="stylesheet" href="/static/css/owl.carousel.css" type="text/css">
@@ -23,7 +23,7 @@
     <link href="/static/css/style.css" rel="stylesheet">
     <link href="/static/css/style-responsive.css" rel="stylesheet"/>
     <link href="/static/css/font-awesome.min.css" rel="stylesheet"/>
-    <script src="/static/js/jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script src="/static/js/jquery-1.8.3.min.js"></script>
     <script src="/static/js/bootstrap.min.js" type="text/javascript"></script>
 
 </head>
@@ -45,6 +45,11 @@
 
 
 <!-- js placed at the end of the document so the pages load faster -->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/jquery-1.8.3.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
+
 <%--<script src="/static/js/jquery.scrollTo.min.js"></script>--%>
 <%--<script src="/static/js/jquery.nicescroll.js" type="text/javascript"></script>--%>
 <%--<script src="/static/js/jquery.sparkline.js" type="text/javascript"></script>--%>
@@ -53,9 +58,5 @@
 
 <!--common script for all pages-->
 <script src="/static/js/common-scripts.js"></script>
-
-<!--script for this page-->
-<%--<script src="/static/js/sparkline-chart.js"></script>--%>
-<%--<script src="/static/js/easy-pie-chart.js"></script>--%>
 </body>
 </html>
