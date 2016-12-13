@@ -23,24 +23,42 @@
     <link href="/static/css/font-awesome.min.css" rel="stylesheet"/>
     <script src="/static/js/jquery-3.1.1.min.js" type="text/javascript"></script>
     <script src="/static/js/bootstrap.min.js" type="text/javascript"></script>
-    <!--script for this page-->
-    <script src="/static/js/jquery.stepy.js" type="text/javascript"></script>
+    <script src="/static/js/mdb.min.js" type="text/javascript"></script>
+    <link href="/static/css/mdb.css" rel="stylesheet"/>
+
 </head>
 <body>
-<div id="example-basic">
-    <h3>Keyboard</h3>
-    <section>
-        <p>Try the keyboard navigation by clicking arrow left or right!</p>
-    </section>
-    <h3>Effects</h3>
-    <section>
-        <p>Wonderful transition effects.</p>
-    </section>
-    <h3>Pager</h3>
-    <section>
-        <p>The next and previous buttons help you to navigate through your content.</p>
-    </section>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <!--Body-->
+            <div class="modal-body">
+                ...
+            </div>
+            <!--Footer-->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
 </div>
+<!-- /.Live preview-->
 <!-- js placed at the end of the document so the pages load faster -->
 <script src="/static/js/jquery.scrollTo.min.js"></script>
 <script src="/static/js/jquery.nicescroll.js" type="text/javascript"></script>
@@ -53,14 +71,3 @@
 
 </body>
 </html>
-
-<script>
-
-    $("#example-basic").steps({
-        headerTag: "h3",
-        bodyTag: "section",
-        transitionEffect: "slideLeft",
-        autoFocus: true
-    });
-
-</script>

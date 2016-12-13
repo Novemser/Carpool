@@ -36,33 +36,14 @@ public class HomeController {
             @RequestParam(value = "size", defaultValue = GlobalConstants.HOME_CARPOOL_PAGE_SIZE_STR) Integer size,
             ModelMap modelMap) {
 
+
         Page<RoomEntity> roomEntities = roomService.findRoom(page, size);
         modelMap.addAttribute("roomPage", roomEntities);
+        modelMap.addAttribute("currentPage", page);
+        modelMap.addAttribute("pageCount", roomService.getRoomPageCount());
 
-//        List<Room> rooms = new ArrayList<Room>();
-//        for (int i = 0; i < 10; i++) {
-//            Room room = new Room();
-//            room.setRoomname("房间" + " " + (i + 1));
-//            room.setCurrentNums(3);
-//            room.setNumberLimit(4);
-//            room.setStartPoint("嘉定校区");
-//            room.setEndPoint("虹桥机场");
-//            room.setStartDate(new Date(System.currentTimeMillis()).toString());
-//            room.setStartTime(new Date(System.currentTimeMillis()).toString());
-//            rooms.add(room);
-//        }
-//        modelMap.addAttribute("rooms", rooms);
         return "main";
     }
-
-//    @RequestMapping(value = "/select", method = RequestMethod.GET)
-//    public String selectRoom(ModelMap modelMap) {
-//        if (!modelMap.containsKey("room")) {
-//            Room room = new Room();
-//            modelMap.addAttribute("room", room);
-//        }
-//        return "home.select";
-//    }
 
     @GetMapping("test")
     public String get() {

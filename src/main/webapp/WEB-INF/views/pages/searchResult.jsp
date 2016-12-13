@@ -1,4 +1,3 @@
-<%@ page import="com.carpool.domain.RoomState" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
@@ -10,14 +9,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link type="text/css" rel="stylesheet" href="/static/css/room-list.css"/>
-<link href="/static/css/mdb.css" rel="stylesheet"/>
-<%--<style type="text/css">--%>
-<%--div .fa span {--%>
-<%--color: slategray;--%>
-<%--margin-right: 8px;--%>
-<%--}--%>
-<%--</style>--%>
-<!--custom chart start-->
+
 <div class="border-head">
     <div class="row">
         <h3 class="col-lg-3">当前车池</h3>
@@ -38,10 +30,6 @@
     </div>
 </div>
 
-<spring:url value="" var="next">
-    <spring:param name="roomPage.page" value="${roomPage.number + 1}"/>
-    <spring:param name="roomPage.size" value="${roomPage.size}"/>
-</spring:url>
 <%@include file="../template/roomState.jsp"%>
 <div class="row">
     <c:forEach items="${roomPage.content}" var="li">

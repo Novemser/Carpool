@@ -8,7 +8,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <aside class="profile-nav col-lg-3">
-    <section class="panel">
+        <section class="panel card">
         <div class="user-heading round">
             <a href="#">
                 <img src="/static/img/profile-avatar.jpg" alt="">

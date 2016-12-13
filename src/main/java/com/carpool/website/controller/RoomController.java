@@ -9,10 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -54,12 +51,15 @@ public class RoomController {
         return "room.detail";
     }
 
-//    @RequestMapping(value = "/add",method = RequestMethod.GET)
-//    public String addRoom(ModelMap modelMap) {
-//        Room room = new Room();
-//        modelMap.addAttribute("room", room);
-//        return "addRoom";
-//    }
+    @GetMapping("/count/room")
+    public @ResponseBody Integer getRoomCount() {
+        return roomService.getRoomsCount();
+    }
+
+    @GetMapping("/count/page")
+    public @ResponseBody Integer getRoomPageCount() {
+        return roomService.getRoomPageCount();
+    }
 
     @GetMapping("/create")
     public String saveNewRoom(ModelMap modelMap) {
