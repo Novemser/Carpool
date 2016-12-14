@@ -113,4 +113,10 @@ public class RoomController {
 
         return "room.addSucceed";
     }
+
+    @GetMapping("/chat")
+    public String joinChatRoom(@RequestParam Integer roomId, ModelMap modelMap) {
+        modelMap.addAttribute("room", roomService.findById(roomId));
+        return "room.chat";
+    }
 }

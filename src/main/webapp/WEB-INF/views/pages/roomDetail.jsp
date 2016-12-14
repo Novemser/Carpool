@@ -78,6 +78,9 @@
                     <dd>${room.roomNote}</dd>
                 </dl>
                 <hr>
+                <div style="margin: 10px">
+                    <i class="fa fa-commenting"></i><a href="/room/chat?roomId=${room.id}"> 点击进入聊天室</a>
+                </div>
                 <c:choose>
                     <c:when test="${room.state==ROOM_STATE_UNLOCKED}">
                         <button type="button" class="btn btn-success btn-lg btn-block">确定加入</button>

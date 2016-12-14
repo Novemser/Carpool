@@ -10,7 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="modal/confirmServiceModal.jsp"%>
 
-<div class="row" style="margin-bottom: 140px;">
+<div class="row">
     <div class="col-lg-8 col-lg-offset-2">
         <section class="z-depth-1 panel" style="margin-bottom: 100px">
             <div class="panel-body">

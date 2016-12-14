@@ -73,6 +73,11 @@
         <put-attribute name="body" value="/WEB-INF/views/pages/searchResult.jsp"/>
     </definition>
 
+    <definition name="room.chat" extends="base-definition">
+        <put-attribute name="title" value="聊天室"/>
+        <put-attribute name="body" value="/WEB-INF/views/pages/chatPage.jsp"/>
+    </definition>
+
     <definition name="user.profile" extends="base-definition">
         <put-attribute name="title" value="个人中心"/>
         <put-attribute name="body" value="/WEB-INF/views/pages/profile.jsp"/>

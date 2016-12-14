@@ -5,6 +5,7 @@ import com.carpool.website.service.baseInterface.AuthService;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,6 +18,7 @@ import java.util.regex.Pattern;
  * Author:  Novemser
  * 2016/12/14
  */
+@Service
 public class BenYanAuthService implements AuthService {
     private Map<String, String> cookies4m3 = new HashMap<>();
     private Map<String, String> postData = new HashMap<>();
@@ -26,6 +28,7 @@ public class BenYanAuthService implements AuthService {
     private final String step1 = "http://4m3.tongji.edu.cn/";
     private final String step3 = "http://4m3.tongji.edu.cn/eams/samlCheck";
 
+    @Override
     public boolean verify(String username, String password, JSONObject result) {
 
         try {

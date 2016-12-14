@@ -120,7 +120,7 @@
             float: right !important;
             display: inline-block;
             padding-left: 0;
-            margin: 20px 0;
+            margin: 24px 15px 75px 10px;
             border-radius: 4px;
         }
     </style>
