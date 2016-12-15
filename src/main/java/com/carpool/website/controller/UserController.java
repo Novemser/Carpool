@@ -65,6 +65,7 @@ public class UserController {
     public String edit(ModelMap modelMap, HttpServletRequest request){
         boolean change=false;
         if(request.getParameter("aliPay")!=null){
+            
             userService.updateUserAlipay("1452714",request.getParameter("aliPay"));
         }
         return "user.profile.edit";
