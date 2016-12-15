@@ -18,7 +18,7 @@
 
         <!-- sidebar menu start-->
         <ul class="sidebar-menu">
-            <li class="menu-item-main mymenu-item">
+            <li class="menu-item-main">
                 <a href="/home/main?id=1">
                     <i class="icon-home"></i>
                     <span>主页 </span>
@@ -39,7 +39,6 @@
 
             <li class="menu-item-person mymenu-item">
                 <a href="/user?id=3">
-
                     <i class="icon-user"></i>
                     <span>个人中心 </span>
                     <span class="label label-danger pull-right mail-info">2</span>
@@ -49,8 +48,8 @@
 
             <li class="menu-item-select sub-menu mymenu-item">
                 <a href="javascript:;">
-                    <i class="icon-search"></i>
-                    <span>我的行程</span>
+                    <i class="icon-flag"></i>
+                    <span>我的出行</span>
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub">
@@ -70,7 +69,6 @@
                     <li><a href="/comment/getSendedComment/1452779?id=5">发出评论</a></li>
                 </ul>
             </li>
-
             <li class="menu-item-logout mymenu-item mymenu-item">
                 <a href="/login">
                     <i class="icon-key"></i>
@@ -81,6 +79,7 @@
         <!-- sidebar menu end-->
     </div>
 </aside>
-<script>
+
+<script type="text/javascript" language="JavaScript">
     $(".mymenu-item").eq(${state - 1}).addClass('active');
 </script>

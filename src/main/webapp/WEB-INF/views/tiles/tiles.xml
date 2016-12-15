@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE tiles-definitions PUBLIC  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
-
 <tiles-definitions>
 
     <!-- Base Definition -->
@@ -94,10 +93,9 @@
         <put-attribute name="title" value="修改信息"/>
         <put-attribute name="body" value="/WEB-INF/views/pages/profileEdit.jsp"/>
     </definition>
-
     <definition name="user.profile.journey" extends="base-definition">
         <put-attribute name="title" value="约车记录"/>
         <put-attribute name="body" value="/WEB-INF/views/pages/profileJourney.jsp"/>
     </definition>
-
 </tiles-definitions>
+

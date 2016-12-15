@@ -48,11 +48,25 @@
 
 
 <!-- js placed at the end of the document so the pages load faster -->
+<<<<<<< HEAD
 <script src="/static/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="/static/js/tether.min.js" type="text/javascript"></script>
 <script src="/static/js/mdb.min.js" type="text/javascript"></script>
 <%--<script src="/static/js/owl.carousel.js"></script>--%>
 <%--<script src="/static/js/jquery.customSelect.min.js"></script>--%>
+=======
+<%--<script src="/static/js/jquery.js"></script>--%>
+<%--<script src="/static/js/bootstrap.min.js"></script>--%>
+<%--<script src="/static/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>--%>
+<script src="/static/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/static/js/tether.min.js" type="text/javascript"></script>
+<script src="/static/js/mdb.min.js" type="text/javascript"></script>
+<%--<script src="/static/js/jquery.scrollTo.min.js"></script>--%>
+<%--<script src="/static/js/jquery.nicescroll.js" type="text/javascript"></script>--%>
+<%--<script src="/static/js/jquery.sparkline.js" type="text/javascript"></script>--%>
+<script src="/static/js/owl.carousel.js"></script>
+<script src="/static/js/jquery.customSelect.min.js"></script>
+>>>>>>> master
 
 <!--common script for all pages-->
 <script src="/static/js/common-scripts.js"></script>
