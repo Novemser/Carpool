@@ -4,7 +4,6 @@ import com.carpool.domain.RoomState;
 import com.carpool.domain.UserEntity;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Min;
 import java.io.Serializable;
 
@@ -42,9 +41,6 @@ public class Room implements Serializable {
     private UserEntity host;
 
     private UserEntity payer;
-
-    @AssertTrue
-    private boolean isServiceChecked;
 
     public int getId() {
         return id;
@@ -140,13 +136,5 @@ public class Room implements Serializable {
 
     public void setNote(String note) {
         this.note = note;
-    }
-
-    public boolean getIsServiceChecked() {
-        return isServiceChecked;
-    }
-
-    public void setIsServiceChecked(boolean isServiceChecked) {
-        this.isServiceChecked = isServiceChecked;
     }
 }
