@@ -8,13 +8,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<link href="/static/css/mdb.css" rel="stylesheet"/>
+<%@include file="modal/confirmServiceModal.jsp"%>
 
 <div class="row">
     <div class="col-lg-8 col-lg-offset-2">
         <section class="z-depth-1 panel" style="margin-bottom: 100px">
             <div class="panel-body">
-                <form:form class="form-horizontal" modelAttribute="roomSelection" id="create-room-form" method="post"
+                <form:form name="createform" class="form-horizontal" onsubmit="return validateForm()" modelAttribute="roomSelection" id="create-room-form" method="post"
                            action="/room/join?id=2">
                     <fieldset>
                         <legend><span class="glyphicon glyphicon-home"> </span>选择地点</legend>
@@ -77,26 +77,20 @@
                     </fieldset>
 
                     <fieldset>
-                        <legend><span class="glyphicon glyphicon-book"> </span>服务条款</legend>
+                        <legend><span class="glyphicon glyphicon-book"></span> 服务条款</legend>
                         <div class="form-group">
                             <div class="form-inner-group">
 
-                                <div>
-                                    此平台约人不约车
-                                </div>
+                                <ul class="col-lg-12">
+                                    <li>本平台只提供约车信息交流服务，不提供叫车、联系司机等服务</li>
+                                </ul>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="text-center">
-                                <label>
-                                    <form:checkbox path="isServiceChecked" class="check check1"/>我已查看并同意用户条款
-                                </label>
-                            </div>
-                            <div class="text-center">
-                                <form:errors cssClass="handle-error" path="isServiceChecked"/>
-                            </div>
-                        </div>
+                        <fieldset class="form-group text-center">
+                            <input type="checkbox" id="checkbox1" tabindex="158">
+                            <label for="checkbox1">我已查看并同意用户条款</label>
+                        </fieldset>
                     </fieldset>
 
                     <input class="finish btn btn-outline-warning" type="submit" value="开始查找">

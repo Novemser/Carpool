@@ -108,3 +108,11 @@ var Script = function () {
     }
 
 }();
+
+function validateForm() {
+    if (!this.createform.checkbox1.checked) {
+        $('#modalServiceConfirm').modal('show');
+        return false;
+    }
+    return true;
+}

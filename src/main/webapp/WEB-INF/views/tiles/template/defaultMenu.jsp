@@ -54,8 +54,8 @@
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub">
-                    <li><a href="/journey/getMyJourneyAsHost/1452779?id=4">我是房主</a></li>
-                    <li><a href="/journey/getAllJourneys/1452779?id=4">全部出行</a></li>
+                    <li><a href="/journey/getMyJourneyAsHost/1452681?id=4">我是房主</a></li>
+                    <li><a href="/journey/getAllJourneys/1452681?id=4">全部出行</a></li>
                 </ul>
             </li>
 

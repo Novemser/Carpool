@@ -10,14 +10,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link type="text/css" rel="stylesheet" href="/static/css/room-list.css"/>
-<link href="/static/css/mdb.css" rel="stylesheet"/>
-<%--<style type="text/css">--%>
-<%--div .fa span {--%>
-<%--color: slategray;--%>
-<%--margin-right: 8px;--%>
-<%--}--%>
-<%--</style>--%>
-<!--custom chart start-->
+
 <div class="border-head">
     <div class="row">
         <h3 class="col-lg-3">当前车池</h3>
@@ -92,31 +85,42 @@
             </div>
         </c:forEach>
     </div>
-    <nav aria-label="Page navigation">
-        <ul class="pagination">
-            <li>
-                <a href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo</span>
-                </a>
-            </li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li>
-                <a href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+    <div class="text-center">
+        <nav class="">
+            <ul class="pagination pg-blue ">
+                <!--Arrow left-->
+                <li class="page-item">
+                    <a class="page-link" aria-label="Previous">
+                        <span aria-hidden="true">«</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+
+                <!--Numbers-->
+                <c:forEach var="i" begin="0" end="${pageCount - 1}" step="1">
+                    <c:if test="${i==currentPage}">
+                        <li class="page-item active"><a href="/home/main?page=${i}" class="page-link">${i+1}</a></li>
+                    </c:if>
+                    <c:if test="${i!=currentPage}">
+                        <li class="page-item"><a href="/home/main?page=${i}" class="page-link">${i+1}</a></li>
+                    </c:if>
+                </c:forEach>
+                <!--Arrow right-->
+                <li class="page-item">
+                    <a class="page-link" aria-label="Next">
+                        <span aria-hidden="true">»</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
     <style type="text/css">
         .pagination {
             float: right !important;
             display: inline-block;
             padding-left: 0;
-            margin: 20px 0;
+            margin: 24px 15px 75px 10px;
             border-radius: 4px;
         }
     </style>

@@ -11,19 +11,19 @@
         <ul class="clearfix" style="">
             <li>
                 <a href="/home" class="on"><i class="fa fa-home"></i>
-                    <p>首页</p></a>
+                    <div>首页</div></a>
             </li>
             <li>
                 <a href="/room/create"><i class="fa fa-plus"></i>
-                    <p>新建</p></a>
+                    <div>新建</div></a>
             </li>
             <li>
                 <a href="/room/join"><i class="fa fa-search"></i>
-                    <p>加入</p></a>
+                    <div>加入</div></a>
             </li>
             <li>
-                <a href=""><i class="fa fa-user"></i>
-                    <p>我的</p></a>
+                <a href="/user"><i class="fa fa-user"></i>
+                    <div>我的</div></a>
             </li>
         </ul>
     </div>

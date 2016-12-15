@@ -39,6 +39,7 @@ public class UserController {
     @GetMapping("/user")
     //public String profile(HttpServletRequest request,@RequestParam String userId, ModelMap modelMap) {
     public String profile(HttpServletRequest request, ModelMap modelMap) {
+        request.setAttribute("id", 3);
         request.setAttribute("active", "1");
         //UserEntity userEntity=userService.getUserById(userId);
         UserEntity userEntity=userService.getUserById("1452714");
@@ -48,12 +49,14 @@ public class UserController {
 
     @GetMapping("/user/edit")
     public String editProfile(ModelMap modelMap, HttpServletRequest request) {
+        request.setAttribute("id", 3);
         request.setAttribute("active", "3");
         return "user.profile.edit";
     }
 
     @GetMapping("/user/journey")
     public String showJourney(HttpServletRequest request) {
+        request.setAttribute("id", 3);
         request.setAttribute("active", "2");
         return "user.profile.journey";
     }
