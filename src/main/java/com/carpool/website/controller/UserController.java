@@ -1,10 +1,11 @@
 package com.carpool.website.controller;
 
+import com.carpool.domain.UserEntity;
+import com.carpool.website.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,6 +18,14 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class UserController {
 
+    private final UserService userService;
+
+    @Autowired
+    public UserController(UserService userService){
+        this.userService=userService;
+    }
+
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String logIn() {
         return "pages/login";
@@ -28,8 +37,12 @@ public class UserController {
     }
 
     @GetMapping("/user")
-    public String profile(HttpServletRequest request) {
+    //public String profile(HttpServletRequest request,@RequestParam String userId, ModelMap modelMap) {
+    public String profile(HttpServletRequest request, ModelMap modelMap) {
         request.setAttribute("active", "1");
+        //UserEntity userEntity=userService.getUserById(userId);
+        UserEntity userEntity=userService.getUserById("1452714");
+        modelMap.addAttribute("user",userEntity);
         return "user.profile";
     }
 
@@ -44,4 +57,14 @@ public class UserController {
         request.setAttribute("active", "2");
         return "user.profile.journey";
     }
+
+    @PostMapping("/user/edit")
+    public String edit(ModelMap modelMap, HttpServletRequest request){
+        boolean change=false;
+        if(request.getParameter("aliPay")!=null){
+            userService.updateUserAlipay("1452714",request.getParameter("aliPay"));
+        }
+        return "user.profile.edit";
+    }
+
 }

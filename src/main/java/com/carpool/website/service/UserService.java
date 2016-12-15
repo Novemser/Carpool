@@ -21,4 +21,28 @@ public class UserService {
             throw new UserNullException("getUserError","不存在的用户");
         return  userEntity;
     }
+
+    public void updateUserAlipay(String id,String alipay)
+    {
+        UserEntity userEntity = userEntityRepository.findOne(id);
+        if(userEntity==null)
+            throw new UserNullException("getUserError","不存在的用户");
+        userEntity.setAlipay(alipay);
+    }
+
+    public void updateUserQQ(String id,String QQ)
+    {
+        UserEntity userEntity = userEntityRepository.findOne(id);
+        if(userEntity==null)
+            throw new UserNullException("getUserError","不存在的用户");
+        userEntity.setQqAccount(QQ);
+    }
+
+    public void updateUserWeChat(String id,String WeChat)
+    {
+        UserEntity userEntity = userEntityRepository.findOne(id);
+        if(userEntity==null)
+            throw new UserNullException("getUserError","不存在的用户");
+        userEntity.setWechatAccount(WeChat);
+    }
 }
