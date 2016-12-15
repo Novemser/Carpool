@@ -7,7 +7,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<link href="/static/css/mdb.css" rel="stylesheet"/>
 <div class="border-head">
     <div class="row">
         <h3 class="col-lg-3">房间信息</h3>
@@ -20,7 +19,7 @@
     }
 </style>
 <%@include file="../template/roomState.jsp" %>
-<div class="row center-block">
+<div class="row center-block" style="margin-bottom: 90px;">
     <div class="col-lg-8 col-lg-offset-2 text-center detail_dev">
         <section class="z-depth-1 hoverable panel" style="padding: 15px;">
             <header class="panel-heading">
@@ -79,6 +78,9 @@
                     <dd>${room.roomNote}</dd>
                 </dl>
                 <hr>
+                <div style="margin: 10px">
+                    <i class="fa fa-commenting"></i><a href="/room/chat?roomId=${room.id}"> 点击进入聊天室</a>
+                </div>
                 <c:choose>
                     <c:when test="${room.state==ROOM_STATE_UNLOCKED}">
                         <button type="button" class="btn btn-success btn-lg btn-block">确定加入</button>

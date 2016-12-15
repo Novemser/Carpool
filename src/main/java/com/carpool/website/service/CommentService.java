@@ -1,7 +1,6 @@
 package com.carpool.website.service;
 
 import com.carpool.domain.CommentEntity;
-import com.carpool.domain.UserEntity;
 import com.carpool.exception.CommentException;
 import com.carpool.exception.UserNullException;
 import com.carpool.website.dao.CommentEntityRepository;
@@ -13,7 +12,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 

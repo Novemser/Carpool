@@ -72,6 +72,9 @@
 <body>
 <c:set value="${journeys}" var="journeyPages"></c:set>
 <c:set var="journeyIncurrentPage" value="${journeys.content}"></c:set>
+<script type="javascript">
+    document.title = ${type}
+</script>
 <div class="border-head">
     <h3>我的出行：${type}
     </h3>

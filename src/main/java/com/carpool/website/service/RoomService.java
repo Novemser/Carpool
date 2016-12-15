@@ -1,5 +1,6 @@
 package com.carpool.website.service;
 
+import com.carpool.configuration.GlobalConstants;
 import com.carpool.domain.RoomEntity;
 import com.carpool.domain.RoomState;
 import com.carpool.domain.UserEntity;
@@ -80,6 +81,14 @@ public class RoomService {
         return roomEntityRepository.findUserRooms(userEntity, p);
     }
 
+    public Integer getRoomPageCount() {
+        return (int) Math.ceil(roomEntityRepository.getRoomCount() * 1.0 / GlobalConstants.HOME_CARPOOL_PAGE_SIZE);
+    }
+
+    public Integer getRoomsCount() {
+        return roomEntityRepository.getRoomCount();
+    }
+
     public RoomEntity findById(int id) {
         RoomEntity entity = roomEntityRepository.findOne(id);
 
@@ -114,6 +123,10 @@ public class RoomService {
         return roomEntityRepository.findByStartPointAndEndPointAndStartTimeBetween(startPoint,
                 endPoint,
                 from, to, p);
+    }
+
+    public Page<RoomEntity> findRoom(Pageable pageable) {
+        return roomEntityRepository.findAll(pageable);
     }
 
     public Page<RoomEntity> findRoom(int page, int size) {

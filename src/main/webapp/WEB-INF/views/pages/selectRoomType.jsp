@@ -8,7 +8,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<link href="/static/css/mdb.css" rel="stylesheet"/>
+<%--<link href="/static/css/mdb.css" rel="stylesheet"/>--%>
 <div class="border-head">
     <div class="row">
         <h3 class="col-lg-3">选择拼车房间</h3><q></q>

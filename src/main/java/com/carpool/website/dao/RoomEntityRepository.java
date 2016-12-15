@@ -38,5 +38,6 @@ public interface RoomEntityRepository extends JpaRepository<RoomEntity, Integer>
     void updateState(@Param("qState") RoomState state,
                      @Param("qId") int id);
 
-
+    @Query("select count(*) from RoomEntity")
+    Integer getRoomCount();
 }
