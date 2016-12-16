@@ -52,12 +52,16 @@ public class RoomController {
     }
 
     @GetMapping("/count/room")
-    public @ResponseBody Integer getRoomCount() {
+    public
+    @ResponseBody
+    Integer getRoomCount() {
         return roomService.getRoomsCount();
     }
 
     @GetMapping("/count/page")
-    public @ResponseBody Integer getRoomPageCount() {
+    public
+    @ResponseBody
+    Integer getRoomPageCount() {
         return roomService.getRoomPageCount();
     }
 
@@ -109,6 +113,22 @@ public class RoomController {
 
         if (bindingResult.hasErrors()) {
             return "room.create";
+        } else {
+            Date startTime = null;
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            try {
+                startTime = format.parse(room.getStartDate() + " " + room.getStartTime());
+
+                roomService.createRoom(room.getRoomname(),
+                        room.getStartPoint(),
+                        room.getEndPoint(),
+                        room.getNumberLimit(),
+                        startTime,
+                        "1452681"
+                );
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         return "room.addSucceed";
