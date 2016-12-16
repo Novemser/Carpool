@@ -134,7 +134,8 @@ public class UserEntity implements Serializable{
     }
 
     @Basic
-    @Column(name = "alipay", nullable = true, length = 20)
+    //支付功能取消所以可以为空
+    @Column(name = "alipay", nullable = false, length = 20)
     public String getAlipay() {
         return alipay;
     }

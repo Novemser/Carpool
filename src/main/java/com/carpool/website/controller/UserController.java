@@ -64,11 +64,31 @@ public class UserController {
     @PostMapping("/user/edit")
     public String edit(ModelMap modelMap, HttpServletRequest request){
         boolean change=false;
+        //更新有错
         if(request.getParameter("aliPay")!=null){
-            
             userService.updateUserAlipay("1452714",request.getParameter("aliPay"));
+            change=true;
         }
-        return "user.profile.edit";
+        if(request.getParameter("QQ")!=null){
+            userService.updateUserQQ("1452714",request.getParameter("QQ"));
+            change=true;
+        }
+        if(request.getParameter("WeChat")!=null){
+            userService.updateUserQQ("1452714",request.getParameter("WeChat"));
+            change=true;
+        }
+        //返回的页面应该不一样
+        if(change==true)
+            return "user.profile";
+        else
+            return "user.profile.edit";
+    }
+
+    @PostMapping("/user/password")
+    public String editPassword(ModelMap modelMap, HttpServletRequest request){
+        userService.updateUserPassword("1452714",request.getParameter("newPassword"));
+        //这里应该返回的页面不一样
+        return "user.profile";
     }
 
 }
