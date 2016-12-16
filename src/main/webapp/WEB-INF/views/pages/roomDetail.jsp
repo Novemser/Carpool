@@ -46,7 +46,7 @@
                         <c:choose>
                             <c:when test="${state==ROOM_STATE_UNLOCKED}">
                                 <i class="flag-unlocked fa fa-flag" aria-hidden="true">
-                                    <span>开放  </span>
+                                    <span>开放 </span>
                                 </i>
                             </c:when>
                             <c:when test="${state==ROOM_STATE_LOCKED}">
@@ -78,21 +78,41 @@
                     <dd>${room.roomNote}</dd>
                 </dl>
                 <hr>
-                <div style="margin: 10px">
-                    <i class="fa fa-commenting"></i><a href="/room/chat?roomId=${room.id}"> 点击进入聊天室</a>
+                <div style="margin: 24px;width: 75%;" class="btn btn-lg btn-primary">
+                    <i class="fa fa-commenting"></i><a href="/room/chat?roomId=3" style="color: white"> 进入聊天室</a>
                 </div>
                 <c:choose>
                     <c:when test="${room.state==ROOM_STATE_UNLOCKED}">
-                        <button type="button" class="btn btn-success btn-lg btn-block">确定加入</button>
+                        <div class="btn-effect btn btn-success btn-lg">
+                            <i class="fa fa-check"></i><a href="/"> 确定加入</a>
+                        </div>
                     </c:when>
                     <c:when test="${room.state==ROOM_STATE_LOCKED}">
-                        <button type="button" class="btn btn-warning btn-lg btn-block">暂时无法加入 请等待房主解锁</button>
+                        <div class="btn-effect btn btn-warning btn-lg">
+                            <i class="fa fa-info"></i><a href="/"> 暂时无法加入 请等待房主解锁</a>
+                        </div>
                     </c:when>
                     <c:otherwise>
-                        <button type="button" class="btn btn-default btn-lg btn-block">无法加入此房间</button>
+                        <div class="btn-effect btn btn-default btn-lg btn-block">
+                            <i class="fa fa-exclamation-triangle"></i> 无法加入此房间
+                        </div>
                     </c:otherwise>
                 </c:choose>
             </div>
         </section>
     </div>
 </div>
+
+<style type="text/css">
+    .btn-effect {
+        width: 75%;
+        margin: 10px;
+    }
+
+    .btn-effect a {
+        color: white;
+    }
+</style>
+
+<script>
+</script>
