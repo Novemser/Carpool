@@ -33,7 +33,7 @@
             </dl>
             <hr>
             <div style="margin: 10px">
-                <i class="fa fa-commenting"></i><a href="/room/chat?roomId=${room.id}"> 点击进入聊天室</a>
+                <i class="fa fa-commenting"></i><a href="/room/chat?roomId=${room.id}"> 进入聊天室</a>
             </div>
         </div>
     </div>

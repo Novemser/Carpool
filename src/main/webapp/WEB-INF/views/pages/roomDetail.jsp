@@ -79,7 +79,7 @@
                 </dl>
                 <hr>
                 <div style="margin: 24px;width: 75%;" class="btn btn-lg btn-primary">
-                    <i class="fa fa-commenting"></i><a href="/room/chat?roomId=3" style="color: white"> 点击进入聊天室</a>
+                    <i class="fa fa-commenting"></i><a href="/room/chat?roomId=3" style="color: white"> 进入聊天室</a>
                 </div>
                 <c:choose>
                     <c:when test="${room.state==ROOM_STATE_UNLOCKED}">

@@ -1,0 +1,22 @@
+a {
+    font-size: 22px;
+    color: white !important;
+}
+
+.btn2 {
+    border: 2px solid;
+    border-radius: 45px;
+}
+
+.navbar, .navbar-header {
+    background: rgba(1, 0, 0, 0);
+    background-color: rgba(1, 0, 0, 0);
+    border-color: #E7E7E7;
+}
+
+.navbar-default {
+    box-shadow: none !important;
+    background-color: rgba(1, 0, 0, 0);
+    border-color: rgba(1, 0, 0, 0);
+    margin: 20px;
+}
