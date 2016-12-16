@@ -457,8 +457,6 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
     .dropdown-menu.extended {
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.176) !important;
     }
-
-;
 }
 
 .dropdown-menu.extended li p {
@@ -1454,7 +1452,7 @@ h3.timeline-title {
         margin-bottom: -4px;
     }
 
-;
+
 }
 
 .panel-footer.revenue-foot ul {
@@ -3991,7 +3989,7 @@ table.sliders tr td {
     font-size: 13px;
 }
 
-`
+
 /*custom select*/
 
 span.customSelect {
@@ -4034,7 +4032,7 @@ div .fa span {
     margin-right: 8px;
 }
 
-.text, .dl, span {
+.text, .dl, .fa span {
     font-family: 'Roboto', sans-serif !important;
 }
 

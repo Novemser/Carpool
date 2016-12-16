@@ -72,7 +72,8 @@ public class RoomService {
         // 所以只用修改User里的多方表就可以了
         userEntity.getUserParticipateRooms().add(roomEntity);
 
-        roomEntityRepository.saveAndFlush(roomEntity);
+        RoomEntity entity = roomEntityRepository.saveAndFlush(roomEntity);
+        System.out.println(entity.getId());
     }
 
     public Page<RoomEntity> listUserRooms(String userId) {
