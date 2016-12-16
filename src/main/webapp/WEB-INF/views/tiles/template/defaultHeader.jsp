@@ -12,7 +12,7 @@
         <div data-original-title="Toggle Navigation" data-placement="right" class="icon-reorder tooltips"></div>
     </div>
     <!--logo start-->
-    <a href="#" class="logo">Car<span>pool</span></a>
+    <a href="/index" class="logo">Car<span>pool</span></a>
     <!--logo end-->
     <div class="nav notify-row pull-right" id="top_menu">
         <!--  notification start -->
