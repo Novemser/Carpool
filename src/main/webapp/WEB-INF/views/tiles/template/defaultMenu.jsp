@@ -20,8 +20,8 @@
         <ul class="sidebar-menu">
             <li class="menu-item-main mymenu-item">
                 <a href="/home/main?id=1">
-                    <i class="icon-home"></i>
-                    <span>主页 </span>
+                    <i class="fa fa-car"></i>
+                    <span>车池 </span>
                 </a>
             </li>
             <li class="menu-item-select sub-menu mymenu-item">

@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
 <%--
   Created by IntelliJ IDEA.
   User: Novemser
@@ -36,7 +36,7 @@
     <%@include file="../template/roomState.jsp" %>
     <div class="row">
         <c:choose>
-            <c:when test="${roomPage==null}">
+            <c:when test="${roomPage==null||roomPage.size==0}">
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     Ooops, 车池空了...
                 </div>
@@ -67,7 +67,7 @@
                                 </div>
                                 <dl class="dl-horizontal">
                                     <dt>出发时间</dt>
-                                    <dd><fmt:formatDate value="${li.startTime}" pattern="yyyy-MM-dd HH:mm"/> </dd>
+                                    <dd><fmt:formatDate value="${li.startTime}" pattern="yyyy-MM-dd HH:mm"/></dd>
                                     <dt>出发地点</dt>
                                     <dd>${li.startPoint}</dd>
                                     <dt>目的地</dt>

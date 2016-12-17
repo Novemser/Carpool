@@ -61,17 +61,17 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="form-inner-group">
+                        <%--<div class="form-group">--%>
+                            <%--<div class="form-inner-group">--%>
 
-                                <div>
-                                    <form:input path="startTime" type="time" class="form-control"/>
-                                </div>
-                                <div>
-                                    <form:errors cssClass="handle-error" path="startTime"/>
-                                </div>
-                            </div>
-                        </div>
+                                <%--<div>--%>
+                                    <%--<form:input path="startTime" type="time" class="form-control"/>--%>
+                                <%--</div>--%>
+                                <%--<div>--%>
+                                    <%--<form:errors cssClass="handle-error" path="startTime"/>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
 
 
                     </fieldset>

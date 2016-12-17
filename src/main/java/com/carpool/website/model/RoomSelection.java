@@ -11,7 +11,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class RoomSelection {
     @NotEmpty
     private String startDate;
-    @NotEmpty
+
     private String startTime;
     @NotEmpty
     private String startPoint;
