@@ -198,7 +198,7 @@
 
             <!--Rotating card-->
             <div class="card-wrapper">
-                <div id="card-4" class="card-rotating effect__click">
+                <div id="card-3" class="card-rotating effect__click">
 
                     <!--Front Side-->
                     <div class="face front">
@@ -253,7 +253,7 @@
 
             <!--Rotating card-->
             <div class="card-wrapper">
-                <div id="card-3" class="card-rotating effect__click">
+                <div id="card-4" class="card-rotating effect__click">
 
                     <!--Front Side-->
                     <div class="face front">
@@ -270,7 +270,7 @@
                             <h4>Sarah Melyah</h4>
                             <p>Front-end Developer</p>
                             <!--Triggering button-->
-                            <a class="rotate-btn" data-card="card-3"><i class="fa fa-repeat"></i> Click here to rotate</a>
+                            <a class="rotate-btn" data-card="card-4"><i class="fa fa-repeat"></i> Click here to rotate</a>
                         </div>
                     </div>
                     <!--/.Front Side-->
@@ -293,7 +293,7 @@
                             <li><a class="icons-sm li-ic"><i class="fa fa-linkedin"></i></a></li>
                         </ul>
                         <!--Triggering button-->
-                        <a class="rotate-btn" data-card="card-3"><i class="fa fa-undo"></i> Click here to rotate back</a>
+                        <a class="rotate-btn" data-card="card-4"><i class="fa fa-undo"></i> Click here to rotate back</a>
 
                     </div>
                     <!--/.Back Side-->
@@ -305,6 +305,7 @@
         <!--/Forth column-->
     </div>
 </div>
+
 <!--Footer-->
 <footer class="page-footer center-on-small-only">
 

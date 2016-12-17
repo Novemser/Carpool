@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.util.Date;
 
@@ -20,6 +21,7 @@ import java.util.Date;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/dispatcher-servlet.xml")
+@WebAppConfiguration
 public class RoomServiceTest {
 
     @Autowired
@@ -79,7 +81,9 @@ public class RoomServiceTest {
                         "嘉定校区",
                         "虹桥机场",
                         new Date(),
-                        1
+                        1,
+                        0,
+                        12
                 );
         int cnt = roomEntities.getNumberOfElements();
         System.out.println("roomEntities num:" + cnt);

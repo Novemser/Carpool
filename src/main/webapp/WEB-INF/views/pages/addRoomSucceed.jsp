@@ -8,9 +8,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link type="text/css" rel="stylesheet" href="<c:url value="/static/css/room-list.css"/>"/>
-<section class="panel col-center-block col-lg-6 col-md-10 col-sm-12">
+<section class="card col-center-block col-lg-6 col-md-10 col-sm-12" style="background: white;">
     <div class="panel-body">
-        <div class="alert alert-success alert-block fade in">
+        <div class="fade in">
             <h4>
                 <i class="fa fa-check-circle fa-2x" style="color: green;line-height: 60px">
                     <span style="color: green; font-size: 25px; margin-bottom: 2px;vertical-align: middle;">创建成功!</span>
@@ -26,14 +26,22 @@
                 <dd>${room.startPoint}</dd>
                 <dt>终点</dt>
                 <dd>${room.endPoint}</dd>
-                <dt>人数上线</dt>
+                <dt>人数上限</dt>
                 <dd>${room.numberLimit}</dd>
                 <dt>备注</dt>
                 <dd>${room.note}</dd>
             </dl>
             <hr>
-            <div style="margin: 10px">
-                <i class="fa fa-commenting"></i><a href="/room/chat?roomId=${room.id}"> 进入聊天室</a>
+            <h4 class="text-center">分享房间</h4>
+            <div class="row text-center" style="margin-top: 24px;margin-bottom: 21px;">
+                <!--Dribbble-->
+                <a class="icons-sm drib-ic"><i class="fa fa-dribbble"> </i></a>
+                <!--Linkedin-->
+                <a class="icons-sm li-ic"><i class="fa fa-linkedin"> </i></a>
+                <!--Google +-->
+                <a class="icons-sm gplus-ic"><i class="fa fa-google-plus"> </i></a>
+                <!--Instagram-->
+                <a class="icons-sm ins-ic"><i class="fa fa-instagram"> </i></a>
             </div>
         </div>
     </div>

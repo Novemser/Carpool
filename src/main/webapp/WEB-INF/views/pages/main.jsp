@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
 <%--
   Created by IntelliJ IDEA.
   User: Novemser
@@ -65,8 +66,8 @@
                                     </c:choose>
                                 </div>
                                 <dl class="dl-horizontal">
-                                    <dt>时间</dt>
-                                    <dd>${li.startTime}</dd>
+                                    <dt>出发时间</dt>
+                                    <dd><fmt:formatDate value="${li.startTime}" pattern="yyyy-MM-dd HH:mm"/> </dd>
                                     <dt>出发地点</dt>
                                     <dd>${li.startPoint}</dd>
                                     <dt>目的地</dt>
@@ -74,7 +75,7 @@
                                     <dt>人数</dt>
                                     <dd>
                         <span style="text-align: center;">
-                            <c:forEach begin="0" end="${li.currentNums}">
+                            <c:forEach begin="1" end="${li.currentNums}">
                                 <i class="icon-user" style="color: #42b2c4;"></i>
                             </c:forEach>
                             <c:forEach begin="0" end="${li.numberLimit-li.currentNums}">
@@ -122,13 +123,14 @@
             </ul>
         </nav>
     </div>
-    <style type="text/css">
-        .pagination {
-            float: right !important;
-            display: inline-block;
-            padding-left: 0;
-            margin: 24px 15px 75px 10px;
-            border-radius: 4px;
-        }
-    </style>
+
 </div>
+<style type="text/css">
+    .pagination {
+        float: right !important;
+        display: inline-block;
+        padding-left: 0;
+        margin: 24px 15px 75px 10px;
+        border-radius: 4px;
+    }
+</style>

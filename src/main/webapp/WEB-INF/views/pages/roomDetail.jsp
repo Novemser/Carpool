@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
+
 <%--
   Created by IntelliJ IDEA.
   User: Novemser
@@ -67,7 +69,7 @@
                         </c:choose>
                     </dd>
                     <dt>出发时间</dt>
-                    <dd>${room.startTime}</dd>
+                    <dd><fmt:formatDate value="${li.startTime}" pattern="yyyy-MM-dd HH:mm"/> </dd>
                     <dt>起点</dt>
                     <dd>${room.startPoint}</dd>
                     <dt>终点</dt>

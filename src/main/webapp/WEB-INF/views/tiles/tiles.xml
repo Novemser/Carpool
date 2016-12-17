@@ -35,7 +35,6 @@
         <put-attribute name="body" value="/WEB-INF/views/pages/joinRoom.jsp"/>
     </definition>
 
-
     <definition name="room.detail" extends="base-definition">
         <put-attribute name="title" value="房间信息"/>
         <put-attribute name="body" value="/WEB-INF/views/pages/roomDetail.jsp"/>

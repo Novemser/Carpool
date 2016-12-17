@@ -2,8 +2,6 @@ package com.carpool.website.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.validation.constraints.AssertTrue;
-
 /**
  * Project: Carpool
  * Package: com.carpool.website.model
@@ -19,8 +17,6 @@ public class RoomSelection {
     private String startPoint;
     @NotEmpty
     private String endPoint;
-    @AssertTrue
-    private boolean isServiceChecked;
 
     public String getStartDate() {
         return startDate;
@@ -52,13 +48,5 @@ public class RoomSelection {
 
     public void setEndPoint(String endPoint) {
         this.endPoint = endPoint;
-    }
-
-    public boolean getIsServiceChecked() {
-        return isServiceChecked;
-    }
-
-    public void setIsServiceChecked(boolean isServiceChecked) {
-        this.isServiceChecked = isServiceChecked;
     }
 }
