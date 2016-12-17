@@ -13,8 +13,6 @@
 <html>
 <head>
     <title>Title</title>
- <!--   <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"> !-->
-    <%--<link rel="stylesheet" href="/static/css/bootstrap.min_1.css">--%>
     <link rel="stylesheet" href="/static/css/remarkStar.css">
     <link rel="stylesheet" href="/static/css/commentPage.css">
     <script src="/static/js/remark.js"></script>
@@ -22,7 +20,6 @@
         .forDetail
         {
             cursor: pointer;
-
         }
         .peerDetail .commentLink
         {
@@ -67,14 +64,22 @@
         {
             background: transparent none repeat scroll 0 0;
         }
+        label
+        {
+            font-size: large;
+        }
+        .pagination {
+            float: right !important;
+            display: inline-block;
+            padding-left: 0;
+            margin: 24px 15px 75px 10px;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
 <c:set value="${journeys}" var="journeyPages"></c:set>
 <c:set var="journeyIncurrentPage" value="${journeys.content}"></c:set>
-<script type="javascript">
-    document.title = ${type}
-</script>
 <div class="border-head">
     <h3>我的出行：${type}
     </h3>
@@ -100,7 +105,7 @@
         <c:otherwise>
             <c:forEach var="journey" items="${journeyIncurrentPage}">
                 <div class="col-lg-12 col-md-12 col-sm-12 journey">
-                    <section class="panel" style="padding: 15px;">
+                    <section class="z-depth-1 hoverable panel" style="padding: 15px;">
                         <div class="text-center text">
                                 ${journey.room.roomname}
                             <span class="text-right">
@@ -135,33 +140,42 @@
                     </section>
                     </div>
             </c:forEach>
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                <ul class="pagination">
-                    <li>
-                        <a href="<c:url value="${url}?currentPage=0"></c:url>">第一页</a>
-                    </li>
-                    <c:if test="${journeyPages.hasPrevious()}">
-                        <li>
-                            <a href="<c:url value="${url}?currentPage=${journeyPages.number-1}"></c:url>">上一页</a>
+
+            <div class="text-center">
+                <nav class="">
+                    <ul class="pagination pg-blue ">
+                        <!--Arrow left-->
+                        <c:if test="${journeyPages.hasPrevious()}">
+                        <li class="page-item">
+                            <a class="page-link" href='<c:url value="${url}?currentPage=${journeyPages.number-1}"></c:url>' aria-label="Previous">
+                                <span aria-hidden="true">«</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
                         </li>
-                    </c:if>
-                    <li>
-                        <span class="text-info disabled">当前页数${journeyPages.number+1}/${journeyPages.totalPages}</span>
-                    </li>
-                    <c:if test="${journeyPages.hasNext()}">
-                    <li>
-                        <a href="<c:url value="${url}?currentPage=${journeyPages.number+1}"></c:url>">下一页</a>
                         </c:if>
-                    </li>
-                    <li>
-                        <a href="<c:url value="${url}?currentPage=${journeyPages.totalPages-1}">
-        </c:url> ">
-                            最后一页
-                        </a>
-                    </li>
-                </ul>
+
+                        <!--Numbers-->
+                        <c:forEach var="i" begin="0" end="${journeyPages.totalPages > 0 ? journeyPages.totalPages - 1: 0}" step="1">
+                            <c:if test="${i==currentPage}">
+                                <li class="page-item active"><a href="<c:url value="${url}?currentPage=${i}"></c:url>" class="page-link">${i+1}</a></li>
+                            </c:if>
+                            <c:if test="${i!=currentPage}">
+                                <li class="page-item"><a href="<c:url value="${url}?currentPage=${i}"></c:url>" class="page-link">${i+1}</a></li>
+                            </c:if>
+                        </c:forEach>
+                        <!--Arrow right-->
+                        <c:if test="${journeyPages.hasNext()}">
+                        <li class="page-item">
+                            <a class="page-link" href='<c:url value="${url}?currentPage=${currentPage+1}"></c:url>' aria-label="Next">
+                                <span aria-hidden="true">»</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                        </c:if>
+                    </ul>
+                </nav>
             </div>
-        </c:otherwise>
+            </c:otherwise>
     </c:choose>
 </div>
 <div class="modal fade" id="remarkModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -170,30 +184,30 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"
                         aria-hidden="true">&times;</button>
-                <h4 class="modal-title">给他评价: <label id="targetUserName"></label> </h4>
+                <h4 class="modal-title">给他评价: <span id="targetUserName"></span></h4>
             </div>
             <form class="form-action" id="makeComment">
                 <div class="modal-body" >
                     <input type="hidden" id="journerid" name="journey.id">
                     <input type="hidden" id="sourceuserid" name="sourceUser.id">
                     <input type="hidden" id="targetUserId" name="targetUser.id">
-                    <div class="form-group">
-                    <label for="star" class="col-lg-2 control-label">给他评星:</label>
+                    <div>
+                        <label  class="col-lg-2 control-label">给他评星: </label>
                     <br>
                     <div id="star" class="col-lg-10">
-                        <input type="radio" id="start5" name="credit" value="5">
+                        <input type="radio" id="start5" style="display: none" name="credit" value="5">
                         <label for="start5"><span></span></label>
 
-                        <input type="radio" id="start4" name="credit" value="4">
+                        <input type="radio" style="display: none"   id="start4" name="credit" value="4">
                         <label for="start4"><span></span></label>
 
-                        <input type="radio" id="start3" name="credit" value="3">
+                        <input type="radio" style="display: none"  id="start3" name="credit" value="3">
                         <label for="start3"><span></span></label>
 
-                        <input type="radio" id="start2" name="credit" value="2">
+                        <input type="radio" style="display: none" id="start2" name="credit" value="2">
                         <label for="start2"><span></span></label>
 
-                        <input type="radio" id="start1" name="credit" value="1">
+                        <input type="radio"  style="display: none" id="start1" name="credit" value="1">
                         <label for="start1"><span></span></label>
                     </div>
                     </div>
@@ -203,17 +217,20 @@
                             <div class="col-lg-10">
                                 <textarea name="commentText" id="remarkContent" class="form-control" cols="10" rows="5"placeholder="在这里输入评论"></textarea>
                             </div>
-                      <!--      <textarea id="remarkContent" rows="4" name="commentText" placeholder="在这里输入评论" autofocus>
-                            </textarea>!-->
                     </div>
                 </div>
                 <div class="modal-footer" >
                     <input type="submit" class="btn btn-default" id="summitComment"  value="确定评论"></button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="关闭"></button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(function () {
+        document.title='${type}';
+    });
+</script>
 </body>
 </html>

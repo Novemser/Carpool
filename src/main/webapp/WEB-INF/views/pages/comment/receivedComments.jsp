@@ -40,6 +40,13 @@
             font-size: medium;
             background-color: #f1f2f7;
         }
+        .pagination {
+            float: right !important;
+            display: inline-block;
+            padding-left: 0;
+            margin: 24px 15px 75px 10px;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
@@ -70,7 +77,7 @@
         <c:otherwise>
             <c:forEach var="comment" items="${recievedCommentInCurrentPage}">
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                    <section class="panel" style="padding: 15px;">
+                    <section class="z-depth-1 hoverable panel" style="padding: 15px;">
                         <dl class="dl-horizontal">
                             <dt>评价用户：</dt>
                             <dd><a href="<c:url value="/comment/getOthersComment/${comment.sourceUser.id}"/> "> ${comment.sourceUser.username}</a></dd>
@@ -103,7 +110,7 @@
                     </section>
                 </div>
             </c:forEach>
-            <div class="col-lg-12 col-md-12 col-sm-12" style="padding-left: 15px" >
+    <!--        <div class="col-lg-12 col-md-12 col-sm-12" style="padding-left: 15px" >
                 <ul class="pagination pagination-centered center-block">
                     <li>
                         <a href="<c:url value="/comment/getReceivedComment/${userid}?currentPage=0"></c:url> ">
@@ -134,9 +141,42 @@
                         </a>
                     </li>
                 </ul>
+            </div>!-->
+            <div class="text-center">
+                <nav class="">
+                    <ul class="pagination pg-blue ">
+                        <!--Arrow left-->
+                        <c:if test="${recievedComments.hasPrevious()}">
+                            <li class="page-item">
+                                <a class="page-link" href='<c:url value="/comment/getReceivedComment/${userid}?currentPage=${currentPage-1}"></c:url>' aria-label="Previous">
+                                    <span aria-hidden="true">«</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                        </c:if>
+
+                        <!--Numbers-->
+                        <c:forEach var="i" begin="0" end="${recievedComments.totalPages > 0 ? recievedComments.totalPages - 1: 0}" step="1">
+                            <c:if test="${i==currentPage}">
+                                <li class="page-item active"><a href="<c:url value="/comment/getReceivedComment/${userid}?currentPage=${i}"></c:url>" class="page-link">${i+1}</a></li>
+                            </c:if>
+                            <c:if test="${i!=currentPage}">
+                                <li class="page-item"><a href="<c:url value="/comment/getReceivedComment/${userid}?currentPage=${i}"></c:url>" class="page-link">${i+1}</a></li>
+                            </c:if>
+                        </c:forEach>
+                        <!--Arrow right-->
+                        <c:if test="${recievedComments.hasNext()}">
+                            <li class="page-item">
+                                <a class="page-link" href='<c:url value="/comment/getReceivedComment/${userid}?currentPage=${currentPage+1}"></c:url>' aria-label="Next">
+                                    <span aria-hidden="true">»</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                        </c:if>
+                    </ul>
+                </nav>
             </div>
         </c:otherwise>
-
     </c:choose>
 </div>
 </body>
