@@ -4,8 +4,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Novemser
-  Date: 2016/12/8
-  Time: 12:57
+  Date: 2016/12/18
+  Time: 18:07
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -82,9 +82,6 @@
                 <hr>
                 <div style="margin: 24px;width: 75%;" class="btn btn-lg btn-primary">
                     <i class="fa fa-commenting"></i><a href="/room/chat?roomId=3" style="color: white"> 进入聊天室</a>
-                </div>
-                <div style="margin: 24px;width: 75%;" class="btn btn-lg btn-primary">
-                    <i class="fa fa-commenting"></i><a href="/room/edit?roomId=3" style="color: white"> 修改房间信息</a>
                 </div>
                 <c:choose>
                     <c:when test="${room.state==ROOM_STATE_UNLOCKED}">

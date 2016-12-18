@@ -112,6 +112,14 @@ public class RoomController {
         return "room.search";
     }
 
+    @GetMapping("/edit")
+    public String editRoomInfo(@RequestParam Integer roomId, ModelMap modelMap) {
+        System.out.println(modelMap.size());
+        return "room.edit";
+    }
+
+
+
     @PostMapping("/create")
     public String saveNewRoomPost(@Valid Room room, BindingResult bindingResult, ModelMap modelMap, HttpServletRequest request) {
         request.setAttribute("id", "2");

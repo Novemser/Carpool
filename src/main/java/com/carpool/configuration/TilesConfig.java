@@ -1,7 +1,6 @@
 package com.carpool.configuration;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
@@ -12,7 +11,7 @@ import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
  * Author:  Novemser
  * 2016/12/1
  */
-@Configuration
+//@Configuration
 public class TilesConfig {
     /**
      * Configure TilesConfigurer.
