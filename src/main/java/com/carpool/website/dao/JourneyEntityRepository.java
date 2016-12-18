@@ -74,7 +74,7 @@ public interface JourneyEntityRepository extends JpaRepository<JourneyEntity, In
 
 
    //得到某个用户的出现的目的地，次数的统计
-     @Query("select j.endPoint ,count(j.id)from JourneyEntity  j where :id in (select userParticipate.id from j.room.userParticipate userParticipate) group by j.endPoint  order by count(j.id) ")
+     @Query("select j.endPoint ,count(j.id)from JourneyEntity  j where :id in (select userParticipate.id from j.room.userParticipate userParticipate) group by j.endPoint  order by count(j.id) desc ")
      List<Object[]> getMypreferDestination(@Param("id") String id);
 
 

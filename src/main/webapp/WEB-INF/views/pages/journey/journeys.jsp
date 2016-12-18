@@ -75,6 +75,12 @@
             margin: 24px 15px 75px 10px;
             border-radius: 4px;
         }
+        #myfavorite
+        {
+            position: absolute;
+            right: 20px;
+            top:60px;
+        }
     </style>
 </head>
 <body>

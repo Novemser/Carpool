@@ -61,6 +61,12 @@
         <put-attribute name="body" value="/WEB-INF/views/pages/journey/journeys.jsp">
         </put-attribute>
     </definition>
+    <definition name="journey/myTrack" extends="base-definition">
+        <put-attribute name="title" value="我的足迹">
+        </put-attribute>
+        <put-attribute name="body" value="/WEB-INF/views/pages/journey/myTrack.jsp"></put-attribute>
+    </definition>
+
     <definition name="room.search" extends="base-definition">
         <put-attribute name="title" value="搜索结果"/>
         <put-attribute name="body" value="/WEB-INF/views/pages/searchResult.jsp"/>

@@ -18,7 +18,7 @@
 
         <!-- sidebar menu start-->
         <ul class="sidebar-menu">
-            <li class="menu-item-main">
+            <li class="menu-item-main mymenu-item">
                 <a href="/home/main?id=1">
                     <i class="icon-home"></i>
                     <span>主页 </span>
@@ -55,6 +55,7 @@
                 <ul class="sub">
                     <li><a href="/journey/getMyJourneyAsHost/1452681?id=4">我是房主</a></li>
                     <li><a href="/journey/getAllJourneys/1452681?id=4">全部出行</a></li>
+                    <li><a href="/journey/getMyTrack/1452681?id=4">我的足迹</a></li>
                 </ul>
             </li>
 

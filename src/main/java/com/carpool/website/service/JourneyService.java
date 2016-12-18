@@ -9,6 +9,7 @@ import com.carpool.website.dao.CommentEntityRepository;
 import com.carpool.website.dao.JourneyEntityRepository;
 import com.carpool.website.dao.RoomEntityRepository;
 import com.carpool.website.model.JourneyCommentDetail;
+import com.carpool.website.model.MyTrack;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -107,5 +108,20 @@ public class JourneyService extends PageSevice {
             journeyCommentDetails.add(journeyCommentDetail);
         }
         return  journeyCommentDetails;
+    }
+
+    public List<MyTrack> getMyTrack(String userid)
+    {
+        List<Object[]>myprefers = journeyEntityRepository.getMypreferDestination(userid);
+        List<MyTrack> myTracks = new ArrayList<>();
+        for (Object[] o:myprefers) {
+            String des = (String) o[0];
+            Long times = (Long)o[1];
+            MyTrack m = new MyTrack();
+            m.setNums(times);
+            m.setDestination(des);
+            myTracks.add(m);
+        }
+        return  myTracks;
     }
 }

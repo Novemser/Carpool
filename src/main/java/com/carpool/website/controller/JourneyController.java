@@ -2,6 +2,7 @@ package com.carpool.website.controller;
 
 import com.carpool.domain.JourneyEntity;
 import com.carpool.website.model.JourneyCommentDetail;
+import com.carpool.website.model.MyTrack;
 import com.carpool.website.service.JourneyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -51,5 +52,14 @@ public class JourneyController {
     public List<JourneyCommentDetail> getJourneyCommentDetail(@PathVariable("journeyId")Integer journeyId, @RequestParam("userid")String userid)
     {
         return journeyService.getJourneyCommentDetails(journeyId,userid);
+    }
+
+
+    @RequestMapping(value = "/getMyTrack/{userid}",method = RequestMethod.GET)
+    public String getMyTrack(@PathVariable("userid")String userid,ModelMap modelMap)
+    {
+        List<MyTrack> myTracks = journeyService.getMyTrack(userid);
+        modelMap.addAttribute("mytracks",myTracks);
+        return "journey/myTrack";
     }
 }
