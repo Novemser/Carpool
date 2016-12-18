@@ -1,9 +1,10 @@
 package com.carpool.domain;
 
+import com.carpool.website.service.EncryptionService;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
-import com.carpool.website.service.EncryptionService;
 
 
 /**
@@ -14,11 +15,18 @@ import com.carpool.website.service.EncryptionService;
 public class UserEntity implements Serializable{
     private String id;
     private String username;
+
+
     private String password;
     private byte gender;
     private double credit;
     private String alipay;
     private int coins;
+    private Integer receivedComments;
+
+
+
+    private Integer carpoolingCount;
     private String qqAccount;
     private String wechatAccount;
     private Collection<ChatRecordEntity> sendedChatRecord;
@@ -44,19 +52,13 @@ public class UserEntity implements Serializable{
         this.qqAccount = qqAccount;
         this.wechatAccount = wechatAccount;
         //pw encryption
-
-        EncryptionService enp = new EncryptionService();
-        try{
-            this.password = enp.encipher(password) + enp.encipher(id);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+        this.password = password;
 
 
     }
 
     @Id
-    @Column(name = "id", nullable = false, length = 10)
+    @Column(name = "id", nullable = false, length = 10, unique = true)
     public String getId() {
         return id;
     }
@@ -75,6 +77,7 @@ public class UserEntity implements Serializable{
         this.username = username;
     }
 
+
     @Basic
     @Column(name = "password", nullable = false, length = 225)
     public String getPassword() {
@@ -82,12 +85,7 @@ public class UserEntity implements Serializable{
     }
 
     public void setPassword(String password) {
-        EncryptionService enp = new EncryptionService();
-        try{
-            this.password = enp.encipher(password) + enp.encipher(id);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+        this.password = password;
 
     }
 
@@ -265,5 +263,23 @@ public class UserEntity implements Serializable{
 
     public void setUserParticipateRooms(Collection<RoomEntity> userParticipateRooms) {
         this.userParticipateRooms = userParticipateRooms;
+    }
+
+    @Column(nullable = false)
+    public Integer getReceivedComments() {
+        return receivedComments;
+    }
+
+    public void setReceivedComments(Integer receivedComments) {
+        this.receivedComments = receivedComments;
+    }
+
+    @Column
+    public Integer getCarpoolingCount() {
+        return carpoolingCount;
+    }
+
+    public void setCarpoolingCount(Integer carpoolingCount) {
+        this.carpoolingCount = carpoolingCount;
     }
 }

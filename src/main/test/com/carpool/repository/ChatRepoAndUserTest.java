@@ -1,29 +1,24 @@
 package com.carpool.repository;
 
-import java.sql.Timestamp;
-import java.sql.Date;
-
-import com.carpool.domain.JourneyEntity;
-import com.carpool.domain.RoomEntity;
-import com.carpool.domain.UserEntity;
 import com.carpool.domain.ChatRecordEntity;
+import com.carpool.domain.RoomEntity;
 import com.carpool.domain.RoomState;
-import com.carpool.website.dao.JourneyEntityRepository;
+import com.carpool.domain.UserEntity;
+import com.carpool.website.dao.ChatRecordRepository;
 import com.carpool.website.dao.RoomEntityRepository;
 import com.carpool.website.dao.UserEntityRepository;
-import com.carpool.website.dao.ChatRecordRepository;
-
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.sql.Timestamp;
+import java.util.Date;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"file:src/main/webapp/WEB-INF/dispatcher-servlet.xml"})
@@ -92,7 +87,7 @@ public class ChatRepoAndUserTest {
         ChatRecordEntity chatRecordEntity = new ChatRecordEntity();
 
         chatRecordEntity.setId(10);
-        chatRecordEntity.setCommentime(new java.sql.Date( new java.util.Date().getTime()));
+        chatRecordEntity.setCommenttime(new Date( new Date().getTime()));
         chatRecordEntity.setCommenttext("testcomment");
         chatRecordEntity.setSender(userEntity);
         chatRecordEntity.setRoom(this.roomEntityRepository.findByRoomname("test"));
@@ -104,7 +99,7 @@ public class ChatRepoAndUserTest {
     @Transactional
     public void ChatRecordRepoTest(){
         //find ways test
-        Page<ChatRecordEntity> ret = this.chatRecordRepository.findByCommentime(new java.sql.Date( new java.util.Date().getTime()),this.pageable);
+        Page<ChatRecordEntity> ret = this.chatRecordRepository.findByCommenttime(new Date( new Date().getTime()),this.pageable);
         ChatRecordEntity cre = ret.iterator().next();
         int reTest = this.chatRecordRepository.getRoomById(cre.getId());
         String ueTest = this.chatRecordRepository.getSenderById(cre.getId());

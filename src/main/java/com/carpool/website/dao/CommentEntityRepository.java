@@ -41,6 +41,11 @@ public interface CommentEntityRepository extends JpaRepository<CommentEntity, In
     @Query("select sum(c.credit) from CommentEntity c where  c.targetUser.id=:id")
     Double sumOfCreditByUserId(@Param("id") String id);
 
+    //得到某个人的平均积分
+    @Query("select avg (c.credit) from  CommentEntity  c where  c.targetUser.id=:id")
+    Double avgOfCreditByUserId(@Param("id") String id);
+
+
     //得到某一个用户在一次行程中对某一个用户的评价数,如果没有，返回空
 
     @Query("select count(c.id) from CommentEntity c where c.sourceUser.id=:sourceId" +
@@ -48,4 +53,10 @@ public interface CommentEntityRepository extends JpaRepository<CommentEntity, In
     Integer getNumsOfCommentOneToAnotherInJour(@Param("sourceId") String sourceId,
                                                @Param("targetId") String targetId,
                                                @Param("journeyId") Integer journeyId);
+
+    //得到某一个用户在一次行程中对某一个用户的评价,如果没有，返回空
+    CommentEntity findBySourceUserIdAndTargetUserIdAndJourneyId
+    (String sourceId, String targetId, Integer journeyId);
+
 }
+

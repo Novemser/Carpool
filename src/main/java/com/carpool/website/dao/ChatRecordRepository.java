@@ -1,6 +1,7 @@
 package com.carpool.website.dao;
 
 import com.carpool.domain.ChatRecordEntity;
+
 import com.carpool.domain.RoomEntity;
 import com.carpool.domain.UserEntity;
 import org.springframework.data.domain.Page;
@@ -8,15 +9,16 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * Created by deado on 2016/11/30.
  */
+
 public interface ChatRecordRepository extends JpaRepository<ChatRecordEntity,Integer>{
 
     ChatRecordEntity findById(int id);
-    Page<ChatRecordEntity> findByCommentime(Date commentime, Pageable pageable);
+    Page<ChatRecordEntity> findByCommenttime(Date commentime, Pageable pageable);
 
     @Query("select comment.commenttext from ChatRecordEntity comment where comment.id=?1")
     String getChatTextById(int id);

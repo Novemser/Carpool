@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Collection;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * Created by qi on 2016/11/26.
@@ -28,6 +28,17 @@ public class RoomEntity implements Serializable{
     private UserEntity payer;
     private JourneyEntity journey;
     private Collection<UserEntity> userParticipate;
+
+    @Column(name = "roomnote")
+    public String getRoomNote() {
+        return roomNote;
+    }
+
+    public void setRoomNote(String roomNote) {
+        this.roomNote = roomNote;
+    }
+
+    private String roomNote;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -194,7 +205,7 @@ public class RoomEntity implements Serializable{
     }
 
 
-    @ManyToMany(mappedBy = "userParticipateRooms", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "userParticipateRooms", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     public Collection<UserEntity> getUserParticipate() {
         return userParticipate;
     }

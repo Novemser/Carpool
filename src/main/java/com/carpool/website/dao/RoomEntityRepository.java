@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * Created by Novemser on 2016/11/27.
@@ -19,9 +19,9 @@ import java.sql.Date;
 
 public interface RoomEntityRepository extends JpaRepository<RoomEntity, Integer> {
 
-    Page<RoomEntity> findByStartPointAndEndPointAndStartTime(String startPoint, String endPoint,
+    Page<RoomEntity> findByStartPointAndEndPointAndStartTimeBetween(String startPoint, String endPoint,
+                                                             Date from, Date to, Pageable pageable);
 
-                                                             Date startTime, Pageable pageable);
     RoomEntity findByRoomname(String name);
 
     // 根据User找到何其在同一房间的用户
@@ -38,5 +38,6 @@ public interface RoomEntityRepository extends JpaRepository<RoomEntity, Integer>
     void updateState(@Param("qState") RoomState state,
                      @Param("qId") int id);
 
-
+    @Query("select count(*) from RoomEntity")
+    Integer getRoomCount();
 }
