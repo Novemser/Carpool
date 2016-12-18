@@ -1,11 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
 
 <%--
   Created by IntelliJ IDEA.
   User: Novemser
-  Date: 2016/12/8
-  Time: 12:57
+  Date: 2016/12/18
+  Time: 18:07
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -69,7 +69,7 @@
                         </c:choose>
                     </dd>
                     <dt>出发时间</dt>
-                    <dd><fmt:formatDate value="${room.startTime}" pattern="yyyy-MM-dd HH:mm"/></dd>
+                    <dd><fmt:formatDate value="${room.startTime}" pattern="yyyy-MM-dd HH:mm"/> </dd>
                     <dt>起点</dt>
                     <dd>${room.startPoint}</dd>
                     <dt>终点</dt>
@@ -82,9 +82,6 @@
                 <hr>
                 <div style="margin: 24px;width: 75%;" class="btn btn-lg btn-primary">
                     <i class="fa fa-commenting"></i><a href="/room/chat?roomId=3" style="color: white"> 进入聊天室</a>
-                </div>
-                <div style="margin: 24px;width: 75%;" class="btn btn-lg btn-primary">
-                    <i class="fa fa-commenting"></i><a href="/room/edit?roomId=3" style="color: white"> 修改房间信息</a>
                 </div>
                 <c:choose>
                     <c:when test="${room.state==ROOM_STATE_UNLOCKED}">
@@ -106,16 +103,6 @@
             </div>
         </section>
     </div>
-    <div id="share" class="pull-right">
-        <div class="bdsharebuttonbox">
-            <a class="bds_more" href="#" data-cmd="more"></a>
-            <a title="分享到微信" class="bds_weixin" href="#" data-cmd="weixin"></a>
-            <a title="分享到QQ空间" class="bds_qzone" href="#" data-cmd="qzone"></a>
-            <a title="分享到新浪微博" class="bds_tsina" href="#" data-cmd="tsina"></a>
-            <a title="分享到腾讯微博" class="bds_tqq" href="#" data-cmd="tqq"></a>
-            <a title="分享到人人网" class="bds_renren" href="#" data-cmd="renren"></a>
-            <a title="分享到QQ好友" class="bds_sqq" href="#" data-cmd="sqq"></a></div>
-    </div>
 </div>
 
 <style type="text/css">
@@ -128,7 +115,6 @@
         color: white;
     }
 </style>
+
 <script>
-    window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["weixin","qzone","tsina","tqq","renren","sqq"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["weixin","qzone","tsina","tqq","renren","sqq"]}};
-    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
 </script>

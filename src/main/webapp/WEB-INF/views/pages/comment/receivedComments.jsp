@@ -60,7 +60,7 @@
             <td>信誉积分:</td>
             <td>  <progress id="creditProgress" value="${user.credit}"
                             max="5"></progress></td>
-            <td> ${user.credit}分</td>
+            <td><fmt:formatNumber value="${user.credit}" pattern=".00"></fmt:formatNumber> 分</td>
         </tr></table>
     </h3>
 </div>

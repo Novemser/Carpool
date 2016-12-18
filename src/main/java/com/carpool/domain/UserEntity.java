@@ -15,6 +15,8 @@ import java.util.Collection;
 public class UserEntity implements Serializable{
     private String id;
     private String username;
+
+
     private String password;
     private byte gender;
     private double credit;
@@ -66,13 +68,7 @@ public class UserEntity implements Serializable{
         this.qqAccount = qqAccount;
         this.wechatAccount = wechatAccount;
         //pw encryption
-
-        EncryptionService enp = new EncryptionService();
-        try{
-            this.password = enp.encipher(password) + enp.encipher(id);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+        this.password = password;
 
 
     }
@@ -97,6 +93,7 @@ public class UserEntity implements Serializable{
         this.username = username;
     }
 
+
     @Basic
     @Column(name = "password", nullable = false, length = 225)
     public String getPassword() {
@@ -104,12 +101,7 @@ public class UserEntity implements Serializable{
     }
 
     public void setPassword(String password) {
-        EncryptionService enp = new EncryptionService();
-        try{
-            this.password = enp.encipher(password) + enp.encipher(id);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+        this.password = password;
 
     }
 
