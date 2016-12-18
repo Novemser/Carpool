@@ -20,7 +20,8 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/comment")
-@SessionAttributes("userid")
+//@SessionAttributes("userid")
+//@SessionAttributes("userid")
 public class CommentController {
     @Autowired
     CommentService commentService;

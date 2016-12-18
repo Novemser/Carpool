@@ -83,14 +83,14 @@
                                     <dd>${li.endPoint}</dd>
                                     <dt>人数</dt>
                                     <dd>
-                        <span style="text-align: center;">
-                            <c:forEach begin="1" end="${li.currentNums}">
-                                <i class="icon-user" style="color: #42b2c4;"></i>
-                            </c:forEach>
-                            <c:forEach begin="0" end="${li.numberLimit-li.currentNums}">
-                                <i class="icon-user" style="color: lightgrey"></i>
-                            </c:forEach>
-                        </span>
+                                    <span style="text-align: center;">
+                                        <c:forEach begin="1" end="${li.currentNums}">
+                                            <i class="icon-user" style="color: #42b2c4;"></i>
+                                        </c:forEach>
+                                        <c:forEach begin="0" end="${li.numberLimit-li.currentNums}">
+                                            <i class="icon-user" style="color: lightgrey"></i>
+                                        </c:forEach>
+                                    </span>
                                     </dd>
                                 </dl>
                             </a>

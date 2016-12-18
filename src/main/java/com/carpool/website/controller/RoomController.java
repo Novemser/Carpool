@@ -119,7 +119,6 @@ public class RoomController {
     }
 
 
-
     @PostMapping("/create")
     public String saveNewRoomPost(@Valid Room room, BindingResult bindingResult, ModelMap modelMap, HttpServletRequest request) {
         request.setAttribute("id", "2");

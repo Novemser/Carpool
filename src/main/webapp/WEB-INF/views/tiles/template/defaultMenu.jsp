@@ -66,16 +66,25 @@
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub">
-                    <li><a href="/comment/getReceivedComment/1452779?id=5">收到评论</a></li>
-                    <li><a href="/comment/getSendedComment/1452779?id=5">发出评论</a></li>
+                    <li><a href="/comment/getReceivedComment/1452681?id=5">收到评论</a></li>
+                    <li><a href="/comment/getSendedComment/1452681?id=5">发出评论</a></li>
                 </ul>
             </li>
 
             <li class="menu-item-logout mymenu-item mymenu-item">
-                <a href="/login">
-                    <i class="icon-key"></i>
-                    <span>退出登录</span>
-                </a>
+
+
+                <form id="log-out-form" action="/logout" method=POST>
+                    <%--<i class="icon-key"></i>--%>
+                    <%--&lt;%&ndash;<input value="退出登录" type = "submit"/>&ndash;%&gt;--%>
+                    <%--<span>退出登录</span>--%>
+                    <a onclick="logOut()">
+                        <i class="icon-key"></i>
+                        <span>退出登录</span>
+                    </a>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                </form>
+
             </li>
         </ul>
         <!-- sidebar menu end-->
@@ -83,4 +92,9 @@
 </aside>
 <script>
     $(".mymenu-item").eq(${state - 1}).addClass('active');
+
+    // 提交登出表单
+    function logOut() {
+        $('#log-out-form').submit();
+    }
 </script>

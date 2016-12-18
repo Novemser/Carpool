@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
 
 <%--
   Created by IntelliJ IDEA.
@@ -69,7 +69,7 @@
                         </c:choose>
                     </dd>
                     <dt>出发时间</dt>
-                    <dd><fmt:formatDate value="${room.startTime}" pattern="yyyy-MM-dd HH:mm"/> </dd>
+                    <dd><fmt:formatDate value="${room.startTime}" pattern="yyyy-MM-dd HH:mm"/></dd>
                     <dt>起点</dt>
                     <dd>${room.startPoint}</dd>
                     <dt>终点</dt>
