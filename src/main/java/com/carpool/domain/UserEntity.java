@@ -24,6 +24,23 @@ public class UserEntity implements Serializable{
     private int coins;
     private Integer receivedComments;
 
+    @Column(nullable = false)
+    public Integer getReceivedComments() {
+        return receivedComments;
+    }
+
+    public void setReceivedComments(Integer receivedComments) {
+        this.receivedComments = receivedComments;
+    }
+
+    @Column
+    public Integer getCarpoolingCount() {
+        return carpoolingCount;
+    }
+
+    public void setCarpoolingCount(Integer carpoolingCount) {
+        this.carpoolingCount = carpoolingCount;
+    }
 
 
     private Integer carpoolingCount;
@@ -263,23 +280,5 @@ public class UserEntity implements Serializable{
 
     public void setUserParticipateRooms(Collection<RoomEntity> userParticipateRooms) {
         this.userParticipateRooms = userParticipateRooms;
-    }
-
-    @Column(nullable = false)
-    public Integer getReceivedComments() {
-        return receivedComments;
-    }
-
-    public void setReceivedComments(Integer receivedComments) {
-        this.receivedComments = receivedComments;
-    }
-
-    @Column
-    public Integer getCarpoolingCount() {
-        return carpoolingCount;
-    }
-
-    public void setCarpoolingCount(Integer carpoolingCount) {
-        this.carpoolingCount = carpoolingCount;
     }
 }

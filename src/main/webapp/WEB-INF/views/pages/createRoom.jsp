@@ -80,7 +80,8 @@
                             <div class="form-inner-group">
 
                                 <div>
-                                    <form:input type="text" class="form-control" placeholder="人数上限" path="numberLimit"/>
+                                    <form:input type="number" class="form-control" placeholder="人数上限" path="numberLimit"/>
+
                                 </div>
                                 <div>
                                     <form:errors cssClass="handle-error" path="numberLimit"/>

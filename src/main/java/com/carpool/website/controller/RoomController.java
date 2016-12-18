@@ -1,5 +1,6 @@
 package com.carpool.website.controller;
 
+import com.carpool.configuration.GlobalConstants;
 import com.carpool.domain.RoomEntity;
 import com.carpool.website.model.Room;
 import com.carpool.website.model.RoomSelection;
@@ -52,12 +53,17 @@ public class RoomController {
     }
 
     @GetMapping("/count/room")
-    public @ResponseBody Integer getRoomCount() {
+
+    public
+    @ResponseBody
+    Integer getRoomCount() {
         return roomService.getRoomsCount();
     }
 
     @GetMapping("/count/page")
-    public @ResponseBody Integer getRoomPageCount() {
+    public
+    @ResponseBody
+    Integer getRoomPageCount() {
         return roomService.getRoomPageCount();
     }
 
@@ -75,8 +81,13 @@ public class RoomController {
         return "room.join";
     }
 
-    @PostMapping("/join")
-    public String joinRoom(@Valid RoomSelection room, BindingResult bindingResult, ModelMap modelMap, HttpServletRequest request) {
+    @PostMapping("/join/search")
+    public String joinRoom(@Valid RoomSelection room,
+                           BindingResult bindingResult,
+                           @RequestParam(value = "page", defaultValue = "0") Integer page,
+                           @RequestParam(value = "size", defaultValue = GlobalConstants.HOME_CARPOOL_PAGE_SIZE_STR) Integer size,
+                           ModelMap modelMap,
+                           HttpServletRequest request) {
         request.setAttribute("id", "2");
 
         if (bindingResult.hasErrors()) {
@@ -89,17 +100,17 @@ public class RoomController {
 
         try {
             date = format.parse(selection.getStartDate());
-            Page<RoomEntity> roomEntities = roomService.listRoomsInDays(selection.getStartPoint(), selection.getEndPoint(), date, 1);
-            modelMap.addAttribute("roomPage", roomEntities);
+            Page<RoomEntity> roomEntities = roomService.listRoomsInDays(selection.getStartPoint(), selection.getEndPoint(), date, 1
+                    , page, size);
 
+            modelMap.addAttribute("roomPage", roomEntities);
+            modelMap.addAttribute("currentPage", page);
+            modelMap.addAttribute("pageCount", roomEntities.getTotalPages());
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-
-        // TODO:修改
-
-        return "home";
+        return "room.search";
     }
 
     @PostMapping("/create")
@@ -109,6 +120,22 @@ public class RoomController {
 
         if (bindingResult.hasErrors()) {
             return "room.create";
+        } else {
+            Date startTime = null;
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            try {
+                startTime = format.parse(room.getStartDate() + " " + room.getStartTime());
+
+                roomService.createRoom(room.getRoomname(),
+                        room.getStartPoint(),
+                        room.getEndPoint(),
+                        room.getNumberLimit(),
+                        startTime,
+                        "1452681"
+                );
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         return "room.addSucceed";

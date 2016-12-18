@@ -22,7 +22,6 @@ public class UserController {
         return "pages/login";
     }
 
-
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register() {
         return "pages/register";

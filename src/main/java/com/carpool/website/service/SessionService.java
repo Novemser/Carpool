@@ -17,7 +17,7 @@ import java.util.Date;
 /**
  * Created by deado on 2016/12/18.
  */
-
+@Service
 public class SessionService implements PersistentTokenRepository {
 
 
@@ -28,7 +28,7 @@ public class SessionService implements PersistentTokenRepository {
         this.sessionRepository = sessionRepository;
     }
 
-    @Transactional
+
     public synchronized void createNewToken(PersistentRememberMeToken token){
         SessionEntity sessionEntity = new SessionEntity(
                 token.getSeries(),
@@ -52,6 +52,7 @@ public class SessionService implements PersistentTokenRepository {
 
         return token;
     }
+
 
     public synchronized void removeUserTokens(String username){
         this.sessionRepository.deleteSessionBySeriseId(username);

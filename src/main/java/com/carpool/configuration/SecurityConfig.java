@@ -53,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("*.icon").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/login").defaultSuccessUrl("/main", true)
+                .formLogin().loginPage("/login").defaultSuccessUrl("/home/main", true)
                 .and()
                 .rememberMe()
                 .tokenValiditySeconds(60*30)

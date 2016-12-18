@@ -72,7 +72,8 @@ public class RoomService {
         // 所以只用修改User里的多方表就可以了
         userEntity.getUserParticipateRooms().add(roomEntity);
 
-        roomEntityRepository.saveAndFlush(roomEntity);
+        RoomEntity entity = roomEntityRepository.saveAndFlush(roomEntity);
+        System.out.println(entity.getId());
     }
 
     public Page<RoomEntity> listUserRooms(String userId) {
@@ -111,16 +112,27 @@ public class RoomService {
         user.getUserParticipateRooms().add(room);
     }
 
+
+    /***
+     * 模糊搜索房间
+     *
+     * @param startPoint 起点，模糊搜索
+     * @param endPoint 终点，模糊搜索
+     * @param from 开始时间
+     * @param offset 以开始时间为基准，显示往后多少天的结果
+     * @return 找到的结果
+     * @throws ParseException 解析错误
+     */
     @SuppressWarnings("deprecation")
     public Page<RoomEntity> listRoomsInDays(String startPoint, String endPoint,
-                                            Date from, int offset) throws ParseException {
+                                            Date from, int offset, int page, int size) throws ParseException {
         // TODO:
         // 使用LocationUtil去检查point是否合法
         // 会调用百度API
-        Pageable p = new PageRequest(0, 10);
+        Pageable p = new PageRequest(page, size);
         from = new Date(from.getYear(), from.getMonth(), from.getDate());
         Date to = DateUtils.addDays(from, offset);
-        return roomEntityRepository.findByStartPointAndEndPointAndStartTimeBetween(startPoint,
+        return roomEntityRepository.findRoomStartEndPointLikeInDays(startPoint,
                 endPoint,
                 from, to, p);
     }

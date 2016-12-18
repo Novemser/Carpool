@@ -37,6 +37,7 @@
             <div class="group">
                 <div class="group-ipt email">
                     <input type="text" name="username" id="email" class="ipt" placeholder="请输入您的学号" required>
+
                 </div>
                 <div class="group-ipt password">
                     <input type="password" name="password" id="password" class="ipt" placeholder="输入您的密码" required>
@@ -58,6 +59,7 @@
                 <a href="#">忘记密码？</a>
             </label>
         </div>
+
         </form>
     </div>
 </div>

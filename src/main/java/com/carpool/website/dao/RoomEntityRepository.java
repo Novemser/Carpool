@@ -22,6 +22,23 @@ public interface RoomEntityRepository extends JpaRepository<RoomEntity, Integer>
     Page<RoomEntity> findByStartPointAndEndPointAndStartTimeBetween(String startPoint, String endPoint,
                                                              Date from, Date to, Pageable pageable);
 
+    @Query("select r from RoomEntity r where " +
+            "r.startPoint like %:qStartPoint% " +
+            "and r.endPoint like %:qEndPoint% " +
+            "and r.startTime between :qStartTime and :qEndTime")
+    Page<RoomEntity> findRoomStartEndPointLikeInDays(@Param("qStartPoint") String startPoint,
+                                                     @Param("qEndPoint") String endPoint,
+                                                     @Param("qStartTime") Date from,
+                                                     @Param("qEndTime") Date to,
+                                                     Pageable pageable);
+
+    @Query("select r from RoomEntity r where " +
+            "r.startPoint like %:qStartPoint% " +
+            "and r.endPoint like %:qEndPoint% ")
+    Page<RoomEntity> findRoomStartEndPointLike(@Param("qStartPoint") String startPoint,
+                                                     @Param("qEndPoint") String endPoint,
+                                                     Pageable pageable);
+
     RoomEntity findByRoomname(String name);
 
     // 根据User找到何其在同一房间的用户

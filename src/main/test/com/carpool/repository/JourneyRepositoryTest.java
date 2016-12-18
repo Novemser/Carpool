@@ -1,4 +1,5 @@
-package main.test.com.carpool.repository;
+package com.carpool.repository;
+
 
 import com.carpool.domain.JourneyEntity;
 import com.carpool.domain.RoomEntity;

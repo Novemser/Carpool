@@ -14,7 +14,7 @@
 <head>
     <title>Title</title>
  <!--   <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"> !-->
-    <link rel="stylesheet" href="/static/css/bootstrap.min_1.css">
+    <%--<link rel="stylesheet" href="/static/css/bootstrap.min_1.css">--%>
     <link rel="stylesheet" href="/static/css/remarkStar.css">
     <link rel="stylesheet" href="/static/css/commentPage.css">
     <script src="/static/js/remark.js"></script>

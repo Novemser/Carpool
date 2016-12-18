@@ -51,7 +51,7 @@
         </property>
     </bean>
 
-    <jpa:repositories base-package="com.carpool"/>
+    <jpa:repositories base-package="com.carpool.website.dao"/>
 
     <!-- 链接到persistence.xml -->
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
