@@ -17,7 +17,7 @@
         </c:if>
 
         <!-- sidebar menu start-->
-        <ul class="sidebar-menu">
+        <ul class="yaHei sidebar-menu">
             <li class="menu-item-main mymenu-item">
                 <a href="/home/main?id=1">
                     <i class="fa fa-car"></i>

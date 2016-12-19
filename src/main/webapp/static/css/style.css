@@ -2,8 +2,7 @@
 /*
 Template Name: Flat Lab Dashboard build with Bootstrap v3.0
 Template Version: 1.0
-Author: Mosaddek Hossain
-Website: http://thevectorlab.net/
+Author: Novemser
 */
 
 /* Import fonts */
@@ -4033,7 +4032,15 @@ div .fa span {
 }
 
 .text, .dl, .fa span {
-    font-family: 'Roboto', sans-serif !important;
+    font-family: "Microsoft YaHei", 微软雅黑, "MicrosoftJhengHei", 华文细黑, STHeiti, MingLiu, sans-serif !important;
+}
+
+body {
+    font-family: "Microsoft YaHei", 微软雅黑, "MicrosoftJhengHei", 华文细黑, STHeiti, MingLiu, sans-serif !important;
+}
+
+.yaHei {
+    font-family: "Microsoft YaHei", 微软雅黑, "MicrosoftJhengHei", 华文细黑, STHeiti, MingLiu, sans-serif;
 }
 
 /*@font-face {*/

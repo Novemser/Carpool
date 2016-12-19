@@ -97,7 +97,7 @@
     </definition>
     <definition name="user.profile.journey" extends="base-definition">
         <put-attribute name="title" value="约车记录"/>
-        <put-attribute name="body" value="/WEB-INF/views/pages/profileJourney.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/pages/profileRooms.jsp"/>
     </definition>
 </tiles-definitions>
 

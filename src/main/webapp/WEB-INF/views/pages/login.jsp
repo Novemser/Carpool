@@ -27,7 +27,6 @@
         <div class="index-tab">
             <div class="index-slide-nav">
                 <a href="login" class="active">登录</a>
-                <a href="register">注册</a>
                 <div class="slide-bar"></div>
             </div>
         </div>
@@ -51,19 +50,16 @@
             </div>
 
             <div class="button">
-                <input type="submit" class="login-btn register-btn" id="button">登录</input>
+                <input type="submit" class="login-btn register-btn" id="button"/>
             </div>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-            <div class="remember clearfix">
-                <label class="remember-me"><span class="icon"><span class="zt"></span></span><input type="checkbox"
-                                                                                                    name="remember-me"
-                                                                                                    id="remember-me"
-                                                                                                    class="remember-mecheck"
-                                                                                                    checked>记住我</label>
-                <label class="forgot-password">
-                    <a href="#">忘记密码？</a>
-                </label>
-            </div>
+            <%--<div class="remember clearfix">--%>
+                <%--<label class="remember-me"><span class="icon"><span class="zt"></span></span><input type="checkbox"--%>
+                                                                                                    <%--name="remember-me"--%>
+                                                                                                    <%--id="remember-me"--%>
+                                                                                                    <%--class="remember-mecheck"--%>
+                                                                                                    <%--checked>记住我</label>--%>
+            <%--</div>--%>
 
         </form>
     </div>
@@ -89,6 +85,7 @@
     }).click(function () {
         $(this).attr('src', 'http://zrong.me/home/index/imgcode?id=' + Math.random());
     });
+
     $("#remember-me").click(function () {
         var n = document.getElementById("remember-me").checked;
         if (n) {

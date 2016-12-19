@@ -5,6 +5,7 @@ import com.carpool.domain.RoomEntity;
 import com.carpool.website.model.Room;
 import com.carpool.website.model.RoomSelection;
 import com.carpool.website.service.RoomService;
+import com.carpool.website.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,9 @@ import java.util.Date;
 public class RoomController {
 
     private final RoomService roomService;
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     public RoomController(RoomService roomService) {
@@ -122,7 +126,7 @@ public class RoomController {
     @PostMapping("/create")
     public String saveNewRoomPost(@Valid Room room, BindingResult bindingResult, ModelMap modelMap, HttpServletRequest request) {
         request.setAttribute("id", "2");
-        modelMap.addAttribute("room", room);
+//        modelMap.addAttribute("room", room);
 
         if (bindingResult.hasErrors()) {
             return "room.create";
@@ -131,6 +135,13 @@ public class RoomController {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
             try {
                 startTime = format.parse(room.getStartDate() + " " + room.getStartTime());
+//                String cookieValue = null;
+//                for (Cookie cookie : request.getCookies()) {
+//                    System.out.println(cookie.getName() + ":" + cookie.getValue());
+////                    if (cookie.getName())
+//                }
+
+//                userService.checkSessionIdentity()
 
                 roomService.createRoom(room.getRoomname(),
                         room.getStartPoint(),

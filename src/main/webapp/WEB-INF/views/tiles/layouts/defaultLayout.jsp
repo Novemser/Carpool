@@ -20,7 +20,7 @@
     <link href="/static/css/bootstrap-theme.min.css" rel="stylesheet">
     <!--external css-->
     <link href="/static/assets/font-awesome/css/font-awesome.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="/static/css/owl.carousel.css" type="text/css">
+    <%--<link rel="stylesheet" href="/static/css/owl.carousel.css" type="text/css">--%>
     <!-- Custom styles for this template -->
     <link href="/static/css/mdb.css" rel="stylesheet"/>
     <link href="/static/css/style.css" rel="stylesheet">
@@ -55,17 +55,6 @@
 <script src="/static/js/mdb.min.js" type="text/javascript"></script>
 <%--<script src="/static/js/owl.carousel.js"></script>--%>
 <%--<script src="/static/js/jquery.customSelect.min.js"></script>--%>
-<%--<script src="/static/js/jquery.js"></script>--%>
-<%--<script src="/static/js/bootstrap.min.js"></script>--%>
-<%--<script src="/static/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>--%>
-<script src="/static/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="/static/js/tether.min.js" type="text/javascript"></script>
-<script src="/static/js/mdb.min.js" type="text/javascript"></script>
-<%--<script src="/static/js/jquery.scrollTo.min.js"></script>--%>
-<%--<script src="/static/js/jquery.nicescroll.js" type="text/javascript"></script>--%>
-<%--<script src="/static/js/jquery.sparkline.js" type="text/javascript"></script>--%>
-<script src="/static/js/owl.carousel.js"></script>
-<script src="/static/js/jquery.customSelect.min.js"></script>
 
 <!--common script for all pages-->
 <script src="/static/js/common-scripts.js"></script>

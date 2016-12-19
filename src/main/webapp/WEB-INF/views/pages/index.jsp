@@ -151,7 +151,7 @@
         </div>
 
     </div>
-    <div class="row">
+    <div class="row yaHei">
         <!--First column-->
         <div class="col-lg-3 col-md-6">
             <!--Rotating card-->
@@ -171,9 +171,9 @@
                         <!--Content-->
                         <div class="card-block">
                             <h4>Novemser</h4>
-                            <p>Full stack developer/UI Designer</p>
+                            <p>全栈/UI设计</p>
                             <!--Triggering button-->
-                            <a class="rotate-btn" data-card="card-1"><i class="fa fa-repeat"></i> Click here to rotate</a>
+                            <a class="rotate-btn" data-card="card-1"><i class="fa fa-repeat"></i> 点击查看更多</a>
                         </div>
                     </div>
                     <!--/.Front Side-->
@@ -182,10 +182,9 @@
                     <div class="face back">
 
                         <!--Content-->
-                        <h4>About me</h4>
+                        <h4>关于我</h4>
                         <hr>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime quae, dolores dicta. Blanditiis rem amet repellat, dolores nihil quae in mollitia asperiores ut rerum repellendus, voluptatum eum, officia laudantium
-                            quaerat?
+                        <p>软件开发是一门深奥的玄学
                         </p>
                         <hr>
                         <!--Social Icons-->
@@ -196,7 +195,7 @@
                             <li><a class="icons-sm tw-ic"><i class="fa fa-twitter"> </i></a></li>
                         </ul>
                         <!--Triggering button-->
-                        <a class="rotate-btn" data-card="card-1"><i class="fa fa-undo"></i> Click here to rotate back</a>
+                        <a class="rotate-btn" data-card="card-1"><i class="fa fa-undo"></i> 点击返回</a>
 
                     </div>
                     <!--/.Back Side-->
@@ -408,7 +407,7 @@
         <ul>
             <li>
                 <h5>免费体验</h5></li>
-            <li><a href="/register" class="btn btn-secondary">现在注册!</a></li>
+            <li><a href="/login" class="btn btn-secondary">现在登录!</a></li>
         </ul>
     </div>
     <!--/.Call to action-->
