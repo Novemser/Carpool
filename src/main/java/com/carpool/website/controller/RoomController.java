@@ -2,6 +2,7 @@ package com.carpool.website.controller;
 
 import com.carpool.configuration.GlobalConstants;
 import com.carpool.domain.RoomEntity;
+import com.carpool.exception.InternalErrorException;
 import com.carpool.exception.PermissionDeniedException;
 import com.carpool.website.model.Room;
 import com.carpool.website.model.RoomSelection;
@@ -15,7 +16,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.text.ParseException;
@@ -52,9 +52,16 @@ public class RoomController {
     }
 
     @GetMapping("/detail")
-    public String showDetail(@RequestParam int roomId, ModelMap modelMap) {
+    public String showDetail(@RequestParam int roomId, ModelMap modelMap, HttpServletRequest request) {
         RoomEntity entity = roomService.findById(roomId);
         modelMap.addAttribute("room", entity);
+        String userId = userService.getUserIdByCookie(request.getCookies());
+
+        // 验证当前用户是不是房间的房主
+        if (userId != null && userId.equals(entity.getHost().getId()))
+            modelMap.addAttribute("roomOwner", true);
+        else
+            modelMap.addAttribute("roomOwner", false);
 
         return "room.detail";
     }
@@ -120,8 +127,13 @@ public class RoomController {
     }
 
     @GetMapping("/edit")
-    public String editRoomInfo(@RequestParam Integer roomId, ModelMap modelMap) {
-        System.out.println(modelMap.size());
+    public String editRoomInfo(@RequestParam Integer roomId, ModelMap modelMap, HttpServletRequest request) {
+        RoomEntity entity = roomService.findById(roomId);
+        String userId = userService.getUserIdByCookie(request.getCookies());
+        // 当前用户不是房主 拒绝修改 返回细节界面
+        if (null == userId || !userId.equals(entity.getHost().getId()))
+            return "room.detail";
+
         return "room.edit";
     }
 
@@ -138,13 +150,8 @@ public class RoomController {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
             try {
                 startTime = format.parse(room.getStartDate() + " " + room.getStartTime());
-                String cookieValue = null;
-                String userId = null;
-                for (Cookie cookie : request.getCookies()) {
-                    System.out.println(cookie.getName() + ":" + cookie.getValue());
-                    if (cookie.getName().equals("remember-me"))
-                        userId = userService.checkSessionIdentity(cookie.getValue());
-                }
+
+                String userId = userService.getUserIdByCookie(request.getCookies());
 
                 if (userId == null || userId.equals(""))
                     throw new PermissionDeniedException(HttpStatus.SC_FORBIDDEN + "", "你没有权限");
@@ -154,10 +161,12 @@ public class RoomController {
                         room.getEndPoint(),
                         room.getNumberLimit(),
                         startTime,
-                        userId
+                        userId,
+                        room.getNote()
                 );
             } catch (Exception e) {
                 e.printStackTrace();
+                throw new InternalErrorException("parse", e.getMessage());
             }
         }
 

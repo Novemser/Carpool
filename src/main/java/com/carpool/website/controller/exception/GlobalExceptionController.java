@@ -1,9 +1,6 @@
 package com.carpool.website.controller.exception;
 
-import com.carpool.exception.DuplicateLoginException;
-import com.carpool.exception.PermissionDeniedException;
-import com.carpool.exception.ResourceNotFoundException;
-import com.carpool.exception.UserNullException;
+import com.carpool.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -44,6 +41,12 @@ public class GlobalExceptionController {
     @ResponseStatus(HttpStatus.FORBIDDEN)
     public String handlePermissionDeniedException(){
         return "pages/404";
+    }
+
+    @ExceptionHandler(InternalErrorException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public String handelInternalError() {
+        return "pages/500";
     }
 
 }

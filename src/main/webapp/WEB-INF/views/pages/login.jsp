@@ -54,11 +54,10 @@
             </div>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
             <div class="remember clearfix">
-                <label class="remember-me"><span class="icon"><span class="zt"></span></span><input type="hidden"
-                                                                                                    name="remember-me"
-                                                                                                    id="remember-me"
-                                                                                                    class="remember-mecheck"
-                                                                                                    checked></label>
+                <label class="remember-me"><span class="zt"></span><input type="checkbox" name="remember-me"
+                                                                          id="remember-me"
+                                                                          class="remember-mecheck"
+                                                                          checked></label>
             </div>
 
         </form>

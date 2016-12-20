@@ -8,7 +8,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%request.setCharacterEncoding("utf-8");%>
+
 <%@include file="modal/confirmServiceModal.jsp"%>
 <div class="row">
     <div class="col-lg-8 col-lg-offset-2">
@@ -104,7 +104,7 @@
                     </fieldset>
 
                     <fieldset>
-                        <legend><span class="glyphicon glyphicon-time"></span> 时间信息（逾期会自动删除本房间）</legend>
+                        <legend><span class="glyphicon glyphicon-time"></span> 时间信息</legend>
                         <div class="form-group">
                             <div class="form-inner-group">
 
@@ -143,7 +143,7 @@
                         </div>
 
                         <fieldset class="form-group text-center">
-                            <input type="checkbox" id="checkbox1" tabindex="158">
+                            <input type="checkbox" id="checkbox1">
                             <label for="checkbox1">我已查看并同意用户条款</label>
                         </fieldset>
                     </fieldset>

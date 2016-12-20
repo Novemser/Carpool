@@ -83,26 +83,33 @@
                 <div style="margin: 24px;width: 75%;" class="btn btn-lg btn-primary">
                     <i class="fa fa-commenting"></i><a href="/room/chat?roomId=3" style="color: white"> 进入聊天室</a>
                 </div>
-                <div style="margin: 24px;width: 75%;" class="btn btn-lg btn-primary">
-                    <i class="fa fa-commenting"></i><a href="/room/edit?roomId=3" style="color: white"> 修改房间信息</a>
-                </div>
-                <c:choose>
-                    <c:when test="${room.state==ROOM_STATE_UNLOCKED}">
-                        <div class="btn-effect btn btn-success btn-lg">
-                            <i class="fa fa-check"></i><a href="/"> 确定加入</a>
-                        </div>
-                    </c:when>
-                    <c:when test="${room.state==ROOM_STATE_LOCKED}">
-                        <div class="btn-effect btn btn-warning btn-lg">
-                            <i class="fa fa-info"></i><a href="/"> 暂时无法加入 请等待房主解锁</a>
-                        </div>
-                    </c:when>
-                    <c:otherwise>
-                        <div class="btn-effect btn btn-default btn-lg btn-block">
-                            <i class="fa fa-exclamation-triangle"></i> 无法加入此房间
-                        </div>
-                    </c:otherwise>
-                </c:choose>
+
+                <%--如果不是房主--%>
+                <c:if test="${roomOwner==false}">
+                    <c:choose>
+                        <c:when test="${room.state==ROOM_STATE_UNLOCKED}">
+                            <div class="btn-effect btn btn-success btn-lg">
+                                <i class="fa fa-check"></i><a href="/"> 确定加入</a>
+                            </div>
+                        </c:when>
+                        <c:when test="${room.state==ROOM_STATE_LOCKED}">
+                            <div class="btn-effect btn btn-warning btn-lg">
+                                <i class="fa fa-info"></i><a href="/"> 暂时无法加入 请等待房主解锁</a>
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="btn-effect btn btn-default btn-lg btn-block">
+                                <i class="fa fa-exclamation-triangle"></i> 无法加入此房间
+                            </div>
+                        </c:otherwise>
+                    </c:choose>
+                </c:if>
+
+                <c:if test="${roomOwner==true}">
+                    <div style="margin: 24px;width: 75%;" class="btn btn-lg btn-success">
+                        <i class="fa fa-pencil"></i><a href="/room/edit?roomId=3" style="color: white"> 修改房间信息</a>
+                    </div>
+                </c:if>
             </div>
         </section>
     </div>
@@ -129,6 +136,26 @@
     }
 </style>
 <script>
-    window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["weixin","qzone","tsina","tqq","renren","sqq"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["weixin","qzone","tsina","tqq","renren","sqq"]}};
-    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "2",
+            "bdMiniList": false,
+            "bdPic": "",
+            "bdStyle": "0",
+            "bdSize": "16"
+        },
+        "share": {},
+        "image": {
+            "viewList": ["weixin", "qzone", "tsina", "tqq", "renren", "sqq"],
+            "viewText": "分享到：",
+            "viewSize": "16"
+        },
+        "selectShare": {
+            "bdContainerClass": null,
+            "bdSelectMiniList": ["weixin", "qzone", "tsina", "tqq", "renren", "sqq"]
+        }
+    };
+    with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
 </script>
