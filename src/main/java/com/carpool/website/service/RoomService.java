@@ -44,9 +44,6 @@ public class RoomService {
                            int numberLimit,
                            Date startTime,
                            String hostId) throws Exception {
-        // TODO:验证传入参数的合法性
-
-
 
         UserEntity userEntity = userEntityRepository.findOne(hostId);
         if (null == userEntity)
@@ -112,7 +109,6 @@ public class RoomService {
         user.getUserParticipateRooms().add(room);
     }
 
-
     /***
      * 模糊搜索房间
      *
@@ -136,6 +132,8 @@ public class RoomService {
                 endPoint,
                 from, to, p);
     }
+
+
 
     public Page<RoomEntity> findRoom(Pageable pageable) {
         return roomEntityRepository.findAll(pageable);

@@ -2,12 +2,9 @@
     transform: rotateY(180deg);
     display: inline-block;
     background: #FFF;
-    font-size: 20px;
+    font-size: 40px;
 }
 
-#star input[type="radio"] {
-    display: none;
-}
 
 #star input[type="radio"]:checked + label>span,
 #star input[type="radio"]:checked ~ label>span,

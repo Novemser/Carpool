@@ -13,12 +13,14 @@
 <head>
     <title><tiles:getAsString name="title"/></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/static/favicon.ico">
     <!-- Bootstrap core CSS -->
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/css/bootstrap-theme.min.css" rel="stylesheet">
     <!--external css-->
     <link href="/static/assets/font-awesome/css/font-awesome.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="/static/css/owl.carousel.css" type="text/css">
+    <%--<link rel="stylesheet" href="/static/css/owl.carousel.css" type="text/css">--%>
     <!-- Custom styles for this template -->
     <link href="/static/css/mdb.css" rel="stylesheet"/>
     <link href="/static/css/style.css" rel="stylesheet">

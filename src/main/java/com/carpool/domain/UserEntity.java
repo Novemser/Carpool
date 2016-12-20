@@ -42,7 +42,6 @@ public class UserEntity implements Serializable{
         this.carpoolingCount = carpoolingCount;
     }
 
-
     private Integer carpoolingCount;
     private String qqAccount;
     private String wechatAccount;

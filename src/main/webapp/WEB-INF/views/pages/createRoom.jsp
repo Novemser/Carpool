@@ -8,6 +8,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%request.setCharacterEncoding("utf-8");%>
 <%@include file="modal/confirmServiceModal.jsp"%>
 <div class="row">
     <div class="col-lg-8 col-lg-offset-2">
@@ -81,7 +82,6 @@
 
                                 <div>
                                     <form:input type="number" class="form-control" placeholder="人数上限" path="numberLimit"/>
-
                                 </div>
                                 <div>
                                     <form:errors cssClass="handle-error" path="numberLimit"/>

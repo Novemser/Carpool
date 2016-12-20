@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
-
 /**
  * Project: Carpool
  * Package: com.carpool.website.controller
@@ -29,8 +28,7 @@ public class HomeController {
 
     @Autowired
     private RoomService roomService;
-    @Autowired
-    private UserService userService;
+
     @RequestMapping(method = RequestMethod.GET)
     public String homePage(ModelMap modelMap) {
         return mainPage(0, GlobalConstants.HOME_CARPOOL_PAGE_SIZE, modelMap);
@@ -56,7 +54,4 @@ public class HomeController {
         Cookie[] cookies = request.getCookies();
         return "pages/test";
     }
-
-
-
 }

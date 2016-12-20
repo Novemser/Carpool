@@ -1,18 +1,9 @@
 package com.carpool.website.service;
 
-import com.carpool.exception.DuplicateLoginException;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
-import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
-import org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationException;
-import org.springframework.web.filter.GenericFilterBean;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,14 +19,25 @@ public class RememberMeFilter extends OncePerRequestFilter {
                                     HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
+        //filterChain.doFilter(request,response);
+
+
+
+
+
         boolean  loginRequest = false;
         boolean  resourceRequest = false;
         boolean  rememberCookieExist = false;
         boolean  cookiesExist = false;
         String uri = request.getRequestURI();
 
+        if(0==uri.compareTo("/")){
+            filterChain.doFilter(request,response);
+            return;
+        }
+
         //check if login request
-        loginRequest = (0 == uri.compareTo("/") || uri.contains("login"));
+        loginRequest =  uri.contains("login");
         resourceRequest = (uri.contains("static") || uri.contains("ico"));
         //check cookies
         Cookie[] cookies = request.getCookies();
@@ -58,6 +60,8 @@ public class RememberMeFilter extends OncePerRequestFilter {
         else{
             response.sendRedirect("/home/main");
         }
+
+
 
     }
 }

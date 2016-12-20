@@ -13,7 +13,6 @@
     </div>
     <!--logo start-->
     <a href="/index" class="logo">Car<span>pool</span></a>
-
     <!--logo end-->
     <div class="nav notify-row pull-right" id="top_menu">
         <!--  notification start -->

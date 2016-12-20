@@ -1,12 +1,13 @@
 package com.carpool.repository;
 
-
 import com.carpool.domain.JourneyEntity;
 import com.carpool.domain.RoomEntity;
 import com.carpool.domain.UserEntity;
 import com.carpool.website.dao.JourneyEntityRepository;
 import com.carpool.website.dao.RoomEntityRepository;
 import com.carpool.website.dao.UserEntityRepository;
+import com.carpool.website.model.MyTrack;
+import com.carpool.website.service.JourneyService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,6 +35,9 @@ public class JourneyRepositoryTest {
     RoomEntityRepository roomEntityRepository;
     @Autowired
     UserEntityRepository userEntityRepository;
+    @Autowired
+    JourneyService journeyService;
+
     @Test
     public void testSave()
     {
@@ -162,6 +166,13 @@ public class JourneyRepositoryTest {
             Long times = (Long)o[1];
             System.out.println(des + "   :" + times+"\n");
         }
+    }
+
+    @Test
+    public void test3()
+    {
+        List<MyTrack> myTracks = journeyService.getMyTrack("1452779");
+        Assert.assertEquals(2,myTracks.size());
     }
 
     @Test

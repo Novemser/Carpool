@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE tiles-definitions PUBLIC  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
-
 <tiles-definitions>
 
     <!-- Base Definition -->
@@ -34,6 +33,7 @@
         <put-attribute name="title" value="加入房间"/>
         <put-attribute name="body" value="/WEB-INF/views/pages/joinRoom.jsp"/>
     </definition>
+
     <definition name="room.detail" extends="base-definition">
         <put-attribute name="title" value="房间信息"/>
         <put-attribute name="body" value="/WEB-INF/views/pages/roomDetail.jsp"/>
@@ -60,6 +60,17 @@
         <put-attribute name="body" value="/WEB-INF/views/pages/journey/journeys.jsp">
         </put-attribute>
     </definition>
+    <definition name="journey/myTrack" extends="base-definition">
+        <put-attribute name="title" value="我的足迹">
+        </put-attribute>
+        <put-attribute name="body" value="/WEB-INF/views/pages/journey/myTrack.jsp">
+        </put-attribute>
+    </definition>
+    <definition name="room.edit" extends="base-definition">
+        <put-attribute name="title" value="修改房间信息"/>
+        <put-attribute name="body" value="/WEB-INF/views/pages/editRoomInfo.jsp"/>
+    </definition>
+
     <definition name="room.search" extends="base-definition">
         <put-attribute name="title" value="搜索结果"/>
         <put-attribute name="body" value="/WEB-INF/views/pages/searchResult.jsp"/>
@@ -84,10 +95,9 @@
         <put-attribute name="title" value="修改信息"/>
         <put-attribute name="body" value="/WEB-INF/views/pages/profileEdit.jsp"/>
     </definition>
-
     <definition name="user.profile.journey" extends="base-definition">
         <put-attribute name="title" value="约车记录"/>
-        <put-attribute name="body" value="/WEB-INF/views/pages/profileJourney.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/pages/profileRooms.jsp"/>
     </definition>
-
 </tiles-definitions>
+

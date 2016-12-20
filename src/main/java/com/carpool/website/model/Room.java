@@ -3,6 +3,7 @@ package com.carpool.website.model;
 import com.carpool.domain.RoomState;
 import com.carpool.domain.UserEntity;
 import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import java.io.Serializable;

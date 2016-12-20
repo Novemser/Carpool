@@ -2,13 +2,15 @@ package com.carpool.configuration;
 
 import com.carpool.website.dao.SessionRepository;
 import com.carpool.website.dao.UserEntityRepository;
-import com.carpool.website.service.*;
+import com.carpool.website.service.AuthenticationService;
+import com.carpool.website.service.LoginService;
+import com.carpool.website.service.SessionService;
+import com.carpool.website.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
@@ -18,6 +20,7 @@ import org.springframework.security.web.authentication.rememberme.PersistentToke
  * Created by deado on 2016/12/15.
  */
 @Configuration
+@ComponentScan
 @EnableWebMvcSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
@@ -46,12 +49,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/Test").permitAll()
                 .antMatchers("/Test/insert").permitAll()
                 .antMatchers("/login").permitAll()
+                .antMatchers("/static/*/*/*").permitAll()
+                .antMatchers("/static/*/*").permitAll()
                 .antMatchers("/*/*/*.js").permitAll()
                 .antMatchers("/*/*/*.png").permitAll()
                 .antMatchers("/*/*/*/*.js").permitAll()
                 .antMatchers("/*/*/*/*/*.css").permitAll()
                 .antMatchers("/*/*/*.css").permitAll()
                 .antMatchers("*.icon").permitAll()
+                .mvcMatchers("/index").permitAll()
+                .mvcMatchers("/").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").defaultSuccessUrl("/home/main", true)
@@ -63,7 +70,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .logout().logoutSuccessUrl("/login")
                 .and()
                 .sessionManagement().sessionAuthenticationErrorUrl("/login").maximumSessions(1);
-
     }
 
 

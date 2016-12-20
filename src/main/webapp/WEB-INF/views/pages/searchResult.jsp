@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
 
 <%--
   Created by IntelliJ IDEA.
@@ -14,7 +14,6 @@
 
 <div class="border-head">
     <div class="row">
-<<<<<<< HEAD
         <h3 class="col-lg-3">搜索结果</h3>
 
         <div class=" text text-center" style="padding-bottom: 8px">
@@ -38,9 +37,17 @@
     <%@include file="../template/roomState.jsp" %>
     <div class="row">
         <c:choose>
-            <c:when test="${roomPage==null}">
+            <c:when test="${roomPage==null||roomPage.numberOfElements==0}">
                 <div class="col-lg-4 col-md-6 col-sm-12">
-                    很抱歉，没有找到您想要的房间
+                    很抱歉，没有找到您想要的房间.
+                    <div style="margin-top: 16px;">
+                        <i class="fa fa-search"></i><a href='#' onClick='history.back();'> 返回搜索界面</a>
+                    </div>
+
+                    <div style="margin-top: 16px;">
+                        <i class="fa fa-home"></i><a href="/room/create"> 新建房间</a>
+                    </div>
+
                 </div>
             </c:when>
             <c:otherwise>
@@ -69,22 +76,21 @@
                                 </div>
                                 <dl class="dl-horizontal">
                                     <dt>出发时间</dt>
-                                    <dd><fmt:formatDate value="${li.startTime}" pattern="yyyy-MM-dd HH:mm"/> </dd>
+                                    <dd><fmt:formatDate value="${li.startTime}" pattern="yyyy-MM-dd HH:mm"/></dd>
                                     <dt>出发地点</dt>
                                     <dd>${li.startPoint}</dd>
                                     <dt>目的地</dt>
                                     <dd>${li.endPoint}</dd>
                                     <dt>人数</dt>
                                     <dd>
-                        <span style="text-align: center;">
-                            <c:forEach begin="0" end="${li.currentNums}">
-                                <i class="icon-user" style="color: #42b2c4;"></i>
-                            </c:forEach>
-                            <c:forEach begin="0" end="${li.numberLimit-li.currentNums}">
-                                <i class="icon-user" style="color: lightgrey"></i>
-                            </c:forEach>
-                        </span>
-<<<<<<< HEAD
+                                    <span style="text-align: center;">
+                                        <c:forEach begin="1" end="${li.currentNums}">
+                                            <i class="icon-user" style="color: #42b2c4;"></i>
+                                        </c:forEach>
+                                        <c:forEach begin="0" end="${li.numberLimit-li.currentNums}">
+                                            <i class="icon-user" style="color: lightgrey"></i>
+                                        </c:forEach>
+                                    </span>
                                     </dd>
                                 </dl>
                             </a>
