@@ -35,7 +35,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception{
 
         SessionService sessionService = new SessionService(sessionRepository);
-
         PersistentTokenBasedRememberMeServices
                 persistentTokenBasedRememberMeServices =
                 new PersistentTokenBasedRememberMeServices(
@@ -69,6 +68,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .logout().logoutSuccessUrl("/login")
                 .and()
                 .sessionManagement().sessionAuthenticationErrorUrl("/login").maximumSessions(1);
+
     }
 
 
