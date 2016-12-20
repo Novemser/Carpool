@@ -45,13 +45,13 @@
     </definition>
 
     <definition name="comment/receivedComments" extends="base-definition">
-        <put-attribute name="title" value="收到评论"></put-attribute>
-        <put-attribute name="body" value="/WEB-INF/views/pages/comment/receivedComments.jsp"></put-attribute>
+        <put-attribute name="title" value="收到评论"/>
+        <put-attribute name="body" value="/WEB-INF/views/pages/comment/receivedComments.jsp"/>
     </definition>
 
     <definition name="comment/sendedComments" extends="base-definition">
-        <put-attribute name="title" value="发出评论"></put-attribute>
-        <put-attribute name="body" value="/WEB-INF/views/pages/comment/sendedComments.jsp"></put-attribute>
+        <put-attribute name="title" value="发出评论"/>
+        <put-attribute name="body" value="/WEB-INF/views/pages/comment/sendedComments.jsp"/>
     </definition>
 
 

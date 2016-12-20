@@ -38,22 +38,20 @@ public class RoomService {
     private UserEntityRepository userEntityRepository;
 
     @Transactional
-    public void createRoom(String roomname,
+    public void createRoom(String roomName,
                            String startPoint,
                            String endPoint,
                            int numberLimit,
                            Date startTime,
-                           String hostId) throws Exception {
-        // TODO:验证传入参数的合法性
-
-
+                           String hostId,
+                           String note) throws Exception {
 
         UserEntity userEntity = userEntityRepository.findOne(hostId);
         if (null == userEntity)
             throw new UserNullException("createRoom", "用户不存在！");
 
         RoomEntity roomEntity = new RoomEntity();
-        roomEntity.setRoomname(roomname);
+        roomEntity.setRoomname(roomName);
         roomEntity.setEndPoint(endPoint);
         roomEntity.setNumberLimit(numberLimit);
         // 目前只有房主一个人
@@ -61,6 +59,7 @@ public class RoomService {
         roomEntity.setStartPoint(startPoint);
         roomEntity.setStartTime(startTime);
         roomEntity.setState(RoomState.UNLOCKED);
+        roomEntity.setRoomNote(note);
 
         // 获取系统当前时间戳
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
@@ -72,13 +71,12 @@ public class RoomService {
         // 所以只用修改User里的多方表就可以了
         userEntity.getUserParticipateRooms().add(roomEntity);
 
-        RoomEntity entity = roomEntityRepository.saveAndFlush(roomEntity);
-        System.out.println(entity.getId());
+        roomEntityRepository.saveAndFlush(roomEntity);
     }
 
-    public Page<RoomEntity> listUserRooms(String userId) {
+    public Page<RoomEntity> listUserRooms(String userId, int page, int size) {
         UserEntity userEntity = userEntityRepository.findOne(userId);
-        Pageable p = new PageRequest(0, 10);
+        Pageable p = new PageRequest(page, size);
         return roomEntityRepository.findUserRooms(userEntity, p);
     }
 

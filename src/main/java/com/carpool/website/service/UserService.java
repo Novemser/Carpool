@@ -10,6 +10,7 @@ import com.carpool.website.dao.UserEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.Cookie;
 import java.util.Base64;
 
 
@@ -50,7 +51,7 @@ public class UserService {
     }
 
 
-    public String checkSessionIdentity(String cookie){
+    private String checkSessionIdentity(String cookie){
         try{
             String seriseId = new String(Base64.getDecoder().decode(cookie));
 
@@ -62,5 +63,20 @@ public class UserService {
             return null;
         }
 
+    }
+
+    /***
+     * 通过request的cookie来提取用户id
+     * @param cookies request中包含的cookie
+     * @return 如果用户合法返回用户id，否则返回null
+     */
+    public String getUserIdByCookie(Cookie[] cookies) {
+        String userId = null;
+        for (Cookie cookie : cookies) {
+            System.out.println(cookie.getName() + ":" + cookie.getValue());
+            if (cookie.getName().equals("remember-me"))
+                userId = checkSessionIdentity(cookie.getValue());
+        }
+        return userId;
     }
 }

@@ -2,13 +2,17 @@ package com.carpool.configuration;
 
 import com.carpool.website.dao.SessionRepository;
 import com.carpool.website.dao.UserEntityRepository;
-import com.carpool.website.service.*;
+import com.carpool.website.service.AuthenticationService;
+import com.carpool.website.service.LoginService;
+import com.carpool.website.service.SessionService;
+import com.carpool.website.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
 
 
@@ -16,7 +20,8 @@ import org.springframework.security.web.authentication.rememberme.PersistentToke
  * Created by deado on 2016/12/15.
  */
 @Configuration
-@EnableWebMvcSecurity
+@EnableWebSecurity
+@ComponentScan
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Autowired
@@ -35,8 +40,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception{
 
         SessionService sessionService = new SessionService(sessionRepository);
-        PersistentTokenBasedRememberMeServices
-                persistentTokenBasedRememberMeServices =
+
+        PersistentTokenBasedRememberMeServices rememberMeService =
                 new PersistentTokenBasedRememberMeServices(
                         "CarpoolRememberCheck",
                         new LoginService(userEntityRepository),
@@ -63,7 +68,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .and()
                 .rememberMe()
                 .tokenValiditySeconds(60*30)
-                .rememberMeServices(persistentTokenBasedRememberMeServices)
+                .rememberMeServices(rememberMeService)
                 .and()
                 .logout().logoutSuccessUrl("/login")
                 .and()
@@ -79,4 +84,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
         auth.authenticationProvider(new AuthenticationService(loginService, userService)).userDetailsService(loginService);
     }
+
 }

@@ -1,5 +1,8 @@
 package com.carpool.website.controller.exception;
 
+import com.carpool.exception.*;
+import com.carpool.exception.DuplicateLoginException;
+import com.carpool.exception.PermissionDeniedException;
 import com.carpool.exception.ResourceNotFoundException;
 import com.carpool.exception.UserNullException;
 import org.springframework.http.HttpStatus;
@@ -30,6 +33,24 @@ public class GlobalExceptionController {
     public String handleResourceNotFoundException() {
         System.out.println("Not found!!");
         return "pages/404";
+    }
+
+    @ExceptionHandler(DuplicateLoginException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public String handleDuplicateLoginException(){
+        return "pages/404";
+    }
+
+    @ExceptionHandler(PermissionDeniedException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public String handlePermissionDeniedException(){
+        return "pages/404";
+    }
+
+    @ExceptionHandler(InternalErrorException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public String handelInternalError() {
+        return "pages/500";
     }
 
 }
