@@ -8,16 +8,17 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="modal/confirmServiceModal.jsp"%>
+<%@include file="modal/confirmServiceModal.jsp" %>
 
 <div class="row">
     <div class="col-lg-8 col-lg-offset-2">
         <section class="z-depth-1 panel" style="margin-bottom: 100px">
             <div class="panel-body">
-                <form:form name="createform" class="form-horizontal" onsubmit="return validateForm()" modelAttribute="roomSelection" id="create-room-form" method="post"
-                           action="/room/join?id=2">
+                <form:form name="createform" class="form-horizontal" onsubmit="return validateForm()"
+                           modelAttribute="roomSelection" id="create-room-form" method="post"
+                           action="/room/join/search">
                     <fieldset>
-                        <legend><span class="glyphicon glyphicon-home"> </span>选择地点</legend>
+                        <legend><span class="glyphicon glyphicon-home"> </span> 选择地点</legend>
                         <div class="form-group">
                             <div class="form-inner-group2">
                                 <div class="col-lg-5">
@@ -49,7 +50,7 @@
                     </fieldset>
 
                     <fieldset>
-                        <legend><span class="glyphicon glyphicon-time"> </span>选择时间</legend>
+                        <legend><span class="glyphicon glyphicon-time"> </span> 选择时间</legend>
                         <div class="form-group">
                             <div class="form-inner-group">
 
@@ -61,17 +62,17 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="form-inner-group">
+                            <%--<div class="form-group">--%>
+                            <%--<div class="form-inner-group">--%>
 
-                                <div>
-                                    <form:input path="startTime" type="time" class="form-control"/>
-                                </div>
-                                <div>
-                                    <form:errors cssClass="handle-error" path="startTime"/>
-                                </div>
-                            </div>
-                        </div>
+                            <%--<div>--%>
+                            <%--<form:input path="startTime" type="time" class="form-control"/>--%>
+                            <%--</div>--%>
+                            <%--<div>--%>
+                            <%--<form:errors cssClass="handle-error" path="startTime"/>--%>
+                            <%--</div>--%>
+                            <%--</div>--%>
+                            <%--</div>--%>
 
 
                     </fieldset>

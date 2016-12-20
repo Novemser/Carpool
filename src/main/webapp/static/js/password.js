@@ -14,7 +14,6 @@ function isSame() {
         same.style.display = "block";
         document.getElementById("save").disabled = true;
     }
-    if()
 }
 
 //字符类别判断

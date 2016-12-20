@@ -62,4 +62,10 @@ public class JourneyControllerTest {
         mockMvc.perform(get("/journey/getAllJourneys/1452778")).andDo(print())
         .andExpect(view().name("journey/journeys"));
     }
+
+    @Test
+    public void test_getMyTrack()throws Exception
+    {
+        mockMvc.perform(get("/journey/getMyTrack/1452779")).andDo(print());
+    }
 }

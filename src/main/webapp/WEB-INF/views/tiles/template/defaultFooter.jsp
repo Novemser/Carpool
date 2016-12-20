@@ -10,7 +10,7 @@
     <div class="container">
         <ul class="clearfix" style="">
             <li>
-                <a href="/home" class="on"><i class="fa fa-home"></i>
+                <a href="/index" class="on"><i class="fa fa-home"></i>
                     <div>首页</div></a>
             </li>
             <li>

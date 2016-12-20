@@ -2,8 +2,7 @@
 /*
 Template Name: Flat Lab Dashboard build with Bootstrap v3.0
 Template Version: 1.0
-Author: Mosaddek Hossain
-Website: http://thevectorlab.net/
+Author: Novemser
 */
 
 /* Import fonts */
@@ -457,8 +456,11 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
     .dropdown-menu.extended {
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.176) !important;
     }
+<<<<<<< HEAD
 
 ;
+=======
+>>>>>>> master
 }
 
 .dropdown-menu.extended li p {
@@ -1457,6 +1459,11 @@ h3.timeline-title {
 ;
 }
 
+<<<<<<< HEAD
+=======
+}
+
+>>>>>>> master
 .panel-footer.revenue-foot ul {
     margin: 0;
     padding: 0;
@@ -3991,7 +3998,7 @@ table.sliders tr td {
     font-size: 13px;
 }
 
-`
+
 /*custom select*/
 
 span.customSelect {
@@ -4034,8 +4041,21 @@ div .fa span {
     margin-right: 8px;
 }
 
+<<<<<<< HEAD
 .text, .dl, span {
     font-family: 'Roboto', sans-serif !important;
+=======
+.text, .dl, .fa span {
+    font-family: "Microsoft YaHei", 微软雅黑, "MicrosoftJhengHei", 华文细黑, STHeiti, MingLiu, sans-serif !important;
+}
+
+body {
+    font-family: "Microsoft YaHei", 微软雅黑, "MicrosoftJhengHei", 华文细黑, STHeiti, MingLiu, sans-serif !important;
+}
+
+.yaHei {
+    font-family: "Microsoft YaHei", 微软雅黑, "MicrosoftJhengHei", 华文细黑, STHeiti, MingLiu, sans-serif;
+>>>>>>> master
 }
 
 /*@font-face {*/
