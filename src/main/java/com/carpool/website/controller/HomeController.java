@@ -3,6 +3,7 @@ package com.carpool.website.controller;
 import com.carpool.configuration.GlobalConstants;
 import com.carpool.domain.RoomEntity;
 import com.carpool.website.service.RoomService;
+import com.carpool.website.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Project: Carpool
@@ -46,7 +50,8 @@ public class HomeController {
     }
 
     @GetMapping("test")
-    public String get() {
+    public String get(HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
         return "pages/test";
     }
 }

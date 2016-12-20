@@ -4,6 +4,7 @@ import com.carpool.domain.RoomState;
 import com.carpool.domain.UserEntity;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import java.io.Serializable;
 
@@ -24,7 +25,9 @@ public class Room implements Serializable {
     private String startPoint;
     @NotEmpty
     private String endPoint;
+
     @Min(2)
+    @Max(10)
     private Integer numberLimit;
 
     private Integer currentNums;

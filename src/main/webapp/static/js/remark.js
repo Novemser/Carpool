@@ -28,8 +28,8 @@ $(function () {
                     if(data=="success")
                     {
                         $("#makeComment #summitComment").attr("disabled",true);
-                        $("#remark").after($("<span class='label-success'>评价成功" +
-                            "你将在<span id='second'>3</span>秒内返回页面</span>"))
+                        $("#remark").after($("<div class=' form-group'><label class='col-lg-2 control-label'>评价成功" +
+                            "你将在<span id='second'>3</span>秒内返回页面</label></div>"))
                         var link = $("#link").val();
                         reduceTime();
                         var timeout = false;

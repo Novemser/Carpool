@@ -13,6 +13,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class IndexController {
     @GetMapping("/")
     public String index() {
-        return "redirect:/home";
+        return "pages/index";
+    }
+
+    @GetMapping("/index")
+    public String indexPage() {
+        return "pages/index";
+    }
+
+    @GetMapping("/test")
+    public String indexTest() {
+        return "main";
     }
 }

@@ -1,0 +1,85 @@
+package com.carpool.configuration;
+
+import com.carpool.website.dao.SessionRepository;
+import com.carpool.website.dao.UserEntityRepository;
+import com.carpool.website.service.AuthenticationService;
+import com.carpool.website.service.LoginService;
+import com.carpool.website.service.SessionService;
+import com.carpool.website.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
+
+
+/**
+ * Created by deado on 2016/12/15.
+ */
+@Configuration
+@EnableWebMvcSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter{
+
+    @Autowired
+    private
+    UserEntityRepository userEntityRepository;
+
+    @Autowired
+    private
+    UserService userService;
+
+    @Autowired
+    private
+    SessionRepository sessionRepository;
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception{
+
+        SessionService sessionService = new SessionService(sessionRepository);
+
+        PersistentTokenBasedRememberMeServices rememberMeService =
+                new PersistentTokenBasedRememberMeServices(
+                        "CarpoolRememberCheck",
+                        new LoginService(userEntityRepository),
+                        sessionService
+                );
+
+        http.authorizeRequests()
+                .antMatchers("/Test").permitAll()
+                .antMatchers("/Test/insert").permitAll()
+                .antMatchers("/login").permitAll()
+                .antMatchers("/static/*/*/*").permitAll()
+                .antMatchers("/static/*/*").permitAll()
+                .antMatchers("/*/*/*.js").permitAll()
+                .antMatchers("/*/*/*.png").permitAll()
+                .antMatchers("/*/*/*/*.js").permitAll()
+                .antMatchers("/*/*/*/*/*.css").permitAll()
+                .antMatchers("/*/*/*.css").permitAll()
+                .antMatchers("*.icon").permitAll()
+                .mvcMatchers("/index").permitAll()
+                .mvcMatchers("/").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin().loginPage("/login").defaultSuccessUrl("/home/main", true)
+                .and()
+                .rememberMe()
+                .tokenValiditySeconds(60*30)
+                .rememberMeServices(rememberMeService)
+                .and()
+                .logout().logoutSuccessUrl("/login")
+                .and()
+                .sessionManagement().sessionAuthenticationErrorUrl("/login").maximumSessions(1);
+    }
+
+
+    @Autowired
+    protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
+
+        LoginService loginService = new LoginService(userEntityRepository);
+
+        auth.authenticationProvider(new AuthenticationService(loginService, userService)).userDetailsService(loginService);
+    }
+
+}
