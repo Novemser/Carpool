@@ -65,30 +65,34 @@ public class UserController {
     public String edit(ModelMap modelMap, HttpServletRequest request){
         boolean change=false;
         //更新有错
-        if(request.getParameter("aliPay")!=null){
+        if(request.getParameter("aliPay")!=""){
             userService.updateUserAlipay("1452714",request.getParameter("aliPay"));
             change=true;
         }
-        if(request.getParameter("QQ")!=null){
+        if(request.getParameter("QQ")!=""){
             userService.updateUserQQ("1452714",request.getParameter("QQ"));
             change=true;
         }
-        if(request.getParameter("WeChat")!=null){
-            userService.updateUserQQ("1452714",request.getParameter("WeChat"));
+        if(request.getParameter("WeChat")!=""){
+            userService.updateUserWeChat("1452714",request.getParameter("WeChat"));
             change=true;
         }
-        //返回的页面应该不一样
         if(change==true)
-            return "user.profile";
+            return "redirect:/user";
         else
             return "user.profile.edit";
     }
 
     @PostMapping("/user/password")
     public String editPassword(ModelMap modelMap, HttpServletRequest request){
-        userService.updateUserPassword("1452714",request.getParameter("newPassword"));
-        //这里应该返回的页面不一样
-        return "user.profile";
+        UserEntity userEntity=userService.getUserById("1452714");
+        if(userEntity.getPassword()==request.getParameter("currentPassword")){
+            userService.updateUserPassword("1452714",request.getParameter("newPassword"));
+            return "redirect:/user";
+        }
+        else{
+            return "user.edit";
+        }
     }
 
 }
