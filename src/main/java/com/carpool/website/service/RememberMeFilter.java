@@ -19,14 +19,25 @@ public class RememberMeFilter extends OncePerRequestFilter {
                                     HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
+        //filterChain.doFilter(request,response);
+
+
+
+
+
         boolean  loginRequest = false;
         boolean  resourceRequest = false;
         boolean  rememberCookieExist = false;
         boolean  cookiesExist = false;
         String uri = request.getRequestURI();
 
+        if(0==uri.compareTo("/")){
+            filterChain.doFilter(request,response);
+            return;
+        }
+
         //check if login request
-        loginRequest = (0 == uri.compareTo("/") || uri.contains("login"));
+        loginRequest =  uri.contains("login");
         resourceRequest = (uri.contains("static") || uri.contains("ico"));
         //check cookies
         Cookie[] cookies = request.getCookies();
@@ -49,6 +60,8 @@ public class RememberMeFilter extends OncePerRequestFilter {
         else{
             response.sendRedirect("/home/main");
         }
+
+
 
     }
 }

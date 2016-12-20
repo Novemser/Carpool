@@ -1,6 +1,10 @@
 package com.carpool.website.controller.exception;
 
 import com.carpool.exception.*;
+import com.carpool.exception.DuplicateLoginException;
+import com.carpool.exception.PermissionDeniedException;
+import com.carpool.exception.ResourceNotFoundException;
+import com.carpool.exception.UserNullException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

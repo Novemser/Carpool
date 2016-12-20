@@ -30,8 +30,8 @@
                 <div class="slide-bar"></div>
             </div>
         </div>
-        <c:url var="loginUrl" value="/login"/>
-        <form action="${loginUrl}" method=POST>
+
+        <form method=POST id = "loginForm">
             <div class="login form">
                 <div class="group">
                     <div class="group-ipt email">
@@ -50,14 +50,16 @@
             </div>
 
             <div class="button">
-                <input type="submit" class="login-btn register-btn" id="button"/>
+                <input type="submit" class="login-btn register-btn" id="button" />
             </div>
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-            <div class="remember clearfix">
-                <label class="remember-me"><span class="zt"></span><input type="checkbox" name="remember-me"
-                                                                          id="remember-me"
-                                                                          class="remember-mecheck"
-                                                                          checked></label>
+            <input type="hidden"  id = "csrf" name="${_csrf.parameterName}" value="${_csrf.token}">
+            <div class="remember clearfix" style="display: none">
+                <label class="remember-me"><span class="icon"><span class="zt"></span></span><input
+                                                                                                    type="checkbox"
+                                                                                                    name="remember-me"
+                                                                                                    id="remember-me"
+                                                                                                    class="remember-mecheck"
+                                                                                                    checked>记住我</label>
             </div>
 
         </form>
@@ -73,7 +75,7 @@
 <script src='<c:url value="/static/js/background.js"/>' type="text/javascript"></script>
 <script src='<c:url value="/static/js/jquery-3.1.1.min.js"/>' type="text/javascript"></script>
 <script src='<c:url value="/static/js/layer/layer.js"/>' type="text/javascript"></script>
-<script>
+<script type="text/javascript" language="JavaScript">
     $('.imgcode').hover(function () {
         layer.tips("看不清？点击更换", '.verify', {
             time: 6000,
@@ -93,6 +95,8 @@
             $(".zt").hide();
         }
     });
+
+
 </script>
 </body>
 </html>
