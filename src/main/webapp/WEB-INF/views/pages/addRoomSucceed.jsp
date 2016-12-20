@@ -35,10 +35,10 @@
             <h4 class="text-center">分享房间</h4>
             <div class="row text-center col-center-block" style="margin-top: 24px;margin-bottom: 21px; margin-left: 60%">
                 <div class="bdsharebuttonbox panel" style="background-color: white">
-                    <a title="分享到QQ空间" class="bds_qzone"  href="#" data-id="635580331379132445"  data-cmd="qzone"></a>
-                    <a title="分享到QQ好友" class="bds_sqq "  href="#" data-id="635580331379132445" data-cmd="sqq"></a>
-                    <a title="分享到微信" class="bds_weixin"  href="#" data-id="635580331379132445" data-cmd="weixin"></a>
-                    <a class="bds_more  icons-sm drib-ic"  href="#"  data-id="635580331379132445" data-cmd="more"></a>
+                    <a title="分享到QQ空间" class="bds_qzone"  href="#" data-id="${room.id}"  data-cmd="qzone"></a>
+                    <a title="分享到QQ好友" class="bds_sqq "  href="#" data-id="${room.id}" data-cmd="sqq"></a>
+                    <a title="分享到微信" class="bds_weixin"  href="#" data-id="${room.id}" data-cmd="weixin"></a>
+                    <a class="bds_more  icons-sm drib-ic"  href="#"  data-id="${room.id}" data-cmd="more"></a>
                 </div>
             </div>
             <hr>
@@ -69,7 +69,7 @@
      */
     function SetShareUrl(cmd, config) {
         if (ShareId) {
-            config.bdUrl = "http://baidu.com";
+            config.bdUrl = "http://localhost:8080/room/detail?roomId="+ShareId;
         }
         return config;
     }
