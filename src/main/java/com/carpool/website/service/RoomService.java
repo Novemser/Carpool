@@ -44,9 +44,6 @@ public class RoomService {
                            int numberLimit,
                            Date startTime,
                            String hostId) throws Exception {
-        // TODO:验证传入参数的合法性
-
-
 
         UserEntity userEntity = userEntityRepository.findOne(hostId);
         if (null == userEntity)

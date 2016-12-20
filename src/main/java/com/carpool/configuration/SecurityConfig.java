@@ -2,7 +2,10 @@ package com.carpool.configuration;
 
 import com.carpool.website.dao.SessionRepository;
 import com.carpool.website.dao.UserEntityRepository;
-import com.carpool.website.service.*;
+import com.carpool.website.service.AuthenticationService;
+import com.carpool.website.service.LoginService;
+import com.carpool.website.service.SessionService;
+import com.carpool.website.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -36,8 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
         SessionService sessionService = new SessionService(sessionRepository);
 
-        PersistentTokenBasedRememberMeServices
-                persistentTokenBasedRememberMeServices =
+        PersistentTokenBasedRememberMeServices rememberMeService =
                 new PersistentTokenBasedRememberMeServices(
                         "CarpoolRememberCheck",
                         new LoginService(userEntityRepository),
@@ -64,7 +66,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .and()
                 .rememberMe()
                 .tokenValiditySeconds(60*30)
-                .rememberMeServices(persistentTokenBasedRememberMeServices)
+                .rememberMeServices(rememberMeService)
                 .and()
                 .logout().logoutSuccessUrl("/login")
                 .and()
@@ -79,4 +81,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
         auth.authenticationProvider(new AuthenticationService(loginService, userService)).userDetailsService(loginService);
     }
+
 }

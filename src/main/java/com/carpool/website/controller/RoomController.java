@@ -2,10 +2,12 @@ package com.carpool.website.controller;
 
 import com.carpool.configuration.GlobalConstants;
 import com.carpool.domain.RoomEntity;
+import com.carpool.exception.PermissionDeniedException;
 import com.carpool.website.model.Room;
 import com.carpool.website.model.RoomSelection;
 import com.carpool.website.service.RoomService;
 import com.carpool.website.service.UserService;
+import org.apache.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.text.ParseException;
@@ -135,20 +138,23 @@ public class RoomController {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
             try {
                 startTime = format.parse(room.getStartDate() + " " + room.getStartTime());
-//                String cookieValue = null;
-//                for (Cookie cookie : request.getCookies()) {
-//                    System.out.println(cookie.getName() + ":" + cookie.getValue());
-////                    if (cookie.getName())
-//                }
+                String cookieValue = null;
+                String userId = null;
+                for (Cookie cookie : request.getCookies()) {
+                    System.out.println(cookie.getName() + ":" + cookie.getValue());
+                    if (cookie.getName().equals("remember-me"))
+                        userId = userService.checkSessionIdentity(cookie.getValue());
+                }
 
-//                userService.checkSessionIdentity()
+                if (userId == null || userId.equals(""))
+                    throw new PermissionDeniedException(HttpStatus.SC_FORBIDDEN + "", "你没有权限");
 
                 roomService.createRoom(room.getRoomname(),
                         room.getStartPoint(),
                         room.getEndPoint(),
                         room.getNumberLimit(),
                         startTime,
-                        "1452681"
+                        userId
                 );
             } catch (Exception e) {
                 e.printStackTrace();

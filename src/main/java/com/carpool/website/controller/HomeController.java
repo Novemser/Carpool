@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Project: Carpool
  * Package: com.carpool.website.controller
@@ -47,7 +50,8 @@ public class HomeController {
     }
 
     @GetMapping("test")
-    public String get() {
+    public String get(HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
         return "pages/test";
     }
 }

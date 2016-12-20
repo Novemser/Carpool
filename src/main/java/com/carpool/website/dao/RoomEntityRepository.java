@@ -1,7 +1,6 @@
 package com.carpool.website.dao;
 
 import com.carpool.domain.RoomEntity;
-
 import com.carpool.domain.RoomState;
 import com.carpool.domain.UserEntity;
 import org.springframework.data.domain.Page;
