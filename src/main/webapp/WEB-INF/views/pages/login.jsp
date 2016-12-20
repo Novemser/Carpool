@@ -53,13 +53,13 @@
                 <input type="submit" class="login-btn register-btn" id="button"/>
             </div>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-            <%--<div class="remember clearfix">--%>
-                <%--<label class="remember-me"><span class="icon"><span class="zt"></span></span><input type="checkbox"--%>
-                                                                                                    <%--name="remember-me"--%>
-                                                                                                    <%--id="remember-me"--%>
-                                                                                                    <%--class="remember-mecheck"--%>
-                                                                                                    <%--checked>记住我</label>--%>
-            <%--</div>--%>
+            <div class="remember clearfix">
+                <label class="remember-me"><span class="icon"><span class="zt"></span></span><input type="hidden"
+                                                                                                    name="remember-me"
+                                                                                                    id="remember-me"
+                                                                                                    class="remember-mecheck"
+                                                                                                    checked></label>
+            </div>
 
         </form>
     </div>
