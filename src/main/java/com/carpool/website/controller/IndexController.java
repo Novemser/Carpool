@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Controller
 public class IndexController {
+
     @GetMapping("/")
     public String index() {
         return "pages/index";
@@ -20,6 +21,8 @@ public class IndexController {
     public String indexPage() {
         return "pages/index";
     }
+
+
 
     @GetMapping("/test")
     public String indexTest() {
