@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Project: Carpool
@@ -30,17 +31,22 @@ public class HomeController {
     private RoomService roomService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String homePage(ModelMap modelMap) {
-        return mainPage(0, GlobalConstants.HOME_CARPOOL_PAGE_SIZE, modelMap);
+    public String homePage(ModelMap modelMap,HttpSession session) {
+        return mainPage(0, GlobalConstants.HOME_CARPOOL_PAGE_SIZE, modelMap,session);
     }
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String mainPage(
             @RequestParam(value = "page", defaultValue = "0") Integer page,
             @RequestParam(value = "size", defaultValue = GlobalConstants.HOME_CARPOOL_PAGE_SIZE_STR) Integer size,
-            ModelMap modelMap) {
-
-
+            ModelMap modelMap,HttpSession session) {
+        //如果是通过分享链接进来的，直接转向该链接
+        if(session.getAttribute("shareLink")!=null)
+        {
+            String shareLink = (String)session.getAttribute("shareLink");
+            session.removeAttribute("shareLink");
+            return "redirect:"+shareLink;
+        }
         Page<RoomEntity> roomEntities = roomService.findRoom(page, size);
         modelMap.addAttribute("roomPage", roomEntities);
         modelMap.addAttribute("currentPage", page);

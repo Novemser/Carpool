@@ -5,12 +5,12 @@
     font-size: 40px;
 }
 
-
 #star input[type="radio"]:checked + label>span,
 #star input[type="radio"]:checked ~ label>span,
 #star input[type="radio"] + label:hover > span,
 #star input[type="radio"] + label:hover ~ label > span {
     color: yellow;
+    cursor: pointer;
 }
 
 #star input[type="radio"] + label:hover ~ label > span {

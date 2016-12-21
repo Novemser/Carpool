@@ -54,10 +54,11 @@ public class RoomController {
 
     @GetMapping("/detail")
     public String showDetail(@RequestParam int roomId, ModelMap modelMap, HttpServletRequest request) {
+
         RoomEntity entity = roomService.findById(roomId);
         modelMap.addAttribute("room", entity);
-        String userId = userService.getUserIdByCookie(request.getCookies());
 
+        String userId = userService.getUserIdByCookie(request.getCookies());
         // 验证当前用户是不是房间的房主
         if (userId != null && userId.equals(entity.getHost().getId()))
             modelMap.addAttribute("roomOwner", true);
