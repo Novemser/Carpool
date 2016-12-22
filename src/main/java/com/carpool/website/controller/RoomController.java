@@ -226,7 +226,7 @@ public class RoomController {
                 if (userId == null || userId.equals(""))
                     throw new PermissionDeniedException(HttpStatus.FORBIDDEN + "", "你没有权限");
 
-                roomService.createRoom(room.getRoomname(),
+                RoomEntity entity = roomService.createRoom(room.getRoomname(),
                         room.getStartPoint(),
                         room.getEndPoint(),
                         room.getNumberLimit(),
@@ -234,6 +234,9 @@ public class RoomController {
                         userId,
                         room.getNote()
                 );
+                Room roomModel = (Room) modelMap.get("room");
+                roomModel.setId(entity.getId());
+//                modelMap.addAttribute("room", entity);
             } catch (Exception e) {
                 e.printStackTrace();
                 throw new InternalErrorException("parse", e.getMessage());

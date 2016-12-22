@@ -12,7 +12,7 @@
             <!-- 数据库连接的驱动 -->
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
             <!-- 数据库连接的用户名 -->
-            <property name="hibernate.connection.username" value="carpool"/>
+            <property name="hibernate.connection.username" value="root"/>
             <!-- 数据库连接的密码 -->
             <property name="hibernate.connection.password" value="1234"/>
             <!-- 显示SQL语句 -->
