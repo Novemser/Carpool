@@ -39,6 +39,8 @@ public class Room implements Serializable {
     @NotEmpty
     private String startTime;
 
+    private String createTime;
+
     private RoomState state;
 
     private UserEntity host;
@@ -139,5 +141,17 @@ public class Room implements Serializable {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public void setCurrentNums(Integer currentNums) {
+        this.currentNums = currentNums;
+    }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
     }
 }

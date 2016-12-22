@@ -44,17 +44,19 @@
         </div>
 
         <div class="collapse navbar-collapse yaHei" id="myNavbar">
-            <ul class="nav navbar-nav navbar-right topNavbar">
-                <li ><a href="/index" class="btn2">主页</a></li>
-                <li><a href="#about">关于</a></li>
-                <li><a href="/login">登录</a></li>
+            <ul class="nav navbar-nav navbar-right topNavbar smooth-scroll">
+                <li><a id="idxBtn" href="#indexDiv" class="btn2"
+                       onclick="removeSel('idxBtn')">主页</a></li>
+                <li><a id="aboBtn" href="#about" onclick="removeSel('aboBtn');">关于</a></li>
+                <li><a id="logBtn" href="/login"
+                       onclick="removeSel('logBtn');window.location.href='/login';">登录</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
 <div class="home-header">
-    <div class="container">
+    <div id="indexDiv" class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12">
                 <div class="text">
@@ -67,7 +69,9 @@
                             <hr class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
                         </div>
                         <p class="yaHei">仅面向同济大学在校师生开放注册，提供更安全、便捷的结伴出行信息服务</p>
-                        <button class="btn btn-primary yaHei" type="button" name="button" onclick="location.href='/home'"><i class="fa fa-car"></i> 和Ta们开始旅程</button>
+                        <button class="btn btn-primary yaHei" type="button" name="button"
+                                onclick="location.href='/home'"><i class="fa fa-car"></i> 和Ta们开始旅程
+                        </button>
 
                     </div>
                 </div>
@@ -75,8 +79,8 @@
         </div>
     </div>
 </div>
-<a name="about"></a>
-<div class="home-content container">
+
+<div id="about" class="home-content container">
     <div class="text-center yc-text-center yaHei">
         <p>约车, </p>
         <p>
@@ -163,10 +167,12 @@
 
                         <!-- Image-->
                         <div class="card-up">
-                            <img src="http://mdbootstrap.com/img/Photos/Horizontal/Nature/6-col/img%20(55).jpg">
+                            <img src="/static/images/bg2.jpg" class="img-responsive">
                         </div>
                         <!--Avatar-->
-                        <div class="avatar"><img src="http://gitlab.lab-sse.cn/uploads/user/avatar/17/12718118-small.jpg" class="rounded-circle img-responsive">
+                        <div class="avatar"><img
+                                src="http://gitlab.lab-sse.cn/uploads/user/avatar/17/12718118-small.jpg"
+                                class="rounded-circle img-responsive">
                         </div>
                         <!--Content-->
                         <div class="card-block">
@@ -218,17 +224,19 @@
 
                         <!-- Image-->
                         <div class="card-up">
-                            <img src="http://mdbootstrap.com/img/Photos/Horizontal/Nature/6-col/img%20(4).jpg">
+                            <img src="/static/images/bg7.jpg" class="img-responsive">
                         </div>
                         <!--Avatar-->
-                        <div class="avatar"><img src="http://mdbootstrap.com/img/Photos/Avatars/img%20(1).jpg" class="rounded-circle img-responsive">
+                        <div class="avatar"><img src="/static/images/at4.jpg"
+                                                 class="rounded-circle img-responsive">
                         </div>
                         <!--Content-->
                         <div class="card-block">
                             <h4>Anna Deynah</h4>
                             <p>Web Designer</p>
                             <!--Triggering button-->
-                            <a class="rotate-btn" data-card="card-2"><i class="fa fa-repeat"></i> Click here to rotate</a>
+                            <a class="rotate-btn" data-card="card-2"><i class="fa fa-repeat"></i> Click here to
+                                rotate</a>
                         </div>
                     </div>
                     <!--/.Front Side-->
@@ -239,7 +247,9 @@
                         <!--Content-->
                         <h4>About me</h4>
                         <hr>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime quae, dolores dicta. Blanditiis rem amet repellat, dolores nihil quae in mollitia asperiores ut rerum repellendus, voluptatum eum, officia laudantium
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime quae, dolores dicta.
+                            Blanditiis rem amet repellat, dolores nihil quae in mollitia asperiores ut rerum
+                            repellendus, voluptatum eum, officia laudantium
                             quaerat?
                         </p>
                         <hr>
@@ -251,7 +261,8 @@
                             <li><a class="icons-sm drib-ic"><i class="fa fa-dribbble"> </i></a></li>
                         </ul>
                         <!--Triggering button-->
-                        <a class="rotate-btn" data-card="card-2"><i class="fa fa-undo"></i> Click here to rotate back</a>
+                        <a class="rotate-btn" data-card="card-2"><i class="fa fa-undo"></i> Click here to rotate
+                            back</a>
 
                     </div>
                     <!--/.Back Side-->
@@ -274,17 +285,19 @@
 
                         <!-- Image-->
                         <div class="card-up">
-                            <img src="http://mdbootstrap.com/img/Photos/Horizontal/Nature/6-col/img%20(75).jpg">
+                            <img src="/static/images/bg3.jpg" class="img-responsive">
                         </div>
                         <!--Avatar-->
-                        <div class="avatar"><img src="http://mdbootstrap.com/img/Photos/Avatars/img%20(5).jpg" class="rounded-circle img-responsive">
+                        <div class="avatar"><img src="/static/images/at5.jpg"
+                                                 class="rounded-circle img-responsive">
                         </div>
                         <!--Content-->
                         <div class="card-block">
-                            <h4>Sarah Melyah</h4>
+                            <h4>Alex Noasten</h4>
                             <p>Front-end Developer</p>
                             <!--Triggering button-->
-                            <a class="rotate-btn" data-card="card-3"><i class="fa fa-repeat"></i> Click here to rotate</a>
+                            <a class="rotate-btn" data-card="card-3"><i class="fa fa-repeat"></i> Click here to
+                                rotate</a>
                         </div>
                     </div>
                     <!--/.Front Side-->
@@ -295,7 +308,9 @@
                         <!--Content-->
                         <h4>About me</h4>
                         <hr>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime quae, dolores dicta. Blanditiis rem amet repellat, dolores nihil quae in mollitia asperiores ut rerum repellendus, voluptatum eum, officia laudantium
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime quae, dolores dicta.
+                            Blanditiis rem amet repellat, dolores nihil quae in mollitia asperiores ut rerum
+                            repellendus, voluptatum eum, officia laudantium
                             quaerat?
                         </p>
                         <hr>
@@ -307,7 +322,8 @@
                             <li><a class="icons-sm li-ic"><i class="fa fa-linkedin"></i></a></li>
                         </ul>
                         <!--Triggering button-->
-                        <a class="rotate-btn" data-card="card-3"><i class="fa fa-undo"></i> Click here to rotate back</a>
+                        <a class="rotate-btn" data-card="card-3"><i class="fa fa-undo"></i> Click here to rotate
+                            back</a>
 
                     </div>
                     <!--/.Back Side-->
@@ -329,17 +345,19 @@
 
                         <!-- Image-->
                         <div class="card-up">
-                            <img src="http://mdbootstrap.com/img/Photos/Horizontal/Nature/6-col/img%20(75).jpg">
+                            <img src="/static/images/bg6.jpg" class="img-responsive">
                         </div>
                         <!--Avatar-->
-                        <div class="avatar"><img src="http://mdbootstrap.com/img/Photos/Avatars/img%20(5).jpg" class="rounded-circle img-responsive">
+                        <div class="avatar"><img src="/static/images/at3.jpg"
+                                                 class="rounded-circle img-responsive">
                         </div>
                         <!--Content-->
                         <div class="card-block">
                             <h4>Sarah Melyah</h4>
                             <p>Front-end Developer</p>
                             <!--Triggering button-->
-                            <a class="rotate-btn" data-card="card-4"><i class="fa fa-repeat"></i> Click here to rotate</a>
+                            <a class="rotate-btn" data-card="card-4"><i class="fa fa-repeat"></i> Click here to
+                                rotate</a>
                         </div>
                     </div>
                     <!--/.Front Side-->
@@ -350,7 +368,9 @@
                         <!--Content-->
                         <h4>About me</h4>
                         <hr>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime quae, dolores dicta. Blanditiis rem amet repellat, dolores nihil quae in mollitia asperiores ut rerum repellendus, voluptatum eum, officia laudantium
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime quae, dolores dicta.
+                            Blanditiis rem amet repellat, dolores nihil quae in mollitia asperiores ut rerum
+                            repellendus, voluptatum eum, officia laudantium
                             quaerat?
                         </p>
                         <hr>
@@ -362,7 +382,8 @@
                             <li><a class="icons-sm li-ic"><i class="fa fa-linkedin"></i></a></li>
                         </ul>
                         <!--Triggering button-->
-                        <a class="rotate-btn" data-card="card-4"><i class="fa fa-undo"></i> Click here to rotate back</a>
+                        <a class="rotate-btn" data-card="card-4"><i class="fa fa-undo"></i> Click here to rotate
+                            back</a>
 
                     </div>
                     <!--/.Back Side-->
@@ -427,9 +448,12 @@
     <div class="text-center">
         <h3 class="yaHei">~ 圣诞快乐 ~</h3>
         <svg width="123px" height="156px" viewBox="63 28 1163 1296" version="1.1" xmlns="http://www.w3.org/2000/svg">
-            <rect id="base" stroke="none" fill="#8E550F" fill-rule="evenodd" x="541" y="1153" width="242" height="171"></rect>
-            <path d="M674.585992,142 C674.585992,142 614.37253,171.447011 614.007148,183.025055 C613.655271,194.17517 732.364815,191.223748 732.124198,203.082398 C731.856523,216.274629 566.053305,249.975836 565.560219,263.987246 C565.097978,277.122143 742.572873,267.189846 742.397936,280.89442 C742.17132,298.647452 546.557216,341.685733 545.869285,360.348146 C545.226266,377.792192 802.005422,381.910666 801.965627,399.858494 C801.915908,422.281727 492.722165,455.227875 491.345671,478.289129 C489.650945,506.681909 863.373944,515.739492 864.402732,544.433154 C865.213839,567.055574 404.664506,616.972084 402.836399,639.690068 C400.987439,662.667191 970.476589,666.605333 972.303147,689.017331 C974.616064,717.396994 339.30716,755.255509 332.795111,782.722953 C325.084507,815.245833 1040.3809,843.161248 1049.53938,873.049996 C1059.62067,905.950328 282.753182,956.579988 259.289589,985.385392 C239.204112,1010.0436 1122.69493,1032.86137 1145.57526,1052.19351 C1168.04375,1071.17768 429.514311,1120.47693 332.795111,1132.50406 C74.9070423,1164.5727 103.818505,1148.69062 103.818505,1148.69062" id="tree" stroke="#29882F" stroke-width="22" stroke-linecap="square" fill="none"></path>
-            <polygon id="star" stroke="none" fill="#EFF019" fill-rule="evenodd" points="673.5 136.75 630.885569 159.153732 639.024201 111.701866 604.548403 78.0962679 652.192785 71.173134 673.5 28 694.807215 71.173134 742.451597 78.0962679 707.975799 111.701866 716.114431 159.153732"></polygon>
+            <rect id="base" stroke="none" fill="#8E550F" fill-rule="evenodd" x="541" y="1153" width="242"
+                  height="171"></rect>
+            <path d="M674.585992,142 C674.585992,142 614.37253,171.447011 614.007148,183.025055 C613.655271,194.17517 732.364815,191.223748 732.124198,203.082398 C731.856523,216.274629 566.053305,249.975836 565.560219,263.987246 C565.097978,277.122143 742.572873,267.189846 742.397936,280.89442 C742.17132,298.647452 546.557216,341.685733 545.869285,360.348146 C545.226266,377.792192 802.005422,381.910666 801.965627,399.858494 C801.915908,422.281727 492.722165,455.227875 491.345671,478.289129 C489.650945,506.681909 863.373944,515.739492 864.402732,544.433154 C865.213839,567.055574 404.664506,616.972084 402.836399,639.690068 C400.987439,662.667191 970.476589,666.605333 972.303147,689.017331 C974.616064,717.396994 339.30716,755.255509 332.795111,782.722953 C325.084507,815.245833 1040.3809,843.161248 1049.53938,873.049996 C1059.62067,905.950328 282.753182,956.579988 259.289589,985.385392 C239.204112,1010.0436 1122.69493,1032.86137 1145.57526,1052.19351 C1168.04375,1071.17768 429.514311,1120.47693 332.795111,1132.50406 C74.9070423,1164.5727 103.818505,1148.69062 103.818505,1148.69062"
+                  id="tree" stroke="#29882F" stroke-width="22" stroke-linecap="square" fill="none"></path>
+            <polygon id="star" stroke="none" fill="#EFF019" fill-rule="evenodd"
+                     points="673.5 136.75 630.885569 159.153732 639.024201 111.701866 604.548403 78.0962679 652.192785 71.173134 673.5 28 694.807215 71.173134 742.451597 78.0962679 707.975799 111.701866 716.114431 159.153732"></polygon>
             <circle id="blu5" stroke="none" fill="#168BAF" fill-rule="evenodd" cx="541" cy="1041" r="40"></circle>
             <circle id="blu4" stroke="none" fill="#168BAF" fill-rule="evenodd" cx="239" cy="1001" r="40"></circle>
             <circle id="blu3" stroke="none" fill="#168BAF" fill-rule="evenodd" cx="1050" cy="889" r="40"></circle>
@@ -469,6 +493,11 @@
 <script src="/static/js/tether.min.js" type="text/javascript"></script>
 <script src="/static/js/mdb.min.js" type="text/javascript"></script>
 <script type="text/javascript">
+    function removeSel(name) {
+        $('.nav li a').removeClass('btn2');
+        $('#' + name).addClass('btn2');
+    }
+
     var words = document.getElementsByClassName('word');
     var wordArray = [];
     var currentWord = 0;
@@ -480,7 +509,7 @@
 
     function changeWord() {
         var cw = wordArray[currentWord];
-        var nw = currentWord == words.length-1 ? wordArray[0] : wordArray[currentWord+1];
+        var nw = currentWord == words.length - 1 ? wordArray[0] : wordArray[currentWord + 1];
         for (var i = 0; i < cw.length; i++) {
             animateLetterOut(cw, i);
         }
@@ -491,19 +520,19 @@
             animateLetterIn(nw, i);
         }
 
-        currentWord = (currentWord == wordArray.length-1) ? 0 : currentWord+1;
+        currentWord = (currentWord == wordArray.length - 1) ? 0 : currentWord + 1;
     }
 
     function animateLetterOut(cw, i) {
-        setTimeout(function() {
+        setTimeout(function () {
             cw[i].className = 'letter out';
-        }, i*80);
+        }, i * 80);
     }
 
     function animateLetterIn(nw, i) {
-        setTimeout(function() {
+        setTimeout(function () {
             nw[i].className = 'letter in';
-        }, 340+(i*80));
+        }, 340 + (i * 80));
     }
 
     function splitLetters(word) {

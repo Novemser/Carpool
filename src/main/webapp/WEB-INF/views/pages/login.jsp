@@ -12,12 +12,12 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Login & Register</title>
+    <title>登录</title>
     <link rel="stylesheet" type="text/css" href="<c:url value="/static/style/register-login.css"/>">
 
 </head>
 <body>
-<%@include file="modal/captchaErrorModal.jsp"%>
+<%@include file="modal/deleteRoomModal.jsp"%>
 
 <div id="box"></div>
 <div class="cent-box">
