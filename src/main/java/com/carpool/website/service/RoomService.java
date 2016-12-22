@@ -13,13 +13,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Project: Carpool
@@ -39,12 +42,12 @@ public class RoomService {
 
     @Transactional
     public RoomEntity createRoom(String roomName,
-                           String startPoint,
-                           String endPoint,
-                           int numberLimit,
-                           Date startTime,
-                           String hostId,
-                           String note) throws Exception {
+                                 String startPoint,
+                                 String endPoint,
+                                 int numberLimit,
+                                 Date startTime,
+                                 String hostId,
+                                 String note) throws Exception {
 
         UserEntity userEntity = userEntityRepository.findOne(hostId);
         if (null == userEntity)
@@ -76,10 +79,20 @@ public class RoomService {
         return roomEntity;
     }
 
-    public Page<RoomEntity> listUserRooms(String userId, int page, int size) {
+    public List<RoomEntity> listUserRooms(String userId) {
         UserEntity userEntity = userEntityRepository.findOne(userId);
-        Pageable p = new PageRequest(page, size);
-        return roomEntityRepository.findUserRooms(userEntity, p);
+
+        // 删除所有无用的房间
+        List<RoomEntity> entities = new ArrayList<>(roomEntityRepository.findUserNotEndRooms());
+
+        List<RoomEntity> roomsToAdd = new ArrayList<>();
+        for (RoomEntity entity : entities) {
+            if (entity.getUserParticipate().contains(userEntity)) {
+                roomsToAdd.add(entity);
+            }
+        }
+
+        return roomsToAdd;
     }
 
     public Integer getRoomPageCount() {
@@ -196,7 +209,23 @@ public class RoomService {
     }
 
     public Page<RoomEntity> findRoom(int page, int size) {
-        PageRequest pageRequest = new PageRequest(page, size);
+        PageRequest pageRequest = new PageRequest(page, size,
+                new Sort(
+                        new Sort.Order(Sort.Direction.DESC, "state"),
+                        new Sort.Order(Sort.Direction.DESC, "createTime")
+                )
+        );
+        Page<RoomEntity> roomEntities = roomEntityRepository.findAll(pageRequest);
+        Date now = new Date();
+        // 检查房间是否过期
+        // 过期自动设置成END
+        for (RoomEntity roomEntity : roomEntities) {
+            if (roomEntity.getStartTime().before(now)) {
+                roomEntity.setState(RoomState.END);
+                roomEntityRepository.save(roomEntity);
+            }
+        }
+
         return roomEntityRepository.findAll(pageRequest);
     }
 

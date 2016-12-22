@@ -10,8 +10,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="modal/deleteRoomModal.jsp"%>
-<%@include file="modal/unlockRoomModal.jsp"%>
+<%@include file="modal/deleteRoomModal.jsp" %>
+<%@include file="modal/unlockRoomModal.jsp" %>
 <div class="border-head">
     <div class="row">
         <h3 class="col-lg-3">房间信息</h3>
@@ -27,9 +27,9 @@
 <div class="row center-block" style="margin-bottom: 90px;">
     <div class="col-lg-8 col-lg-offset-2 text-center detail_dev">
         <section class="z-depth-1 hoverable panel" style="padding: 15px;">
-            <header class="panel-heading">
+            <h3 class="panel-heading">
                 房间具体信息
-            </header>
+            </h3>
             <div class="panel-body">
 
 
@@ -83,12 +83,22 @@
                     <dd>${room.note}</dd>
                 </dl>
                 <hr>
+                <%--如果不是房主且加入了房间 显示房间人数--%>
+                <c:if test="${roomOwner==true || inRoom==true}">
+                    <h3>房间用户</h3>
+                    <ul class="list-unstyled">
+                        <c:forEach items="${roomUsers}" var="user" >
+                            <li>学号:${user.id} 姓名:${user.username} 信誉等级:${user.credit}</li>
+                        </c:forEach>
+                    </ul>
+                </c:if>
                 <div style="margin: 24px;width: 75%;" class="btn btn-lg btn-primary">
-                    <i class="fa fa-commenting"></i><a href="/room/chat?roomId=${room.id}" style="color: white"> 进入聊天室</a>
+                    <i class="fa fa-commenting"></i><a href="<c:url value="/room/chat?roomId=${room.id}"/>"
+                                                       style="color: white"> 进入聊天室</a>
                 </div>
 
-                <%--如果不是房主--%>
-                <c:if test="${roomOwner==false}">
+                <%--如果不是房主且没有加入房间--%>
+                <c:if test="${roomOwner==false && inRoom==false}">
                     <form:form action="/room/user/join" method="post" id="addUserForm">
                         <input name="roomId" value="${room.id}" type="hidden">
                         <c:choose>
@@ -102,11 +112,11 @@
                                     <i class="fa fa-info"></i> 暂时无法加入 请等待房主解锁
                                 </div>
                             </c:when>
-                            <%--<c:otherwise>--%>
-                                <%--<div class="btn-effect btn btn-default btn-lg btn-block">--%>
-                                    <%--<i class="fa fa-exclamation-triangle"></i> 无法加入此房间--%>
-                                <%--</div>--%>
-                            <%--</c:otherwise>--%>
+                            <c:when test="${room.state==ROOM_STATE_STARTED}">
+                                <div class="btn-effect btn btn-info btn-lg">
+                                    <i class="fa fa-car"></i> 小伙伴们已经上路啦~
+                                </div>
+                            </c:when>
                         </c:choose>
                     </form:form>
                 </c:if>

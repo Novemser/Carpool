@@ -96,8 +96,8 @@
         <put-attribute name="body" value="/WEB-INF/views/pages/profile.jsp"/>
     </definition>
     <definition name="comment/lookOtherComments" extends="base-definition">
-        <put-attribute name="title" value="他的信誉评价"></put-attribute>
-        <put-attribute name="body" value="/WEB-INF/views/pages/comment/lookOtherComments.jsp"></put-attribute>
+        <put-attribute name="title" value="他的信誉评价"/>
+        <put-attribute name="body" value="/WEB-INF/views/pages/comment/lookOtherComments.jsp"/>
     </definition>
 
 
