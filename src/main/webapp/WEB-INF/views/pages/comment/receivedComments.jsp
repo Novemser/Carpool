@@ -50,7 +50,6 @@
     </style>
 </head>
 <body>
-<c:set value="${user}" var="user"></c:set>
 <c:set value="${userid}" var="userid"></c:set>
 <c:set value="${receivedComments}" var="recievedComments"></c:set>
 <c:set var="recievedCommentInCurrentPage" value="${recievedComments.content}"></c:set>
@@ -146,33 +145,48 @@
                 <nav class="">
                     <ul class="pagination pg-blue ">
                         <!--Arrow left-->
-                        <c:if test="${recievedComments.hasPrevious()}">
+
                             <li class="page-item">
-                                <a class="page-link" href='<c:url value="/comment/getReceivedComment/${userid}?currentPage=${currentPage-1}"></c:url>' aria-label="Previous">
+                                <c:choose>
+                                    <c:when test="${recievedComments.hasPrevious()}">
+                                <a class="page-link" href='<c:url value="/comment/getReceivedComment/${userid}?currentPage=${currentPage-1}&id=5"></c:url>' aria-label="Previous">
                                     <span aria-hidden="true">«</span>
                                     <span class="sr-only">Previous</span>
                                 </a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a>
+                                            <span aria-hidden="true">«</span>
+                                        </a>
+                                    </c:otherwise>
+                                </c:choose>
                             </li>
-                        </c:if>
 
                         <!--Numbers-->
                         <c:forEach var="i" begin="0" end="${recievedComments.totalPages > 0 ? recievedComments.totalPages - 1: 0}" step="1">
                             <c:if test="${i==currentPage}">
-                                <li class="page-item active"><a href="<c:url value="/comment/getReceivedComment/${userid}?currentPage=${i}"></c:url>" class="page-link">${i+1}</a></li>
+                                <li class="page-item active"><a href="<c:url value="/comment/getReceivedComment/${userid}?currentPage=${i}&id=5"></c:url>" class="page-link">${i+1}</a></li>
                             </c:if>
                             <c:if test="${i!=currentPage}">
-                                <li class="page-item"><a href="<c:url value="/comment/getReceivedComment/${userid}?currentPage=${i}"></c:url>" class="page-link">${i+1}</a></li>
+                                <li class="page-item"><a href="<c:url value="/comment/getReceivedComment/${userid}?currentPage=${i}&id=5"></c:url>" class="page-link">${i+1}</a></li>
                             </c:if>
                         </c:forEach>
                         <!--Arrow right-->
-                        <c:if test="${recievedComments.hasNext()}">
                             <li class="page-item">
-                                <a class="page-link" href='<c:url value="/comment/getReceivedComment/${userid}?currentPage=${currentPage+1}"></c:url>' aria-label="Next">
+                                <c:choose>
+                                    <c:when test="${recievedComments.hasNext()}">
+                                <a class="page-link" href='<c:url value="/comment/getReceivedComment/${userid}?currentPage=${currentPage+1}&id=5"></c:url>' aria-label="Next">
                                     <span aria-hidden="true">»</span>
                                     <span class="sr-only">Next</span>
                                 </a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a>
+                                            <span aria-hidden="true">»</span>
+                                        </a>
+                                    </c:otherwise>
+                                </c:choose>
                             </li>
-                        </c:if>
                     </ul>
                 </nav>
             </div>

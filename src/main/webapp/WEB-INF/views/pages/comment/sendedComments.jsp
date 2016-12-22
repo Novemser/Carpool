@@ -50,7 +50,6 @@
     </style>
 </head>
 <body>
-<c:set value="${user}" var="user"></c:set>
 <c:set value="${userid}" var="userid"></c:set>
 <c:set value="${sendedComments}" var="sendedComments"></c:set>
 <div class="border-head">
@@ -61,7 +60,7 @@
 <div class="row">
     <c:choose>
         <c:when test="${empty userid}">
-            亲，你还没有登录呢，去<a href="<c:url value='/comment/getSendedComment/1452779'/>" class="btn btn-default">
+            亲，你还没有登录呢，去<a href="<c:url value='/login'/>" class="btn btn-default">
             登录
             </a>
         </c:when>
@@ -107,14 +106,14 @@
  <!--           <div class="col-lg-12 col-md-12 col-sm-12" style="padding-left: 15px" >
                 <ul class="pagination pagination-centered center-block">
                     <li>
-                        <a href="<c:url value="/comment/getSendedComment/${userid}?currentPage=0"></c:url> ">
+                        <a href="<c:url value="/comment/getSendedComment?currentPage=0"></c:url> ">
                             第一页
                         </a>
                     </li>
 
                     <c:if test="${sendedComments.hasPrevious()}">
                         <li>
-                            <a  href="<c:url value='/comment/getSendedComment/${userid}?currentPage=${sendedComments.number-1}'></c:url>">
+                            <a  href="<c:url value='/comment/getSendedComment?currentPage=${sendedComments.number-1}'></c:url>">
                                 上一页
                             </a>
                         </li>
@@ -124,13 +123,13 @@
                     </li>
                     <c:if test="${sendedComments.hasNext()}">
                         <li>
-                            <a href="<c:url value='/comment/getSendedComment/${userid}?currentPage=${sendedComments.number+1}'></c:url>">
+                            <a href="<c:url value='/comment/getSendedComment?currentPage=${sendedComments.number+1}'></c:url>">
                                 下一页
                             </a>
                         </li>
                     </c:if>
                     <li>
-                        <a href="<c:url value="/comment/getSendedComment/${userid}?currentPage=${sendedComments.totalPages-1}"></c:url> ">
+                        <a href="<c:url value="/comment/getSendedComment?currentPage=${sendedComments.totalPages-1}"></c:url> ">
                             最后一页
                         </a>
                     </li>
@@ -140,33 +139,47 @@
                 <nav class="">
                     <ul class="pagination pg-blue ">
                         <!--Arrow left-->
-                        <c:if test="${sendedComments.hasPrevious()}">
+
                             <li class="page-item">
-                                <a class="page-link" href='<c:url value="/comment/getSendedComment/${userid}?currentPage=${sendedComments.number-1}"></c:url>' aria-label="Previous">
+                                <c:choose>
+                                    <c:when test="${sendedComments.hasPrevious()}">
+                                    <a  class="page-link" href='<c:url value="/comment/getSendedComment?currentPage=${sendedComments.number-1}&id=5"></c:url>'  aria-label="Previous">
                                     <span aria-hidden="true">«</span>
                                     <span class="sr-only">Previous</span>
-                                </a>
+                                    </a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a>
+                                        <span aria-hidden="true">«</span>
+                                        </a>
+                                    </c:otherwise>
+                                </c:choose>
                             </li>
-                        </c:if>
-
                         <!--Numbers-->
                         <c:forEach var="i" begin="0" end="${sendedComments.totalPages > 0 ? sendedComments.totalPages - 1: 0}" step="1">
                             <c:if test="${i==currentPage}">
-                                <li class="page-item active"><a href="<c:url value="/comment/getSendedComment/${userid}?currentPage=${i}"></c:url>" class="page-link">${i+1}</a></li>
+                                <li class="page-item active"><a href="<c:url value="/comment/getSendedComment?currentPage=${i}&id=5"></c:url>" class="page-link">${i+1}</a></li>
                             </c:if>
                             <c:if test="${i!=currentPage}">
-                                <li class="page-item"><a href="<c:url value="/comment/getSendedComment/${userid}?currentPage=${i}"></c:url>" class="page-link">${i+1}</a></li>
+                                <li class="page-item"><a href="<c:url value="/comment/getSendedComment?currentPage=${i}&id=5"></c:url>" class="page-link">${i+1}</a></li>
                             </c:if>
                         </c:forEach>
                         <!--Arrow right-->
-                        <c:if test="${sendedComments.hasNext()}">
                             <li class="page-item">
-                                <a class="page-link" href='<c:url value="/comment/getSendedComment/${userid}?currentPage=${currentPage+1}"></c:url>' aria-label="Next">
+                                <c:choose>
+                                    <c:when test="${sendedComments.hasNext()}">
+                                    <a class="page-link" href='<c:url value="/comment/getSendedComment?currentPage=${currentPage+1}&id=5"></c:url>' disabled="${sendedComments.hasNext()}" aria-label="Next">
                                     <span aria-hidden="true">»</span>
                                     <span class="sr-only">Next</span>
-                                </a>
+                                    </a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a>
+                                        <span aria-hidden="true">»</span>
+                                        </a>
+                                    </c:otherwise>
+                                </c:choose>
                             </li>
-                        </c:if>
                     </ul>
                 </nav>
             </div>

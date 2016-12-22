@@ -151,33 +151,49 @@
                 <nav class="">
                     <ul class="pagination pg-blue ">
                         <!--Arrow left-->
-                        <c:if test="${journeyPages.hasPrevious()}">
+
                         <li class="page-item">
-                            <a class="page-link" href='<c:url value="${url}?currentPage=${journeyPages.number-1}"></c:url>' aria-label="Previous">
+                            <c:choose>
+                                <c:when test="${journeyPages.hasPrevious()}">
+                            <a class="page-link" href='<c:url value="${url}?currentPage=${journeyPages.number-1}&id=4"></c:url>' aria-label="Previous">
                                 <span aria-hidden="true">«</span>
                                 <span class="sr-only">Previous</span>
                             </a>
+                                </c:when>
+                                <c:otherwise>
+                                    <a>
+                                        <span aria-hidden="true">«</span>
+                                    </a>
+                                </c:otherwise>
+                            </c:choose>
                         </li>
-                        </c:if>
+
 
                         <!--Numbers-->
                         <c:forEach var="i" begin="0" end="${journeyPages.totalPages > 0 ? journeyPages.totalPages - 1: 0}" step="1">
                             <c:if test="${i==currentPage}">
-                                <li class="page-item active"><a href="<c:url value="${url}?currentPage=${i}"></c:url>" class="page-link">${i+1}</a></li>
+                                <li class="page-item active"><a href="<c:url value="${url}?currentPage=${i}&id=4"></c:url>" class="page-link">${i+1}</a></li>
                             </c:if>
                             <c:if test="${i!=currentPage}">
-                                <li class="page-item"><a href="<c:url value="${url}?currentPage=${i}"></c:url>" class="page-link">${i+1}</a></li>
+                                <li class="page-item"><a href="<c:url value="${url}?currentPage=${i}&id=4"></c:url>" class="page-link">${i+1}</a></li>
                             </c:if>
                         </c:forEach>
                         <!--Arrow right-->
-                        <c:if test="${journeyPages.hasNext()}">
                         <li class="page-item">
-                            <a class="page-link" href='<c:url value="${url}?currentPage=${currentPage+1}"></c:url>' aria-label="Next">
+                            <c:choose>
+                            <c:when test="${journeyPages.hasNext()}">
+                            <a class="page-link" href='<c:url value="${url}?currentPage=${currentPage+1}&id=4"></c:url>' aria-label="Next">
                                 <span aria-hidden="true">»</span>
                                 <span class="sr-only">Next</span>
                             </a>
+                            </c:when>
+                            <c:otherwise>
+                                <a>
+                                    <span aria-hidden="true">»</span>
+                                </a>
+                            </c:otherwise>
+                            </c:choose>
                         </li>
-                        </c:if>
                     </ul>
                 </nav>
             </div>

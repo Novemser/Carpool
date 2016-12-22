@@ -5,11 +5,16 @@ import com.carpool.domain.JourneyEntity;
 import com.carpool.domain.RoomEntity;
 import com.carpool.domain.UserEntity;
 import com.carpool.exception.JourneyException;
+import com.carpool.exception.PermissionDeniedException;
+import com.carpool.exception.RoomNullException;
+import com.carpool.exception.UserNullException;
 import com.carpool.website.dao.CommentEntityRepository;
 import com.carpool.website.dao.JourneyEntityRepository;
 import com.carpool.website.dao.RoomEntityRepository;
+import com.carpool.website.dao.UserEntityRepository;
 import com.carpool.website.model.JourneyCommentDetail;
 import com.carpool.website.model.MyTrack;
+import org.apache.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -31,7 +36,8 @@ public class JourneyService extends PageSevice {
     JourneyEntityRepository journeyEntityRepository;
     @Autowired
     CommentEntityRepository commentEntityRepository;
-
+    @Autowired
+    UserEntityRepository userEntityRepository;
     @Autowired
     RoomEntityRepository roomEntityRepository;
 
@@ -123,5 +129,24 @@ public class JourneyService extends PageSevice {
             myTracks.add(m);
         }
         return  myTracks;
+    }
+
+    public boolean generateJourneyFromRoomId(Integer roomId,String userId)
+    {
+        RoomEntity roomEntity = roomEntityRepository.findOne(roomId);
+        if(roomEntity == null)
+            throw  new RoomNullException("ERROR","生成行程失败，不存在的房间");
+        if(userEntityRepository.findById(userId)==null)
+            throw new UserNullException("ERROR","不存在的用户");
+        if(roomEntity.getHost().getId().equals(userId)==false)
+            throw  new PermissionDeniedException(HttpStatus.SC_FORBIDDEN + "","你没有权限生成行程");
+        JourneyEntity journeyEntity = new JourneyEntity();
+        journeyEntity.setRoom(roomEntity);
+        journeyEntity.setStartPoint(roomEntity.getStartPoint());
+        journeyEntity.setEndPoint(roomEntity.getEndPoint());
+        journeyEntity.setPeerNums(roomEntity.getCurrentNums());
+        journeyEntity.setStartTime(roomEntity.getStartTime());
+        journeyEntityRepository.saveAndFlush(journeyEntity);
+        return  true;
     }
 }
