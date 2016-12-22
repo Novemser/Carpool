@@ -139,16 +139,6 @@
             </div>
         </section>
     </div>
-    <div id="share" class="pull-right">
-        <div class="bdsharebuttonbox">
-            <a class="bds_more" href="#" data-cmd="more"></a>
-            <a title="分享到微信" class="bds_weixin" href="#" data-cmd="weixin"></a>
-            <a title="分享到QQ空间" class="bds_qzone" href="#" data-cmd="qzone"></a>
-            <a title="分享到新浪微博" class="bds_tsina" href="#" data-cmd="tsina"></a>
-            <a title="分享到腾讯微博" class="bds_tqq" href="#" data-cmd="tqq"></a>
-            <a title="分享到人人网" class="bds_renren" href="#" data-cmd="renren"></a>
-            <a title="分享到QQ好友" class="bds_sqq" href="#" data-cmd="sqq"></a></div>
-    </div>
 </div>
 
 <style type="text/css">

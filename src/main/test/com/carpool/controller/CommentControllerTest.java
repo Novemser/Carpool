@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 /**
@@ -54,7 +55,7 @@ public class CommentControllerTest {
     public void test_getSendedComments() throws Exception
     {
  //       mockMvc.perform(get("/comment/getSendedComment/1452778")).andDo(print());
-     mockMvc.perform(get("/comment/makeComment?journey.id=3&sourceUser.id=1452779&targetUser.id=1452778&credit=3&commentText=+++++++++++++sd+++++++++++++++"));;
+     mockMvc.perform(post("/comment/makeComment?journey.id=1000&sourceUser.id=1452681&targetUser.id=1452779&credit=4&commentText=+++++++++++++sd+++++++++++++++"));
     }
 
 }

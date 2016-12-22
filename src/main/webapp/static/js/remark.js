@@ -9,49 +9,80 @@ $(function () {
             getDetail(link, $(this));
             $(this).html("隐藏");
         }
-        else if(action=="隐藏"){
+        else if (action == "隐藏") {
             $(this).next().remove();
             $(this).html("同行人");
         }
     });
 
     $("#makeComment").submit(function () {
-        if($(this).find("#star").find(":checked").length==0)
-        {
+        if ($(this).find("#star").find(":checked").length == 0) {
             $("#star").parent().find("#error").remove();
             $(this).find("#star").after($("<span  id='error' class='alert-danger' '>   请选择星级</span>"));
         }
-        else
-        {
-            $.post("/comment/makeComment", $(this).serializeArray(),
-                function (data) {
-                    if(data=="success")
-                    {
-                        $("#makeComment #summitComment").attr("disabled",true);
+        else {
+            /*       $.post("/comment/makeComment", $(this).serializeArray(),
+             function (data) {
+             if(data=="success")
+             {
+             $("#makeComment #summitComment").attr("disabled",true);
+             $("#remark").after($("<div class=' form-group'><label class='col-lg-2 control-label'>评价成功" +
+             "你将在<span id='second'>3</span>秒内返回页面</label></div>"))
+             var link = $("#link").val();
+             reduceTime();
+             var timeout = false;
+             function reduceTime()
+             {
+             if(timeout==true)return;
+             var second = $("#makeComment #second");
+             var seconds = parseInt(second.html());
+             second.html(seconds-1);
+             setTimeout(reduceTime,1000);
+             }
+             window.setTimeout(function () {
+             location.replace(location.href);
+             timeout=true;
+             $("#makeComment #summitComment").attr("disabled",false);
+             },3000);
+             }
+             }).error(function (data) {
+             alert(data.toString());
+             })*/
+            $.ajax({
+                url: "/comment/makeComment",
+                type: "post",
+                data: $(this).serializeArray(),
+                error: function (data) {
+                    alert('出错了！' + data);
+                },
+                success: function (data) {
+                    if (data == "success") {
+                        $("#makeComment #summitComment").attr("disabled", true);
                         $("#remark").after($("<div class=' form-group'><label class='col-lg-2 control-label'>评价成功" +
                             "你将在<span id='second'>3</span>秒内返回页面</label></div>"))
                         var link = $("#link").val();
                         reduceTime();
                         var timeout = false;
-                        function reduceTime()
-                        {
-                            if(timeout==true)return;
+
+                        function reduceTime() {
+                            if (timeout == true)return;
                             var second = $("#makeComment #second");
                             var seconds = parseInt(second.html());
-                            second.html(seconds-1);
-                            setTimeout(reduceTime,1000);
+                            second.html(seconds - 1);
+                            setTimeout(reduceTime, 1000);
                         }
+
                         window.setTimeout(function () {
                             location.replace(location.href);
-                            timeout=true;
-                            $("#makeComment #summitComment").attr("disabled",false);
-                        },3000);
+                            timeout = true;
+                            $("#makeComment #summitComment").attr("disabled", false);
+                        }, 3000);
                     }
-                });
+                }
+            });
         }
         return false;
-    });
-
+    })
 });
 function getDetail(link,nodeToInsert) {
     $.ajax({

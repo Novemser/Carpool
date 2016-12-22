@@ -51,15 +51,26 @@ public class RememberMeFilter extends OncePerRequestFilter {
 
         }
 
+        //如果只是评论某一个用户的话，并且带有
+        //就不进行安全验证，如果进行安全验证的话，这部分就会出现问题
+        if(uri.contains("comment/makeComment"))
+            request.getRequestDispatcher(uri).forward(request,response);
         //do filter
-        if (resourceRequest || (loginRequest && !rememberCookieExist) || (!loginRequest && cookiesExist && rememberCookieExist)) {
-            filterChain.doFilter(request, response);
-        } else if (!loginRequest && !rememberCookieExist) {
+
+        if( resourceRequest ||(loginRequest&&!rememberCookieExist) || (!loginRequest&&cookiesExist&&rememberCookieExist) ){
+            filterChain.doFilter(request,response);
+        }else if( !loginRequest && !rememberCookieExist ){
+
+            //by shareLink,then store shareLink in Session
+            if(uri.contains("room/detail"))
+            {
+                String roomId = request.getParameter("roomId");
+                request.getSession().setAttribute("shareLink",uri+"?roomId="+roomId);
+            }
             response.sendRedirect("/login");
-        } else {
+        }
+        else {
             response.sendRedirect("/home/main");
         }
-
-
     }
 }

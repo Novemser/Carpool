@@ -75,6 +75,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .logout().logoutSuccessUrl("/login")
                 .and()
                 .sessionManagement().sessionAuthenticationErrorUrl("/login").maximumSessions(1);
+
     }
 
 
