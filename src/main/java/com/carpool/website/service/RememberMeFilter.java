@@ -22,30 +22,28 @@ public class RememberMeFilter extends OncePerRequestFilter {
         //filterChain.doFilter(request,response);
 
 
-
-
-
-        boolean  loginRequest = false;
-        boolean  resourceRequest = false;
-        boolean  rememberCookieExist = false;
-        boolean  cookiesExist = false;
+        boolean loginRequest = false;
+        boolean resourceRequest = false;
+        boolean rememberCookieExist = false;
+        boolean cookiesExist = false;
         String uri = request.getRequestURI();
 
-        if(0==uri.compareTo("/")){
-            filterChain.doFilter(request,response);
+        if (0 == uri.compareTo("/")) {
+            filterChain.doFilter(request, response);
             return;
         }
 
         //check if login request
-        loginRequest =  uri.contains("login");
+        loginRequest = uri.contains("login") || uri.contains("getLoginCode") || uri.contains("checkimagecode");
         resourceRequest = (uri.contains("static") || uri.contains("ico"));
         //check cookies
         Cookie[] cookies = request.getCookies();
-        if(null != cookies){
+        if (null != cookies) {
             cookiesExist = true;
-            for(Cookie cookie: cookies){
-                if(0 == cookie.getName().compareTo("remember-me")){
-                    rememberCookieExist = true; break;
+            for (Cookie cookie : cookies) {
+                if (0 == cookie.getName().compareTo("remember-me")) {
+                    rememberCookieExist = true;
+                    break;
                 }
             }
 
@@ -56,6 +54,7 @@ public class RememberMeFilter extends OncePerRequestFilter {
         if(uri.contains("comment/makeComment"))
             request.getRequestDispatcher(uri).forward(request,response);
         //do filter
+
         if( resourceRequest ||(loginRequest&&!rememberCookieExist) || (!loginRequest&&cookiesExist&&rememberCookieExist) ){
             filterChain.doFilter(request,response);
         }else if( !loginRequest && !rememberCookieExist ){
