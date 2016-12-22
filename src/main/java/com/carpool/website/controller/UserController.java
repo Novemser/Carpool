@@ -6,7 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.multipart.MultipartFile;
+import java.io.File;
+import java.io.FileWriter;
+import java.util.Date;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -37,12 +41,12 @@ public class UserController {
     }
 
     @GetMapping("/user")
-    //public String profile(HttpServletRequest request,@RequestParam String userId, ModelMap modelMap) {
     public String profile(HttpServletRequest request, ModelMap modelMap) {
         request.setAttribute("id", 3);
         request.setAttribute("active", "1");
-        //UserEntity userEntity=userService.getUserById(userId);
-        UserEntity userEntity=userService.getUserById("1452714");
+        Cookie[] cookies=request.getCookies();
+        String userId=this.userService.checkSessionIdentity(cookies[1].getValue());
+        UserEntity userEntity=userService.getUserById(userId);
         modelMap.addAttribute("user",userEntity);
         return "user.profile";
     }
@@ -64,17 +68,18 @@ public class UserController {
     @PostMapping("/user/edit")
     public String edit(ModelMap modelMap, HttpServletRequest request){
         boolean change=false;
-        //更新有错
+        Cookie[] cookies=request.getCookies();
+        String userId=this.userService.checkSessionIdentity(cookies[1].getValue());
         if(request.getParameter("aliPay")!=""){
-            userService.updateUserAlipay("1452714",request.getParameter("aliPay"));
+            userService.updateUserAlipay(userId,request.getParameter("aliPay"));
             change=true;
         }
         if(request.getParameter("QQ")!=""){
-            userService.updateUserQQ("1452714",request.getParameter("QQ"));
+            userService.updateUserQQ(userId,request.getParameter("QQ"));
             change=true;
         }
         if(request.getParameter("WeChat")!=""){
-            userService.updateUserWeChat("1452714",request.getParameter("WeChat"));
+            userService.updateUserWeChat(userId,request.getParameter("WeChat"));
             change=true;
         }
         if(change==true)
@@ -85,14 +90,35 @@ public class UserController {
 
     @PostMapping("/user/password")
     public String editPassword(ModelMap modelMap, HttpServletRequest request){
-        UserEntity userEntity=userService.getUserById("1452714");
+        Cookie[] cookies=request.getCookies();
+        String userId=this.userService.checkSessionIdentity(cookies[1].getValue());
+        UserEntity userEntity=userService.getUserById(userId);
         if(userEntity.getPassword()==request.getParameter("currentPassword")){
-            userService.updateUserPassword("1452714",request.getParameter("newPassword"));
+            userService.updateUserPassword(userId,request.getParameter("newPassword"));
             return "redirect:/user";
         }
         else{
             return "user.edit";
         }
+    }
+
+    @PostMapping("/user/photo")
+    public String editPhoto(@RequestParam(value = "file", required = false)MultipartFile file,HttpServletRequest request){
+        Cookie[] cookies=request.getCookies();
+        String userId=this.userService.checkSessionIdentity(cookies[1].getValue());
+        if (!file.isEmpty()) {
+            try {
+                String filePath = request.getSession().getServletContext().getRealPath("/")+"static/images/"
+                        + userId+file.getOriginalFilename();
+                file.transferTo(new File(filePath));
+                String photoPath="/static/images/"+userId+file.getOriginalFilename();
+                userService.updateUserPhoto(userId,photoPath);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return "user.edit";
+            }
+        }
+        return "redirect:/user";
     }
 
 }

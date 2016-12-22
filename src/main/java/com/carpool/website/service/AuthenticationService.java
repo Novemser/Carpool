@@ -73,7 +73,7 @@ public class AuthenticationService implements AuthenticationProvider {
                 return null;
             }else{  // found
                 UserEntity userEntity = new UserEntity(username,jsonRet.getString("name"), pw,
-                        (byte)0, 0.0, "", 0,"", "");
+                        (byte)0, 0.0, "", 0,"", "","");
                 userEntity.setReceivedComments(0);
 
                 //add the new user to database

@@ -11,7 +11,7 @@
         <section class="panel card">
         <div class="user-heading round">
             <a href="#">
-                <img src="/static/img/profile-avatar.jpg" alt="">
+                <img src="${user.photo}" alt="">
             </a>
             <h1>${user.username}</h1>
             <p>${user.alipay}</p>

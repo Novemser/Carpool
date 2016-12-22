@@ -65,6 +65,13 @@ public class UserService {
             throw new UserNullException("getUserError", "不存在的用户");
         userEntity.setPassword(password);
     }
+    @Transactional
+    public void updateUserPhoto(String id,String photo) {
+        UserEntity userEntity = userEntityRepository.findOne(id);
+        if (userEntity == null)
+            throw new UserNullException("getUserError", "不存在的用户");
+        userEntity.setPhoto(photo);
+    }
 
 
 

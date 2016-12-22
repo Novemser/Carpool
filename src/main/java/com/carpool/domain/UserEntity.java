@@ -15,15 +15,13 @@ import java.util.Collection;
 public class UserEntity implements Serializable{
     private String id;
     private String username;
-
-
     private String password;
     private byte gender;
     private double credit;
     private String alipay;
     private int coins;
     private Integer receivedComments;
-
+    private String photo;
     @Column(nullable = false)
     public Integer getReceivedComments() {
         return receivedComments;
@@ -58,7 +56,7 @@ public class UserEntity implements Serializable{
     }
 
     public UserEntity(String id, String username, String password, byte gender, double credit, String alipay,
-                      int coins, String qqAccount, String wechatAccount) {
+                      int coins, String qqAccount, String wechatAccount,String photo) {
         this.id = id;
         this.username = username;
         this.gender = gender;
@@ -69,6 +67,10 @@ public class UserEntity implements Serializable{
         this.wechatAccount = wechatAccount;
         //pw encryption
         this.password = password;
+        if(photo==""||photo==null)
+            this.photo="/static/images/default.jpg";
+        else
+            this.photo=photo;
 
 
     }
@@ -164,6 +166,16 @@ public class UserEntity implements Serializable{
 
     public void setWechatAccount(String wechatAccount) {
         this.wechatAccount = wechatAccount;
+    }
+
+    @Basic
+    @Column(name = "photo", nullable = false, length = 200)
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     @Override

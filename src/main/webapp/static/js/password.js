@@ -91,6 +91,10 @@ function clear1() {
 function clear2() {
     document.getElementById("cpwd").value="";
     document.getElementById("npwd").value="";
-    document.getElementById("repwd").value="";
+    document.getElementById("rtpwd").value="";
+    document.getElementById("strength_L").style.background = "#eeeeee";
+    document.getElementById("strength_M").style.background = "#eeeeee";
+    document.getElementById("strength_H").style.background = "#eeeeee";
+    document.getElementById("unlike").style.display = "none";
 }
 
