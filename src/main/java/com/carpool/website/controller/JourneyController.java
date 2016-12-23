@@ -45,6 +45,7 @@ public class JourneyController {
         if(userService.getUserById(userid)==null)
             throw new UserNullException("EORROR","不存在的用户");
         Page<JourneyEntity> journeyEntities = journeyService.getMyJourneyAsHost(userid,currentPage);
+        modelMap.addAttribute("userId",userid);
         modelMap.addAttribute("journeys",journeyEntities);
         modelMap.addAttribute("currentPage",currentPage);
         modelMap.addAttribute("type","我是房主");
@@ -56,6 +57,7 @@ public class JourneyController {
     {
         String userid = userService.getUserIdByCookie(request.getCookies());
         Page<JourneyEntity> journeyEntities = journeyService.getAllJourneys(userid,currentPage);
+        modelMap.addAttribute("userId",userid);
         modelMap.addAttribute("journeys",journeyEntities);
         modelMap.addAttribute("currentPage",currentPage);
         modelMap.addAttribute("type","全部出行");

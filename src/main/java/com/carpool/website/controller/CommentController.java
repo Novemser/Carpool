@@ -42,10 +42,12 @@ public class CommentController {
     public String getReceivedComment(@RequestParam(value = "currentPage",defaultValue = "0")Integer currentPage, ModelMap modelMap, HttpServletRequest request)
     {
         String userid = userService.getUserIdByCookie(request.getCookies());
+        UserEntity userEntity = userService.getUserById(userid);
         Page<CommentEntity> commentEntities = commentService.getRecievedComment(userid,currentPage);
         modelMap.addAttribute("receivedComments",commentEntities);
         modelMap.addAttribute("currentPage",currentPage);
         modelMap.addAttribute("userid",userid);
+        modelMap.addAttribute("user",userEntity);
         return  "comment/receivedComments";
     }
 

@@ -51,6 +51,7 @@
 </head>
 <body>
 <c:set value="${userid}" var="userid"></c:set>
+<c:set value="${user}" var="user"></c:set>
 <c:set value="${receivedComments}" var="recievedComments"></c:set>
 <c:set var="recievedCommentInCurrentPage" value="${recievedComments.content}"></c:set>
 <div class="border-head">

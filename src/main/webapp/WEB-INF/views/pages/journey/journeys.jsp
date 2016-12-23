@@ -84,6 +84,7 @@
     </style>
 </head>
 <body>
+<c:set var="userid" value="${userId}"></c:set>
 <c:set value="${journeys}" var="journeyPages"></c:set>
 <c:set var="journeyIncurrentPage" value="${journeys.content}"></c:set>
 <div class="border-head">
