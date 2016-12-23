@@ -2,20 +2,12 @@ package com.carpool.website.service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.carpool.domain.UserEntity;
-import com.carpool.website.dao.UserEntityRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import javax.annotation.Resource;
 
 
 /**
@@ -73,7 +65,7 @@ public class AuthenticationService implements AuthenticationProvider {
                 return null;
             }else{  // found
                 UserEntity userEntity = new UserEntity(username,jsonRet.getString("name"), pw,
-                        (byte)0, 0.0, "", 0,"", "");
+                        (byte)0, 0.0, "", 0,"", "","");
                 userEntity.setReceivedComments(0);
 
                 //add the new user to database

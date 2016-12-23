@@ -165,7 +165,6 @@
         </dependency>
 
 
-
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
@@ -205,17 +204,23 @@
             <version>${apachetiles.version}</version>
         </dependency>
         <dependency>
-            <groupId> org.apache.cassandra</groupId>
+            <groupId>org.apache.cassandra</groupId>
             <artifactId>cassandra-all</artifactId>
             <version>0.8.1</version>
 
 
         </dependency>
-
-
-
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.3</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.5</version>
+        </dependency>
     </dependencies>
-
     <build>
         <finalName>Carpool</finalName>
     </build>
@@ -234,4 +239,6 @@
             </properties>
         </profile>
     </profiles>
+
+
 </project>

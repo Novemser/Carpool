@@ -161,6 +161,7 @@
         color: white;
     }
 </style>
+
 <script>
     function deleteRoom() {
         $('#deleteRoomConfirm').modal('show');

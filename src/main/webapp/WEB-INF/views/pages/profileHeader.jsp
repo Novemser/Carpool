@@ -11,10 +11,10 @@
         <section class="panel card">
         <div class="user-heading round">
             <a href="#">
-                <img src="/static/img/profile-avatar.jpg" alt="">
+                <img src="${user.photo}" alt="">
             </a>
-            <h1>胡淦森</h1>
-            <p>17717096283</p>
+            <h1>${user.username}</h1>
+            <p>${user.alipay}</p>
         </div>
 
         <ul id="profile-header-template" class="nav nav-pills nav-stacked">

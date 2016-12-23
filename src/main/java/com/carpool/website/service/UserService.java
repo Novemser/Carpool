@@ -6,6 +6,7 @@ import com.carpool.website.dao.SessionRepository;
 import com.carpool.website.dao.UserEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.Cookie;
 import java.util.Base64;
@@ -30,6 +31,44 @@ public class UserService {
         if(userEntity==null)
             throw new UserNullException("getUserError","不存在的用户");
         return  userEntity;
+    }
+    @Transactional
+    public void updateUserAlipay(String id,String alipay)
+    {
+        UserEntity userEntity = userEntityRepository.findOne(id);
+        if(userEntity==null)
+            throw new UserNullException("getUserError","不存在的用户");
+        userEntity.setAlipay(alipay);
+    }
+    @Transactional
+    public void updateUserQQ(String id,String QQ)
+    {
+        UserEntity userEntity = userEntityRepository.findOne(id);
+        if(userEntity==null)
+            throw new UserNullException("getUserError","不存在的用户");
+        userEntity.setQqAccount(QQ);
+    }
+    @Transactional
+    public void updateUserWeChat(String id,String WeChat)
+    {
+        UserEntity userEntity = userEntityRepository.findOne(id);
+        if(userEntity==null)
+            throw new UserNullException("getUserError","不存在的用户");
+        userEntity.setWechatAccount(WeChat);
+    }
+    @Transactional
+    public void updateUserPassword(String id,String password) {
+        UserEntity userEntity = userEntityRepository.findOne(id);
+        if (userEntity == null)
+            throw new UserNullException("getUserError", "不存在的用户");
+        userEntity.setPassword(password);
+    }
+    @Transactional
+    public void updateUserPhoto(String id,String photo) {
+        UserEntity userEntity = userEntityRepository.findOne(id);
+        if (userEntity == null)
+            throw new UserNullException("getUserError", "不存在的用户");
+        userEntity.setPhoto(photo);
     }
 
 
@@ -59,7 +98,6 @@ public class UserService {
             e.printStackTrace();
             return null;
         }
-
     }
 
     /***

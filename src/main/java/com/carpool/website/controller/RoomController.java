@@ -38,7 +38,7 @@ import java.util.Date;
 @RequestMapping("/room")
 public class RoomController {
 
-    private final RoomService roomService;
+        private final RoomService roomService;
 
     @Autowired
     private UserService userService;

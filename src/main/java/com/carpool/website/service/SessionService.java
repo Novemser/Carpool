@@ -39,9 +39,11 @@ public class SessionService implements PersistentTokenRepository {
     public synchronized PersistentRememberMeToken getTokenForSeries(String seriesId){
         SessionEntity sessionEntity = this.sessionRepository.findBySeriesId(seriesId);
 
-        // 你tm别乱登录
-        if (null == sessionEntity)
+        if(null == sessionEntity){
             return null;
+        }
+
+
         PersistentRememberMeToken token = new PersistentRememberMeToken(
                 sessionEntity.getUserId(),
                 seriesId,
