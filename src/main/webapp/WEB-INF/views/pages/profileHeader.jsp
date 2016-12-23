@@ -19,7 +19,7 @@
 
         <ul id="profile-header-template" class="nav nav-pills nav-stacked">
             <li><a href="/user?id=3"> <i class="icon-user"></i> 个人信息</a></li>
-            <li><a href="/user/journey?id=3"> <i class="icon-calendar"></i> 约车记录 <span class="label label-danger pull-right r-activity">9</span></a></li>
+            <li><a href="/user/journey?id=3"> <i class="icon-home"></i> 我的房间 <span class="label label-danger pull-right r-activity">9</span></a></li>
             <li><a href="/user/edit?id=3"> <i class="icon-edit"></i> 编辑个人信息</a></li>
         </ul>
 

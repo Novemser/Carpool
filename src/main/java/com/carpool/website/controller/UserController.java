@@ -76,6 +76,9 @@ public class UserController {
         List<RoomEntity> roomEntities = roomService.listUserRooms(userId);
         modelMap.addAttribute("rooms", roomEntities);
 
+        UserEntity userEntity = userService.getUserById(userId);
+        modelMap.addAttribute("user", userEntity);
+
         return "user.profile.journey";
     }
 
@@ -83,6 +86,13 @@ public class UserController {
     public String edit(ModelMap modelMap, HttpServletRequest request) {
         boolean change = false;
         String userId = this.userService.getUserIdByCookie(request.getCookies());
+        // 当前用户非法登录 拒绝修改 返回细节界面
+        if (null == userId)
+            throw new UserNullException("抱歉", "请通过正规渠道登录");
+
+        UserEntity userEntity = userService.getUserById(userId);
+        modelMap.addAttribute("user", userEntity);
+
         if (request.getParameter("aliPay") != "") {
             userService.updateUserAlipay(userId, request.getParameter("aliPay"));
             change = true;

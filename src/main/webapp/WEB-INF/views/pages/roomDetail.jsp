@@ -12,6 +12,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="modal/deleteRoomModal.jsp" %>
 <%@include file="modal/unlockRoomModal.jsp" %>
+<%@include file="modal/endJourneyModal.jsp" %>
+
 <div class="border-head">
     <div class="row">
         <h3 class="col-lg-3">房间信息</h3>
@@ -83,7 +85,7 @@
                     <dd>${room.note}</dd>
                 </dl>
                 <hr>
-                <%--如果不是房主且加入了房间 显示房间人数--%>
+                <%--如果是房主||加入了房间 显示房间人数--%>
                 <c:if test="${roomOwner==true || inRoom==true}">
                     <h3>房间用户</h3>
                     <ul class="list-unstyled">
@@ -128,6 +130,11 @@
                                  onclick="location.href='/room/edit?roomId=${room.id}'">
                                 <i class="fa fa-pencil"></i><span style="color: white"> 修改房间信息</span>
                             </div>
+
+                            <div style="margin: 24px;width: 75%;" class="btn btn-lg btn-info">
+                                <i class="fa fa-flag"></i><span style="color: white"> 结束旅程</span>
+                            </div>
+
                             <div style="margin: 24px;width: 75%;" class="btn btn-lg btn-danger"
                                  onclick="deleteRoom()">
                                 <i class="fa fa-close"></i><span style="color: white"> 关闭房间</span>
@@ -165,6 +172,10 @@
 <script>
     function deleteRoom() {
         $('#deleteRoomConfirm').modal('show');
+    }
+
+    function endRoom() {
+        $('#endJourneyModal').modal('show');
     }
 
     function unlockRoom() {

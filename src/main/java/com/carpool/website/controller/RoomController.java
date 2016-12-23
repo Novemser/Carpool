@@ -38,7 +38,7 @@ import java.util.Date;
 @RequestMapping("/room")
 public class RoomController {
 
-        private final RoomService roomService;
+    private final RoomService roomService;
 
     @Autowired
     private UserService userService;
@@ -68,8 +68,7 @@ public class RoomController {
         if (userId != null && userId.equals(entity.getHost().getId())) {
             roomService.unLockRoomById(entity.getId());
             return "redirect:/room/detail?roomId=" + entity.getId();
-        }
-        else
+        } else
             return "main";
     }
 
@@ -84,8 +83,7 @@ public class RoomController {
         if (userId != null && userId.equals(entity.getHost().getId())) {
             roomService.lockRoomById(entity.getId());
             return "redirect:/room/detail?roomId=" + entity.getId();
-        }
-        else
+        } else
             return "main";
     }
 
