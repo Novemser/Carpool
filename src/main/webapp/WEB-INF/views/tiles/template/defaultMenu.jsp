@@ -53,8 +53,8 @@
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub">
-                    <li><a href="/journey/getMyJourneyAsHost/1452681?id=4">我是房主</a></li>
-                    <li><a href="/journey/getAllJourneys/1452681?id=4">全部出行</a></li>
+                    <li><a href="/journey/getMyJourneyAsHost?id=4">我是房主</a></li>
+                    <li><a href="/journey/getAllJourneys?id=4">全部出行</a></li>
                     <li><a href="/journey/getMyTrack?id=4">我的足迹</a></li>
                 </ul>
             </li>
@@ -66,8 +66,8 @@
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub">
-                    <li><a href="/comment/getReceivedComment/1452681?id=5">收到评论</a></li>
-                    <li><a href="/comment/getSendedComment/1452681?id=5">发出评论</a></li>
+                    <li><a href="/comment/getReceivedComment?id=5">收到评论</a></li>
+                    <li><a href="/comment/getSendedComment?id=5">发出评论</a></li>
                 </ul>
             </li>
             <li class="menu-item-logout mymenu-item mymenu-item">

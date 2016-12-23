@@ -68,4 +68,10 @@ public class JourneyControllerTest {
     {
         mockMvc.perform(get("/journey/getMyTrack/1452779")).andDo(print());
     }
+
+    @Test
+    public void test_generateJourney()throws Exception
+    {
+        mockMvc.perform(get("/journey/generateJourneyFromRoom/64")).andDo(print());
+    }
 }

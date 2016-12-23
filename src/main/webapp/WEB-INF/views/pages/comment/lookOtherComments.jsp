@@ -140,14 +140,23 @@
             <nav class="">
                 <ul class="pagination pg-blue ">
                     <!--Arrow left-->
-                    <c:if test="${commentsPage.hasPrevious()}">
+
                         <li class="page-item">
-                            <a class="page-link" href='<c:url value="/comment/getOthersComment/${userid}?currentPage=${commentsPage.number-1}"></c:url>' aria-label="Previous">
+                            <c:choose>
+                                <c:when test="${commentsPage.hasPrevious()}">
+                                <a class="page-link" href='<c:url value="/comment/getOthersComment/${userid}?currentPage=${commentsPage.number-1}"></c:url>' aria-label="Previous">
                                 <span aria-hidden="true">«</span>
                                 <span class="sr-only">Previous</span>
-                            </a>
+                                </a>
+                            </c:when>
+                                <c:otherwise>
+                                    <a>
+                                        <span aria-hidden="true">«</span>
+                                    </a>
+                                </c:otherwise>
+                            </c:choose>
                         </li>
-                    </c:if>
+
 
                     <!--Numbers-->
                     <c:forEach var="i" begin="0" end="${commentsPage.totalPages > 0 ? commentsPage.totalPages - 1: 0}" step="1">
@@ -159,14 +168,22 @@
                         </c:if>
                     </c:forEach>
                     <!--Arrow right-->
-                    <c:if test="${commentsPage.hasNext()}">
+
                         <li class="page-item">
+                            <c:choose>
+                                <c:when test="${commentsPage.hasNext()}">
                             <a class="page-link" href='<c:url value="/comment/getOthersComment/${userid}?currentPage=${commentsPage.number+1}"></c:url>' aria-label="Next">
                                 <span aria-hidden="true">»</span>
                                 <span class="sr-only">Next</span>
                             </a>
+                                </c:when>
+                                <c:otherwise>
+                                    <a>
+                                        <span aria-hidden="true">»</span>
+                                    </a>
+                                </c:otherwise>
+                            </c:choose>
                         </li>
-                    </c:if>
                 </ul>
             </nav>
         </div>
