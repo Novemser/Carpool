@@ -2,13 +2,9 @@ package com.carpool.website.service;
 
 import com.carpool.domain.SessionEntity;
 import com.carpool.website.dao.SessionRepository;
-import org.hibernate.Session;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.authentication.rememberme.PersistentRememberMeToken;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
-import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -42,6 +38,11 @@ public class SessionService implements PersistentTokenRepository {
 
     public synchronized PersistentRememberMeToken getTokenForSeries(String seriesId){
         SessionEntity sessionEntity = this.sessionRepository.findBySeriesId(seriesId);
+
+        if(null == sessionEntity){
+            return null;
+        }
+
 
         PersistentRememberMeToken token = new PersistentRememberMeToken(
                 sessionEntity.getUserId(),

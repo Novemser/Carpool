@@ -34,8 +34,10 @@ public class RememberMeFilter extends OncePerRequestFilter {
         }
 
         //check if login request
-        loginRequest = uri.contains("login") || uri.contains("getLoginCode") || uri.contains("checkimagecode");
-        resourceRequest = (uri.contains("static") || uri.contains("ico"));
+        loginRequest = uri.contains("login") ;
+
+        resourceRequest = uri.contains("static") || uri.contains("ico") || uri.contains("getLoginCode") || uri.contains("checkimagecode")
+                || uri.contains("index");
         //check cookies
         Cookie[] cookies = request.getCookies();
         if (null != cookies) {

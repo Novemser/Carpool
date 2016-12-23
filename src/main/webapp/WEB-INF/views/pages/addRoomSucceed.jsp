@@ -69,7 +69,7 @@
      */
     function SetShareUrl(cmd, config) {
         if (ShareId) {
-            config.bdUrl = "http://localhost:8080/room/detail?roomId="+ShareId;
+            config.bdUrl = "http://novemser.vicp.io:521/room/detail?roomId="+ShareId;
         }
         return config;
     }

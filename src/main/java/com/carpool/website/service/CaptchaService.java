@@ -108,7 +108,7 @@ public class CaptchaService {
         //2：将随机生成的验证码放入session中
         String sessionid = request.getSession().getId();
         request.getSession().setAttribute(sessionid + key, randomString);
-        System.out.println("*************" + randomString);
+//        System.out.println("*************" + randomString);
 
         g.dispose();
         try {

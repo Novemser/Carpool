@@ -30,15 +30,15 @@ public class RoomEntity implements Serializable{
     private Collection<UserEntity> userParticipate;
 
     @Column(name = "roomnote")
-    public String getRoomNote() {
-        return roomNote;
+    public String getNote() {
+        return note;
     }
 
-    public void setRoomNote(String roomNote) {
-        this.roomNote = roomNote;
+    public void setNote(String roomNote) {
+        this.note = roomNote;
     }
 
-    private String roomNote;
+    private String note;
 
     @Id
     @Column(name = "id", nullable = false)

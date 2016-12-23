@@ -19,31 +19,28 @@
                 <h1>个人信息</h1>
                 <div class="row">
                     <div class="bio-row">
-                        <p><span>学号 </span>: 1452681</p>
+                        <p><span>学号 </span>: ${user.id}</p>
                     </div>
                     <div class="bio-row">
-                        <p><span>姓名 </span>: 胡淦森</p>
+                        <p><span>姓名 </span>: ${user.username}</p>
                     </div>
                     <div class="bio-row">
-                        <p><span>学院 </span>: 软件学院</p>
+                        <p><span>信誉值</span>: ${user.credit}</p>
                     </div>
                     <div class="bio-row">
-                        <p><span>信誉值</span>: 97</p>
+                        <p><span>约车次数</span>: ${user.carpoolingCount}</p>
                     </div>
                     <div class="bio-row">
-                        <p><span>约车次数</span>: 6</p>
+                        <p><span>金币数量 </span>: ${user.coins}</p>
                     </div>
                     <div class="bio-row">
-                        <p><span>金币数量 </span>: 2341</p>
+                        <p><span>支付宝账户 </span>: ${user.alipay}</p>
                     </div>
                     <div class="bio-row">
-                        <p><span>支付宝账户 </span>: 17717096283</p>
+                        <p><span>QQ </span>: ${user.qqAccount}</p>
                     </div>
                     <div class="bio-row">
-                        <p><span>QQ </span>: 504589731</p>
-                    </div>
-                    <div class="bio-row">
-                        <p><span>WeChat </span>: Novemser</p>
+                        <p><span>WeChat </span>: ${user.wechatAccount}</p>
                     </div>
                 </div>
             </div>
