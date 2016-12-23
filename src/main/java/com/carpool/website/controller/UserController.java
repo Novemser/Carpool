@@ -55,6 +55,10 @@ public class UserController {
     public String editProfile(ModelMap modelMap, HttpServletRequest request) {
         request.setAttribute("id", 3);
         request.setAttribute("active", "3");
+        Cookie[] cookies=request.getCookies();
+        String userId=this.userService.checkSessionIdentity(cookies[1].getValue());
+        UserEntity userEntity=userService.getUserById(userId);
+        modelMap.addAttribute("user",userEntity);
         return "user.profile.edit";
     }
 
@@ -98,7 +102,7 @@ public class UserController {
             return "redirect:/user";
         }
         else{
-            return "user.edit";
+            return "user.profile.edit";
         }
     }
 
