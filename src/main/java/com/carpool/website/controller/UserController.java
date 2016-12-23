@@ -58,6 +58,10 @@ public class UserController {
     public String editProfile(ModelMap modelMap, HttpServletRequest request) {
         request.setAttribute("id", 3);
         request.setAttribute("active", "3");
+//        Cookie[] cookies=request.getCookies();
+        String userId = this.userService.getUserIdByCookie(request.getCookies());
+        UserEntity userEntity = userService.getUserById(userId);
+        modelMap.addAttribute("user", userEntity);
         return "user.profile.edit";
     }
 
@@ -118,8 +122,9 @@ public class UserController {
         if (userEntity.getPassword() == request.getParameter("currentPassword")) {
             userService.updateUserPassword(userId, request.getParameter("newPassword"));
             return "redirect:/user";
-        } else {
-            return "user.edit";
+        }
+        else{
+            return "user.profile.edit";
         }
     }
 
@@ -135,7 +140,7 @@ public class UserController {
                 userService.updateUserPhoto(userId, photoPath);
             } catch (Exception e) {
                 e.printStackTrace();
-                return "user.edit";
+                return "user.profile.edit";
             }
         }
         return "redirect:/user";

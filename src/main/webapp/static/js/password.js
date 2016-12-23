@@ -16,7 +16,18 @@ function isSame() {
     }
 }
 
-//字符类别判断
+function canSubmit() {
+    var save=document.getElementById("save1");
+    var alipay=document.getElementById("aliPay");
+    var qq=document.getElementById("QQ");
+    var wechat=document.getElementById("WeChat");
+    if(alipay!=""||qq!=""||wechat!="")
+        save.disabled=false;
+    else if(alipay==""&&qq==""&&wechat=="")
+        save.disabled=true;
+}
+
+// 字符类别判断
 function CharMode(iN) {
     if (iN >= 48 && iN <= 57)
         return 1;

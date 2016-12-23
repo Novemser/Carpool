@@ -154,24 +154,24 @@
                     <div class="form-group">
                         <label class="col-lg-2 control-label">支付宝账户</label>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" id="aliPay" name="aliPay" placeholder=" ">
+                            <input type="text" class="form-control" id="aliPay" name="aliPay" onkeyup="canSubmit()" placeholder="${user.alipay}">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-2 control-label">QQ</label>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" id="QQ" name="QQ" placeholder=" ">
+                            <input type="text" class="form-control" id="QQ" name="QQ" onkeyup="canSubmit()" placeholder="${user.qqAccount}">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-2 control-label">WeChat</label>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" id="WeChat" name="WeChat" placeholder=" ">
+                            <input type="text" class="form-control" id="WeChat" name="WeChat" onkeyup="canSubmit()" placeholder="${user.wechatAccount}">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-lg-offset-2 col-lg-10">
-                            <button type="submit" class="btn btn-success">保存</button>
+                            <button type="submit" class="btn btn-info" id="save1" disabled=true>保存</button>
                             <button type="button" class="btn btn-default" onclick="clear1()">清空</button>
                         </div>
                     </div>
