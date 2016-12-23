@@ -41,10 +41,22 @@
         xmlHttp.onreadystatechange = function () {
             if (xmlHttp.status == 202) {
                 if (sucCount++ == 0)
-                    toastr.success('结束旅程成功！');
-                setTimeout(function () {
-                    window.location.href = '/room/detail?roomId=' + roomId;
-                }, 2000);
+                    $.ajax(
+                        {
+                            url:"/journey/generateJourneyFromRoom?roomId="+roomId,
+                            type:"get",
+                            success:function (data) {
+                                if(data=="true")
+                                {
+                                    toastr.success('结束旅程成功！');
+                                    setTimeout(function () {
+                                        window.location.href = '/room/detail?roomId=' + roomId;
+                                    }, 2000);
+                                }
+                            }
+                        }
+                    );
+
             }
         };
 

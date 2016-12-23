@@ -1,20 +1,16 @@
 package com.carpool.website.controller;
 
 import com.carpool.domain.JourneyEntity;
-import com.carpool.domain.RoomEntity;
 import com.carpool.exception.PermissionDeniedException;
-import com.carpool.exception.RoomNullException;
 import com.carpool.exception.UserNullException;
 import com.carpool.website.model.JourneyCommentDetail;
 import com.carpool.website.model.MyTrack;
 import com.carpool.website.service.JourneyService;
 import com.carpool.website.service.RoomService;
 import com.carpool.website.service.UserService;
-import com.sun.deploy.net.HttpRequest;
 import org.apache.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;

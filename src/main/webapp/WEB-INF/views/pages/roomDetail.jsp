@@ -89,7 +89,7 @@
                 <c:if test="${roomOwner==true || inRoom==true}">
                     <h3>房间用户</h3>
                     <ul class="list-unstyled">
-                        <c:forEach items="${roomUsers}" var="user" >
+                        <c:forEach items="${roomUsers}" var="user">
                             <li>学号:${user.id} 姓名:${user.username} 信誉等级:${user.credit}</li>
                         </c:forEach>
                     </ul>
@@ -131,7 +131,8 @@
                                 <i class="fa fa-pencil"></i><span style="color: white"> 修改房间信息</span>
                             </div>
 
-                            <div style="margin: 24px;width: 75%;" class="btn btn-lg btn-info">
+                            <div style="margin: 24px;width: 75%;" class="btn btn-lg btn-info"
+                                 onclick="endRoom()">
                                 <i class="fa fa-flag"></i><span style="color: white"> 结束旅程</span>
                             </div>
 
