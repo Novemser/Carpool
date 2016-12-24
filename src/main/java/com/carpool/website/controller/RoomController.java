@@ -91,6 +91,17 @@ public class RoomController {
     public String showDetail(@RequestParam int roomId, ModelMap modelMap, HttpServletRequest request) {
 
         RoomEntity entity = roomService.findById(roomId);
+
+        // 验证是否超出总人数
+        int currentNum = entity.getUserParticipate().size();
+//        entity.setCurrentNums(currentNum);
+        if (currentNum >= entity.getNumberLimit())
+            modelMap.addAttribute("reachLimit", true);
+        else
+            modelMap.addAttribute("reachLimit", false);
+
+        roomService.editCurrentUserNum(currentNum, entity);
+
         modelMap.addAttribute("room", entity);
 
         String userId = userService.getUserIdByCookie(request.getCookies());
@@ -290,11 +301,28 @@ public class RoomController {
         return responseEntity;
     }
 
+    @PostMapping("/leave")
+    @ResponseBody
+    public ResponseEntity<?> leaveRoom(@RequestParam Integer roomId, HttpServletRequest request) {
+        RoomEntity entity = roomService.findById(roomId);
+        String userId = userService.getUserIdByCookie(request.getCookies());
+        ResponseEntity<String> responseEntity = new ResponseEntity<>("no", HttpStatus.UNAUTHORIZED);
+        // 当前用户是房主 拒绝修改 返回细节界面
+        if (userId.equals(entity.getHost().getId()))
+            return responseEntity;
+
+        roomService.removeUserFromRoom(roomId, userId);
+        responseEntity = new ResponseEntity<>("ok", HttpStatus.ACCEPTED);
+        return responseEntity;
+    }
+
     @PostMapping("/user/join")
-    public String addUserToRoom(@RequestParam Integer roomId, HttpServletRequest request) throws Exception {
+    public String addUserToRoom(@RequestParam Integer roomId, HttpServletRequest request, ModelMap modelMap) throws Exception {
         String userId = userService.getUserIdByCookie(request.getCookies());
 
-        roomService.addUserToRoom(roomId, userId);
+        Room entity = roomService.addUserToRoom(roomId, userId);
+
+        modelMap.addAttribute("room", entity);
 
         return "room.user.joinSucceed";
     }

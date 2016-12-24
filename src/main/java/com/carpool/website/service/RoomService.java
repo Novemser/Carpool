@@ -113,7 +113,7 @@ public class RoomService {
     }
 
     @Transactional
-    public synchronized void addUserToRoom(int roomId, String userId) throws Exception {
+    public synchronized Room addUserToRoom(int roomId, String userId) throws Exception {
         UserEntity user = userEntityRepository.findOne(userId);
         if (null == user)
             throw new UserNullException("addUserToRoom", "用户不存在！");
@@ -133,10 +133,20 @@ public class RoomService {
         room.setCurrentNums(currentNum + 1);
         user.getUserParticipateRooms().add(room);
         roomEntityRepository.save(room);
+
+        Room roomModel = new Room();
+        roomModel.setNote(room.getNote());
+        roomModel.setStartPoint(room.getStartPoint());
+        roomModel.setEndPoint(room.getEndPoint());
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        roomModel.setStartTime(sf.format(room.getStartTime()));
+        roomModel.setNumberLimit(room.getNumberLimit());
+
+        return roomModel;
     }
 
     @Transactional
-    public synchronized void removeUserFromRoom(int roomId, String userId) throws Exception {
+    public synchronized void removeUserFromRoom(int roomId, String userId) {
         UserEntity user = userEntityRepository.findOne(userId);
         if (null == user)
             throw new UserNullException("removeUserFromRoom", "用户不存在！");
@@ -149,9 +159,12 @@ public class RoomService {
 
         if (currentNum <= 0)
             throw new RoomFullException("退出失败", "房间已空");
+
         room.setCurrentNums(currentNum - 1);
         user.getUserParticipateRooms().remove(room);
-        roomEntityRepository.save(room);
+        room.getUserParticipate().remove(user);
+        userEntityRepository.saveAndFlush(user);
+        roomEntityRepository.saveAndFlush(room);
     }
 
     /***
@@ -176,6 +189,16 @@ public class RoomService {
         return roomEntityRepository.findRoomStartEndPointLikeInDays(startPoint,
                 endPoint,
                 from, to, p);
+    }
+
+    @Transactional
+    public int editCurrentUserNum(int num, RoomEntity entity) {
+        if (entity.getNumberLimit() < num)
+            return -1;
+
+        entity.setCurrentNums(num);
+        roomEntityRepository.saveAndFlush(entity);
+        return num;
     }
 
     @Transactional

@@ -13,6 +13,7 @@
 <%@include file="modal/deleteRoomModal.jsp" %>
 <%@include file="modal/unlockRoomModal.jsp" %>
 <%@include file="modal/endJourneyModal.jsp" %>
+<%@include file="modal/leaveRoomModal.jsp" %>
 
 <div class="border-head">
     <div class="row">
@@ -98,13 +99,21 @@
                     <i class="fa fa-commenting"></i><a href="<c:url value="/room/chat?roomId=${room.id}"/>"
                                                        style="color: white"> 进入聊天室</a>
                 </div>
+                <c:if test="${roomOwner==false && inRoom==true}">
+                    <div style="margin: 24px;width: 75%;" class="btn btn-lg btn-primary" onclick="leaveRoom()">
+                        <i class="fa fa-commenting"></i> 退出房间
+                    </div>
+                </c:if>
 
                 <%--如果不是房主且没有加入房间--%>
                 <c:if test="${roomOwner==false && inRoom==false}">
                     <form:form action="/room/user/join" method="post" id="addUserForm">
                         <input name="roomId" value="${room.id}" type="hidden">
                         <c:choose>
-                            <c:when test="${room.state==ROOM_STATE_UNLOCKED}">
+                            <c:when test="${reachLimit}">
+                                <h3>该房间人数已满!暂时无法加入,再去池子里转转吧~</h3>
+                            </c:when>
+                            <c:when test="${room.state==ROOM_STATE_UNLOCKED && !reachLimit}">
                                 <div class="btn-effect btn btn-success btn-lg" onclick="addUserFormSubmit()">
                                     <i class="fa fa-check"></i> 确定加入
                                 </div>
@@ -181,6 +190,10 @@
 
     function unlockRoom() {
         $('#unlockRoomConfirm').modal('show');
+    }
+
+    function leaveRoom() {
+        $('#leaveRoomConfirm').modal('show');
     }
 
     function addUserFormSubmit() {
