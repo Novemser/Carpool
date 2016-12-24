@@ -52,12 +52,6 @@ public class UserController {
         String userId = this.userService.getUserIdByCookie(request.getCookies());
         UserEntity userEntity = userService.getUserById(userId);
         modelMap.addAttribute("user", userEntity);
-
-        //get rooms of user
-        Integer roomCount = userEntity.getUserParticipateRooms().size();
-        modelMap.addAttribute("roomCount", roomCount);
-
-
         return "user.profile";
     }
 
