@@ -19,6 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 /**
  * Created by qi on 2016/11/30.
  */
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration(value = "src/main/webapp")
 @ContextConfiguration({"file:src/main/webapp/WEB-INF/dispatcher-servlet.xml"})
