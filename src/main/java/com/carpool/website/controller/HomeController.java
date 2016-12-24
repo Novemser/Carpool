@@ -49,9 +49,8 @@ public class HomeController {
     private ChatRecordRepository chatRecordRepository;
 
     @RequestMapping(method = RequestMethod.GET)
-<<<<<<< HEAD
-    public String homePage(HttpServletRequest request,ModelMap modelMap) {
-        return mainPage(request,0, GlobalConstants.HOME_CARPOOL_PAGE_SIZE, modelMap);
+    public String homePage(HttpServletRequest request,ModelMap modelMap,HttpSession session) {
+        return mainPage(request, 0, GlobalConstants.HOME_CARPOOL_PAGE_SIZE, modelMap,session);
     }
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
@@ -89,7 +88,7 @@ public class HomeController {
     public String get(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
 
-        String userid = this.userService.checkSessionIdentity(cookies[1].getValue());
+        String userid = request.getRemoteUser();
 
         return "pages/test";
     }

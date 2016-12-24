@@ -309,7 +309,7 @@ public class RoomController {
     @GetMapping("/chat")
     public String joinChatRoom(@RequestParam Integer roomId, HttpServletRequest request, ModelMap modelMap) {
         modelMap.addAttribute("room", roomService.findById(roomId));
-        String userId = this.userService.checkSessionIdentity(request.getCookies()[1].getValue());
+        String userId = request.getRemoteUser();
         String username = this.userService.getUserById(userId).getUsername();
 
 
