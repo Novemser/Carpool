@@ -34,14 +34,12 @@
             <hr>
             <h4 class="text-center">分享房间</h4>
             <div class="row text-center" style="margin-top: 24px;margin-bottom: 21px;">
-                <!--Dribbble-->
-                <a class="icons-sm"><i class="fa fa-qq"> </i></a>
-                <!--Linkedin-->
-                <a class="icons-sm"><i class="fa fa-wechat"> </i></a>
-                <!--Google +-->
-                <a class="icons-sm gplus-ic"><i class="fa fa-google-plus"> </i></a>
-                <!--Instagram-->
-                <a class="icons-sm ins-ic"><i class="fa fa-instagram"> </i></a>
+                <div class="bdsharebuttonbox panel" style="background-color: white">
+                    <a title="分享到QQ空间" class="bds_qzone"  href="#" data-id="${room.id}"  data-cmd="qzone"></a>
+                    <a title="分享到QQ好友" class="bds_sqq "  href="#" data-id="${room.id}" data-cmd="sqq"></a>
+                    <a title="分享到微信" class="bds_weixin"  href="#" data-id="${room.id}" data-cmd="weixin"></a>
+                    <a class="bds_more  icons-sm drib-ic"  href="#"  data-id="${room.id}" data-cmd="more"></a>
+                </div>
             </div>
         </div>
     </div>
@@ -54,3 +52,33 @@
         margin-right: auto;
     }
 </style>
+<script>
+    var ShareId = "";
+    //绑定所有分享按钮所在A标签的鼠标移入事件，从而获取动态ID
+    $(function () {
+        $(".bdsharebuttonbox a").mouseover(function () {
+            ShareId = $(this).attr("data-id");
+        });
+    });
+    /*
+     * 动态设置百度分享URL的函数,具体参数
+     * cmd为分享目标id,此id指的是插件中分析按钮的ID
+     *，我们自己的文章ID要通过全局变量获取
+     * config为当前设置，返回值为更新后的设置。
+     */
+    function SetShareUrl(cmd, config) {
+        if (ShareId) {
+            config.bdUrl = "http://novemser.vicp.io:521/room/detail?roomId="+ShareId;
+        }
+        return config;
+    }
+
+    //插件的配置部分，注意要记得设置onBeforeClick事件，主要用于获取动态的文章ID
+    window._bd_share_config = {
+        "common": {
+            onBeforeClick: SetShareUrl, "bdSnsKey": {}, "bdText": "加入我的房间吧"
+            , "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "24"
+        }, "share": {}
+    };
+    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
