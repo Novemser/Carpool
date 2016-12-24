@@ -78,7 +78,9 @@
     </c:when>
     <c:otherwise>
         <c:forEach var="comment" items="${commentInCurrentPage}">
-            <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="row">
+                <div class="col-lg-2 col-md-1 col-sm-0"></div>
+            <div class="col-lg-8 col-md-10 col-sm-12">
                 <section class="z-depth-1 hoverable panel" style="padding: 15px;">
                     <dl class="dl-horizontal">
                         <dt>收到评分：</dt>
@@ -102,6 +104,8 @@
                         发表评论
                     </p>
                 </section>
+            </div>
+                <div class="col-lg-2 col-md-1 col-sm-0"></div>
             </div>
         </c:forEach>
 <!--            <div class="col-lg-12 col-md-12 col-sm-12" style="padding-left: 15px" >
@@ -136,7 +140,7 @@
                     </li>
                 </ul>
             </div>!-->
-        <div class="text-center">
+        <div class="text-center col-lg-5 col-md-3 col-sm-1">
             <nav class="">
                 <ul class="pagination pg-blue ">
                     <!--Arrow left-->

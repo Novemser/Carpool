@@ -23,7 +23,7 @@
 <div class="cent-box">
     <div class="cent-box-header">
         <h1 class="main-title hide">约车</h1>
-        <h2 class="sub-title">世界上没有约不到的车</h2>
+        <h2 class="sub-title">如果有多一张车票，你会不会跟我走</h2>
     </div>
 
     <div class="cont-main clearfix">

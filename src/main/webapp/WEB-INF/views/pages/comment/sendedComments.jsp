@@ -69,7 +69,9 @@
         </c:when>
         <c:otherwise>
             <c:forEach var="comment" items="${sendedComments.content}">
-                <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="row">
+                    <div class="col-lg-2 col-md-1 col-sm-0"></div>
+                <div class="col-lg-8 col-md-10 col-sm-12">
                     <section class="z-depth-1 hoverable panel" style="padding: 15px;">
                         <dl class="dl-horizontal">
                             <dt>被评价用户：</dt>
@@ -101,6 +103,8 @@
                             </dd>
                         </dl>
                     </section>
+                </div>
+                    <div class="col-lg-2 col-md-1 col-sm-0"></div>
                 </div>
             </c:forEach>
  <!--           <div class="col-lg-12 col-md-12 col-sm-12" style="padding-left: 15px" >

@@ -44,7 +44,8 @@
             <a href="/home/main">去拼车</a>
         </c:when>
             <c:otherwise>
-            <div class="col-lg-12 col-md-12 col-sm-12" id="mytrack">
+                <div class="col-lg-2 col-md-1 col-sm-0"></div>
+            <div class="col-lg-8 col-md-10 col-sm-12" id="mytrack">
                 <section class="z-depth-1 hoverable panel" style="padding: 5%;">
                     <div class="text-center text">
                         <dl class="dl-horizontal">

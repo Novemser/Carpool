@@ -111,7 +111,9 @@
         </c:when>
         <c:otherwise>
             <c:forEach var="journey" items="${journeyIncurrentPage}">
-                <div class="col-lg-12 col-md-12 col-sm-12 journey">
+                <div class="row">
+                <div class="col-lg-2 col-md-1 col-sm-0"></div>
+                <div class="col-lg-8 col-md-10 col-sm-12 journey">
                     <section class="z-depth-1 hoverable panel" style="padding: 15px;">
                         <div class="text-center text">
                                 ${journey.room.roomname}
@@ -146,6 +148,8 @@
                             <span class="forDetail pull-right" >同行人</span>
                     </section>
                     </div>
+                <div class="col-lg-2 col-md-1 col-sm-0"></div>
+                </div>
             </c:forEach>
 
             <div class="text-center">
