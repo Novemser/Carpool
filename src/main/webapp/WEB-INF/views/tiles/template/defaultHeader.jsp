@@ -5,9 +5,51 @@
   Time: 23:08
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
 <%@ page contentType="text/html;charset=utf-8" language="java" %>
 
 <header class="header white-bg">
+
+    <script>
+        var host = window.location.host;
+        var websocketNotify;
+
+
+        websocketNotify = new WebSocket("ws://" + host + "/webSocketServer");
+
+        websocketNotify.onopen = function (evnt) {
+            sendNotify();
+        };
+        websocketNotify.onmessage = function (evnt) {
+            var jsonMsg = JSON.parse(evnt.data);
+
+            $('#msgNotify').html(jsonMsg['count']);
+            $('#msgCount').html('You have '+ jsonMsg['count'] + ' new message');
+
+            var liStr = "<a href=\"/room/chat?roomId="+jsonMsg['roomId']+"\"> <span class=\"photo\"><img alt=\"avatar\" src=\"/static/img/avatar-mini.jpg\"></span> <span class=\"subject\"> <span class=\"from\">"+jsonMsg['sender']+"</span> <span class=\"time\">"+jsonMsg['time']+"</span> </span> <span class=\"message\">"+ jsonMsg['content'] +"</span> </a> </li>"
+            var oldHtml = $('#msgWindow').html();
+            $('#msgWindow').html(oldHtml+liStr);
+        };
+        websocketNotify.onerror = function (evnt) {
+        };
+        websocketNotify.onclose = function (evnt) {
+        }
+
+
+        function sendNotify(){
+            var msg = JSON.stringify({"type": 2});
+            websocketNotify.send(msg);
+        }
+
+
+        function afterClickNotify(){
+            $('#msgNotify').hide();
+        }
+
+
+    </script>
     <div class="sidebar-toggle-box">
         <div data-original-title="Toggle Navigation" data-placement="right" class="icon-reorder tooltips"></div>
     </div>
@@ -19,63 +61,30 @@
         <ul class="nav top-menu">
             <!-- inbox dropdown start-->
             <li id="header_inbox_bar" class="dropdown">
-                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                <a data-toggle="dropdown" class="dropdown-toggle" href="#" onclick="afterClickNotify()">
                     <i class="icon-envelope-alt"></i>
-                    <span class="badge bg-important">5</span>
+                    <span class="badge bg-important" id = "msgNotify" ></span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right extended inbox">
                     <div class="notify-arrow notify-arrow-red"></div>
                     <li>
-                        <p class="red">You have 5 new messages</p>
+                        <p class="red" id = "msgCount"></p>
                     </li>
-                    <li>
-                        <a href="#">
-                            <span class="photo"><img alt="avatar" src="/static/img/avatar-mini.jpg"></span>
-                            <span class="subject">
-                                    <span class="from">Jonathan Smith</span>
-                                    <span class="time">Just now</span>
-                                    </span>
-                            <span class="message">
-                                        Hello, this is an example msg.
-                                    </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="photo"><img alt="avatar" src="/static/img/avatar-mini2.jpg"></span>
-                            <span class="subject">
-                                    <span class="from">Jhon Doe</span>
-                                    <span class="time">10 mins</span>
-                                    </span>
-                            <span class="message">
-                                     Hi, Jhon Doe Bhai how are you ?
-                                    </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="photo"><img alt="avatar" src="/static/img/avatar-mini3.jpg"></span>
-                            <span class="subject">
-                                    <span class="from">Jason Stathum</span>
-                                    <span class="time">3 hrs</span>
-                                    </span>
-                            <span class="message">
-                                        This is awesome dashboard.
-                                    </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="photo"><img alt="avatar" src="/static/img/avatar-mini4.jpg"></span>
-                            <span class="subject">
-                                    <span class="from">Jondi Rose</span>
-                                    <span class="time">Just now</span>
-                                    </span>
-                            <span class="message">
-                                        Hello, this is metrolab
-                                    </span>
-                        </a>
-                    </li>
+                    <li id = 'msgWindow'></li>
+                    <%--<c:forEach items="${unreadMsg}" var = "li">--%>
+                        <%--<li>--%>
+                            <%--<a href="#">--%>
+                                <%--<span class="photo"><img alt="avatar" src="/static/img/avatar-mini.jpg"></span>--%>
+                                <%--<span class="subject">--%>
+                                    <%--<span class="from">${li.sender.username}</span>--%>
+                                    <%--<span class="time">${li.commenttime}</span>--%>
+                                    <%--</span>--%>
+                                <%--<span class="message">--%>
+                                        <%--${li.commenttext}--%>
+                                    <%--</span>--%>
+                            <%--</a>--%>
+                        <%--</li>--%>
+                    <%--</c:forEach>--%>
                     <li>
                         <a href="#">See all messages</a>
                     </li>
@@ -85,4 +94,7 @@
         </ul>
         <!--  notification end -->
     </div>
+    <script>
+
+    </script>
 </header>

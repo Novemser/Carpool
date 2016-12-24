@@ -96,6 +96,7 @@
                     </ul>
                 </c:if>
                 <div style="margin: 24px;width: 75%;" class="btn btn-lg btn-primary">
+
                     <i class="fa fa-commenting"></i><a href="<c:url value="/room/chat?roomId=${room.id}"/>"
                                                        style="color: white"> 进入聊天室</a>
                 </div>

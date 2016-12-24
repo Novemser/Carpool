@@ -24,6 +24,7 @@ import java.util.List;
 @Controller
 public class UserController {
 
+
     private final UserService userService;
     @Autowired
     private RoomService roomService;
@@ -145,5 +146,7 @@ public class UserController {
         }
         return "redirect:/user";
     }
+
+
 
 }

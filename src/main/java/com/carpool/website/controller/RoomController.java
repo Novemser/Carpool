@@ -1,10 +1,12 @@
 package com.carpool.website.controller;
 
 import com.carpool.configuration.GlobalConstants;
+import com.carpool.domain.MessageEntity;
 import com.carpool.domain.RoomEntity;
 import com.carpool.domain.UserEntity;
 import com.carpool.exception.InternalErrorException;
 import com.carpool.exception.PermissionDeniedException;
+import com.carpool.website.dao.ChatRecordRepository;
 import com.carpool.exception.RoomNullException;
 import com.carpool.exception.UserNullException;
 import com.carpool.website.model.Room;
@@ -13,13 +15,15 @@ import com.carpool.website.service.RoomService;
 import com.carpool.website.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
+import javax.servlet.ServletRequest;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.text.ParseException;
@@ -42,6 +46,9 @@ public class RoomController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ChatRecordRepository chatRecordRepository;
 
     @Autowired
     public RoomController(RoomService roomService) {
@@ -328,8 +335,20 @@ public class RoomController {
     }
 
     @GetMapping("/chat")
-    public String joinChatRoom(@RequestParam Integer roomId, ModelMap modelMap) {
+    public String joinChatRoom(@RequestParam Integer roomId, HttpServletRequest request, ModelMap modelMap) {
         modelMap.addAttribute("room", roomService.findById(roomId));
+        String userId = request.getRemoteUser();
+        String username = this.userService.getUserById(userId).getUsername();
+
+
+
+
+        modelMap.addAttribute("userid", userId);
+        modelMap.addAttribute("username", username);
+
         return "room.chat";
     }
+
+
+
 }
