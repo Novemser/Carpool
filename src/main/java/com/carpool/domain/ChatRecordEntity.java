@@ -15,7 +15,18 @@ public class ChatRecordEntity {
     private UserEntity sender;
     private RoomEntity room;
 
+    public ChatRecordEntity() {
+    }
+
+    public ChatRecordEntity(Date commenttime, String commenttext, UserEntity sender, RoomEntity room) {
+        this.commenttime = commenttime;
+        this.commenttext = commenttext;
+        this.sender = sender;
+        this.room = room;
+    }
+
     @Id
+    @GeneratedValue
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;

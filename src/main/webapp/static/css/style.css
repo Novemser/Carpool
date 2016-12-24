@@ -3853,12 +3853,20 @@ table.sliders tr td {
     color: #d0d0d0;
 }
 
-.timeline-messages:before {
-    background: rgba(0, 0, 0, 0.1);
-    bottom: 0;
-    top: 0;
-    width: 2px;
+.timeline-messages{
+    max-height : 500px;
+    min-height: 500px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
+
+/*.timeline-messages:before {*/
+    /*background: rgba(0, 0, 0, 0.1);*/
+    /*bottom: 0;*/
+    /*top: 0;*/
+    /*width: 2px;*/
+/*}*/
+
 
 .timeline-messages:before, .msg-time-chat:before, .msg-time-chat .text:before {
     content: "";

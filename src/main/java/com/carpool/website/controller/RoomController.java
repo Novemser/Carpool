@@ -1,8 +1,10 @@
 package com.carpool.website.controller;
 
 import com.carpool.configuration.GlobalConstants;
+import com.carpool.domain.MessageEntity;
 import com.carpool.domain.RoomEntity;
 import com.carpool.exception.PermissionDeniedException;
+import com.carpool.website.dao.ChatRecordRepository;
 import com.carpool.website.model.Room;
 import com.carpool.website.model.RoomSelection;
 import com.carpool.website.service.RoomService;
@@ -10,11 +12,13 @@ import com.carpool.website.service.UserService;
 import org.apache.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -36,6 +40,9 @@ public class RoomController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ChatRecordRepository chatRecordRepository;
 
     @Autowired
     public RoomController(RoomService roomService) {
@@ -165,8 +172,20 @@ public class RoomController {
     }
 
     @GetMapping("/chat")
-    public String joinChatRoom(@RequestParam Integer roomId, ModelMap modelMap) {
+    public String joinChatRoom(@RequestParam Integer roomId, HttpServletRequest request, ModelMap modelMap) {
         modelMap.addAttribute("room", roomService.findById(roomId));
+        String userId = this.userService.checkSessionIdentity(request.getCookies()[1].getValue());
+        String username = this.userService.getUserById(userId).getUsername();
+
+
+
+
+        modelMap.addAttribute("userid", userId);
+        modelMap.addAttribute("username", username);
+
         return "room.chat";
     }
+
+
+
 }
