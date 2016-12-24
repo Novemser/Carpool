@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
 /**
  * Project: Carpool
  * Package: com.carpool.website.controller
@@ -48,6 +49,7 @@ public class HomeController {
     private ChatRecordRepository chatRecordRepository;
 
     @RequestMapping(method = RequestMethod.GET)
+<<<<<<< HEAD
     public String homePage(HttpServletRequest request,ModelMap modelMap) {
         return mainPage(request,0, GlobalConstants.HOME_CARPOOL_PAGE_SIZE, modelMap);
     }
@@ -57,7 +59,14 @@ public class HomeController {
             HttpServletRequest request,
             @RequestParam(value = "page", defaultValue = "0") Integer page,
             @RequestParam(value = "size", defaultValue = GlobalConstants.HOME_CARPOOL_PAGE_SIZE_STR) Integer size,
-            ModelMap modelMap) {
+            ModelMap modelMap,HttpSession session) {
+        //如果是通过分享链接进来的，直接转向该链接
+        if(session.getAttribute("shareLink")!=null)
+        {
+            String shareLink = (String)session.getAttribute("shareLink");
+            session.removeAttribute("shareLink");
+            return "redirect:"+shareLink;
+        }
 
         String user = request.getRemoteUser();
         List<UserUnreceivedChatRecord> unreadMsgRec = this.userUnreceivedRecordRepository.findByUserId(user);
@@ -65,7 +74,6 @@ public class HomeController {
         for(UserUnreceivedChatRecord uuc: unreadMsgRec){
             unreadMsg.add(uuc.getChatRecordEntity());
         }
-
 
         Page<RoomEntity> roomEntities = roomService.findRoom(page, size);
         modelMap.addAttribute("roomPage", roomEntities);

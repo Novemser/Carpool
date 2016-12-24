@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.Collection;
 import java.util.Date;
 
 /**
@@ -44,9 +45,9 @@ public interface RoomEntityRepository extends JpaRepository<RoomEntity, Integer>
     RoomEntity findByRoomname(String name);
 
     // 根据User找到何其在同一房间的用户
-    @Query("select r from RoomEntity r " +
-            "where :user in r.userParticipate")
-    Page<RoomEntity> findUserRooms(@Param("user") UserEntity userEntity, Pageable pageable);
+    @Query(value = "select r from RoomEntity r " +
+            "where r.state <> 'END'")
+    Collection<RoomEntity> findUserNotEndRooms();
 
     RoomEntity findByHost(UserEntity host);
 

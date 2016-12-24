@@ -2,14 +2,13 @@ package com.carpool.website.service;
 
 import com.carpool.domain.UserEntity;
 import com.carpool.exception.UserNullException;
-
-import com.carpool.domain.UserEntity;
-import com.carpool.exception.UserNullException;
 import com.carpool.website.dao.SessionRepository;
 import com.carpool.website.dao.UserEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.Cookie;
 import java.util.Base64;
 
 
@@ -33,6 +32,44 @@ public class UserService {
             throw new UserNullException("getUserError","不存在的用户");
         return  userEntity;
     }
+    @Transactional
+    public void updateUserAlipay(String id,String alipay)
+    {
+        UserEntity userEntity = userEntityRepository.findOne(id);
+        if(userEntity==null)
+            throw new UserNullException("getUserError","不存在的用户");
+        userEntity.setAlipay(alipay);
+    }
+    @Transactional
+    public void updateUserQQ(String id,String QQ)
+    {
+        UserEntity userEntity = userEntityRepository.findOne(id);
+        if(userEntity==null)
+            throw new UserNullException("getUserError","不存在的用户");
+        userEntity.setQqAccount(QQ);
+    }
+    @Transactional
+    public void updateUserWeChat(String id,String WeChat)
+    {
+        UserEntity userEntity = userEntityRepository.findOne(id);
+        if(userEntity==null)
+            throw new UserNullException("getUserError","不存在的用户");
+        userEntity.setWechatAccount(WeChat);
+    }
+    @Transactional
+    public void updateUserPassword(String id,String password) {
+        UserEntity userEntity = userEntityRepository.findOne(id);
+        if (userEntity == null)
+            throw new UserNullException("getUserError", "不存在的用户");
+        userEntity.setPassword(password);
+    }
+    @Transactional
+    public void updateUserPhoto(String id,String photo) {
+        UserEntity userEntity = userEntityRepository.findOne(id);
+        if (userEntity == null)
+            throw new UserNullException("getUserError", "不存在的用户");
+        userEntity.setPhoto(photo);
+    }
 
 
 
@@ -50,7 +87,7 @@ public class UserService {
     }
 
 
-    public String checkSessionIdentity(String cookie){
+    private String checkSessionIdentity(String cookie){
         try{
             String seriseId = new String(Base64.getDecoder().decode(cookie));
 
@@ -61,6 +98,20 @@ public class UserService {
             e.printStackTrace();
             return null;
         }
+    }
 
+    /***
+     * 通过request的cookie来提取用户id
+     * @param cookies request中包含的cookie
+     * @return 如果用户合法返回用户id，否则返回null
+     */
+    public String getUserIdByCookie(Cookie[] cookies) {
+        String userId = null;
+        for (Cookie cookie : cookies) {
+//            System.out.println(cookie.getName() + ":" + cookie.getValue());
+            if (cookie.getName().equals("remember-me"))
+                userId = checkSessionIdentity(cookie.getValue());
+        }
+        return userId;
     }
 }

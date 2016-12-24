@@ -68,7 +68,7 @@ public class ChatRepoAndUserTest {
     public void saveTest(){
 
         //save userEntity
-        UserEntity userEntity = new UserEntity("testuserid", "testname", "testpw", (byte)1, 5.0, "testalipay", 10, "testQQ", "testWechat");
+        UserEntity userEntity = new UserEntity("testuserid", "testname", "testpw", (byte)1, 5.0, "testalipay", 10, "testQQ", "testWechat", null);
         this.userEntityRepository.save(userEntity);
 
         //save room

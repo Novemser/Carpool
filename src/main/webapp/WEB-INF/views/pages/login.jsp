@@ -12,10 +12,13 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Login & Register</title>
+    <title>登录</title>
     <link rel="stylesheet" type="text/css" href="<c:url value="/static/style/register-login.css"/>">
+
 </head>
 <body>
+<%@include file="modal/deleteRoomModal.jsp"%>
+
 <div id="box"></div>
 <div class="cent-box">
     <div class="cent-box-header">
@@ -43,14 +46,14 @@
                     </div>
                     <div class="group-ipt verify">
                         <input type="text" name="verify" id="verify" class="ipt" placeholder="输入验证码" required>
-                        <img src="https://www.zhihu.com/captcha.gif?r=1480610738166&type=register&lang=cn"
+                        <img id="codeValidateImg" onclick="flushValidateCode()"
                              class="imgcode">
                     </div>
                 </div>
             </div>
 
             <div class="button">
-                <input type="submit" class="login-btn register-btn" id="button" />
+                <input type="button" onclick="checkImgSubmit()" value="登录" class="login-btn register-btn" id="button" />
             </div>
             <input type="hidden"  id = "csrf" name="${_csrf.parameterName}" value="${_csrf.token}">
             <div class="remember clearfix" style="display: none">
@@ -76,6 +79,11 @@
 <script src='<c:url value="/static/js/jquery-3.1.1.min.js"/>' type="text/javascript"></script>
 <script src='<c:url value="/static/js/layer/layer.js"/>' type="text/javascript"></script>
 <script type="text/javascript" language="JavaScript">
+    var cod = document.getElementById("verify");
+    $('#verify').on('input',function(){
+        checkImg()
+    });
+
     $('.imgcode').hover(function () {
         layer.tips("看不清？点击更换", '.verify', {
             time: 6000,
@@ -84,7 +92,8 @@
     }, function () {
         layer.closeAll('tips');
     }).click(function () {
-        $(this).attr('src', 'http://zrong.me/home/index/imgcode?id=' + Math.random());
+        flushValidateCode();
+//        $(this).attr('src', 'https://www.zhihu.com/captcha.gif?r=1480610738166&type=register&lang=cn');
     });
 
     $("#remember-me").click(function () {
@@ -95,6 +104,56 @@
             $(".zt").hide();
         }
     });
+
+    $(document).ready(function() {
+        flushValidateCode();//进入页面就刷新生成验证码
+        if (window.location.search == '?error') {
+            // 用户或密码错误
+            alert("用户名或密码错误，请重试");
+        }
+    });
+
+    /* 刷新生成验证码 */
+    function flushValidateCode(){
+        var validateImgObject = document.getElementById("codeValidateImg");
+        validateImgObject.src = "/getLoginCode?time=" + new Date();
+    }
+
+    function checkImgSubmit() {
+        var url = "/checkimagecode";
+        code = cod.value;
+        $.get(url,{"validateCode":code},function(data){
+            if(data=="ok"){
+//                alert("ok!");
+                $('#loginForm').submit();
+            }else{
+//                alert("error!");
+
+                cod.setAttribute('placeholder', '验证码错误');
+                cod.style.color="red";
+                cod.value="";
+                flushValidateCode();
+            }
+        })
+    }
+
+    /*校验验证码输入是否正确*/
+    function checkImg(){
+        var url = "/checkimagecode";
+        code = cod.value;
+        $.get(url,{"validateCode":code},function(data){
+            if(data=="ok"){
+//                alert("ok!");
+                cod.style.color="black";
+                return true;
+            }else{
+//                alert("error!");
+                cod.setAttribute('placeholder', '验证码错误');
+                cod.style.color="red";
+                return false;
+            }
+        })
+    }
 
 
 </script>

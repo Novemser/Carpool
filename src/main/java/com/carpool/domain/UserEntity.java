@@ -1,10 +1,9 @@
 package com.carpool.domain;
 
-import com.carpool.website.service.EncryptionService;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Objects;
 
 
 /**
@@ -12,17 +11,48 @@ import java.util.Collection;
  */
 @Entity
 @Table
-public class UserEntity implements Serializable{
+public class UserEntity implements Serializable {
     private String id;
     private String username;
-
-
     private String password;
     private byte gender;
     private double credit;
     private String alipay;
     private int coins;
     private Integer receivedComments;
+    private String photo;
+    private Integer carpoolingCount;
+    private String qqAccount;
+    private String wechatAccount;
+    private Collection<ChatRecordEntity> sendedChatRecord;
+    private Collection<CommentEntity> commentsRecieved;
+    private Collection<CommentEntity> commentsSended;
+    private Collection<PaymentRecordEntity> paymentRecievedRecords;
+    private Collection<PaymentRecordEntity> paymentSendRecords;
+    private Collection<RoomEntity> ownRoom;
+    private Collection<RoomEntity> hasPaysRoom;
+    private Collection<RoomEntity> userParticipateRooms;
+
+    public UserEntity() {
+    }
+
+    public UserEntity(String id, String username, String password, byte gender, double credit, String alipay,
+                      int coins, String qqAccount, String wechatAccount, String photo) {
+        this.id = id;
+        this.username = username;
+        this.gender = gender;
+        this.credit = credit;
+        this.alipay = alipay;
+        this.coins = coins;
+        this.qqAccount = qqAccount;
+        this.wechatAccount = wechatAccount;
+        //pw encryption
+        this.password = password;
+        if (Objects.equals(photo, "") || photo == null)
+            this.photo = "/static/images/default.jpg";
+        else
+            this.photo = photo;
+    }
 
     @Column(nullable = false)
     public Integer getReceivedComments() {
@@ -40,37 +70,6 @@ public class UserEntity implements Serializable{
 
     public void setCarpoolingCount(Integer carpoolingCount) {
         this.carpoolingCount = carpoolingCount;
-    }
-
-    private Integer carpoolingCount;
-    private String qqAccount;
-    private String wechatAccount;
-    private Collection<ChatRecordEntity> sendedChatRecord;
-    private Collection<CommentEntity> commentsRecieved;
-    private Collection<CommentEntity> commentsSended;
-    private Collection<PaymentRecordEntity> paymentRecievedRecords;
-    private Collection<PaymentRecordEntity> paymentSendRecords;
-    private Collection<RoomEntity> ownRoom;
-    private Collection<RoomEntity> hasPaysRoom;
-    private Collection<RoomEntity> userParticipateRooms;
-
-    public UserEntity() {
-    }
-
-    public UserEntity(String id, String username, String password, byte gender, double credit, String alipay,
-                      int coins, String qqAccount, String wechatAccount) {
-        this.id = id;
-        this.username = username;
-        this.gender = gender;
-        this.credit = credit;
-        this.alipay = alipay;
-        this.coins = coins;
-        this.qqAccount = qqAccount;
-        this.wechatAccount = wechatAccount;
-        //pw encryption
-        this.password = password;
-
-
     }
 
     @Id
@@ -126,7 +125,8 @@ public class UserEntity implements Serializable{
     }
 
     @Basic
-    @Column(name = "alipay", nullable = true, length = 20)
+    //支付功能取消所以可以为空
+    @Column(name = "alipay", nullable = false, length = 20)
     public String getAlipay() {
         return alipay;
     }
@@ -163,6 +163,16 @@ public class UserEntity implements Serializable{
 
     public void setWechatAccount(String wechatAccount) {
         this.wechatAccount = wechatAccount;
+    }
+
+    @Basic
+    @Column(name = "photo", nullable = false, length = 200)
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     @Override
@@ -223,12 +233,11 @@ public class UserEntity implements Serializable{
     }
 
     @OneToMany(mappedBy = "sourceUser")
-    public Collection<CommentEntity> getCommentsSended()
-    {
+    public Collection<CommentEntity> getCommentsSended() {
         return commentsSended;
     }
-    private void setCommentsSended(Collection<CommentEntity> commentsSended)
-    {
+
+    private void setCommentsSended(Collection<CommentEntity> commentsSended) {
         this.commentsSended = commentsSended;
     }
 
@@ -271,8 +280,8 @@ public class UserEntity implements Serializable{
 
     @ManyToMany
     @JoinTable(name = "user_rooms",
-    joinColumns = {@JoinColumn(name = "uid")},
-    inverseJoinColumns = {@JoinColumn(name = "rid")})
+            joinColumns = {@JoinColumn(name = "uid")},
+            inverseJoinColumns = {@JoinColumn(name = "rid")})
     public Collection<RoomEntity> getUserParticipateRooms() {
         return userParticipateRooms;
     }

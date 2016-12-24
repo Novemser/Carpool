@@ -1,9 +1,6 @@
 package com.carpool.website.controller.exception;
 
-import com.carpool.exception.DuplicateLoginException;
-import com.carpool.exception.PermissionDeniedException;
-import com.carpool.exception.ResourceNotFoundException;
-import com.carpool.exception.UserNullException;
+import com.carpool.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -21,7 +18,7 @@ public class GlobalExceptionController {
 
     @ExceptionHandler(UserNullException.class)
     public ModelAndView handleNullUserException(UserNullException e) {
-        ModelAndView model = new ModelAndView();
+        ModelAndView model = new ModelAndView("pages/ERROR");
         model.addObject("errCode", e.getErrCode());
         model.addObject("errMsg", e.getErrMsg());
         return model;
@@ -36,8 +33,11 @@ public class GlobalExceptionController {
 
     @ExceptionHandler(DuplicateLoginException.class)
     @ResponseStatus(HttpStatus.FORBIDDEN)
-    public String handleDuplicateLoginException(){
-        return "pages/404";
+    public ModelAndView handleDuplicateLoginException(DuplicateLoginException e){
+        ModelAndView model = new ModelAndView("pages/ERROR");
+        model.addObject("errCode", e.getErrCode());
+        model.addObject("errMsg", e.getErrMsg());
+        return model;
     }
 
     @ExceptionHandler(PermissionDeniedException.class)
@@ -46,4 +46,30 @@ public class GlobalExceptionController {
         return "pages/404";
     }
 
+    @ExceptionHandler(InternalErrorException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ModelAndView handelInternalError(InternalErrorException e) {
+        ModelAndView model = new ModelAndView("pages/ERROR");
+        model.addObject("errCode", e.getErrCode());
+        model.addObject("errMsg", e.getErrMsg());
+        return model;
+    }
+
+    @ExceptionHandler(RoomFullException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ModelAndView handelRoomFullException(RoomFullException e) {
+        ModelAndView model = new ModelAndView("pages/ERROR");
+        model.addObject("errCode", e.getErrCode());
+        model.addObject("errMsg", e.getErrMsg());
+        return model;
+    }
+
+    @ExceptionHandler(DuplicateJoiningRoomException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ModelAndView handleDuplicateJoiningRoom(DuplicateJoiningRoomException e) {
+        ModelAndView model = new ModelAndView("pages/ERROR");
+        model.addObject("errCode", e.getErrCode());
+        model.addObject("errMsg", e.getErrMsg());
+        return model;
+    }
 }

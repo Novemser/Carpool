@@ -1,5 +1,6 @@
 package com.carpool.website.controller;
 
+import com.carpool.exception.InternalErrorException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Controller
 public class IndexController {
+
     @GetMapping("/")
     public String index() {
         return "pages/index";
@@ -21,8 +23,11 @@ public class IndexController {
         return "pages/index";
     }
 
+
+
     @GetMapping("/test")
     public String indexTest() {
-        return "main";
+        throw new InternalErrorException("2002", "玄学");
+//        return "main";
     }
 }

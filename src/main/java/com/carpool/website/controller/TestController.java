@@ -1,14 +1,11 @@
 package com.carpool.website.controller;
 
 import com.carpool.domain.UserEntity;
-import com.carpool.website.dao.UserEntityRepository;
 import com.carpool.website.service.ChatRecordService;
 import com.carpool.website.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.annotation.Resource;
 
 /**
  * Created by qi on 2016/11/26.
@@ -45,7 +42,7 @@ public class TestController {
 
     @RequestMapping("/insert")
     boolean insertData(){
-        UserEntity userEntity = new UserEntity("1452716","张尹嘉","852147", (byte)2014,5.0,"13301856183",12,"123456","123456");
+        UserEntity userEntity = new UserEntity("1452716","张尹嘉","852147", (byte)2014,5.0,"13301856183",12,"123456","123456","");
         userEntity.setReceivedComments(0);
         try{
             this.userService.saveUser(userEntity);

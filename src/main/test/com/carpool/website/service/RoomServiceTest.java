@@ -69,7 +69,8 @@ public class RoomServiceTest {
                 "虹桥机场",
                 3,
                 new Date(),
-                "1452681"
+                "1452681",
+                "来吧来吧"
         );
     }
 

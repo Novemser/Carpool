@@ -11,8 +11,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
 
 
@@ -20,17 +20,20 @@ import org.springframework.security.web.authentication.rememberme.PersistentToke
  * Created by deado on 2016/12/15.
  */
 @Configuration
+@EnableWebSecurity
 @ComponentScan
-@EnableWebMvcSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Autowired
+    private
     UserEntityRepository userEntityRepository;
 
     @Autowired
+    private
     UserService userService;
 
     @Autowired
+    private
     SessionRepository sessionRepository;
 
     @Override
@@ -58,6 +61,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/*/*/*/*/*.css").permitAll()
                 .antMatchers("/*/*/*.css").permitAll()
                 .antMatchers("*.icon").permitAll()
+                .antMatchers("/getLoginCode").permitAll()
+                .antMatchers("/checkimagecode").permitAll()
                 .mvcMatchers("/index").permitAll()
                 .mvcMatchers("/").permitAll()
                 .anyRequest().authenticated()
@@ -71,6 +76,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .logout().logoutSuccessUrl("/login")
                 .and()
                 .sessionManagement().sessionAuthenticationErrorUrl("/login").maximumSessions(1);
+
     }
 
 
