@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by deado on 2016/11/30.
@@ -35,7 +36,7 @@ public interface ChatRecordRepository extends JpaRepository<ChatRecordEntity,Int
     String getSenderById(int id);
 
     @Query("select comment from ChatRecordEntity comment where  comment.room.id=?1")
-    Page<ChatRecordEntity> getAllChatOfRoom(int id, Pageable pageable);
+    List<ChatRecordEntity> getAllChatOfRoom(int id);
 
     @Query("select comment from ChatRecordEntity  comment where comment.sender.id=?1")
     Page<ChatRecordEntity> getAllChatOfUser(String id, Pageable pageable);

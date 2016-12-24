@@ -21,7 +21,7 @@
             <div class="text text-center room-title">${room.roomname}</div>
             <dl class="dl-horizontal">
                 <dt>出发时间</dt>
-                <dd>${room.startDate} ${room.startTime}</dd>
+                <dd>${room.startTime}</dd>
                 <dt>起点</dt>
                 <dd>${room.startPoint}</dd>
                 <dt>终点</dt>
@@ -35,9 +35,9 @@
             <h4 class="text-center">分享房间</h4>
             <div class="row text-center" style="margin-top: 24px;margin-bottom: 21px;">
                 <!--Dribbble-->
-                <a class="icons-sm drib-ic"><i class="fa fa-dribbble"> </i></a>
+                <a class="icons-sm"><i class="fa fa-qq"> </i></a>
                 <!--Linkedin-->
-                <a class="icons-sm li-ic"><i class="fa fa-linkedin"> </i></a>
+                <a class="icons-sm"><i class="fa fa-wechat"> </i></a>
                 <!--Google +-->
                 <a class="icons-sm gplus-ic"><i class="fa fa-google-plus"> </i></a>
                 <!--Instagram-->

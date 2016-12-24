@@ -1,10 +1,12 @@
 package com.carpool.website.controller;
 
 import com.carpool.configuration.GlobalConstants;
+import com.carpool.domain.MessageEntity;
 import com.carpool.domain.RoomEntity;
 import com.carpool.domain.UserEntity;
 import com.carpool.exception.InternalErrorException;
 import com.carpool.exception.PermissionDeniedException;
+import com.carpool.website.dao.ChatRecordRepository;
 import com.carpool.exception.RoomNullException;
 import com.carpool.exception.UserNullException;
 import com.carpool.website.model.Room;
@@ -13,13 +15,15 @@ import com.carpool.website.service.RoomService;
 import com.carpool.website.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
+import javax.servlet.ServletRequest;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.text.ParseException;
@@ -42,6 +46,9 @@ public class RoomController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ChatRecordRepository chatRecordRepository;
 
     @Autowired
     public RoomController(RoomService roomService) {
@@ -91,6 +98,17 @@ public class RoomController {
     public String showDetail(@RequestParam int roomId, ModelMap modelMap, HttpServletRequest request) {
 
         RoomEntity entity = roomService.findById(roomId);
+
+        // 验证是否超出总人数
+        int currentNum = entity.getUserParticipate().size();
+//        entity.setCurrentNums(currentNum);
+        if (currentNum >= entity.getNumberLimit())
+            modelMap.addAttribute("reachLimit", true);
+        else
+            modelMap.addAttribute("reachLimit", false);
+
+        roomService.editCurrentUserNum(currentNum, entity);
+
         modelMap.addAttribute("room", entity);
 
         String userId = userService.getUserIdByCookie(request.getCookies());
@@ -290,18 +308,47 @@ public class RoomController {
         return responseEntity;
     }
 
+    @PostMapping("/leave")
+    @ResponseBody
+    public ResponseEntity<?> leaveRoom(@RequestParam Integer roomId, HttpServletRequest request) {
+        RoomEntity entity = roomService.findById(roomId);
+        String userId = userService.getUserIdByCookie(request.getCookies());
+        ResponseEntity<String> responseEntity = new ResponseEntity<>("no", HttpStatus.UNAUTHORIZED);
+        // 当前用户是房主 拒绝修改 返回细节界面
+        if (userId.equals(entity.getHost().getId()))
+            return responseEntity;
+
+        roomService.removeUserFromRoom(roomId, userId);
+        responseEntity = new ResponseEntity<>("ok", HttpStatus.ACCEPTED);
+        return responseEntity;
+    }
+
     @PostMapping("/user/join")
-    public String addUserToRoom(@RequestParam Integer roomId, HttpServletRequest request) throws Exception {
+    public String addUserToRoom(@RequestParam Integer roomId, HttpServletRequest request, ModelMap modelMap) throws Exception {
         String userId = userService.getUserIdByCookie(request.getCookies());
 
-        roomService.addUserToRoom(roomId, userId);
+        Room entity = roomService.addUserToRoom(roomId, userId);
+
+        modelMap.addAttribute("room", entity);
 
         return "room.user.joinSucceed";
     }
 
     @GetMapping("/chat")
-    public String joinChatRoom(@RequestParam Integer roomId, ModelMap modelMap) {
+    public String joinChatRoom(@RequestParam Integer roomId, HttpServletRequest request, ModelMap modelMap) {
         modelMap.addAttribute("room", roomService.findById(roomId));
+        String userId = request.getRemoteUser();
+        String username = this.userService.getUserById(userId).getUsername();
+
+
+
+
+        modelMap.addAttribute("userid", userId);
+        modelMap.addAttribute("username", username);
+
         return "room.chat";
     }
+
+
+
 }

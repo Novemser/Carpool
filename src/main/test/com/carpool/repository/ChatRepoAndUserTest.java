@@ -103,7 +103,7 @@ public class ChatRepoAndUserTest {
         ChatRecordEntity cre = ret.iterator().next();
         int reTest = this.chatRecordRepository.getRoomById(cre.getId());
         String ueTest = this.chatRecordRepository.getSenderById(cre.getId());
-        Page<ChatRecordEntity> aceTest = this.chatRecordRepository.getAllChatOfRoom(1, this.pageable);
+//        Page<ChatRecordEntity> aceTest = this.chatRecordRepository.getAllChatOfRoom(1, this.pageable);
         Page<ChatRecordEntity> aceuTest = this.chatRecordRepository.getAllChatOfUser(cre.getSender().getId(),this.pageable);
 
         //delete

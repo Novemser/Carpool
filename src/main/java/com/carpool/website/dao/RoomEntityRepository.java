@@ -19,6 +19,9 @@ import java.util.Date;
 
 public interface RoomEntityRepository extends JpaRepository<RoomEntity, Integer> {
 
+
+    RoomEntity  findById(int id);
+
     Page<RoomEntity> findByStartPointAndEndPointAndStartTimeBetween(String startPoint, String endPoint,
                                                              Date from, Date to, Pageable pageable);
 
