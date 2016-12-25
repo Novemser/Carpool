@@ -24,7 +24,7 @@
         };
         websocketNotify.onmessage = function (evnt) {
             var jsonMsg = JSON.parse(evnt.data);
-            alert("receive");
+//            alert("receive");
 
             $('#msgNotify').html(jsonMsg['count']);
             $('#msgCount').html('You have '+ jsonMsg['count'] + ' new message');

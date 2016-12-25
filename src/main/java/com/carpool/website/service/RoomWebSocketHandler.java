@@ -69,33 +69,11 @@ public class RoomWebSocketHandler extends TextWebSocketHandler {
 
     private void handleMessageTypeOne(WebSocketSession session, JSONObject messageJson){
         //retrieve info from message
-//        String messageContent = message.getPayload().toString();
-//        JSONObject messageJson = JSON.parseObject(messageContent);
         String userId = messageJson.getString("userid");
         String room = messageJson.getString("room");
         String content = messageJson.getString("chatContent");
-        //update class info
-        if(!roomDomain.containsKey(room)){
-            ArrayList<WebSocketSession> value = new ArrayList<WebSocketSession>();
-            roomDomain.put(room, value);
-
-            Integer id = Integer.valueOf(room);
-
-            RoomEntity roomEntity = this.roomEntityRepository.findById(id);
-
-            Collection<UserEntity> roomMemberColl = roomEntity.getUserParticipate();
-            ArrayList<String> roomMemberList = new ArrayList<String>();
-            for(UserEntity userEntity: roomMemberColl){
-                roomMemberList.add(userEntity.getId());
-            }
-            roomMembers.put(room, roomMemberList);
-        }
 
         ArrayList<WebSocketSession> roomSpace = roomDomain.get(room);
-        if(!roomSpace.contains(session)){
-            roomSpace.add(session);
-        }
-
 
         //save message
         ChatRecordEntity cre = new ChatRecordEntity(new Date(),content,
@@ -218,9 +196,30 @@ public class RoomWebSocketHandler extends TextWebSocketHandler {
 
     @SuppressWarnings("deprecation")
     private void handleMessageTypeThree(WebSocketSession session, JSONObject messageJson){
-        Integer roomId = messageJson.getInteger("roomId");
-        List<ChatRecordEntity> chatList = this.chatRecordRepository.getAllChatOfRoom(roomId);
+        Integer room = messageJson.getInteger("roomId");
+        List<ChatRecordEntity> chatList = this.chatRecordRepository.getAllChatOfRoom(room);
 
+        //add this room to roomDomain
+        if(!roomDomain.containsKey(room.toString())){
+            ArrayList<WebSocketSession> value = new ArrayList<WebSocketSession>();
+            roomDomain.put(room.toString(), value);
+
+            RoomEntity roomEntity = this.roomEntityRepository.findById(room);
+
+            Collection<UserEntity> roomMemberColl = roomEntity.getUserParticipate();
+            ArrayList<String> roomMemberList = new ArrayList<String>();
+            for(UserEntity userEntity: roomMemberColl){
+                roomMemberList.add(userEntity.getId());
+            }
+            roomMembers.put(room.toString(), roomMemberList);
+        }
+        //add this session to roomSpace
+        ArrayList<WebSocketSession> roomSpace = roomDomain.get(room.toString());
+        if(!roomSpace.contains(session)){
+            roomSpace.add(session);
+        }
+
+        //send back the chat history
         for(ChatRecordEntity cre : chatList){
             String year = Integer.toString(cre.getCommenttime().getYear());
             String month = Integer.toString(cre.getCommenttime().getMonth());
@@ -230,7 +229,7 @@ public class RoomWebSocketHandler extends TextWebSocketHandler {
             String userProfileImg = userService.getUserProfileImgSrc(cre.getSender().getId());
 
             String msg = "{ \"type\":1, \"userid\":\""+cre.getSender().getId() + "\", \"username\":\"" + cre.getSender().getUsername()
-                    + "\", \"room\":" + roomId + ", \"year\":"+year + ", \"month\":"+ month + ",\"day\":" +day+ ",\"hour\":"
+                    + "\", \"room\":" + room + ", \"year\":"+year + ", \"month\":"+ month + ",\"day\":" +day+ ",\"hour\":"
                     + hour + ",\"minute\":" + minute + ",\"chatContent\":\"" + cre.getCommenttext() + "\"," +
                     "\"src\":\"" + userProfileImg.replace("_","") + "\"}";
             try{
