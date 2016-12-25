@@ -41,7 +41,6 @@
                 <a href="/user?id=3">
                     <i class="icon-user"></i>
                     <span>个人中心 </span>
-                    <span class="label label-danger pull-right mail-info">2</span>
                 </a>
             </li>
 

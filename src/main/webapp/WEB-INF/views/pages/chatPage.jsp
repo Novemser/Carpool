@@ -18,7 +18,7 @@
     var msgCount = 0;
 
 
-    websocket = new WebSocket("ws://" +host+"/webSocketServer");
+    websocket = new WebSocket("ws://" + host + "/webSocketServer");
 
     websocket.onopen = function (evnt) {
         getChatHis();
@@ -29,15 +29,17 @@
 
         var msg = JSON.parse(evnt.data);
 
-        var year = msg["year"]-100+2000;
+        var year = msg["year"] - 100 + 2000;
 
-        var chatItem = " <div class=\"msg-time-chat\"> <a href=\"#\" class=\"message-img\"><img class=\"avatar\" src=\"#\" alt=\"\"></a> <div class=\"message-body msg-in\"> <span class=\"arrow\"></span> <div class=\"text\" style=\"overflow-x: scroll\"> <p class=\"attribution\"><font color=\'#5f9ea0\'>"+msg["username"]+"</font> at "+msg["hour"]+":"+msg["minute"]+"pm, "+msg["day"]+"th "+msg["month"]+" "+year+"</p> <p>" + msg["chatContent"] +"</p> </div> </div> </div>"
+        var src = "http://novemser.vicp.io:521" + msg["src"];
+
+        var chatItem = " <div class=\"msg-time-chat\"> <a href=\"#\" class=\"message-img\"><img class=\"avatar\" src=' " + src + "' alt='头像'></a> <div class=\"message-body msg-in\"> <span class=\"arrow\"></span> <div class=\"text\"> <p class=\"attribution\"><font color=\'#5f9ea0\'>" + msg["username"] + "</font> at " + msg["hour"] + ":" + msg["minute"] + "pm, " + msg["day"] + "th " + msg["month"] + " " + year + "</p> <p>" + msg["chatContent"] + "</p> </div> </div> </div>"
 
         var newHtml = $("#messagebox").html();
         $("#messagebox").html(newHtml + chatItem);
 
-        if(msgCount > 6){
-            var chatContent = document.getElementById ('messagebox');
+        if (msgCount > 6) {
+            var chatContent = document.getElementById('messagebox');
             chatContent.scrollTop = chatContent.scrollHeight;
         }
     };
@@ -45,31 +47,31 @@
         alert(error);
     };
     websocket.onclose = function (evnt) {
-    }
+    };
 
-    function send(){
+    function send() {
         var input = $('#inputContent');
         var inputValue = input.val();
         input[0].value = "";
         var date = new Date();
 
         var content = JSON.stringify({
-            'type':1,
+            'type': 1,
             'userid':${userid},
-            'username':"${username}",
+            'username': "${username}",
             'room':${room.id},
-            'year':date.getYear().toString(),
+            'year': date.getYear().toString(),
             'month': date.getMonth().toString(),
-            'day':date.getDay().toString(),
-            'hour':date.getHours().toString(),
-            'minute':date.getMinutes().toString(),
-            'chatContent':inputValue
+            'day': date.getDay().toString(),
+            'hour': date.getHours().toString(),
+            'minute': date.getMinutes().toString(),
+            'chatContent': inputValue
         });
         websocket.send(content);
     }
 
-    function getChatHis(){
-        websocket.send(JSON.stringify({'type':3, 'roomId':${room.id}}));
+    function getChatHis() {
+        websocket.send(JSON.stringify({'type': 3, 'roomId':${room.id}}));
     }
 
 
@@ -79,37 +81,37 @@
     <div class="col-lg-8 col-lg-offset-2 text-center detail_dev">
         <section class="panel card">
             <header class="panel-heading">
-                Chats
+                房间${room.id} 聊天室
             </header>
+
             <div class="panel-body">
 
-                <div class="timeline-messages" id = "messagebox">
+                <div class="timeline-messages" id="messagebox" style="text-align: left">
 
 
                 </div>
-                <div class="chat-form">
+                <div class="md-form">
                     <div class="input-cont ">
-                        <input id = "inputContent" type="text" class="form-control col-lg-12" placeholder="Type a message here...">
+                        <textarea id="inputContent" type="text" class="md-textarea form-control col-lg-12"></textarea>
+                        <label for="inputContent">请在这里输入信息</label>
                     </div>
                     <div class="form-group">
                         <div class="pull-right chat-features">
-                            <a href="javascript:;">
-                                <i class="icon-camera"></i>
-                            </a>
-                            <a href="javascript:;">
-                                <i class="icon-link"></i>
-                            </a>
-                            <a class="btn btn-danger" onclick="send()" id = "sendButton">Send</a>
+                            <a class="btn btn-danger" onclick="send()" id="sendButton"><i class="fa fa-send"></i> 发送</a>
                         </div>
                     </div>
 
+                </div>
+
+                <div style="width: 75%;" class="btn btn-comm btn-lg col-md-8" onclick="window.location.href='/room/detail?roomId=${room.id}'">
+                    <i class="fa fa-repeat"></i> 返回查看房间详情
                 </div>
             </div>
         </section>
     </div>
 </div>
 <script>
-    var chatContent = document.getElementById ('messagebox');
+    var chatContent = document.getElementById('messagebox');
     chatContent.scrollTop = chatContent.scrollHeight;
 
 </script>

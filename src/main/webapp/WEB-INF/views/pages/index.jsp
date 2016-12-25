@@ -171,7 +171,7 @@
                         </div>
                         <!--Avatar-->
                         <div class="avatar"><img
-                                src="http://gitlab.lab-sse.cn/uploads/user/avatar/17/12718118-small.jpg"
+                                src="http://115.159.126.118:9000/uploads/user/avatar/17/12718118-small.jpg"
                                 class="rounded-circle img-responsive">
                         </div>
                         <!--Content-->

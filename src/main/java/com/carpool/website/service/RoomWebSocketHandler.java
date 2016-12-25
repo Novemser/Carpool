@@ -39,6 +39,9 @@ public class RoomWebSocketHandler extends TextWebSocketHandler {
     @Autowired
     private ChatRecordRepository chatRecordRepository;
 
+    @Autowired
+    private UserService userService;
+
     // {roomid: [userid1, userid2, ......]}
     private static Map<String, ArrayList<WebSocketSession>>  roomDomain = new HashMap<String, ArrayList<WebSocketSession>>();
 
@@ -173,10 +176,12 @@ public class RoomWebSocketHandler extends TextWebSocketHandler {
     private void handleMessageTypeTwo(WebSocketSession session){
         try{
             String userId = session.getPrincipal().getName();
+            String userProfileImg = userService.getUserProfileImgSrc(userId);
             List<UserUnreceivedChatRecord> uucList = this.userUnreceivedRecordRepository.findByUserId(userId);
             this.userUnreceivedRecordRepository.deleteByUserId(userId);
             if(0 == uucList.size()){
-                throw new Exception();
+//                throw new Exception();
+                return;
             }
 
             for(UserUnreceivedChatRecord uuc:uucList){
@@ -190,6 +195,7 @@ public class RoomWebSocketHandler extends TextWebSocketHandler {
                 String roomId = new  Integer(uuc.getChatRecordEntity().getRoom().getId()).toString();
                 msg.append("\"roomId\":" + "\"" + roomId + "\",");
                 String time = DateFormat.getDateTimeInstance().format(uuc.getChatRecordEntity().getCommenttime());
+                msg.append("\"src\":\"").append(userProfileImg.replace("_","")).append("\",");
                 msg.append("\"time\":" + "\"" + time + "\"}");
                 session.sendMessage(new TextMessage(msg.toString()));
             }
@@ -208,6 +214,7 @@ public class RoomWebSocketHandler extends TextWebSocketHandler {
 
     }
 
+    @SuppressWarnings("deprecation")
     private void handleMessageTypeThree(WebSocketSession session, JSONObject messageJson){
         Integer roomId = messageJson.getInteger("roomId");
         List<ChatRecordEntity> chatList = this.chatRecordRepository.getAllChatOfRoom(roomId);
@@ -218,11 +225,12 @@ public class RoomWebSocketHandler extends TextWebSocketHandler {
             String day = Integer.toString(cre.getCommenttime().getDay());
             String hour = Integer.toString(cre.getCommenttime().getHours());
             String minute = Integer.toString(cre.getCommenttime().getMinutes());
-
+            String userProfileImg = userService.getUserProfileImgSrc(cre.getSender().getId());
 
             String msg = "{ \"type\":1, \"userid\":\""+cre.getSender().getId() + "\", \"username\":\"" + cre.getSender().getUsername()
                     + "\", \"room\":" + roomId + ", \"year\":"+year + ", \"month\":"+ month + ",\"day\":" +day+ ",\"hour\":"
-                    + hour + ",\"minute\":" + minute + ",\"chatContent\":\"" + cre.getCommenttext() + "\"}";
+                    + hour + ",\"minute\":" + minute + ",\"chatContent\":\"" + cre.getCommenttext() + "\"," +
+                    "\"src\":\"" + userProfileImg.replace("_","") + "\"}";
             try{
                 session.sendMessage(new TextMessage(msg));
             }catch(Exception e){

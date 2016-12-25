@@ -95,14 +95,13 @@
                         </c:forEach>
                     </ul>
                 </c:if>
-                <div style="margin: 24px;width: 75%;" class="btn btn-lg btn-primary">
+                <div style="margin: 24px;width: 75%;" class="btn btn-lg btn-primary" onclick="window.location.href='/room/chat?roomId=${room.id}'">
 
-                    <i class="fa fa-commenting"></i><a href="<c:url value="/room/chat?roomId=${room.id}"/>"
-                                                       style="color: white"> 进入聊天室</a>
+                    <i class="fa fa-commenting"></i> 进入聊天室
                 </div>
                 <c:if test="${roomOwner==false && inRoom==true}">
-                    <div style="margin: 24px;width: 75%;" class="btn btn-lg btn-primary" onclick="leaveRoom()">
-                        <i class="fa fa-commenting"></i> 退出房间
+                    <div style="margin: 24px;width: 75%;" class="btn btn-lg btn-info" onclick="leaveRoom()">
+                        <i class="fa fa-sign-out"></i> 退出房间
                     </div>
                 </c:if>
 
@@ -120,7 +119,7 @@
                                 </div>
                             </c:when>
                             <c:when test="${room.state==ROOM_STATE_LOCKED}">
-                                <div class="btn-effect btn btn-warning btn-lg">
+                                <div class="btn-effect btn btn-warning btn-lg" disabled>
                                     <i class="fa fa-info"></i> 暂时无法加入 请等待房主解锁
                                 </div>
                             </c:when>
@@ -164,8 +163,8 @@
                         </c:when>
                     </c:choose>
                 </c:if>
-                <div>
-                    <div class="bdsharebuttonbox btn-effect" style="background-color: white;margin-left: 10px">
+                <div class="col-xs-offset-3">
+                    <div class="bdsharebuttonbox btn-effect" style="background-color: white;margin-left: 10px;float: right">
                         <a title="分享到QQ空间" class="bds_qzone"  href="#" data-id="${room.id}"  data-cmd="qzone"></a>
                         <a title="分享到QQ好友" class="bds_sqq "  href="#" data-id="${room.id}" data-cmd="sqq"></a>
                         <a title="分享到微信" class="bds_weixin"  href="#" data-id="${room.id}" data-cmd="weixin"></a>

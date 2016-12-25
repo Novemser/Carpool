@@ -25,76 +25,77 @@ public class UserService {
     @Autowired
     private SessionRepository sessionRepository;
 
-    public UserEntity getUserById(String id)
-    {
+    public UserEntity getUserById(String id) {
         UserEntity userEntity = userEntityRepository.findOne(id);
-        if(userEntity==null)
-            throw new UserNullException("getUserError","不存在的用户");
-        return  userEntity;
+        if (userEntity == null)
+            throw new UserNullException("getUserError", "不存在的用户");
+        return userEntity;
     }
+
     @Transactional
-    public void updateUserAlipay(String id,String alipay)
-    {
+    public void updateUserAlipay(String id, String alipay) {
         UserEntity userEntity = userEntityRepository.findOne(id);
-        if(userEntity==null)
-            throw new UserNullException("getUserError","不存在的用户");
+        if (userEntity == null)
+            throw new UserNullException("getUserError", "不存在的用户");
         userEntity.setAlipay(alipay);
     }
+
     @Transactional
-    public void updateUserQQ(String id,String QQ)
-    {
+    public void updateUserQQ(String id, String QQ) {
         UserEntity userEntity = userEntityRepository.findOne(id);
-        if(userEntity==null)
-            throw new UserNullException("getUserError","不存在的用户");
+        if (userEntity == null)
+            throw new UserNullException("getUserError", "不存在的用户");
         userEntity.setQqAccount(QQ);
     }
+
     @Transactional
-    public void updateUserWeChat(String id,String WeChat)
-    {
+    public void updateUserWeChat(String id, String WeChat) {
         UserEntity userEntity = userEntityRepository.findOne(id);
-        if(userEntity==null)
-            throw new UserNullException("getUserError","不存在的用户");
+        if (userEntity == null)
+            throw new UserNullException("getUserError", "不存在的用户");
         userEntity.setWechatAccount(WeChat);
     }
+
     @Transactional
-    public void updateUserPassword(String id,String password) {
+    public void updateUserPassword(String id, String password) {
         UserEntity userEntity = userEntityRepository.findOne(id);
         if (userEntity == null)
             throw new UserNullException("getUserError", "不存在的用户");
         userEntity.setPassword(password);
     }
+
     @Transactional
-    public void updateUserPhoto(String id,String photo) {
+    public void updateUserPhoto(String id, String photo) {
         UserEntity userEntity = userEntityRepository.findOne(id);
         if (userEntity == null)
             throw new UserNullException("getUserError", "不存在的用户");
         userEntity.setPhoto(photo);
+        userEntityRepository.saveAndFlush(userEntity);
     }
 
 
-
-    public void saveUser(UserEntity userEntityToAdd) throws Exception{
-        try{
+    public void saveUser(UserEntity userEntityToAdd) throws Exception {
+        try {
             String inPw = userEntityToAdd.getPassword();
             String userId = userEntityToAdd.getId();
             String enPw = this.encryptionService.encipher(inPw) + this.encryptionService.encipher(userId);
             userEntityToAdd.setPassword(enPw);
             this.userEntityRepository.save(userEntityToAdd);
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             throw e;
         }
     }
 
 
-    private String checkSessionIdentity(String cookie){
-        try{
+    private String checkSessionIdentity(String cookie) {
+        try {
             String seriseId = new String(Base64.getDecoder().decode(cookie));
 
             String userId = this.sessionRepository.findBySeriesId(seriseId.split(":")[0]).getUserId();
 
             return userId;
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
@@ -113,5 +114,12 @@ public class UserService {
                 userId = checkSessionIdentity(cookie.getValue());
         }
         return userId;
+    }
+
+    public String getUserProfileImgSrc(String userId) {
+        UserEntity userEntity = userEntityRepository.findById(userId);
+        if (null == userEntity)
+            return "";
+        else return userEntity.getPhoto();
     }
 }
