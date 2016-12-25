@@ -176,41 +176,41 @@ public class RoomWebSocketHandler extends TextWebSocketHandler {
     }
 
     private void handleMessageTypeTwo(WebSocketSession session){
-        try{
-            String userId = session.getPrincipal().getName();
-            String userProfileImg = userService.getUserProfileImgSrc(userId);
-            List<UserUnreceivedChatRecord> uucList = this.userUnreceivedRecordRepository.findByUserId(userId);
-            this.userUnreceivedRecordRepository.deleteByUserId(userId);
-            if(0 == uucList.size()){
-//                throw new Exception();
-                return;
-            }
-
-            for(UserUnreceivedChatRecord uuc:uucList){
-
-                StringBuilder msg = new StringBuilder("{ \"count\":");
-                msg.append(uucList.size() + ",");
-                String content = uuc.getChatRecordEntity().getCommenttext();
-                msg.append("\"content\":" + "\"" + content + "\",");
-                String sender = uuc.getChatRecordEntity().getSender().getUsername();
-                msg.append("\"sender\":" + "\"" + sender + "\",");
-                String roomId = new  Integer(uuc.getChatRecordEntity().getRoom().getId()).toString();
-                msg.append("\"roomId\":" + "\"" + roomId + "\",");
-                String time = DateFormat.getDateTimeInstance().format(uuc.getChatRecordEntity().getCommenttime());
-                msg.append("\"src\":\"").append(userProfileImg.replace("_","")).append("\",");
-                msg.append("\"time\":" + "\"" + time + "\"}");
-                session.sendMessage(new TextMessage(msg.toString()));
-            }
-
-        }catch(Exception e){
-            e.printStackTrace();
-            try{
-                session.sendMessage(new TextMessage("[]"));
-            }catch(Exception e2){
-                //ignore
-            }
-
-        }
+//        try{
+//            String userId = session.getPrincipal().getName();
+//            String userProfileImg = userService.getUserProfileImgSrc(userId);
+//            List<UserUnreceivedChatRecord> uucList = this.userUnreceivedRecordRepository.findByUserId(userId);
+//            this.userUnreceivedRecordRepository.deleteByUserId(userId);
+//            if(0 == uucList.size()){
+////                throw new Exception();
+//                return;
+//            }
+//
+//            for(UserUnreceivedChatRecord uuc:uucList){
+//
+//                StringBuilder msg = new StringBuilder("{ \"count\":");
+//                msg.append(uucList.size() + ",");
+//                String content = uuc.getChatRecordEntity().getCommenttext();
+//                msg.append("\"content\":" + "\"" + content + "\",");
+//                String sender = uuc.getChatRecordEntity().getSender().getUsername();
+//                msg.append("\"sender\":" + "\"" + sender + "\",");
+//                String roomId = new  Integer(uuc.getChatRecordEntity().getRoom().getId()).toString();
+//                msg.append("\"roomId\":" + "\"" + roomId + "\",");
+//                String time = DateFormat.getDateTimeInstance().format(uuc.getChatRecordEntity().getCommenttime());
+//                msg.append("\"src\":\"").append(userProfileImg.replace("_","")).append("\",");
+//                msg.append("\"time\":" + "\"" + time + "\"}");
+//                session.sendMessage(new TextMessage(msg.toString()));
+//            }
+//
+//        }catch(Exception e){
+//            e.printStackTrace();
+//            try{
+//                session.sendMessage(new TextMessage("[]"));
+//            }catch(Exception e2){
+//                //ignore
+//            }
+//
+//        }
 
 
 

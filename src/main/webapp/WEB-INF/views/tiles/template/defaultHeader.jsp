@@ -17,7 +17,7 @@
         var websocketNotify;
 
 
-        websocketNotify = new WebSocket("ws://" + host + "/webSocketServer");
+        websocketNotify = new WebSocket("ws://" + host + "/unreadWebSocketServer");
 
         websocketNotify.onopen = function (evnt) {
             sendNotify();
