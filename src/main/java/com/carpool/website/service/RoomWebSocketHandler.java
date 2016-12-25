@@ -12,6 +12,7 @@ import com.carpool.website.dao.UserEntityRepository;
 import com.carpool.website.dao.UserUnreceivedRecordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.socket.*;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
@@ -137,6 +138,7 @@ public class RoomWebSocketHandler extends TextWebSocketHandler {
      * Send messages to all users in a room
      *
      */
+    @Transactional
     private void sendMessageToUsers(ChatRecordEntity cre, ArrayList<WebSocketSession> roomSpace, JSONObject msg) {
         Integer monthIndex = Integer.valueOf(msg.getString("month"));
 

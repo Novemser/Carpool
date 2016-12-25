@@ -7,6 +7,7 @@ import com.carpool.website.service.RoomService;
 import com.carpool.website.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -46,11 +47,14 @@ public class UserController {
     }
 
     @GetMapping("/user")
+    @Transactional
     public String profile(HttpServletRequest request, ModelMap modelMap) {
         request.setAttribute("id", 3);
         request.setAttribute("active", "1");
         String userId = this.userService.getUserIdByCookie(request.getCookies());
         UserEntity userEntity = userService.getUserById(userId);
+        userEntity.setCarpoolingCount(userService.countUserJourney(userEntity));
+
         modelMap.addAttribute("user", userEntity);
         return "user.profile";
     }

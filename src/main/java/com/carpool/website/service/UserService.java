@@ -24,12 +24,18 @@ public class UserService {
     private EncryptionService encryptionService;
     @Autowired
     private SessionRepository sessionRepository;
+    @Autowired
+    private JourneyService journeyService;
 
     public UserEntity getUserById(String id) {
         UserEntity userEntity = userEntityRepository.findOne(id);
         if (userEntity == null)
             throw new UserNullException("getUserError", "不存在的用户");
         return userEntity;
+    }
+
+    public int countUserJourney(UserEntity userEntity) {
+        return journeyService.getTotalJourney(userEntity.getId());
     }
 
     @Transactional

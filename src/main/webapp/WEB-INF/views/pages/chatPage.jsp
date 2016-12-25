@@ -25,6 +25,7 @@
     };
     websocket.onmessage = function (evnt) {
 
+        alert("chat_rec");
         msgCount++;
 
         var msg = JSON.parse(evnt.data);

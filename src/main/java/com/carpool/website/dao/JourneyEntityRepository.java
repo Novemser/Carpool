@@ -57,6 +57,10 @@ public interface JourneyEntityRepository extends JpaRepository<JourneyEntity, In
                                 " :id in (select userParticipate.id from j.room.userParticipate userParticipate)")
     Page<JourneyEntity> getAllJourneyByByUSerId(@Param("id") String id, Pageable pageable);
 
+    @Query("select count(*) from JourneyEntity j where " +
+            ":id in (select userParticipate.id from j.room.userParticipate userParticipate)")
+    Integer getAllJourneyCountByUserId(@Param("id") String id);
+
     //得到用户的出行数，不管是不是房主
   //  @Query("select  count (j.id) from JourneyEntity j where exists (select userParticipate.id from j.room.userParticipate userParticipate)" +
  //           "and :id in (select userParticipate.participateUser.id from j.room.userParticipate userParticipate)")
