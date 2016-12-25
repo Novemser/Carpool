@@ -11,11 +11,18 @@
                       value="jdbc:mysql://localhost:3306/carpool?useSSL=false"/>
             <!-- 数据库连接的驱动 -->
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+            <!-- 数据库连接池 -->
+            <property name="hibernate.connection.provider_class"
+                      value="org.hibernate.hikaricp.internal.HikariCPConnectionProvider"/>
+
+            <property name="hibernate.hikari.minimumIdle" value="5"/>
+            <property name="hibernate.hikari.idleTimeout" value="30000"/>
+
             <!-- 数据库连接的用户名 -->
             <property name="hibernate.connection.username" value="root"/>
 
             <!-- 数据库连接的密码 -->
-            <property name="hibernate.connection.password" value="qiangwudi"/>
+            <property name="hibernate.connection.password" value="1234"/>
             <!-- 显示SQL语句 -->
             <property name="hibernate.show_sql" value="false"/>
             <property name="hibernate.connection.useUnicode" value="true"/>
