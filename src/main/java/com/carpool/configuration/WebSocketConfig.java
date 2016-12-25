@@ -1,6 +1,7 @@
 package com.carpool.configuration;
 
 import com.carpool.website.service.RoomWebSocketHandler;
+import com.carpool.website.service.UnreadWebSocketHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -19,6 +20,8 @@ public class WebSocketConfig extends WebMvcConfigurerAdapter implements WebSocke
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
         registry.addHandler(roomWebSocketHandler(),"/webSocketServer").addInterceptors(new WebSocketInterceptor());
 
+        registry.addHandler(unreadWebSocketHandler(),"/unreadWebSocketServer").addInterceptors(new WebSocketInterceptor());
+
         registry.addHandler(roomWebSocketHandler(), "/sockjs/webSocketServer").addInterceptors(new WebSocketInterceptor())
                 .withSockJS();
     }
@@ -27,5 +30,8 @@ public class WebSocketConfig extends WebMvcConfigurerAdapter implements WebSocke
     public WebSocketHandler roomWebSocketHandler(){
         return new RoomWebSocketHandler();
     }
+
+    @Bean
+    public WebSocketHandler unreadWebSocketHandler(){ return new UnreadWebSocketHandler();}
 
 }
