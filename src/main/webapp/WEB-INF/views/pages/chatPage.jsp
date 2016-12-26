@@ -12,7 +12,14 @@
 <script src='<c:url value="/static/js/sockjs-1.1.1.js"/>' type="text/javascript"></script>
 <script>
 
-
+    document.onkeydown = function (e) {
+        if (!e) {
+            e = window.event;
+        }
+        if ((e.keyCode || e.which) == 13) {
+            send();
+        }
+    };
     var host = window.location.host;
     var websocket;
     var msgCount = 0;
@@ -104,7 +111,8 @@
 
                 </div>
 
-                <div style="width: 75%;" class="btn btn-comm btn-lg col-md-8" onclick="window.location.href='/room/detail?roomId=${room.id}'">
+                <div style="width: 75%;" class="btn btn-comm btn-lg col-md-8"
+                     onclick="window.location.href='/room/detail?roomId=${room.id}'">
                     <i class="fa fa-repeat"></i> 返回查看房间详情
                 </div>
             </div>
