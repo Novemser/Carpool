@@ -5,9 +5,9 @@ import com.carpool.domain.UserEntity;
 import com.carpool.exception.UserNullException;
 import com.carpool.website.service.RoomService;
 import com.carpool.website.service.UserService;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -47,14 +47,11 @@ public class UserController {
     }
 
     @GetMapping("/user")
-    @Transactional
     public String profile(HttpServletRequest request, ModelMap modelMap) {
         request.setAttribute("id", 3);
         request.setAttribute("active", "1");
         String userId = this.userService.getUserIdByCookie(request.getCookies());
         UserEntity userEntity = userService.getUserById(userId);
-        userEntity.setCarpoolingCount(userService.countUserJourney(userEntity));
-
         modelMap.addAttribute("user", userEntity);
         return "user.profile";
     }
@@ -127,8 +124,7 @@ public class UserController {
         if (userEntity.getPassword() == request.getParameter("currentPassword")) {
             userService.updateUserPassword(userId, request.getParameter("newPassword"));
             return "redirect:/user";
-        }
-        else{
+        } else {
             return "user.profile.edit";
         }
     }
@@ -141,6 +137,15 @@ public class UserController {
                 String filePath = request.getSession().getServletContext().getRealPath("/") + "static/images/"
                         + userId + file.getOriginalFilename();
                 file.transferTo(new File(filePath));
+
+
+                // 复制一份文件到web目录
+                // 以免下次部署丢失
+                File originFile = new File(filePath);
+                String destFileName = "E:\\MyCodes\\JaveEE\\Carpool\\src\\main\\webapp\\static\\images\\"
+                        + userId + file.getOriginalFilename();
+                FileUtils.copyFile(originFile, new File(destFileName));
+
                 String photoPath = "/static/images/" + userId + file.getOriginalFilename();
                 userService.updateUserPhoto(userId, photoPath);
             } catch (Exception e) {
@@ -150,7 +155,6 @@ public class UserController {
         }
         return "redirect:/user";
     }
-
 
 
 }

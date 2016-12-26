@@ -227,16 +227,15 @@
                             <img src="/static/images/bg7.jpg" class="img-responsive">
                         </div>
                         <!--Avatar-->
-                        <div class="avatar"><img src="/static/images/at4.jpg"
+                        <div class="avatar"><img src="/static/images/th.jpg"
                                                  class="rounded-circle img-responsive">
                         </div>
                         <!--Content-->
                         <div class="card-block">
-                            <h4>Anna Deynah</h4>
-                            <p>Web Designer</p>
+                            <h4>Deadoggy</h4>
+                            <p>全栈工程师</p>
                             <!--Triggering button-->
-                            <a class="rotate-btn" data-card="card-2"><i class="fa fa-repeat"></i> Click here to
-                                rotate</a>
+                            <a class="rotate-btn" data-card="card-2"><i class="fa fa-repeat"></i> 点击查看更多</a>
                         </div>
                     </div>
                     <!--/.Front Side-->
@@ -245,12 +244,9 @@
                     <div class="face back">
 
                         <!--Content-->
-                        <h4>About me</h4>
+                        <h4>关于我</h4>
                         <hr>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime quae, dolores dicta.
-                            Blanditiis rem amet repellat, dolores nihil quae in mollitia asperiores ut rerum
-                            repellendus, voluptatum eum, officia laudantium
-                            quaerat?
+                        <p>bug与代码齐飞，error共玄学一色
                         </p>
                         <hr>
                         <!--Social Icons-->
@@ -261,8 +257,7 @@
                             <li><a class="icons-sm drib-ic"><i class="fa fa-dribbble"> </i></a></li>
                         </ul>
                         <!--Triggering button-->
-                        <a class="rotate-btn" data-card="card-2"><i class="fa fa-undo"></i> Click here to rotate
-                            back</a>
+                        <a class="rotate-btn" data-card="card-2"><i class="fa fa-undo"></i> 点击返回</a>
 
                     </div>
                     <!--/.Back Side-->

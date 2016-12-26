@@ -15,6 +15,7 @@
     <script>
         var host = window.location.host;
         var websocketNotify;
+        var msgCounter = 0;
 
 
         websocketNotify = new WebSocket("ws://" + host + "/unreadWebSocketServer");
@@ -23,11 +24,12 @@
             sendNotify();
         };
         websocketNotify.onmessage = function (evnt) {
+            msgCounter++;
             var jsonMsg = JSON.parse(evnt.data);
-//            alert("receive");
-
-            $('#msgNotify').html(jsonMsg['count']);
-            $('#msgCount').html('You have '+ jsonMsg['count'] + ' new message');
+//            alert('msgCount' + jsonMsg['count']);
+            $('#msgNotify').show();
+            $('#msgNotify').html(msgCounter);
+            $('#msgCount').html('您有 '+ jsonMsg['count'] + ' 条新消息');
 
             var liStr = "<a href=\"/room/chat?roomId="+jsonMsg['roomId']+"\"> <span class=\"photo\"><img alt=\"avatar\" src=\"/static/img/avatar-mini.jpg\"></span> <span class=\"subject\"> <span class=\"from\">"+jsonMsg['sender']+"</span> <span class=\"time\">"+jsonMsg['time']+"</span> </span> <span class=\"message\">"+ jsonMsg['content'] +"</span> </a> </li>"
             var oldHtml = $('#msgWindow').html();
@@ -47,6 +49,7 @@
 
         function afterClickNotify(){
             $('#msgNotify').hide();
+            msgCounter = 0;
         }
 
 

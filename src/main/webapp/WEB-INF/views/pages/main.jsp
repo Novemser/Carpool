@@ -78,7 +78,7 @@
                             <c:forEach begin="1" end="${li.currentNums}">
                                 <i class="icon-user" style="color: #42b2c4;"></i>
                             </c:forEach>
-                            <c:forEach begin="0" end="${li.numberLimit-li.currentNums}">
+                            <c:forEach begin="1" end="${li.numberLimit-li.currentNums}">
                                 <i class="icon-user" style="color: lightgrey"></i>
                             </c:forEach>
                         </span>

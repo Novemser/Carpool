@@ -1,12 +1,8 @@
 package com.carpool.website.service;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.carpool.domain.ChatRecordEntity;
+import com.carpool.domain.UserEntity;
 import com.carpool.domain.UserUnreceivedChatRecord;
-import com.carpool.website.dao.ChatRecordRepository;
 import com.carpool.website.dao.RoomEntityRepository;
-import com.carpool.website.dao.UserEntityRepository;
 import com.carpool.website.dao.UserUnreceivedRecordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,38 +12,59 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import java.text.DateFormat;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by deado on 2016/12/25.
  */
 @Service
 public class UnreadWebSocketHandler extends TextWebSocketHandler {
-    @Autowired
-    private RoomEntityRepository roomEntityRepository;
-
-    @Autowired
-    private UserEntityRepository userEntityRepository;
 
     @Autowired
     private UserUnreceivedRecordRepository userUnreceivedRecordRepository;
 
     @Autowired
-    private ChatRecordRepository chatRecordRepository;
+    private RoomEntityRepository roomEntityRepository;
 
     @Autowired
     private UserService userService;
 
+    private static Map<String, WebSocketSession> userSession = new HashMap<>();
+
 
     @Override
     public void handleMessage(WebSocketSession session, WebSocketMessage<?> message){
+
+        this.pushMsgToOneUser(session);
+    }
+
+    public void pushMsgToOnlineRoomMembers(Integer roomId){
+        Collection<UserEntity> userList = this.roomEntityRepository.findById(roomId).getUserParticipate();
+        for(UserEntity ue : userList){
+            if(userSession.containsKey(ue.getId())){
+                this.pushMsgToOneUser(userSession.get(ue.getId()));
+            }
+        }
+    }
+
+    private void pushMsgToOneUser(WebSocketSession session){
         try{
             String userId = session.getPrincipal().getName();
             String userProfileImg = userService.getUserProfileImgSrc(userId);
             List<UserUnreceivedChatRecord> uucList = this.userUnreceivedRecordRepository.findByUserId(userId);
+
+            //加入到static的session map里
+            if(userSession.containsKey(userId)){
+                userSession.replace(userId,session);
+            }else{
+                userSession.put(userId, session);
+            }
+
             this.userUnreceivedRecordRepository.deleteByUserId(userId);
             if(0 == uucList.size()){
-//                throw new Exception();
                 return;
             }
 
@@ -59,7 +76,7 @@ public class UnreadWebSocketHandler extends TextWebSocketHandler {
                 msg.append("\"content\":" + "\"" + content + "\",");
                 String sender = uuc.getChatRecordEntity().getSender().getUsername();
                 msg.append("\"sender\":" + "\"" + sender + "\",");
-                String roomId = new  Integer(uuc.getChatRecordEntity().getRoom().getId()).toString();
+                String roomId = Integer.toString(uuc.getChatRecordEntity().getRoom().getId());
                 msg.append("\"roomId\":" + "\"" + roomId + "\",");
                 String time = DateFormat.getDateTimeInstance().format(uuc.getChatRecordEntity().getCommenttime());
                 msg.append("\"src\":\"").append(userProfileImg.replace("_","")).append("\",");
@@ -76,9 +93,6 @@ public class UnreadWebSocketHandler extends TextWebSocketHandler {
             }
 
         }
-
-
     }
-
 
 }

@@ -1,5 +1,7 @@
 package com.carpool.website.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.carpool.configuration.GlobalConstants;
 import com.carpool.domain.RoomEntity;
 import com.carpool.domain.UserEntity;
@@ -7,10 +9,11 @@ import com.carpool.exception.InternalErrorException;
 import com.carpool.exception.PermissionDeniedException;
 import com.carpool.exception.RoomNullException;
 import com.carpool.exception.UserNullException;
-import com.carpool.website.dao.ChatRecordRepository;
 import com.carpool.website.model.Room;
 import com.carpool.website.model.RoomSelection;
 import com.carpool.website.service.RoomService;
+import com.carpool.website.service.RoomWebSocketHandler;
+import com.carpool.website.service.UnreadWebSocketHandler;
 import com.carpool.website.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,6 +24,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.text.ParseException;
@@ -44,8 +48,11 @@ public class RoomController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private ChatRecordRepository chatRecordRepository;
+    @Resource
+    private RoomWebSocketHandler roomWebSocketHandler;
+
+    @Resource
+    private UnreadWebSocketHandler unreadWebSocketHandler;
 
     @Autowired
     public RoomController(RoomService roomService) {
@@ -316,15 +323,54 @@ public class RoomController {
             return responseEntity;
 
         roomService.removeUserFromRoom(roomId, userId);
+
+        this.quitNotify(entity,userId, false);
+
         responseEntity = new ResponseEntity<>("ok", HttpStatus.ACCEPTED);
         return responseEntity;
+    }
+
+
+    private void quitNotify(RoomEntity entity, String userId, boolean add){
+        String content;
+        if(add){
+            content = "加入了房间";
+        }else{
+            content = "退出了房间";
+        }
+
+        //向当前房间的剩余参与者发送消息
+        //将系统消息存入消息表
+        UserEntity quitUser = this.userService.getUserById(userId);
+        Date time = new Date();
+
+        //利用RoomWebSocketHandler发送系统消息
+        //生成消息内容
+        String year = Integer.toString(time.getYear());
+        String month = Integer.toString(time.getMonth());
+        String day = Integer.toString(time.getDay());
+        String hour = Integer.toString(time.getHours());
+        String minute = Integer.toString(time.getMinutes());
+        String userProfileImg = userService.getUserProfileImgSrc("0000001");
+        String msg = "{ \"type\":1, \"userid\":\""+"0000001" + "\", \"username\":\"" + "系统"
+                + "\", \"room\":" + entity.getId() + ", \"year\":"+year + ", \"month\":"+ month + ",\"day\":" +day+ ",\"hour\":"
+                + hour + ",\"minute\":" + minute + ",\"chatContent\":\"" + quitUser.getUsername() + content  + "\"," +
+                "\"src\":\"" + userProfileImg.replace("_","") + "\"}";
+
+        JSONObject msgJson = JSON.parseObject(msg);
+        roomWebSocketHandler.handleMessageTypeOne(msgJson);
+        unreadWebSocketHandler.pushMsgToOnlineRoomMembers(entity.getId());
+
     }
 
     @PostMapping("/user/join")
     public String addUserToRoom(@RequestParam Integer roomId, HttpServletRequest request, ModelMap modelMap) throws Exception {
         String userId = userService.getUserIdByCookie(request.getCookies());
 
+        this.quitNotify(roomService.findById(roomId),userId,true);
+
         Room entity = roomService.addUserToRoom(roomId, userId);
+
 
         modelMap.addAttribute("room", entity);
 

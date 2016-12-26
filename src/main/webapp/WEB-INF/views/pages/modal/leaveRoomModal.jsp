@@ -25,7 +25,7 @@
             <!--Footer-->
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="confirmUnlock(${room.id})">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="confirmLeave(${room.id})">
                     是的
                 </button>
             </div>
@@ -35,7 +35,7 @@
 </div>
 <script>
     var sucCount = 0;
-    function confirmUnlock(roomId) {
+    function confirmLeave(roomId) {
         var xmlHttp = new XMLHttpRequest();
 
         xmlHttp.onreadystatechange = function () {
