@@ -1,5 +1,6 @@
 package com.carpool.configuration;
 
+import com.carpool.domain.UserEntity;
 import com.carpool.website.dao.SessionRepository;
 import com.carpool.website.dao.UserEntityRepository;
 import com.carpool.website.service.AuthenticationService;
@@ -38,6 +39,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
+
+        //generate a system user
+        UserEntity admin = new UserEntity("0000001", "系统", "qiangwudi", (byte)0, 5.0, "", 100000, "", "", "");
+        admin.setReceivedComments(0);
+        this.userService.saveUser(admin);
 
         SessionService sessionService = new SessionService(sessionRepository);
 
