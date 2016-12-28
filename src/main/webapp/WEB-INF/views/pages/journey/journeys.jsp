@@ -114,7 +114,7 @@
                 <div class="row">
                 <div class="col-lg-2 col-md-1 col-sm-0"></div>
                 <div class="col-lg-8 col-md-10 col-sm-12 journey">
-                    <section class="z-depth-1 hoverable panel" style="padding: 15px;">
+                    <section class="z-depth-1 hoverable panel" style="padding: 15px 15px 25px;">
                         <div class="text-center text">
                                 ${journey.room.roomname}
                             <span class="text-right">
@@ -134,7 +134,7 @@
                             </span>
                         </div>
                         <dl class="dl-horizontal">
-                            <dt>同行人数：</dt>
+                            <dt>出行人数：</dt>
                             <dd>${journey.peerNums}</dd>
                             <dt>起点：</dt>
                             <dd>${journey.startPoint}</dd>

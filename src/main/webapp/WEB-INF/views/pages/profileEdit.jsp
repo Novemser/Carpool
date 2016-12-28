@@ -144,8 +144,7 @@
     <aside class="profile-info col-lg-9">
         <section class="panel card">
             <div class="bio-graph-heading">
-                Aliquam ac magna metus. Nam sed arcu non tellus fringilla fringilla ut vel ispum. Aliquam ac magna
-                metus.
+                同济大学Carpool团队
             </div>
             <div class="panel-body bio-graph-info">
                 <h1> 基本信息</h1>

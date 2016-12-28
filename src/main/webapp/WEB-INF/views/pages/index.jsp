@@ -157,7 +157,7 @@
     </div>
     <div class="row yaHei">
         <!--First column-->
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-4 col-md-6">
             <!--Rotating card-->
             <div class="card-wrapper">
                 <div id="card-1" class="card-rotating effect__click">
@@ -177,7 +177,7 @@
                         <!--Content-->
                         <div class="card-block">
                             <h4>Novemser</h4>
-                            <p>全栈/UI设计</p>
+                            <p>后端/UI设计</p>
                             <!--Triggering button-->
                             <a class="rotate-btn" data-card="card-1"><i class="fa fa-repeat"></i> 点击查看更多</a>
                         </div>
@@ -213,7 +213,7 @@
         <!--/First column-->
 
         <!--Second column-->
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-4 col-md-6">
 
             <!--Rotating card-->
             <div class="card-wrapper">
@@ -233,7 +233,7 @@
                         <!--Content-->
                         <div class="card-block">
                             <h4>Deadoggy</h4>
-                            <p>全栈工程师</p>
+                            <p>后端</p>
                             <!--Triggering button-->
                             <a class="rotate-btn" data-card="card-2"><i class="fa fa-repeat"></i> 点击查看更多</a>
                         </div>
@@ -269,7 +269,7 @@
         <!--/Second column-->
 
         <!--Third column-->
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-4 col-md-6">
 
             <!--Rotating card-->
             <div class="card-wrapper">
@@ -283,16 +283,15 @@
                             <img src="/static/images/bg3.jpg" class="img-responsive">
                         </div>
                         <!--Avatar-->
-                        <div class="avatar"><img src="/static/images/at5.jpg"
+                        <div class="avatar"><img src="/static/images/ldl.jpg"
                                                  class="rounded-circle img-responsive">
                         </div>
                         <!--Content-->
                         <div class="card-block">
-                            <h4>Alex Noasten</h4>
-                            <p>Front-end Developer</p>
+                            <h4>罗大佬</h4>
+                            <p>后端</p>
                             <!--Triggering button-->
-                            <a class="rotate-btn" data-card="card-3"><i class="fa fa-repeat"></i> Click here to
-                                rotate</a>
+                            <a class="rotate-btn" data-card="card-3"><i class="fa fa-repeat"></i> 点击查看更多</a>
                         </div>
                     </div>
                     <!--/.Front Side-->
@@ -301,12 +300,9 @@
                     <div class="face back">
 
                         <!--Content-->
-                        <h4>About me</h4>
+                        <h4>关于我</h4>
                         <hr>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime quae, dolores dicta.
-                            Blanditiis rem amet repellat, dolores nihil quae in mollitia asperiores ut rerum
-                            repellendus, voluptatum eum, officia laudantium
-                            quaerat?
+                        <p>如果多一张车票，你会不会跟我走
                         </p>
                         <hr>
                         <!--Social Icons-->
@@ -317,8 +313,7 @@
                             <li><a class="icons-sm li-ic"><i class="fa fa-linkedin"></i></a></li>
                         </ul>
                         <!--Triggering button-->
-                        <a class="rotate-btn" data-card="card-3"><i class="fa fa-undo"></i> Click here to rotate
-                            back</a>
+                        <a class="rotate-btn" data-card="card-3"><i class="fa fa-undo"></i> 点击返回</a>
 
                     </div>
                     <!--/.Back Side-->
@@ -329,7 +324,7 @@
         </div>
         <!--/Third column-->
         <!--Forth column-->
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-4 col-md-6">
 
             <!--Rotating card-->
             <div class="card-wrapper">
@@ -343,16 +338,15 @@
                             <img src="/static/images/bg6.jpg" class="img-responsive">
                         </div>
                         <!--Avatar-->
-                        <div class="avatar"><img src="/static/images/at3.jpg"
+                        <div class="avatar"><img src="/static/images/lv.png"
                                                  class="rounded-circle img-responsive">
                         </div>
                         <!--Content-->
                         <div class="card-block">
-                            <h4>Sarah Melyah</h4>
-                            <p>Front-end Developer</p>
+                            <h4>李大佬</h4>
+                            <p>后端</p>
                             <!--Triggering button-->
-                            <a class="rotate-btn" data-card="card-4"><i class="fa fa-repeat"></i> Click here to
-                                rotate</a>
+                            <a class="rotate-btn" data-card="card-4"><i class="fa fa-repeat"></i> 点击查看更多</a>
                         </div>
                     </div>
                     <!--/.Front Side-->
@@ -361,12 +355,9 @@
                     <div class="face back">
 
                         <!--Content-->
-                        <h4>About me</h4>
+                        <h4>关于我</h4>
                         <hr>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime quae, dolores dicta.
-                            Blanditiis rem amet repellat, dolores nihil quae in mollitia asperiores ut rerum
-                            repellendus, voluptatum eum, officia laudantium
-                            quaerat?
+                        <p>妹子都是我的！
                         </p>
                         <hr>
                         <!--Social Icons-->
@@ -377,8 +368,7 @@
                             <li><a class="icons-sm li-ic"><i class="fa fa-linkedin"></i></a></li>
                         </ul>
                         <!--Triggering button-->
-                        <a class="rotate-btn" data-card="card-4"><i class="fa fa-undo"></i> Click here to rotate
-                            back</a>
+                        <a class="rotate-btn" data-card="card-4"><i class="fa fa-undo"></i> 点击返回</a>
 
                     </div>
                     <!--/.Back Side-->
@@ -388,6 +378,116 @@
             <!--/.Rotating card-->
         </div>
         <!--/Forth column-->
+        <!--Fifth column-->
+        <div class="col-lg-4 col-md-6">
+
+            <!--Rotating card-->
+            <div class="card-wrapper">
+                <div id="card-5" class="card-rotating effect__click">
+
+                    <!--Front Side-->
+                    <div class="face front">
+
+                        <!-- Image-->
+                        <div class="card-up">
+                            <img src="/static/images/bg8.jpg" class="img-responsive">
+                        </div>
+                        <!--Avatar-->
+                        <div class="avatar"><img src="/static/images/lx.jpg"
+                                                 class="rounded-circle img-responsive">
+                        </div>
+                        <!--Content-->
+                        <div class="card-block">
+                            <h4>罗雪</h4>
+                            <p>前端</p>
+                            <!--Triggering button-->
+                            <a class="rotate-btn" data-card="card-5"><i class="fa fa-repeat"></i> 点击查看更多</a>
+                        </div>
+                    </div>
+                    <!--/.Front Side-->
+
+                    <!--Back Side-->
+                    <div class="face back">
+
+                        <!--Content-->
+                        <h4>关于我</h4>
+                        <hr>
+                        <p>Pain past is pleasure.
+                        </p>
+                        <hr>
+                        <!--Social Icons-->
+                        <ul class="inline-ul">
+                            <li><a class="icons-sm gplus-ic"><i class="fa fa-google-plus"> </i></a></li>
+                            <li><a class="icons-sm fb-ic"><i class="fa fa-facebook"> </i></a></li>
+                            <li><a class="icons-sm git-ic"><i class="fa fa-github"> </i></a></li>
+                            <li><a class="icons-sm li-ic"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                        <!--Triggering button-->
+                        <a class="rotate-btn" data-card="card-5"><i class="fa fa-undo"></i> 点击返回</a>
+
+                    </div>
+                    <!--/.Back Side-->
+
+                </div>
+            </div>
+            <!--/.Rotating card-->
+        </div>
+        <!--/Fifth column-->
+        <!--Sixth column-->
+        <div class="col-lg-4 col-md-6">
+
+            <!--Rotating card-->
+            <div class="card-wrapper">
+                <div id="card-6" class="card-rotating effect__click">
+
+                    <!--Front Side-->
+                    <div class="face front">
+
+                        <!-- Image-->
+                        <div class="card-up">
+                            <img src="/static/images/bg13.jpg" class="img-responsive">
+                        </div>
+                        <!--Avatar-->
+                        <div class="avatar"><img src="/static/images/zyy.jpg"
+                                                 class="rounded-circle img-responsive">
+                        </div>
+                        <!--Content-->
+                        <div class="card-block">
+                            <h4>张映艺</h4>
+                            <p>前端</p>
+                            <!--Triggering button-->
+                            <a class="rotate-btn" data-card="card-6"><i class="fa fa-repeat"></i> 点击查看更多</a>
+                        </div>
+                    </div>
+                    <!--/.Front Side-->
+
+                    <!--Back Side-->
+                    <div class="face back">
+
+                        <!--Content-->
+                        <h4>关于我</h4>
+                        <hr>
+                        <p>Where there is life, there is hope.
+                        </p>
+                        <hr>
+                        <!--Social Icons-->
+                        <ul class="inline-ul">
+                            <li><a class="icons-sm gplus-ic"><i class="fa fa-google-plus"> </i></a></li>
+                            <li><a class="icons-sm fb-ic"><i class="fa fa-facebook"> </i></a></li>
+                            <li><a class="icons-sm git-ic"><i class="fa fa-github"> </i></a></li>
+                            <li><a class="icons-sm li-ic"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                        <!--Triggering button-->
+                        <a class="rotate-btn" data-card="card-6"><i class="fa fa-undo"></i> 点击返回</a>
+
+                    </div>
+                    <!--/.Back Side-->
+
+                </div>
+            </div>
+            <!--/.Rotating card-->
+        </div>
+        <!--/Sixth column-->
     </div>
 </div>
 
