@@ -91,7 +91,9 @@
                     <h3>房间用户</h3>
                     <ul class="list-unstyled">
                         <c:forEach items="${roomUsers}" var="user">
-                            <li>学号:${user.id} 姓名:${user.username} 信誉等级:${user.credit}</li>
+                            <li>学号:${user.id} 姓名:${user.username} 信誉等级:${user.credit}
+                            <a id="kickUser" value="roomId=${room.id}&userId=${user.id}">踢掉该用户？</a>
+                            </li>
                         </c:forEach>
                     </ul>
                 </c:if>
