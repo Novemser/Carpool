@@ -27,6 +27,25 @@
     }
 </style>
 <%@include file="../template/roomState.jsp" %>
+<div class="modal fade" id="kickUserModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalHead"></h4>
+            </div>
+            <div class="modal-footer">
+                <button id="kick" type="button" class="btn btn-primary">确定</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">让我再想想</button>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
 <div class="row center-block" style="margin-bottom: 90px;">
     <div class="col-lg-8 col-lg-offset-2 text-center detail_dev">
         <section class="z-depth-1 hoverable panel" style="padding: 15px;">
@@ -92,7 +111,8 @@
                     <ul class="list-unstyled">
                         <c:forEach items="${roomUsers}" var="user">
                             <li>学号:${user.id} 姓名:${user.username} 信誉等级:${user.credit}
-                            <a id="kickUser" value="roomId=${room.id}&userId=${user.id}">踢掉该用户？</a>
+                            <a class="kickUser">踢掉该用户？</a>
+                            <input type="hidden" name="userId" value="${user.id}">
                             </li>
                         </c:forEach>
                     </ul>
@@ -190,6 +210,18 @@
 </style>
 
 <script>
+    $(function () {
+       $(".kickUser").foreach(function () {
+           $(this).click(function () {
+              $("#kickUserModel #myModalHead").html("你确定踢掉该用户吗？该用户的信息如下: "+$(this).prev().html());
+               $("#kickUserModel #kick").click(
+                       function () {
+                           alert("room"+$(this).next().val());
+                       }
+               );
+           });
+       });
+
     function deleteRoom() {
         $('#deleteRoomConfirm').modal('show');
     }
