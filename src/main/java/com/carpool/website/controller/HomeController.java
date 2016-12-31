@@ -77,7 +77,8 @@ public class HomeController {
         Page<RoomEntity> roomEntities = roomService.findRoom(page, size);
         modelMap.addAttribute("roomPage", roomEntities);
         modelMap.addAttribute("currentPage", page);
-        modelMap.addAttribute("pageCount", roomService.getRoomPageCount());
+      //  modelMap.addAttribute("pageCount", roomService.getRoomPageCount());
+        modelMap.addAttribute("pageCount", roomEntities.getTotalPages());
         modelMap.addAttribute("unreadMsgCount", unreadMsgRec.size());
         modelMap.addAttribute("unreadMsg", unreadMsg);
 

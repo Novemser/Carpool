@@ -70,7 +70,7 @@ public class RoomServiceTest {
                 3,
                 new Date(),
                 "1452681",
-                "来吧来吧"
+                "来吧来吧",false
         );
     }
 

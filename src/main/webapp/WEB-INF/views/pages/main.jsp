@@ -30,6 +30,10 @@
                     <span>锁定 </span>
                 </i>
             </div>
+            <div class="text text-right">
+                <i class="fa fa-space-shuttle" aria-hidden="true"><span>允许中途下车</span></i>
+                <i class="fa fa-space-shuttle" style="color: green" aria-hidden="true"><span>不允许中途下车</span></i>
+            </div>
         </div>
     </div>
 
@@ -44,6 +48,7 @@
             <c:otherwise>
 
                 <c:forEach items="${roomPage.content}" var="li">
+                    <c:if test="${li.state!=ROOM_STATE_END}">
                     <div class="col-lg-4 col-md-6 col-sm-12">
                         <section class="z-depth-1 hoverable panel" style="padding: 15px;">
                             <a href="<c:url value="/room/detail?roomId=${li.id}"/>">
@@ -63,6 +68,14 @@
                                         <c:when test="${state==ROOM_STATE_STARTED}">
                                             <i class="flag-started fa fa-flag" aria-hidden="true"></i>
                                         </c:when>
+                                    </c:choose>
+                                    <c:choose>
+                                        <c:when test="${li.canStopOver}">
+                                            <i class="fa fa-space-shuttle" style="color: gray" aria-hidden="true"></i>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <i class="fa fa-space-shuttle" style="color: green" aria-hidden="true"></i>
+                                        </c:otherwise>
                                     </c:choose>
                                 </div>
                                 <dl class="dl-horizontal">
@@ -87,6 +100,7 @@
                             </a>
                         </section>
                     </div>
+                    </c:if>
                 </c:forEach>
             </c:otherwise>
         </c:choose>

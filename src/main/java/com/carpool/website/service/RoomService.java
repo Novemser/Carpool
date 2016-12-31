@@ -21,6 +21,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -47,7 +48,7 @@ public class RoomService {
                                  int numberLimit,
                                  Date startTime,
                                  String hostId,
-                                 String note) throws Exception {
+                                 String note,boolean canStopOver) throws Exception {
 
         UserEntity userEntity = userEntityRepository.findOne(hostId);
         if (null == userEntity)
@@ -63,6 +64,7 @@ public class RoomService {
         roomEntity.setStartTime(startTime);
         roomEntity.setState(RoomState.UNLOCKED);
         roomEntity.setNote(note);
+        roomEntity.setCanStopOver(canStopOver);
 
         // 获取系统当前时间戳
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
@@ -249,8 +251,10 @@ public class RoomService {
             }
         }
 
-        return roomEntityRepository.findAll(pageRequest);
+    //    return roomEntityRepository.findAll(pageRequest);
+        return roomEntityRepository.getNotEndRooms(pageRequest);
     }
+
 
     public void lockRoomById(int roomId) {
         changeRoomState(roomId, RoomState.LOCKED);
@@ -273,4 +277,7 @@ public class RoomService {
         entity.setState(locked);
         roomEntityRepository.save(entity);
     }
+
+
+
 }

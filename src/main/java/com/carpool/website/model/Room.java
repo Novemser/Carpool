@@ -27,7 +27,7 @@ public class Room implements Serializable {
     private String endPoint;
 
     @Min(2)
-    @Max(10)
+    @Max(4)
     private Integer numberLimit;
 
     private Integer currentNums;
@@ -38,6 +38,8 @@ public class Room implements Serializable {
     private String startDate;
     @NotEmpty
     private String startTime;
+
+    private boolean canStopOver;
 
     private String createTime;
 
@@ -117,6 +119,14 @@ public class Room implements Serializable {
 
     public void setState(RoomState state) {
         this.state = state;
+    }
+
+    public boolean isCanStopOver() {
+        return canStopOver;
+    }
+
+    public void setCanStopOver(boolean canStopOver) {
+        this.canStopOver = canStopOver;
     }
 
     public UserEntity getHost() {

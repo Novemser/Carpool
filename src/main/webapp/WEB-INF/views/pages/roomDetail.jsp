@@ -36,7 +36,11 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="myModalHead"></h4>
+                <h4 class="modal-title" id="myModalHead">提示</h4>
+            </div>
+            <div class="modal-body">
+                <i class="fa fa-warning" aria-hidden="true" style="color: orange"></i>
+                <span id="userInfo"></span>
             </div>
             <div class="modal-footer">
                 <button id="kick" type="button" class="btn btn-primary">确定</button>
@@ -50,7 +54,18 @@
     <div class="col-lg-8 col-lg-offset-2 text-center detail_dev">
         <section class="z-depth-1 hoverable panel" style="padding: 15px;">
             <h3 class="panel-heading">
-                房间具体信息
+                房间具体信息<span class="pull-right">
+                <c:choose>
+                <c:when test="${room.canStopOver==true}">
+                    <i class="fa fa-space-shuttle" aria-hidden="true"></i>
+                <font style="font-size: smaller"> 允许中途下车</font>
+                </c:when>
+                    <c:otherwise>
+                        <i class="fa fa-space-shuttle" style="color: green" aria-hidden="true"></i>
+                        <font style="font-size: smaller"> 不允许中途下车</font>
+                    </c:otherwise>
+                </c:choose>
+            </span>
             </h3>
             <div class="panel-body">
 
@@ -110,9 +125,12 @@
                     <h3>房间用户</h3>
                     <ul class="list-unstyled">
                         <c:forEach items="${roomUsers}" var="user">
-                            <li>学号:${user.id} 姓名:${user.username} 信誉等级:${user.credit}
-                            <a class="kickUser">踢掉该用户？</a>
-                            <input type="hidden" name="userId" value="${user.id}">
+                            <li>
+                                <label>学号:${user.id} 姓名:${user.username} 信誉等级:${user.credit}</label>
+                                <c:if test="${room.host.id!=user.id}">
+                                    <a class="kickUser">踢掉该用户？</a>
+                                <input type="hidden" name="userId" value="${user.id}">
+                                </c:if>
                             </li>
                         </c:forEach>
                     </ul>
@@ -211,14 +229,37 @@
 
 <script>
     $(function () {
-       $(".kickUser").foreach(function () {
-           $(this).click(function () {
-              $("#kickUserModel #myModalHead").html("你确定踢掉该用户吗？该用户的信息如下: "+$(this).prev().html());
+       $(".kickUser").click(function () {
+              var k = $(this);
+               $("#kickUserModel #userInfo").html("你确定踢掉该用户吗？" +
+                       "        该用户的信息如下:   "+$(this).prev().html());
                $("#kickUserModel #kick").click(
                        function () {
-                           alert("room"+$(this).next().val());
+                           var userid = k.next().val();
+                           var roomid = ${room.id};
+                           $.ajax(
+                                   {
+                                       url: "/room/kickUser",
+                                       type: "post",
+                                       data:
+                                       {
+                                            roomId:roomid,
+                                            userId:userid
+                                       },
+                                       success:function (data) {
+                                               toastr.success('踢掉用户成功!');
+                                               setTimeout(function () {
+                                                   window.location.href = '/room/detail?roomId=' + roomid;
+                                               }, 1000);
+                                       },
+                                       error:function (data) {
+                                           alert('程序出错了！');
+                                       }
+                                   }
+                           );
                        }
                );
+               $("#kickUserModel").modal('show');
            });
        });
 
@@ -267,5 +308,5 @@
             , "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "24"
         }, "share": {}
     };
-    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    with(document)[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
 </script>

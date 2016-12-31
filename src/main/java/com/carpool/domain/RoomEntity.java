@@ -1,5 +1,7 @@
 package com.carpool.domain;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -28,6 +30,17 @@ public class RoomEntity implements Serializable{
     private UserEntity payer;
     private JourneyEntity journey;
     private Collection<UserEntity> userParticipate;
+    private Boolean canStopOver = false;
+
+    @Column(name="canStopOver")
+    public Boolean getCanStopOver()
+    {
+        return canStopOver;
+    }
+    public void setCanStopOver(Boolean canStopOver)
+    {
+        this.canStopOver = canStopOver;
+    }
 
     @Column(name = "roomnote")
     public String getNote() {

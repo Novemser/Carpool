@@ -222,6 +222,7 @@ public class RoomController {
         model.setNumberLimit(entity.getNumberLimit());
         model.setStartPoint(entity.getStartPoint());
         model.setEndPoint(entity.getEndPoint());
+        model.setCanStopOver(entity.getCanStopOver());
 
         modelMap.addAttribute("room", model);
 
@@ -268,7 +269,7 @@ public class RoomController {
                         room.getNumberLimit(),
                         startTime,
                         userId,
-                        room.getNote()
+                        room.getNote(),room.isCanStopOver()
                 );
                 Room roomModel = (Room) modelMap.get("room");
                 roomModel.setId(entity.getId());
@@ -308,6 +309,21 @@ public class RoomController {
             return responseEntity;
 
         roomService.endRoomById(roomId);
+        responseEntity = new ResponseEntity<>("ok", HttpStatus.ACCEPTED);
+        return responseEntity;
+    }
+
+
+    @PostMapping("/kickUser")
+    @ResponseBody
+    public ResponseEntity<?> kickUserFromRoom(@RequestParam Integer roomId,@RequestParam String userId,HttpServletRequest request)
+    {
+        String user = userService.getUserIdByCookie(request.getCookies());
+        RoomEntity roomEntity = roomService.findById(roomId);
+        ResponseEntity<String> responseEntity = new ResponseEntity<>("no", HttpStatus.UNAUTHORIZED);
+        if(roomEntity.getHost().getId().equals(user)==false)
+            return  responseEntity;
+        roomService.removeUserFromRoom(roomId,userId);
         responseEntity = new ResponseEntity<>("ok", HttpStatus.ACCEPTED);
         return responseEntity;
     }

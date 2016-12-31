@@ -147,7 +147,9 @@ function getDetail(link,nodeToInsert) {
                     commentTime.html(commentTime.html()+time.toLocaleString());
                     peer.append(commentTime);
                 }
-                list.append(peer);
+                var pay = $("<a><i class='fa fa-cny' aria-hidden='true'></i>向他付钱</a>");
+                list.append(peer).append(pay);
+
             }
         }
     });

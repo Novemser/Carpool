@@ -144,6 +144,8 @@
                         <fieldset class="form-group text-center">
                             <input type="checkbox" id="checkbox1">
                             <label for="checkbox1">我已查看并同意用户条款</label>
+                            <input type="checkbox" id="canStopOver" name="canStopOver">
+                            <label for="canStopOver">是否允许中途下车?</label>
                         </fieldset>
                     </fieldset>
 
