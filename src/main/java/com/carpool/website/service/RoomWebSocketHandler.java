@@ -119,7 +119,7 @@ public class RoomWebSocketHandler extends TextWebSocketHandler {
     private void sendMessageToUsers(ChatRecordEntity cre, ArrayList<WebSocketSession> roomSpace, JSONObject msg) {
         Integer monthIndex = Integer.valueOf(msg.getString("month"));
 
-        msg.replace("month", msg.get("month"), this.month[monthIndex-1]);
+        msg.replace("month", msg.get("month"), this.month[monthIndex]);
 
         //generate message
         String messageStr = msg.toJSONString();
