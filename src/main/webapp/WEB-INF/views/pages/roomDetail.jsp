@@ -127,9 +127,11 @@
                         <c:forEach items="${roomUsers}" var="user">
                             <li>
                                 <label>学号:${user.id} 姓名:${user.username} 信誉等级:${user.credit}</label>
+                                <c:if test="${roomOwner == true}">
                                 <c:if test="${room.host.id!=user.id}">
                                     <a class="kickUser">踢掉该用户？</a>
                                 <input type="hidden" name="userId" value="${user.id}">
+                                </c:if>
                                 </c:if>
                             </li>
                         </c:forEach>
