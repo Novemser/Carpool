@@ -1,5 +1,8 @@
 package com.carpool.website.service;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.carpool.configuration.GlobalConstants;
 import com.carpool.domain.RoomEntity;
 import com.carpool.domain.RoomState;
@@ -8,6 +11,9 @@ import com.carpool.exception.*;
 import com.carpool.website.dao.RoomEntityRepository;
 import com.carpool.website.dao.UserEntityRepository;
 import com.carpool.website.model.Room;
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
+import com.mashape.unirest.http.Unirest;
 import org.apache.commons.lang.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,10 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Project: Carpool
@@ -48,7 +51,7 @@ public class RoomService {
                                  int numberLimit,
                                  Date startTime,
                                  String hostId,
-                                 String note,boolean canStopOver) throws Exception {
+                                 String note, boolean canStopOver) throws Exception {
 
         UserEntity userEntity = userEntityRepository.findOne(hostId);
         if (null == userEntity)
@@ -76,9 +79,47 @@ public class RoomService {
         // 所以只用修改User里的多方表就可以了
         userEntity.getUserParticipateRooms().add(roomEntity);
 
+        setRoomLonLat(roomEntity);
         roomEntityRepository.saveAndFlush(roomEntity);
 
         return roomEntity;
+    }
+
+    private void setRoomLonLat(RoomEntity entity) {
+        String startPoint = entity.getStartPoint();
+        String endPoint = entity.getEndPoint();
+        String baseUrl = "http://api.map.baidu.com/cloudgc/v1?ak=LjXz7cMGmKjfh3gGQ78s3NdCKN6KlvDv&city=上海&address=";
+
+        String startUrl = baseUrl + startPoint;
+        String endUrl = baseUrl + endPoint;
+
+        try {
+            HttpResponse<JsonNode> response = Unirest.get(startUrl).asJson();
+
+            JSONObject respObj = JSON.parseObject(response.getBody().toString());
+            JSONArray result = respObj.getJSONArray("result");
+            if (result.size() > 0) {
+                JSONObject location = result.getJSONObject(0).getJSONObject("location");
+                float lat = location.getFloat("lat");
+                float lng = location.getFloat("lng");
+                entity.setStartPointLat(lat);
+                entity.setStartPointLon(lng);
+            }
+
+            response = Unirest.get(endUrl).asJson();
+            respObj = JSON.parseObject(response.getBody().toString());
+            result = respObj.getJSONArray("result");
+            if (result.size() > 0) {
+                JSONObject location = result.getJSONObject(0).getJSONObject("location");
+                float lat = location.getFloat("lat");
+                float lng = location.getFloat("lng");
+                entity.setEndPointLat(lat);
+                entity.setEndPointLon(lng);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public List<RoomEntity> listUserRooms(String userId) {
@@ -251,10 +292,9 @@ public class RoomService {
             }
         }
 
-    //    return roomEntityRepository.findAll(pageRequest);
+        //    return roomEntityRepository.findAll(pageRequest);
         return roomEntityRepository.getNotEndRooms(pageRequest);
     }
-
 
     public void lockRoomById(int roomId) {
         changeRoomState(roomId, RoomState.LOCKED);
@@ -278,6 +318,16 @@ public class RoomService {
         roomEntityRepository.save(entity);
     }
 
+    public List<String> getPositionNameList() {
+        Set<String> result = new HashSet<>();
+        List<Object[]> names = roomEntityRepository.findAllRoomName();
+        for (Object[] itemName : names) {
+            for (Object oj : itemName) {
+                String place = (String) oj;
+                result.add(place);
+            }
+        }
 
-
+        return new ArrayList<>(result);
+    }
 }

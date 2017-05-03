@@ -30,10 +30,10 @@
                     <span>锁定 </span>
                 </i>
             </div>
-            <div class="text text-right">
-                <i class="fa fa-space-shuttle" aria-hidden="true"><span>允许中途下车</span></i>
-                <i class="fa fa-space-shuttle" style="color: green" aria-hidden="true"><span>不允许中途下车</span></i>
-            </div>
+            <%--<div class="text text-right">--%>
+                <%--<i class="fa fa-space-shuttle" aria-hidden="true"><span>允许中途下车</span></i>--%>
+                <%--<i class="fa fa-space-shuttle" style="color: green" aria-hidden="true"><span>不允许中途下车</span></i>--%>
+            <%--</div>--%>
         </div>
     </div>
 
@@ -69,14 +69,14 @@
                                             <i class="flag-started fa fa-flag" aria-hidden="true"></i>
                                         </c:when>
                                     </c:choose>
-                                    <c:choose>
-                                        <c:when test="${li.canStopOver}">
-                                            <i class="fa fa-space-shuttle" style="color: gray" aria-hidden="true"></i>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <i class="fa fa-space-shuttle" style="color: green" aria-hidden="true"></i>
-                                        </c:otherwise>
-                                    </c:choose>
+                                    <%--<c:choose>--%>
+                                        <%--<c:when test="${li.canStopOver}">--%>
+                                            <%--<i class="fa fa-space-shuttle" style="color: gray" aria-hidden="true"></i>--%>
+                                        <%--</c:when>--%>
+                                        <%--<c:otherwise>--%>
+                                            <%--<i class="fa fa-space-shuttle" style="color: green" aria-hidden="true"></i>--%>
+                                        <%--</c:otherwise>--%>
+                                    <%--</c:choose>--%>
                                 </div>
                                 <dl class="dl-horizontal">
                                     <dt>出发时间</dt>

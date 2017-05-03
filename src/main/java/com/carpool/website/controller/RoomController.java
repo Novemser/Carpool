@@ -1,6 +1,7 @@
 package com.carpool.website.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.carpool.configuration.GlobalConstants;
 import com.carpool.domain.RoomEntity;
@@ -32,6 +33,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Project: Carpool
@@ -222,7 +224,7 @@ public class RoomController {
         model.setNumberLimit(entity.getNumberLimit());
         model.setStartPoint(entity.getStartPoint());
         model.setEndPoint(entity.getEndPoint());
-        model.setCanStopOver(entity.getCanStopOver());
+//        model.setCanStopOver(entity.getCanStopOver());
 
         modelMap.addAttribute("room", model);
 
@@ -269,7 +271,7 @@ public class RoomController {
                         room.getNumberLimit(),
                         startTime,
                         userId,
-                        room.getNote(),room.isCanStopOver()
+                        room.getNote(),false
                 );
                 Room roomModel = (Room) modelMap.get("room");
                 roomModel.setId(entity.getId());
@@ -406,5 +408,20 @@ public class RoomController {
     }
 
 
+    @GetMapping("/positionnames")
+    @ResponseBody
+    public JSONArray getPositionNames() {
+        List<String> resString = roomService.getPositionNameList();
+//        List<JSONObject> resObj = new ArrayList<>();
+        JSONArray array = new JSONArray();
+        for (String item : resString) {
+            String prefix = "{ \"value\": \"";
+            String postfix = "\", \"data\": \"AE\" }";
+            JSONObject jo = JSON.parseObject(prefix + item + postfix);
+//            resObj.add(jo);
+            array.add(jo);
+        }
 
+        return array;
+    }
 }

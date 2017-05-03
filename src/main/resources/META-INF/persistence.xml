@@ -19,7 +19,7 @@
             <property name="hibernate.hikari.idleTimeout" value="30000"/>
 
             <!-- 数据库连接的用户名 -->
-            <property name="hibernate.connection.username" value="carpool"/>
+            <property name="hibernate.connection.username" value="root"/>
 
             <!-- 数据库连接的密码 -->
             <property name="hibernate.connection.password" value="1234"/>

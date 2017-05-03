@@ -27,7 +27,8 @@
     }
 </style>
 <%@include file="../template/roomState.jsp" %>
-<div class="modal fade" id="kickUserModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="kickUserModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <!--Content-->
         <div class="modal-content">
@@ -54,18 +55,19 @@
     <div class="col-lg-8 col-lg-offset-2 text-center detail_dev">
         <section class="z-depth-1 hoverable panel" style="padding: 15px;">
             <h3 class="panel-heading">
-                房间具体信息<span class="pull-right">
-                <c:choose>
-                <c:when test="${room.canStopOver==true}">
-                    <i class="fa fa-space-shuttle" aria-hidden="true"></i>
-                <font style="font-size: smaller"> 允许中途下车</font>
-                </c:when>
-                    <c:otherwise>
-                        <i class="fa fa-space-shuttle" style="color: green" aria-hidden="true"></i>
-                        <font style="font-size: smaller"> 不允许中途下车</font>
-                    </c:otherwise>
-                </c:choose>
-            </span>
+                <span style="color: #00a5e0; font-weight: 500">| </span>房间具体信息
+                <%--<span class="pull-right">--%>
+                <%--<c:choose>--%>
+                <%--<c:when test="${room.canStopOver==true}">--%>
+                <%--<i class="fa fa-space-shuttle" aria-hidden="true"></i>--%>
+                <%--<font style="font-size: smaller"> 允许中途下车</font>--%>
+                <%--</c:when>--%>
+                <%--<c:otherwise>--%>
+                <%--<i class="fa fa-space-shuttle" style="color: green" aria-hidden="true"></i>--%>
+                <%--<font style="font-size: smaller"> 不允许中途下车</font>--%>
+                <%--</c:otherwise>--%>
+                <%--</c:choose>--%>
+                <%--</span>--%>
             </h3>
             <div class="panel-body">
 
@@ -122,22 +124,23 @@
                 <hr>
                 <%--如果是房主||加入了房间 显示房间人数--%>
                 <c:if test="${roomOwner==true || inRoom==true}">
-                    <h3>房间用户</h3>
+                    <h3><span style="color: #00a5e0; font-weight: 500">| </span>房间用户</h3>
                     <ul class="list-unstyled">
                         <c:forEach items="${roomUsers}" var="user">
                             <li>
                                 <label>学号:${user.id} 姓名:${user.username} 信誉等级:${user.credit}</label>
                                 <c:if test="${roomOwner == true}">
-                                <c:if test="${room.host.id!=user.id}">
-                                    <a class="kickUser">踢掉该用户？</a>
-                                <input type="hidden" name="userId" value="${user.id}">
-                                </c:if>
+                                    <c:if test="${room.host.id!=user.id}">
+                                        <a class="kickUser">踢掉该用户？</a>
+                                        <input type="hidden" name="userId" value="${user.id}">
+                                    </c:if>
                                 </c:if>
                             </li>
                         </c:forEach>
                     </ul>
                 </c:if>
-                <div style="margin: 24px;width: 75%;" class="btn btn-lg btn-primary" onclick="window.location.href='/room/chat?roomId=${room.id}'">
+                <div style="margin: 24px;width: 75%;" class="btn btn-lg btn-primary"
+                     onclick="window.location.href='/room/chat?roomId=${room.id}'">
 
                     <i class="fa fa-commenting"></i> 进入聊天室
                 </div>
@@ -206,11 +209,12 @@
                     </c:choose>
                 </c:if>
                 <div class="col-xs-offset-3">
-                    <div class="bdsharebuttonbox btn-effect" style="background-color: white;margin-left: 10px;float: right">
-                        <a title="分享到QQ空间" class="bds_qzone"  href="#" data-id="${room.id}"  data-cmd="qzone"></a>
-                        <a title="分享到QQ好友" class="bds_sqq "  href="#" data-id="${room.id}" data-cmd="sqq"></a>
-                        <a title="分享到微信" class="bds_weixin"  href="#" data-id="${room.id}" data-cmd="weixin"></a>
-                        <a class="bds_more  icons-sm drib-ic"  href="#"  data-id="${room.id}" data-cmd="more"></a>
+                    <div class="bdsharebuttonbox btn-effect"
+                         style="background-color: white;margin-left: 10px;float: right">
+                        <a title="分享到QQ空间" class="bds_qzone" href="#" data-id="${room.id}" data-cmd="qzone"></a>
+                        <a title="分享到QQ好友" class="bds_sqq " href="#" data-id="${room.id}" data-cmd="sqq"></a>
+                        <a title="分享到微信" class="bds_weixin" href="#" data-id="${room.id}" data-cmd="weixin"></a>
+                        <a class="bds_more  icons-sm drib-ic" href="#" data-id="${room.id}" data-cmd="more"></a>
                     </div>
                 </div>
             </div>
@@ -231,39 +235,38 @@
 
 <script>
     $(function () {
-       $(".kickUser").click(function () {
-              var k = $(this);
-               $("#kickUserModel #userInfo").html("你确定踢掉该用户吗？" +
-                       "        该用户的信息如下:   "+$(this).prev().html());
-               $("#kickUserModel #kick").click(
-                       function () {
-                           var userid = k.next().val();
-                           var roomid = ${room.id};
-                           $.ajax(
-                                   {
-                                       url: "/room/kickUser",
-                                       type: "post",
-                                       data:
-                                       {
-                                            roomId:roomid,
-                                            userId:userid
-                                       },
-                                       success:function (data) {
-                                               toastr.success('踢掉用户成功!');
-                                               setTimeout(function () {
-                                                   window.location.href = '/room/detail?roomId=' + roomid;
-                                               }, 1000);
-                                       },
-                                       error:function (data) {
-                                           alert('程序出错了！');
-                                       }
-                                   }
-                           );
-                       }
-               );
-               $("#kickUserModel").modal('show');
-           });
-       });
+        $(".kickUser").click(function () {
+            var k = $(this);
+            $("#kickUserModel #userInfo").html("你确定踢掉该用户吗？" +
+                "        该用户的信息如下:   " + $(this).prev().html());
+            $("#kickUserModel #kick").click(
+                function () {
+                    var userid = k.next().val();
+                    var roomid = ${room.id};
+                    $.ajax(
+                        {
+                            url: "/room/kickUser",
+                            type: "post",
+                            data: {
+                                roomId: roomid,
+                                userId: userid
+                            },
+                            success: function (data) {
+                                toastr.success('踢掉用户成功!');
+                                setTimeout(function () {
+                                    window.location.href = '/room/detail?roomId=' + roomid;
+                                }, 1000);
+                            },
+                            error: function (data) {
+                                alert('程序出错了！');
+                            }
+                        }
+                    );
+                }
+            );
+            $("#kickUserModel").modal('show');
+        });
+    });
 
     function deleteRoom() {
         $('#deleteRoomConfirm').modal('show');
@@ -298,7 +301,7 @@
      */
     function SetShareUrl(cmd, config) {
         if (ShareId) {
-            config.bdUrl = "http://novemser.vicp.io:521/room/detail?roomId="+ShareId;
+            config.bdUrl = "http://novemser.vicp.io:521/room/detail?roomId=" + ShareId;
         }
         return config;
     }
@@ -310,5 +313,5 @@
             , "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "24"
         }, "share": {}
     };
-    with(document)[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    with (document)[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
 </script>

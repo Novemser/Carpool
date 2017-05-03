@@ -24,6 +24,9 @@
                                 <div class="col-lg-5">
                                     <form:input id="start-point" type="text" class="form-control" placeholder="出发地点"
                                                 path="startPoint"/>
+                                    <div id="searchResultPanel1"
+                                         style="border:1px solid #C0C0C0; height:auto; display:none;"></div>
+
                                 </div>
 
                                 <div id="switch-btn" class="col-lg-2 text-center">
@@ -105,7 +108,20 @@
     .handle-error {
         color: red;
     }
+    .autocomplete-suggestions {
+        background: white;
+        padding: 0 8px 0 8px;
+        border: 1px solid #4285f4;
+        border-radius: 5px;
+    }
+    .autocomplete-suggestion {
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+
 </style>
+
+<script src="${pageContext.request.contextPath}/static/js/jquery.autocomplete.min.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -116,6 +132,22 @@
             var left = document.getElementById('start-point').value;
             document.getElementById('start-point').value = document.getElementById('end-point').value;
             document.getElementById('end-point').value = left;
+        });
+
+        $.ajax({
+            url: "/room/positionnames",
+            context: document.body,
+            dataType: "json",
+            success: function (data) {
+
+                $('#start-point').autocomplete({
+                    lookup: data
+                });
+
+                $('#end-point').autocomplete({
+                    lookup: data
+                });
+            }
         });
     });
 

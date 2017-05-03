@@ -2,20 +2,16 @@ package com.carpool.website.controller;
 
 import com.carpool.domain.CommentEntity;
 import com.carpool.domain.UserEntity;
-import com.carpool.exception.PermissionDeniedException;
-import com.carpool.exception.UserNullException;
 import com.carpool.website.model.Comment;
 import com.carpool.website.service.CommentService;
 import com.carpool.website.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 /**
  * Created by qi on 2016/11/30.

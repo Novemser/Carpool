@@ -1,7 +1,5 @@
 package com.carpool.domain;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -13,7 +11,7 @@ import java.util.Date;
  */
 @Entity
 @Table
-public class RoomEntity implements Serializable{
+public class RoomEntity implements Serializable {
 
     private int id;
     private String roomname;
@@ -31,14 +29,19 @@ public class RoomEntity implements Serializable{
     private JourneyEntity journey;
     private Collection<UserEntity> userParticipate;
     private Boolean canStopOver = false;
+    private String note;
 
-    @Column(name="canStopOver")
-    public Boolean getCanStopOver()
-    {
+    public float startPointLon;
+    public float startPointLat;
+    public float endPointLon;
+    public float endPointLat;
+
+    @Column(name = "canStopOver")
+    public Boolean getCanStopOver() {
         return canStopOver;
     }
-    public void setCanStopOver(Boolean canStopOver)
-    {
+
+    public void setCanStopOver(Boolean canStopOver) {
         this.canStopOver = canStopOver;
     }
 
@@ -51,8 +54,6 @@ public class RoomEntity implements Serializable{
         this.note = roomNote;
     }
 
-    private String note;
-
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -64,8 +65,40 @@ public class RoomEntity implements Serializable{
         this.id = id;
     }
 
+    public float getStartPointLon() {
+        return startPointLon;
+    }
+
+    public void setStartPointLon(float startPointLon) {
+        this.startPointLon = startPointLon;
+    }
+
+    public float getStartPointLat() {
+        return startPointLat;
+    }
+
+    public void setStartPointLat(float startPointLat) {
+        this.startPointLat = startPointLat;
+    }
+
+    public float getEndPointLon() {
+        return endPointLon;
+    }
+
+    public void setEndPointLon(float endPointLon) {
+        this.endPointLon = endPointLon;
+    }
+
+    public float getEndPointLat() {
+        return endPointLat;
+    }
+
+    public void setEndPointLat(float endPointLat) {
+        this.endPointLat = endPointLat;
+    }
+
     @Basic
-    @Column(name = "roomname", nullable = false, length = 10)
+    @Column(name = "roomname", nullable = false, length = 200)
     public String getRoomname() {
         return roomname;
     }
@@ -75,7 +108,7 @@ public class RoomEntity implements Serializable{
     }
 
     @Basic
-    @Column(name = "startPoint", nullable = false, length = 20)
+    @Column(name = "startPoint", nullable = false, length = 200)
     public String getStartPoint() {
         return startPoint;
     }
@@ -85,7 +118,7 @@ public class RoomEntity implements Serializable{
     }
 
     @Basic
-    @Column(name = "endPoint", nullable = false, length = 10)
+    @Column(name = "endPoint", nullable = false, length = 200)
     public String getEndPoint() {
         return endPoint;
     }
@@ -209,7 +242,7 @@ public class RoomEntity implements Serializable{
 
     @OneToOne(mappedBy = "room")
     public JourneyEntity getJourney() {
-        return  journey;
+        return journey;
     }
 
 

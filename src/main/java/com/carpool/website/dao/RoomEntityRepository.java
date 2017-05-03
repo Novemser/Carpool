@@ -12,6 +12,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Novemser on 2016/11/27.
@@ -20,10 +21,10 @@ import java.util.Date;
 public interface RoomEntityRepository extends JpaRepository<RoomEntity, Integer> {
 
 
-    RoomEntity  findById(int id);
+    RoomEntity findById(int id);
 
     Page<RoomEntity> findByStartPointAndEndPointAndStartTimeBetween(String startPoint, String endPoint,
-                                                             Date from, Date to, Pageable pageable);
+                                                                    Date from, Date to, Pageable pageable);
 
     @Query("select r from RoomEntity r where " +
             "r.startPoint like %:qStartPoint% " +
@@ -39,11 +40,11 @@ public interface RoomEntityRepository extends JpaRepository<RoomEntity, Integer>
             "r.startPoint like %:qStartPoint% " +
             "and r.endPoint like %:qEndPoint% ")
     Page<RoomEntity> findRoomStartEndPointLike(@Param("qStartPoint") String startPoint,
-                                                     @Param("qEndPoint") String endPoint,
-                                                     Pageable pageable);
+                                               @Param("qEndPoint") String endPoint,
+                                               Pageable pageable);
 
     @Query("select r from RoomEntity r where r.state!='END'")
-    Page<RoomEntity>getNotEndRooms(Pageable pageable);
+    Page<RoomEntity> getNotEndRooms(Pageable pageable);
 
 
     RoomEntity findByRoomname(String name);
@@ -64,4 +65,7 @@ public interface RoomEntityRepository extends JpaRepository<RoomEntity, Integer>
 
     @Query("select count(*) from RoomEntity")
     Integer getRoomCount();
+
+    @Query("select r.startPoint, r.endPoint from RoomEntity r")
+    List<Object[]> findAllRoomName();
 }

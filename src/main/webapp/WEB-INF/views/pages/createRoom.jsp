@@ -8,7 +8,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="modal/confirmServiceModal.jsp"%>
+<%@include file="modal/confirmServiceModal.jsp" %>
 <div class="row">
     <div class="col-lg-8 col-lg-offset-2">
         <section class="z-depth-1 panel" style="margin-bottom: 100px">
@@ -33,7 +33,8 @@
             </div>
 
             <div class="panel-body">
-                <form:form name="createform" class="form-horizontal" onsubmit="return validateForm()" modelAttribute="room" id="create-room-form" method="post"
+                <form:form name="createform" class="form-horizontal" onsubmit="return validateForm()"
+                           modelAttribute="room" id="create-room-form" method="post"
                            action="/room/create?id=2">
                     <fieldset>
                         <legend><span class="glyphicon glyphicon-home"></span> 房间信息</legend>
@@ -42,6 +43,10 @@
                                 <div class="col-lg-5">
                                     <form:input id="start-point" type="text" class="form-control" placeholder="出发地点"
                                                 path="startPoint"/>
+                                    <div id="l-map"></div>
+                                    <div id="searchResultPanel1"
+                                         style="border:1px solid #C0C0C0; height:auto; display:none;"></div>
+
                                 </div>
 
                                 <div id="switch-btn" class="col-lg-2 text-center">
@@ -53,6 +58,10 @@
                                 <div class="col-lg-5">
                                     <form:input id="end-point" type="text" class="form-control" placeholder="结束地点"
                                                 path="endPoint"/>
+                                    <div id="r-map"></div>
+                                    <div id="searchResultPanel2"
+                                         style="border:1px solid #C0C0C0; height:auto; display:none;"></div>
+
                                 </div>
 
                                 <div class="col-lg-7">
@@ -80,7 +89,8 @@
                             <div class="form-inner-group">
 
                                 <div>
-                                    <form:input type="number" class="form-control" placeholder="人数上限" path="numberLimit"/>
+                                    <form:input type="number" class="form-control" placeholder="人数上限"
+                                                path="numberLimit"/>
                                 </div>
                                 <div>
                                     <form:errors cssClass="handle-error" path="numberLimit"/>
@@ -144,12 +154,12 @@
                         <fieldset class="form-group text-center">
                             <input type="checkbox" id="checkbox1">
                             <label for="checkbox1">我已查看并同意用户条款</label>
-                            <input type="checkbox" id="canStopOver" name="canStopOver">
-                            <label for="canStopOver">是否允许中途下车?</label>
+                                <%--<input type="checkbox" id="canStopOver" name="canStopOver">--%>
+                                <%--<label for="canStopOver">是否允许中途下车?</label>--%>
                         </fieldset>
                     </fieldset>
 
-                    <input class="finish btn btn-outline-warning" type="submit" value="确认无误并提交">
+                    <input id="submit_btn" class="finish btn btn-outline-warning" type="submit" value="确认无误并提交">
                 </form:form>
             </div>
         </section>
@@ -162,6 +172,7 @@
         color: red;
     }
 </style>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=LjXz7cMGmKjfh3gGQ78s3NdCKN6KlvDv"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -173,7 +184,95 @@
             document.getElementById('start-point').value = document.getElementById('end-point').value;
             document.getElementById('end-point').value = left;
         });
+
+//        $('#submit_btn').click(function (e) {
+//            var place = G("start-point").value;
+//            $.ajax({
+//                url: "http://api.map.baidu.com/cloudgc/v1?ak=LjXz7cMGmKjfh3gGQ78s3NdCKN6KlvDv&city=上海&address=" + place,
+//                context: document.body,
+//                dataType: "json",
+//                success: function (data) {
+//                    console.log(data);
+//                }
+//            })
+//        });
     });
 
+    // 百度地图API功能
+    function G(id) {
+        return document.getElementById(id);
+    }
+
+    var map = new BMap.Map("l-map");
+    var map_end_place = new BMap.Map("r-map");
+    map.centerAndZoom("上海", 12); // 初始化地图,设置城市和地图级别。
+    map_end_place.centerAndZoom("上海", 12); // 初始化地图,设置城市和地图级别。
+
+
+    var ac_start = new BMap.Autocomplete( //建立一个自动完成的对象
+        {
+            "input": "start-point",
+            "location": map
+        });
+    var ac_end = new BMap.Autocomplete(
+        {
+            "input": "end-point",
+            "location": map_end_place
+        }
+    );
+
+    ac_start.addEventListener("onhighlight", function (e) { //鼠标放在下拉列表上的事件
+        var str = "";
+        var _value = e.fromitem.value;
+        var value = "";
+        if (e.fromitem.index > -1) {
+            value = _value.province + _value.city + _value.district + _value.street + _value.business;
+        }
+        str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
+
+        value = "";
+        if (e.toitem.index > -1) {
+            _value = e.toitem.value;
+            value = _value.province + _value.city + _value.district + _value.street + _value.business;
+        }
+        str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
+        G("searchResultPanel1").innerHTML = str;
+    });
+
+    ac_end.addEventListener("onhighlight", function (e) { //鼠标放在下拉列表上的事件
+        var str = "";
+        var _value = e.fromitem.value;
+        var value = "";
+        if (e.fromitem.index > -1) {
+            value = _value.province + _value.city + _value.district + _value.street + _value.business;
+        }
+        str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
+
+        value = "";
+        if (e.toitem.index > -1) {
+            _value = e.toitem.value;
+            value = _value.province + _value.city + _value.district + _value.street + _value.business;
+        }
+        str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
+        G("searchResultPanel2").innerHTML = str;
+    });
+
+    ac_start.addEventListener("onconfirm", function (e) { //鼠标点击下拉列表后的事件
+        var _value = e.item.value;
+        var detailed = _value.province + _value.city + _value.district + _value.street + _value.business;
+        var show = _value.district + _value.street + _value.business;
+
+        G("searchResultPanel1").innerHTML = detailed;
+        G("start-point").value = show;
+    });
+
+    ac_end.addEventListener("onconfirm", function (e) { //鼠标点击下拉列表后的事件
+        var _value = e.item.value;
+        var detailed = _value.province + _value.city + _value.district + _value.street + _value.business;
+        var show = _value.district + _value.street + _value.business;
+
+        G("searchResultPanel2").innerHTML = detailed;
+        G("end-point").value = show;
+    });
 
 </script>
