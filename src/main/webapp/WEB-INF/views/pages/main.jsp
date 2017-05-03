@@ -48,8 +48,8 @@
             <c:otherwise>
 
                 <c:forEach items="${roomPage.content}" var="li">
-                    <c:if test="${li.state!=ROOM_STATE_END}">
-                    <div class="col-lg-4 col-md-6 col-sm-12">
+                    <%--<c:if test="${li.state!=ROOM_STATE_END}">--%>
+                    <div class="col-sm-12">
                         <section class="z-depth-1 hoverable panel" style="padding: 15px;">
                             <a href="<c:url value="/room/detail?roomId=${li.id}"/>">
                                 <div class="row">
@@ -100,7 +100,7 @@
                             </a>
                         </section>
                     </div>
-                    </c:if>
+                    <%--</c:if>--%>
                 </c:forEach>
             </c:otherwise>
         </c:choose>

@@ -43,7 +43,7 @@ public interface RoomEntityRepository extends JpaRepository<RoomEntity, Integer>
                                                @Param("qEndPoint") String endPoint,
                                                Pageable pageable);
 
-    @Query("select r from RoomEntity r where r.state!='END'")
+    @Query("select r from RoomEntity r")
     Page<RoomEntity> getNotEndRooms(Pageable pageable);
 
 
