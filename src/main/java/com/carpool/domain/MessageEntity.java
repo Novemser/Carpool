@@ -1,7 +1,7 @@
 package com.carpool.domain;
 
 /**
- * Created by deado on 2016/12/21.
+ * Created by deado on 2017/3/21.
  */
 public class MessageEntity {
     private String user;

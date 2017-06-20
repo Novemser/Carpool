@@ -6,7 +6,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  * Project: Carpool
  * Package: com.carpool.website.model
  * Author:  Novemser
- * 2016/12/11
+ * 2017/3/11
  */
 public class RoomSelection {
     @NotEmpty

@@ -20,9 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
@@ -30,7 +28,7 @@ import java.util.List;
  * Project: Carpool
  * Package: com.carpool.website.controller
  * Author:  Novemser
- * 2016/12/5
+ * 2017/4/5
  */
 @Controller
 @RequestMapping("/home")

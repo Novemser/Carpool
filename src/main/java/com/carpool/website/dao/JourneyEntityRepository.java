@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 /**
- * Created by qi on 2016/11/26.
+ * Created by qi on 2017/3/26.
  */
 public interface JourneyEntityRepository extends JpaRepository<JourneyEntity, Integer> {
 

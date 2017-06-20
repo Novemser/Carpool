@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
  * Project: Carpool
  * Package: com.carpool.website.controller.exception
  * Author:  Novemser
- * 2016/11/30
+ * 2017/3/30
  */
 @ControllerAdvice
 public class GlobalExceptionController {

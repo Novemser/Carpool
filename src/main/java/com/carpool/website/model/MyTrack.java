@@ -1,7 +1,7 @@
 package com.carpool.website.model;
 
 /**
- * Created by qi on 2016/12/18.
+ * Created by qi on 2017/3/18.
  */
 public class MyTrack {
     private String destination;

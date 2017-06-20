@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by qi on 2016/12/1.
+ * Created by qi on 2017/3/1.
  */
 public class Comment implements Serializable{
     private int id;

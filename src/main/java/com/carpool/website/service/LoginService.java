@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import java.util.ArrayList;
 
 /**
- * Created by deado on 2016/12/15.
+ * Created by deado on 2017/3/15.
  */
 public class LoginService implements UserDetailsService {
 

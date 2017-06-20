@@ -3,7 +3,7 @@ package com.carpool.website.model;
 import java.util.Date;
 
 /**
- * Created by qi on 2016/12/1.
+ * Created by qi on 2017/3/1.
  */
 public class JourneyCommentDetail {
     private String targetUserId;

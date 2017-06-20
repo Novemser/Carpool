@@ -53,11 +53,17 @@
             <c:otherwise>
 
                 <c:forEach items="${roomPage.content}" var="li">
-                    <div class="col-lg-4 col-md-6 col-sm-12">
-                        <section class="z-depth-1 hoverable panel" style="padding: 15px;">
-                            <a href="<c:url value="/room/detail?roomId=${li.id}"/>">
+                    <%--<c:if test="${li.state!=ROOM_STATE_END}">--%>
+                    <div class="col-sm-12 col-lg-offset-1 col-lg-10 ">
+                        <section class="z-depth-1 col-sm-12 hoverable panel" style="padding: 15px;">
+                            <a class="col-sm-6"
+                               style="display: flex; flex-direction: column; justify-content: space-around"
+                               href="<c:url value="/room/detail?roomId=${li.id}"/>">
                                 <div class="row">
-                                    <div class="text room-title text-center col-lg-11 col-md-11 col-sm-11 col-xs-11">${li.roomname}</div>
+                                    <div class="text room-title col-lg-11 col-md-11 col-sm-11 col-xs-11">
+                                        <span style="color: #00a5e0;">| </span>
+                                        房间信息
+                                    </div>
                                     <c:set var="state" value="${li.state}"/>
                                     <c:choose>
                                         <c:when test="${state==ROOM_STATE_UNLOCKED}">
@@ -73,29 +79,52 @@
                                             <i class="flag-started fa fa-flag" aria-hidden="true"></i>
                                         </c:when>
                                     </c:choose>
+                                        <%--<c:choose>--%>
+                                        <%--<c:when test="${li.canStopOver}">--%>
+                                        <%--<i class="fa fa-space-shuttle" style="color: gray" aria-hidden="true"></i>--%>
+                                        <%--</c:when>--%>
+                                        <%--<c:otherwise>--%>
+                                        <%--<i class="fa fa-space-shuttle" style="color: green" aria-hidden="true"></i>--%>
+                                        <%--</c:otherwise>--%>
+                                        <%--</c:choose>--%>
                                 </div>
-                                <dl class="dl-horizontal">
+                                <dl>
+                                    <dt>房间名称</dt>
+                                    <dd>${li.roomname}</dd>
                                     <dt>出发时间</dt>
                                     <dd><fmt:formatDate value="${li.startTime}" pattern="yyyy-MM-dd HH:mm"/></dd>
                                     <dt>出发地点</dt>
-                                    <dd>${li.startPoint}</dd>
+                                    <dd class="start-point">${li.startPoint}</dd>
                                     <dt>目的地</dt>
-                                    <dd>${li.endPoint}</dd>
+                                    <dd class="end-point">${li.endPoint}</dd>
                                     <dt>人数</dt>
                                     <dd>
-                                    <span style="text-align: center;">
-                                        <c:forEach begin="1" end="${li.currentNums}">
-                                            <i class="icon-user" style="color: #42b2c4;"></i>
-                                        </c:forEach>
-                                        <c:forEach begin="0" end="${li.numberLimit-li.currentNums}">
-                                            <i class="icon-user" style="color: lightgrey"></i>
-                                        </c:forEach>
-                                    </span>
+                        <span style="text-align: center;">
+                            <c:forEach begin="1" end="${li.currentNums}">
+                                <i class="icon-user" style="color: #42b2c4;"></i>
+                            </c:forEach>
+                            <c:forEach begin="1" end="${li.numberLimit-li.currentNums}">
+                                <i class="icon-user" style="color: lightgrey"></i>
+                            </c:forEach>
+                        </span>
                                     </dd>
                                 </dl>
                             </a>
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="text room-title">
+                                        <span style="color: #00a5e0;">| </span>
+                                        起点, 终点信息
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="map col-sm-12">Baidu Map</div>
+                                </div>
+                            </div>
                         </section>
+
                     </div>
+                    <%--</c:if>--%>
                 </c:forEach>
             </c:otherwise>
         </c:choose>
@@ -133,6 +162,64 @@
         </nav>
     </div>
 </div>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=LjXz7cMGmKjfh3gGQ78s3NdCKN6KlvDv"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var startPointList = $('#main-content .wrapper section .start-point');
+        var endPointList = $('#main-content .wrapper section .end-point');
+
+        $('#main-content .wrapper section .map').each(function (index) {
+            var map = new BMap.Map(this);
+
+            var local = new BMap.LocalSearch(map, {
+                renderOptions: {map: map}
+            });
+            var local2 = new BMap.LocalSearch(map, {
+                renderOptions: {map: map}
+            });
+
+            // 创建地址解析器实例
+            var myGeo = new BMap.Geocoder();
+            var startPoint = startPointList[index].innerHTML;
+            var endPoint = endPointList[index].innerHTML;
+
+            myGeo.getPoint(startPoint, function (startPoint) {
+                if (startPoint) {
+//                    map.centerAndZoom(startPoint, 12);
+//                    map.addOverlay(new BMap.Marker(startPoint));
+                    myGeo.getPoint(endPoint, function (endPoint) {
+                        var driving = new BMap.DrivingRoute(map, {
+                            renderOptions: {
+                                map: map,
+                                autoViewport: true,
+                                enableDragging: true
+                            }
+                        });
+                        driving.search(startPoint, endPoint);
+                        map.centerAndZoom('上海', 11);
+                    }, '上海市');
+                } else {
+
+                }
+            }, '上海市');
+
+            var top_right_navigation = new BMap.NavigationControl({
+                anchor: BMAP_ANCHOR_TOP_RIGHT,
+                type: BMAP_NAVIGATION_CONTROL_SMALL
+            }); //右上角，仅包含平移和缩放按钮
+            map.addControl(top_right_navigation);
+            map.enableContinuousZoom();
+            map.enableScrollWheelZoom(true);
+
+            local.search(startPoint);
+            local2.search(endPoint);
+
+            $(this).css('height', '300px');
+        })
+    });
+
+</script>
+
 <style type="text/css">
     .pagination {
         float: right !important;

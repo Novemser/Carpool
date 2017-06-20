@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  * Project: Carpool
  * Package: com.carpool.website.controller
  * Author:  Novemser
- * 2016/12/20
+ * 2017/4/20
  */
 @Controller
 public class ImageGenController {

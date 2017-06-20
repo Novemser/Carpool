@@ -1,19 +1,17 @@
 package com.carpool.website.dao;
 
 import com.carpool.domain.ChatRecordEntity;
-
-import com.carpool.domain.RoomEntity;
-import com.carpool.domain.UserEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+
 import java.util.Date;
 import java.util.List;
 
 /**
- * Created by deado on 2016/11/30.
+ * Created by deado on 2017/3/30.
  */
 
 public interface ChatRecordRepository extends JpaRepository<ChatRecordEntity,Integer>{

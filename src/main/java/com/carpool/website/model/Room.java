@@ -12,7 +12,7 @@ import java.io.Serializable;
  * Project: Carpool
  * Package: com.carpool.website.model
  * Author:  Novemser
- * 2016/12/1
+ * 2017/3/1
  */
 
 public class Room implements Serializable {

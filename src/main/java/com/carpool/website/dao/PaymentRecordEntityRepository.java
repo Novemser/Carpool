@@ -4,7 +4,7 @@ import com.carpool.domain.PaymentRecordEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * Created by 91574 on 2016/11/30.
+ * Created by 91574 on 2017/3/30.
  */
 public interface PaymentRecordEntityRepository extends JpaRepository<PaymentRecordEntity,Integer>{
 //    @Query("select record from PaymentRecordEntity as record where record.sourceUser="+

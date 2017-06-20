@@ -3,7 +3,7 @@ package com.carpool.domain;
 import javax.persistence.*;
 
 /**
- * Created by deado on 2016/12/20.
+ * Created by deado on 2017/3/20.
  */
 
 @Entity
